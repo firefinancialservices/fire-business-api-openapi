@@ -437,6 +437,15 @@ components:
                 format: uuid
                 description: A unique id for the transaction.
                 example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+              status:
+                type: string
+                enum:
+                  - AWAITING_AUTHORISATION
+                  - AUTHORISED
+                  - AWAITING_MULTI_AUTHORISATION
+                  - NOT_AUTHORISED
+                  - PAID
+                description: The status of the transaction
           - $ref: '#/components/schemas/NewPaymentRequest'
       Aspsp:
         type: object
