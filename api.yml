@@ -1,0 +1,587 @@
+openapi: '3.0.2'
+info:
+  title: Fire Financial Services Business API
+  description: >
+    The fire.com API allows you to deeply integrate Business Account features into your application or back-office systems.
+    
+
+    The API provides read access to your profile, accounts and transactions, event-driven notifications of activity on the account and payment initiation via batches. Each feature has its own HTTP endpoint and every endpoint has its own permission.
+    
+
+  
+    The API exposes 3 main areas of functionality: financial functions, service information and service configuration.
+    
+    ## Financial Functions
+    
+    These functions provide access to your account details, transactions, payee accounts, payment initiation etc.
+    
+    ## Service Functions
+    
+    These provide information about the fees and limits applied to your account.
+    
+    ## Service configuration
+    
+    These provide information about your service configs - applications, webhooks, API tokens, etc.
+  version: '1.0'
+servers:
+  - url: https://api.fire.com/business/v1
+    description: Production Server
+  - url: https://api-preprod.fire.com/business/v1
+    description: Preproduction/Sandbox Server
+paths:
+  /accounts:
+    get:
+      summary: List all fire.com Accounts
+      description: Returns all your fire.com Accounts. Ordered by Alias ascending. Can be paginated.
+      tags:
+          - fire.com Accounts
+      operationId: getAccounts
+      responses:
+        '200':
+          description: An array of account objects.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accounts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Account'
+        '401':
+          $ref: '#/components/responses/UnauthorisedError'
+    post:
+      summary: Add a new account
+      description: >
+        Creates a new fire.com account.
+
+
+        **Please note there is a charge associated with creating a new account.**
+      tags:
+          - fire.com Accounts
+      operationId: addAccount
+      requestBody:
+        required: true
+        description: Details of the new account
+        content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewAccount'
+      responses:
+        '201':
+          description: The details of the new account
+          content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Account'
+  /accounts/{ican}:
+    get:
+      summary: Retrieve the details of a fire.com Account
+      description: You can retrieve the details of a fire.com Account by its `ican`.
+      tags:
+          - fire.com Accounts
+      operationId: getAccountById
+      parameters:
+          - in: path
+            name: ican
+            schema: 
+              type: integer
+              description: The ican of the account to retrieve
+            required: true
+      responses:
+        '200':
+          description: An array of account objects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        '401':
+          $ref: '#/components/responses/UnauthorisedError'
+  /paymentrequests:
+    post:
+      summary: Create a Fire Open Payment request
+      description: >
+        Creates a new Fire Open Payment Payment request. A code is returned that can be shared to your customers as a URL by any channel you wish.
+
+        You will need to enable the `PERM_BUSINESS_POST_PAYMENT_REQUEST` permission to use this endpoint.
+      tags:
+          - Open Banking
+      operationId: newPaymentRequest
+      requestBody:
+        required: true
+        description: Details of the new payment request
+        content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewPaymentRequest'
+      responses:
+        '200':
+          description: Payment Request created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentRequestResponse'
+  /aspsps:
+    get:
+      summary: Get list of ASPSPs / Banks
+      description: >
+        Returns all ASPSPs (Account Servicing Payment Service Provider) / banks. The list can be filtered by currency.
+        You will need to enable the `PERM_BUSINESS_GET_ASPSPS` permission to use this endpoint.
+        
+        ***This endpoint is only required if you intend to host the “Select ASPSP / bank” page yourself.***
+      tags:
+        - Open Banking
+      operationId: getListOfAspsps
+      parameters:
+          - in: query
+            name: currency
+            schema:
+              $ref: '#/components/schemas/Currency'
+            required: false
+      responses:
+        '200':
+          description: >
+            A list of ASPSPs the customers can use to pay a payment.
+          content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    total:
+                      type: integer
+                      example: 10
+                      description: The total number of ASPSPs in the list.
+                    aspsps:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Aspsp'
+  /payments/{paymentUuid}:
+    get:
+      summary: Get Payment Details
+      description: >
+        Returns the details of a specific payment.
+
+
+        As the customer goes through the process of making the payment the status of the payment will change.
+
+
+        * `AWAITING_AUTHORISATION` -This is the initial status of all your payments.
+        
+        * `AUTHORISED` - This is the status that your payment is set to after the customer has authorised the payment with their ASPSP / bank.
+        
+        * `AWAITING_MULTI_AUTHORISATION` - Some business accounts such as charities require dual authorisation.
+        
+        * `NOT_AUTHORISED` - Either your customer clicked on cancel or the payment was rejected by their ASPSP / bank.
+        
+        * `PAID` - Funds were received into your fire.com GBP or EUR account from your customer’s ASPSP / bank.
+        
+        
+        You will need to enable the `PERM_BUSINESS_GET_PAYMENT` permission to use this endpoint.
+      tags: 
+        - Open Banking
+      operationId: getPaymentDetails
+      parameters:
+      - in: path
+        required: true
+        name: paymentUuid
+        schema:
+          type: string
+          format: uuid
+          description: The unique id for the transaction.
+          example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+      responses:
+        '200':
+          description: 
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentRequestDetails'
+components:
+  schemas:
+      Account:
+        type: object
+        properties: 
+          ican: 
+            type: integer
+            description: identifier for the fire.com account (assigned by fire.com)
+            example: 42
+          name: 
+            type: string
+            description: the name the user gives to the account to help them identify it.
+            example: Main Account
+          colour:
+            type: string
+            description: Internal Use
+            deprecated: true
+            example: ORANGE
+          currency:
+            type: object
+            $ref: '#/components/schemas/Currency'
+          balance:
+            type: integer
+            description: the balance of the account (in minor currency units - pence, cent etc. 434050 == 4,340.50 GBP for a GBP account).
+            example: 23950
+          status:
+            type: string
+            enum:
+              - LIVE
+              - MIGRATED
+            description: Live accounts can be used as normal. Migrated accounts were used before Brexit and are read-only. 
+          cbic: 
+            type: string
+            example: CPAYIE2D
+            description: the BIC of the account (provided if currency is EUR).
+          ciban: 
+            type: string
+            example: IE54CPAY99119911111111
+            description: the IBAN of the account (provided if currency is EUR).
+          cnsc: 
+            type: string
+            example: "232221"
+            description: the Sort Code of the account.
+          ccan:
+            type: string
+            example: "11111111"
+            description: the Account Number of the account.
+          defaultAccount: 
+            type: boolean
+            example: true
+            description: true if this is the default account for this currency. This will be the account that general fees are taken from (as opposed to per-transaction fees).
+          directDebitsAllowed:
+            type: boolean
+            example: false
+            description: Whether or not direct debits can be set up on this account.
+      Currency:
+        type: object
+        properties:
+          code:
+            type: string
+            description: The three letter code for the currency - either `EUR` or `GBP`.
+            enum:
+              - EUR
+              - GBP
+          description: 
+            type: string
+            description: The name of the currency 
+            example: Euro
+      Country:
+        type: object
+        properties:
+          code:
+            type: string
+            description: The 2-letter code for the country - e.g. `IE`, `GP`...
+            example: "GB"
+          description: 
+            type: string
+            description: The name of the country 
+            example: United Kingdom
+      NewAccount: 
+        type: object
+        properties:
+            accountName: 
+              type: string
+              example: Operating Account
+              description: Name to give the new account
+            currency:
+              type: string
+              enum:
+                - EUR
+                - GBP
+              description: The currency of the new account
+            acceptFeesAndCharges:
+              type: boolean
+              description: a field to indicate you accept the fee for a new account
+      NewPaymentRequest:
+        type: object
+        required:
+          - "type"
+          - "icanTo"
+          - "currency"
+          - "myRef"
+          - "description"
+        properties:
+          type: 
+            type: string
+            enum:
+              - OTHER
+            description: The type of Fire Open Payment that was created
+          icanTo:
+            type: integer
+            example: 42
+            description: The ican of the account to collect the funds into. Must be one of your fire.com Accounts.
+          currency:
+            type: string
+            enum:
+              - EUR
+              - GBP
+            description: Either `EUR` or `GBP`, and must correspond to the currency of the account the funds are being lodged into in the `icanTo`.
+          amount:
+            type: integer
+            example: 1000
+            description: The requested amount to pay. Note the last two digits represent pennies/cents, (e.g., £1.00 = 100).
+          myRef:
+            type: string
+            example: Fees
+            description: An internal description of the request.
+          description:
+            type: string
+            example: Gym Fees Oct 2020
+            description: A public facing description of the request. This will be shown to the user when they tap or scan the request.
+          maxNumberPayments:
+            type: integer
+            example: 1
+            description: The max number of people who can pay this request. Must be set to 1 for the ECOMMERCE_GOODS and ECOMMERCE_SERVICES types.
+          expiry:
+            type: string
+            format: date-time
+            example: "2020-10-22T07:48:56.460Z"
+            description: This is the expiry of the payment request. After this time, the payment cannot be paid.
+          returnUrl:
+            type: string
+            format: uri
+            example: https://example.com/callback
+            description: The merchant return URL where the customer will be re-directed to with the result of the transaction.
+          orderDetails:
+            type: object
+            $ref: '#/components/schemas/OrderDetails'
+          collectFields:
+            type: string
+            example: "ADDRESS|REFERENCE|COMMENT1"
+            description: For the hosted option, the payer will be asked to fill in these fields but they will not be mandatory. You can choose to collect any of the payer's `ADDRESS`, `REFERENCE` and/or `COMMENT1`. If you choose to collect these fields from the payer, you cannot set 'delivery’, 'variableReference’ or 'comment1’ fields respectively.
+          mandatoryFields:
+            type: string
+            example: "ADDRESS|REFERENCE|COMMENT1"
+            description: For the hosted option, these fields will be madatory for the payer to fill in on the hosted payment page. You can choose to collect any the payer's `ADDRESS`, `REFERENCE` and/or `COMMENT1`. If you choose to collect these fields from the payer, you cannot set 'delivery’, 'variableReference’ or 'comment1’ fields respectively.
+          additionalFields:
+            type: string
+            example: ORDER_ID|PRODUCT_ID|CUSTOMER_ID|CUSTOMER_NUMBER|COMMENT2
+            description: These fields will be dispalyed to the payer when using the hosted option. You can choose to display any of `ORDER_ID`, `PRODUCT_ID`, `CUSTOMER_ID`, `CUSTOMER_NUMBER` and `COMMENT2` to the payer.
+      OrderDetails:
+        type: object
+        properties:
+          orderId:
+            type: string
+            example: "6c28a47d-4502-4111"
+            description: Use this field to store the order id for the transaction. The Order Id cannot be set unless the `maxNumberPayments` is 1.
+          productId:
+            type: string
+            example: "ZFDAA-1221"
+            description: Use this field to store a product id for the transaction (for example). 
+          customerNumber:
+            type: string
+            example: "123645"
+            description: Use this field to store a customer number for the transaction (for example). 
+          variableReference:
+            type: string
+            example: "John Doe"
+            description: Use this field to store any other reference for the transaction (for example, a phone number). 
+          comment1:
+            type: string
+            example: "Additional comments about the transaction"
+            description: This is your own comment for the transaction.
+          comment2:
+            type: string
+            example: "Additional comments about the transaction"
+            description: This is your own comment for the transaction.
+          merchantCustomerIdentification:
+            type: string
+            example: "08303863544"
+            description: This is a reference you use to uniquely identify each of your customers.
+          deliveryAddressLine1:
+            type: string
+            example: "12 The Street"
+            description: The first line of the delivery address.
+          deliveryAddressLine2:
+            type: string
+            example: "The Way"
+            description: The second line of the delivery address.
+          deliveryCity:
+            type: string
+            example: "London"
+            description: Delivery address city
+          deliveryPostCode:
+            type: string
+            example: "EC15155"
+            description: Delivery address post code
+          deliveryCountry:
+            type: string
+            example: "GB"
+            description: 2-digit code for the country
+      PaymentRequestResponse: 
+        type: object
+        properties:
+          code:
+            type: string
+            example: 1234abcd
+            description: >
+              The code for this request. Create a URL in this format: `https://payments.fire.com/{code}` and share to your customers.
+            minLength: 8
+            maxLength: 8
+          type:
+            type: string
+            enum:
+              - OTHER
+            description: The type of Fire Open Payment that was created.
+      PaymentRequestDetails:
+        allOf:
+          - type: object
+            properties:
+              paymentRequestCode:
+                type: string
+                description: The code that was returned when you created the payment request.
+                example: "1234abcd"
+                maxLength: 8
+                minLength: 8
+              paymentUuid:
+                type: string
+                format: uuid
+                description: A unique id for the transaction.
+                example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+          - $ref: '#/components/schemas/NewPaymentRequest'
+      Aspsp:
+        type: object
+        properties:
+          aspspUuid:
+            type: string
+            format: uuid
+            description: The UUID associated with the ASPSP / bank.
+            example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+          alias:
+            type: string
+            example: Demo Bank
+            description: The name of the ASPSP / bank.
+          logoUrl:
+            type: string
+            format: uri
+            example: "https://assets.fire.com/pisp/demo.svg"
+            description: A link to the ASPSP / bank's logo in SVG format. 
+          country:
+            $ref: '#/components/schemas/Country'
+          currency:
+            $ref: '#/components/schemas/Currency'
+          dateCreated:
+            type: string
+            format: date-time
+            example: "2019-08-22T07:48:56.460Z"
+            description: The date the ASPSP / bank was created.
+          lastUpdated:
+            type: string
+            format: date-time
+            example: "2019-08-22T07:48:56.460Z"
+            description: The date the ASPSP / bank was last updated.
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Access Token
+  responses:
+      UnauthorisedError:
+        description: Access Token is Invalid or missing
+  parameters:
+      orderParam:
+        name: order
+        in: query
+        required: false
+        description: Either `ASC` or `DESC`
+        schema:
+          enum:
+              - ASC
+              - DESC
+      orderByParam:
+        name: orderBy
+        in: query
+        required: false
+        description: Currently defaults to `DATE` No other options at this time.
+        schema:
+          enum:
+              - DATE
+      limitParam:
+        name: limit
+        in: query
+        required: false
+        description: The number of records to return. Defaults to 10 - max is 200.
+        schema:
+          type: integer
+          default: 10
+          maximum: 200
+      offsetParam:
+        name: offset
+        in: query
+        required: false
+        description: The page offset. Defaults to 0. This is the record number that the returned list will start at. E.g. `offset = 40` and `limit = 20` will return records 40 to 59.
+        schema:
+          type: integer
+          default: 0
+security:
+  - BearerAuth: []
+tags:
+    - name: fire.com Accounts
+      description: fire.com Accounts are the equivalent of a bank account from bank.
+    - name: Open Banking
+      description: > 
+        Fire Open Payments is a feature of the fire.com business account that leverages Open Banking to allow your customers to pay you via bank transfer and to reconcile those payments as they are received into your fire.com GBP or EUR account.
+
+
+        To set up each Fire Open Payment you first need to create a payment request. This contains the details of the payment such as the amount, destination account, description as well as various other specific fields that you want to associate with the payment. The payment request is represented as a URL with a unique code which can then be incorporated into an eCommerce shopping cart as an alternative form of payment. For example, you can put “Pay by Bank” on your website along with “Pay by Card” and “Pay by PayPal”. It can also be distributed by a variety of means such as by email, SMS, WhatsApp, encoded as a QR code, NFC tag, etc.
+
+
+        Consumers confirm the payment details such as the amount are correct, select their bank and authorise the payment. Payments can be made from all major UK banks.
+
+
+        The funds are settled into your fire.com account, fully reconciled, with your specified fields provided.
+
+
+        There are two implementation options you can use to display payment pages with Fire Open Payments.
+
+        1. **Hosted Payment Pages:** fire.com hosts the payment pages - this option allows you to re-direct your customer to the hosted fire.com payment pages displaying the payment details confirmation, bank selection, consent and response pages.
+
+        2. **Integrated Payment Pages:** You host the payments page yourself - this option allows you to have control of the UI and UX for displaying the payment details confirmation, bank selection and response pages. Once the response is received, fire.com can re-direct the payer back to your website.
+
+
+        ## Hosted Payment Pages Option
+
+        ![Image](https://fire.com/docs/images/fop-hosted-flow.png)
+
+
+        The payer is brought through 5 stages to complete the payment:
+
+        1. **View Payment Details page:** The payer must first be clear on the amount of the payment, who they are paying and the reason for the payment.
+        
+        2. **Select Bank / Account Provider page:** The payer then selects their bank. Again this step is offered as part of the fire.com payment UI.
+        
+        3. **Consent page:**  The payer must provide consent to the PISP (fire.com) prior to authorising the payment. This is a regulatory requirement, this page must be hosted by fire.com.
+        
+        4. **Authenticate and Authorise Payment:** The payer will be redirected to their bank’s online site or mobile banking app. After authenticating, the details of the payment will be displayed, and the payer will authorise the payment.
+        
+        5. **Response page:** It is a regulatory requirement that the PISP (fire.com) display the results of the payment and provide the same information that would be provided if the payer had made the payment via their banking application. fire.com must display this page, before optionally redirecting the payer back to your website.
+        
+        
+        To implement the hosted Fire Open Payments option you need to do the following:
+
+        1. You can create a new Fire Open Payment request either within Firework Online or via the API.
+        
+        2. Create your new API application with the appropriate permissions required in Firework Online, as outlined in the “Authentication” steps. The permissions needed are:
+           - “Create a Payment Request”
+           - “Get Payment Details”
+        
+        3. Use the Refresh Token, Client ID and Client Key to create an access token as outlined in the “Authentication” steps.
+        
+        4. On your website, create a “Pay by Bank” button alongside your other available payment methods, such as Cards and PayPal.
+        
+        5. After the user clicks on “Pay by Bank”, you need to create a new Fire Open Payment request as outlined in the “Create a Fire Open Payment” steps. The Create a Fire Open Payment request endpoint returns a unique code for the payment request.
+        
+        6. Create a URL using the code returned in this format: `https://payments.fire.com/{code}` and redirect your customer to this page.
+        
+        7. fire.com will host all the pages that the customer needs to review and authorise the payment. fire.com will will return the paymentUUID of the successful or failed transaction to the returnUrl that you supplied when creating the Fire Open Payment request. fire.com can also optionally send a “webhook” to your website notifying you of the transaction’s outcome.
+        
+        8. Once fire.com responds with the paymentUUID and/or the webhook to your website, you need to call the “Get Payment Details” endpoint to get the details of the transaction. This will let you know whether the transaction was successful or not. You can set up the “Payment Request Payment Authorised” webhook to notify you once the payment is authorised or cancelled.
+        
+        9. The funds will be received into your GBP or EUR account. Funding will typically be within 6 business hours.
+        
+        
+        Once the code is returned the payment can be viewed and paid by going to the following URL: `https://payments.fire.com/{code}`
+
+
+
+
+      
