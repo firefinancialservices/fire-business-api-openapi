@@ -14,6 +14,6 @@ jobs:
       id: deploy
       uses: bump-sh/github-action@master
       with:
-        id: ${{ secrets.DOC_ID }}
+        doc: ${{ secrets.DOC_ID }}
         token: ${{ secrets.DOC_TOKEN }}
         file: api.yml
