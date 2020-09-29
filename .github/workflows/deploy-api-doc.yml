@@ -14,6 +14,6 @@ jobs:
       id: deploy
       uses: scharrier/github-actions@master
       with:
-        id: ${{ secrets.doc_id }}
-        token: ${{ secrets.doc_token }}
+        id: ${{ secrets.DOC_ID }}
+        token: ${{ secrets.DOC_TOKEN }}
         file: api.yml
