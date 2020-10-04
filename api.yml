@@ -108,6 +108,7 @@ paths:
             name: ican
             schema: 
               type: integer
+              format: int64
               description: The ican of the account to retrieve
             required: true
       responses:
@@ -208,7 +209,6 @@ paths:
         name: paymentUuid
         schema:
           type: string
-          format: uuid
           description: The unique id for the transaction.
           example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
       responses:
@@ -225,16 +225,15 @@ components:
       properties:
         clientId:
           type: string
-          format: uuid
           description: The Client ID for this API Application
           example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
         refreshToken:
           type: string
-          format: uuid
           description: The Refresh Token for this API Application
           example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
         nonce:
-          type: string
+          type: integer
+          format: int64
           description: A random non-repeating number used as a salt for the `clientSecret` below. The simplest nonce is a unix time.
           example: 728345638475      
         grantType:
@@ -244,7 +243,6 @@ components:
           description: Always `AccessToken`. (This will change to `refresh_token` in a future release.)
         clientSecret:
           type: string
-          format: uuid
           description: The SHA256 hash of the nonce above and the app’s Client Key. The Client Key will only be shown to you when you create the app, so don’t forget to save it somewhere safe.
           example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
     AccessToken:
@@ -252,10 +250,12 @@ components:
       properties:
         businessId: 
           type: integer
+          format: int64
           description: The business ID for the business.
           example: 248
         applicationId:
           type: integer
+          format: int64
           description: The ID of the application you are using.
           example: 433
         expiry:
@@ -271,7 +271,6 @@ components:
             - PERM_BUSINESSES_GET_ACCOUNT_TRANSACTIONS
         accessToken:
           type: string
-          format: uuid
           description: The App Bearer Access Token you can use in further API calls.
           example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
     Account:
@@ -279,6 +278,7 @@ components:
       properties: 
         ican: 
           type: integer
+          format: int64
           description: identifier for the fire.com account (assigned by fire.com)
           example: 42
         name: 
@@ -295,6 +295,7 @@ components:
           $ref: '#/components/schemas/Currency'
         balance:
           type: integer
+          format: int64
           description: the balance of the account (in minor currency units - pence, cent etc. 434050 == 4,340.50 GBP for a GBP account).
           example: 23950
         status:
@@ -383,6 +384,7 @@ components:
           description: The type of Fire Open Payment that was created
         icanTo:
           type: integer
+          format: int64
           example: 42
           description: The ican of the account to collect the funds into. Must be one of your fire.com Accounts.
         currency:
@@ -393,6 +395,7 @@ components:
           description: Either `EUR` or `GBP`, and must correspond to the currency of the account the funds are being lodged into in the `icanTo`.
         amount:
           type: integer
+          format: int64
           example: 1000
           description: The requested amount to pay. Note the last two digits represent pennies/cents, (e.g., £1.00 = 100).
         myRef:
@@ -510,7 +513,6 @@ components:
               minLength: 8
             paymentUuid:
               type: string
-              format: uuid
               description: A unique id for the transaction.
               example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
             status:
@@ -528,7 +530,6 @@ components:
       properties:
         aspspUuid:
           type: string
-          format: uuid
           description: The UUID associated with the ASPSP / bank.
           example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
         alias:
@@ -555,10 +556,15 @@ components:
           example: "2019-08-22T07:48:56.460Z"
           description: The date the ASPSP / bank was last updated.
   securitySchemes:
-    BearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: API Access Token
+    # Workaround for https://github.com/swagger-api/swagger-codegen-generators/issues/113
+    bearerAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    # but it should be this. swagger-codegen doesn't understand type: http
+    #  type: http
+    #  scheme: bearer
+    #  bearerFormat: API Access Token
   responses:
     UnauthorisedError:
       description: Access Token is Invalid or missing
@@ -598,7 +604,7 @@ components:
         type: integer
         default: 0
 security:
-  - BearerAuth: []
+  - bearerAuth: []
 tags:
   - name: Authentication
     description: >
