@@ -265,6 +265,8 @@ components:
           example: "2020-10-22T07:48:56.460Z"
         permissions:
           type: array
+          items:
+            type: string
           description: The permissions assigned to the Access Token as an array of strings. This provides information on what API access it is allowed. See the section on Scope below.
           example:
             - PERM_BUSINESSES_GET_ACCOUNTS
@@ -556,15 +558,10 @@ components:
           example: "2019-08-22T07:48:56.460Z"
           description: The date the ASPSP / bank was last updated.
   securitySchemes:
-    # Workaround for https://github.com/swagger-api/swagger-codegen-generators/issues/113
     bearerAuth:
-      type: apiKey
-      in: header
-      name: Authorization
-    # but it should be this. swagger-codegen doesn't understand type: http
-    #  type: http
-    #  scheme: bearer
-    #  bearerFormat: API Access Token
+      type: http
+      scheme: bearer
+      bearerFormat: API Access Token
   responses:
     UnauthorisedError:
       description: Access Token is Invalid or missing
