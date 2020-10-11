@@ -11,7 +11,7 @@ info:
   
     The API exposes 3 main areas of functionality: financial functions, service information and service configuration.
     
-    ## Financial Functions
+    ## Financial Functions
     
     These functions provide access to your account details, transactions, payee accounts, payment initiation etc.
     
@@ -24,10 +24,10 @@ info:
     These provide information about your service configs - applications, webhooks, API tokens, etc.
   version: '1.0'
 servers:
-  - url: https://api.fire.com/business/v1
-    description: Production Server
   - url: https://api-preprod.fire.com/business/v1
     description: Preproduction/Sandbox Server
+  - url: https://api.fire.com/business/v1
+    description: Production Server
 paths:
   /apps/accesstokens:
     post:
@@ -217,7 +217,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaymentRequestDetails'
+                $ref: '#/components/schemas/PaymentRequestPayment'
 components:
   schemas:
     AuthenticationData:
@@ -370,7 +370,7 @@ components:
           acceptFeesAndCharges:
             type: boolean
             description: a field to indicate you accept the fee for a new account
-    NewPaymentRequest:
+    PaymentRequest:
       type: object
       required:
         - "type"
@@ -389,12 +389,6 @@ components:
           format: int64
           example: 42
           description: The ican of the account to collect the funds into. Must be one of your fire.com Accounts.
-        currency:
-          type: string
-          enum:
-            - EUR
-            - GBP
-          description: Either `EUR` or `GBP`, and must correspond to the currency of the account the funds are being lodged into in the `icanTo`.
         amount:
           type: integer
           format: int64
@@ -419,7 +413,6 @@ components:
           description: This is the expiry of the payment request. After this time, the payment cannot be paid.
         returnUrl:
           type: string
-          format: uri
           example: https://example.com/callback
           description: The merchant return URL where the customer will be re-directed to with the result of the transaction.
         orderDetails:
@@ -437,6 +430,112 @@ components:
           type: string
           example: ORDER_ID|PRODUCT_ID|CUSTOMER_ID|CUSTOMER_NUMBER|COMMENT2
           description: These fields will be dispalyed to the payer when using the hosted option. You can choose to display any of `ORDER_ID`, `PRODUCT_ID`, `CUSTOMER_ID`, `CUSTOMER_NUMBER` and `COMMENT2` to the payer.
+    PaymentRequestPayment:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - OTHER
+          description: The type of Fire Open Payment that was created
+        paymentRequestCode:
+          type: string
+          description: The code that was returned when you created the payment request.
+          example: "1234abcd"
+          maxLength: 8
+          minLength: 8
+        paymentUuid:
+          type: string
+          description: A unique id for the transaction.
+          example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+        status:
+          type: string
+          enum:
+            - AWAITING_AUTHORISATION
+            - AUTHORISED
+            - AWAITING_MULTI_AUTHORISATION
+            - NOT_AUTHORISED
+            - PAID
+          description: The status of the transaction
+        amountBeforeCharges:
+          type: integer
+          format: int64
+          example: 1000
+          description: The requested amount (before Fire fees and taxes). Note the last two digits represent pennies/cents, (e.g., £1.00 = 100).
+        currency:
+          type: object
+          $ref: '#/components/schemas/Currency'
+        myRef:
+          type: string
+          example: Fees
+          description: An internal description of the request.
+        description:
+          type: string
+          example: Gym Fees Oct 2020
+          description: A public facing description of the request. This will be shown to the user when they tap or scan the request.
+        returnUrl:
+          type: string
+          example: https://example.com/callback
+          description: The merchant return URL where the customer will be re-directed to with the result of the transaction.
+        dateCreated:
+          type: string
+          format: date-time
+          example: "2020-10-22T07:48:56.460Z"
+          description: This is the date the payment was initiated.
+        orderDetails:
+          type: object
+          $ref: '#/components/schemas/OrderDetails'
+        to:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - FIRE_ACCOUNT
+                - WITHDRAWAL_ACCOUNT
+              description: the type of destination account.
+            account:
+              type: object
+              $ref: '#/components/schemas/RelatedPartyFireAccount'
+        bank:
+          type: object
+          $ref: '#/components/schemas/Aspsp'
+        domesticPaymentId:
+          type: string
+          description: The ID assigned by the ASPSP to this payment.
+          example: "sdp-1-66ebd30c-c0e1-4a54-9865-f2a7bfedabcf"
+        allowFopReceipt:
+          type: boolean
+          example: true
+          description: whether or not a receipt option was offered to the payer.
+    RelatedPartyFireAccount:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: identifier for the fire.com account (assigned by fire.com)
+          example: 42
+        alias:
+          type: string
+          description: the name the user gives to the account to help them identify it.
+          example: Main Account
+        bic:
+          type: string
+          example: CPAYIE2D
+          description: the BIC of the account (provided if currency is EUR).
+        iban:
+          type: string
+          example: IE54CPAY99119911111111
+          description: the IBAN of the account (provided if currency is EUR).
+        nsc:
+          type: string
+          example: "232221"
+          description: the Sort Code of the account.
+        accountNumber:
+          type: string
+          example: "11111111"
+          description: the Account Number of the account.
     OrderDetails:
       type: object
       properties:
@@ -503,6 +602,17 @@ components:
           enum:
             - OTHER
           description: The type of Fire Open Payment that was created.
+    NewPaymentRequest:
+      allOf:
+        - type: object
+          properties:
+            currency:
+              type: string
+              enum:
+                - EUR
+                - GBP
+              description: Either `EUR` or `GBP`, and must correspond to the currency of the account the funds are being lodged into in the `icanTo`.
+        - $ref: '#/components/schemas/PaymentRequest'
     PaymentRequestDetails:
       allOf:
         - type: object
@@ -526,7 +636,10 @@ components:
                 - NOT_AUTHORISED
                 - PAID
               description: The status of the transaction
-        - $ref: '#/components/schemas/NewPaymentRequest'
+            currency:
+              type: object
+              $ref: '#/components/schemas/Currency'
+        - $ref: '#/components/schemas/PaymentRequest'
     Aspsp:
       type: object
       properties:
@@ -540,7 +653,6 @@ components:
           description: The name of the ASPSP / bank.
         logoUrl:
           type: string
-          format: uri
           example: "https://assets.fire.com/pisp/demo.svg"
           description: A link to the ASPSP / bank's logo in SVG format. 
         country:
