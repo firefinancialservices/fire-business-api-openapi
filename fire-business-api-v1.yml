@@ -159,8 +159,10 @@ paths:
           - in: query
             name: currency
             schema:
-              $ref: '#/components/schemas/Currency'
+              type: string
             required: false
+            description: The three letter code for the currency - either `EUR` or `GBP`.
+            example: EUR
       responses:
         '200':
           description: >
@@ -487,16 +489,7 @@ components:
           $ref: '#/components/schemas/OrderDetails'
         to:
           type: object
-          properties:
-            type:
-              type: string
-              enum:
-                - FIRE_ACCOUNT
-                - WITHDRAWAL_ACCOUNT
-              description: the type of destination account.
-            account:
-              type: object
-              $ref: '#/components/schemas/RelatedPartyFireAccount'
+          $ref: '#/components/schemas/To'
         bank:
           type: object
           $ref: '#/components/schemas/Aspsp'
@@ -508,6 +501,19 @@ components:
           type: boolean
           example: true
           description: whether or not a receipt option was offered to the payer.
+    To:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - FIRE_ACCOUNT
+            - WITHDRAWAL_ACCOUNT
+          example: "FIRE_ACCOUNT"
+          description: the type of destination account.
+        account:
+          type: object
+          $ref: '#/components/schemas/RelatedPartyFireAccount'
     RelatedPartyFireAccount:
       type: object
       properties:
