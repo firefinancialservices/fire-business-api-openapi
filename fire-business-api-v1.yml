@@ -161,7 +161,7 @@ paths:
             schema:
               type: string
             required: false
-            description: The three letter code for the currency - either `EUR` or `GBP`.
+            description: The three letter code for the currency - either `EUR` or `GBP`. Use this to filter the list for banks that can be used to pay in a certain currency.
             example: EUR
       responses:
         '200':
