@@ -3,24 +3,24 @@ info:
   title: Fire Financial Services Business API
   description: >
     The fire.com API allows you to deeply integrate Business Account features into your application or back-office systems.
-    
+
 
     The API provides read access to your profile, accounts and transactions, event-driven notifications of activity on the account and payment initiation via batches. Each feature has its own HTTP endpoint and every endpoint has its own permission.
-    
 
-  
+
+
     The API exposes 3 main areas of functionality: financial functions, service information and service configuration.
-    
+
     ## Financial Functions
-    
+
     These functions provide access to your account details, transactions, payee accounts, payment initiation etc.
-    
+
     ## Service Functions
-    
+
     These provide information about the fees and limits applied to your account.
-    
+
     ## Service configuration
-    
+
     These provide information about your service configs - applications, webhooks, API tokens, etc.
   version: '1.0'
 servers:
@@ -33,7 +33,7 @@ paths:
     post:
       summary: Authenticate with the API.
       description: TODO - Authenticate with the API.
-      tags: 
+      tags:
         - Authentication
       operationId: authenticate
       security: []
@@ -106,7 +106,7 @@ paths:
       parameters:
           - in: path
             name: ican
-            schema: 
+            schema:
               type: integer
               format: int64
               description: The ican of the account to retrieve
@@ -150,7 +150,7 @@ paths:
       description: >
         Returns all ASPSPs (Account Servicing Payment Service Provider) / banks. The list can be filtered by currency.
         You will need to enable the `PERM_BUSINESS_GET_ASPSPS` permission to use this endpoint.
-        
+
         ***This endpoint is only required if you intend to host the “Select ASPSP / bank” page yourself.***
       tags:
         - Open Banking
@@ -180,6 +180,41 @@ paths:
                       type: array
                       items:
                         $ref: '#/components/schemas/Aspsp'
+  /payments/{paymentUuid}/bankpayrefund:
+    post:
+      summary: Request a Refund for a Payment Request Payment
+      description: Process a request to refund a payment. The original payment must be in the `PAID` state.
+      tags:
+        - Open Banking
+      operationId: bankPayRefundRequest
+      parameters:
+        - in: path
+          required: true
+          name: paymentUuid
+          schema:
+            type: string
+            description: The unique id for the transaction.
+            example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+      requestBody:
+        required: true
+        description: Details of the refund request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BankPayRefundRequest'
+      responses:
+        '200':
+          description: Refund Request successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BankPayRefundResponse'
+        '405':
+          description: Error Method not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIErrors'
   /payments/{paymentUuid}:
     get:
       summary: Get Payment Details
@@ -191,18 +226,18 @@ paths:
 
 
         * `AWAITING_AUTHORISATION` -This is the initial status of all your payments.
-        
+
         * `AUTHORISED` - This is the status that your payment is set to after the customer has authorised the payment with their ASPSP / bank.
-        
+
         * `AWAITING_MULTI_AUTHORISATION` - Some business accounts such as charities require dual authorisation.
-        
+
         * `NOT_AUTHORISED` - Either your customer clicked on cancel or the payment was rejected by their ASPSP / bank.
-        
+
         * `PAID` - Funds were received into your fire.com GBP or EUR account from your customer’s ASPSP / bank.
-        
-        
+
+
         You will need to enable the `PERM_BUSINESS_GET_PAYMENT` permission to use this endpoint.
-      tags: 
+      tags:
         - Open Banking
       operationId: getPaymentDetails
       parameters:
@@ -220,6 +255,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaymentRequestPayment'
+  /apps:
+    post:
+      summary: Create a new API Application
+      description: Create a new API Application with specified permissions
+      tags:
+        - API
+      operationId: createApiApplication
+      requestBody:
+        required: true
+        description: Details of the new API Application
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewApiApplication'
+      responses:
+        '200':
+          description: API Application created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiApplication'
 components:
   schemas:
     AuthenticationData:
@@ -237,10 +293,10 @@ components:
           type: integer
           format: int64
           description: A random non-repeating number used as a salt for the `clientSecret` below. The simplest nonce is a unix time.
-          example: 728345638475      
+          example: 728345638475
         grantType:
           type: string
-          enum: 
+          enum:
             - AccessToken
           description: Always `AccessToken`. (This will change to `refresh_token` in a future release.)
         clientSecret:
@@ -250,12 +306,12 @@ components:
     AccessToken:
       type: object
       properties:
-        businessId: 
+        businessId:
           type: integer
           format: int64
           description: The business ID for the business.
           example: 248
-        applicationId:
+        apiApplicationId:
           type: integer
           format: int64
           description: The ID of the application you are using.
@@ -279,13 +335,13 @@ components:
           example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
     Account:
       type: object
-      properties: 
-        ican: 
+      properties:
+        ican:
           type: integer
           format: int64
           description: identifier for the fire.com account (assigned by fire.com)
           example: 42
-        name: 
+        name:
           type: string
           description: the name the user gives to the account to help them identify it.
           example: Main Account
@@ -307,16 +363,16 @@ components:
           enum:
             - LIVE
             - MIGRATED
-          description: Live accounts can be used as normal. Migrated accounts were used before Brexit and are read-only. 
-        cbic: 
+          description: Live accounts can be used as normal. Migrated accounts were used before Brexit and are read-only.
+        cbic:
           type: string
           example: CPAYIE2D
           description: the BIC of the account (provided if currency is EUR).
-        ciban: 
+        ciban:
           type: string
           example: IE54CPAY99119911111111
           description: the IBAN of the account (provided if currency is EUR).
-        cnsc: 
+        cnsc:
           type: string
           example: "232221"
           description: the Sort Code of the account.
@@ -324,7 +380,7 @@ components:
           type: string
           example: "11111111"
           description: the Account Number of the account.
-        defaultAccount: 
+        defaultAccount:
           type: boolean
           example: true
           description: true if this is the default account for this currency. This will be the account that general fees are taken from (as opposed to per-transaction fees).
@@ -341,9 +397,9 @@ components:
           enum:
             - EUR
             - GBP
-        description: 
+        description:
           type: string
-          description: The name of the currency 
+          description: The name of the currency
           example: Euro
     Country:
       type: object
@@ -352,14 +408,14 @@ components:
           type: string
           description: The 2-letter code for the country - e.g. `IE`, `GP`...
           example: "GB"
-        description: 
+        description:
           type: string
-          description: The name of the country 
+          description: The name of the country
           example: United Kingdom
-    NewAccount: 
+    NewAccount:
       type: object
       properties:
-          accountName: 
+          accountName:
             type: string
             example: Operating Account
             description: Name to give the new account
@@ -381,7 +437,7 @@ components:
         - "myRef"
         - "description"
       properties:
-        type: 
+        type:
           type: string
           enum:
             - OTHER
@@ -446,9 +502,23 @@ components:
           example: "1234abcd"
           maxLength: 8
           minLength: 8
+        transactionType:
+          type: string
+          enum:
+            - REFUND_REQUEST
+            - PAYMENT
+          description: The type of payment request payment
+        endToEndId:
+          type: string
+          example: FIRE1234567890
+          description: The unique Open Banking payment ID assigned to this payment.
         paymentUuid:
           type: string
           description: A unique id for the transaction.
+          example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+        relatedPaymentUuid:
+          type: string
+          description: The original payment that this payment is linked to
           example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
         status:
           type: string
@@ -458,12 +528,29 @@ components:
             - AWAITING_MULTI_AUTHORISATION
             - NOT_AUTHORISED
             - PAID
+            - REJECTED
+            - ACCEPTED
+            - RECEIVED
           description: The status of the transaction
+        reason:
+          type: string
+          example: Gym Closed for repairs.
+          description: The reason for the refund.
         amountBeforeCharges:
           type: integer
           format: int64
           example: 1000
           description: The requested amount (before Fire fees and taxes). Note the last two digits represent pennies/cents, (e.g., £1.00 = 100).
+        feeAmount:
+          type: integer
+          format: int64
+          example: 1000
+          description: The fee for the payment
+        amountAfterCharges:
+          type: integer
+          format: int64
+          example: 1000
+          description: The amount after Fire fees and taxes. Note the last two digits represent pennies/cents, (e.g., £1.00 = 100).
         currency:
           type: object
           $ref: '#/components/schemas/Currency'
@@ -479,11 +566,31 @@ components:
           type: string
           example: https://example.com/callback
           description: The merchant return URL where the customer will be re-directed to with the result of the transaction.
+        relatedAccountTxnId:
+          type: integer
+          format: int64
+          example: 41234
+          description: The ID of the related transaction in your fire account.
+        relatedPayeeId:
+          type: integer
+          format: int64
+          example: 41234
+          description: The ID of the payee making the payment.
+        dateFundsReceived:
+          type: string
+          format: date-time
+          example: "2020-10-22T07:48:56.460Z"
+          description: The date the funds were received into your fire account.
         dateCreated:
           type: string
           format: date-time
           example: "2020-10-22T07:48:56.460Z"
           description: This is the date the payment was initiated.
+        lastUpdated:
+          type: string
+          format: date-time
+          example: "2019-08-22T07:48:56.460Z"
+          description: The date payment was last updated.
         orderDetails:
           type: object
           $ref: '#/components/schemas/OrderDetails'
@@ -545,6 +652,10 @@ components:
     OrderDetails:
       type: object
       properties:
+        merchantNumber:
+          type: string
+          example: 1234567
+          description: Your Merchant Number (if applicable).
         orderId:
           type: string
           example: "6c28a47d-4502-4111"
@@ -552,15 +663,15 @@ components:
         productId:
           type: string
           example: "ZFDAA-1221"
-          description: Use this field to store a product id for the transaction (for example). 
+          description: Use this field to store a product id for the transaction (for example).
         customerNumber:
           type: string
           example: "123645"
-          description: Use this field to store a customer number for the transaction (for example). 
+          description: Use this field to store a customer number for the transaction (for example).
         variableReference:
           type: string
           example: "John Doe"
-          description: Use this field to store any other reference for the transaction (for example, a phone number). 
+          description: Use this field to store any other reference for the transaction (for example, a phone number).
         comment1:
           type: string
           example: "Additional comments about the transaction"
@@ -593,7 +704,7 @@ components:
           type: string
           example: "GB"
           description: 2-digit code for the country
-    PaymentRequestResponse: 
+    PaymentRequestResponse:
       type: object
       properties:
         code:
@@ -633,6 +744,12 @@ components:
               type: string
               description: A unique id for the transaction.
               example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+            transactionType:
+              type: string
+              enum:
+                - REFUND_REQUEST
+                - PAYMENT
+              description: The type of payment request payment
             status:
               type: string
               enum:
@@ -641,11 +758,66 @@ components:
                 - AWAITING_MULTI_AUTHORISATION
                 - NOT_AUTHORISED
                 - PAID
+                - REJECTED
+                - ACCEPTED
+                - RECEIVED
               description: The status of the transaction
             currency:
               type: object
               $ref: '#/components/schemas/Currency'
         - $ref: '#/components/schemas/PaymentRequest'
+    BankPayRefundRequest:
+      type: object
+      properties:
+        currency:
+          type: string
+          enum:
+            - EUR
+            - GBP
+          description: Must correspond to the currency of the original payment
+        amount:
+          type: integer
+          format: int64
+          example: 1000
+          description: The amount to refund. Must be within a certain percentage of the original payment.
+        myRef:
+          type: string
+          example: Fees Refunded
+          description: An internal description of the refund request.
+        description:
+          type: string
+          example: Gym Fees Refunded Oct 2020
+          description: A public facing description of the refund request.
+        orderDetails:
+          type: object
+          properties:
+            merchantNumber:
+              type: string
+              example: 1234567
+              description: Your Merchant Number (if applicable).
+        reason:
+          type: string
+          example: Gym Closed for repairs.
+          description: A reason for the refund.
+    BankPayRefundResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - REQUEST_ACCEPTED
+            - REQUEST_REJECTED
+            - REJECTED
+            - RECEIVED
+          description: Status of the refund request.
+        refundRequestUuid:
+          type: string
+          example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+          description: The unique id for the refund request
+        paymentUuid:
+          type: string
+          example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+          description: The unique id for the original payment.
     Aspsp:
       type: object
       properties:
@@ -660,7 +832,7 @@ components:
         logoUrl:
           type: string
           example: "https://assets.fire.com/pisp/demo.svg"
-          description: A link to the ASPSP / bank's logo in SVG format. 
+          description: A link to the ASPSP / bank's logo in SVG format.
         country:
           $ref: '#/components/schemas/Country'
         currency:
@@ -675,6 +847,100 @@ components:
           format: date-time
           example: "2019-08-22T07:48:56.460Z"
           description: The date the ASPSP / bank was last updated.
+    NewApiApplication:
+      type: object
+      properties:
+        ican:
+          type: integer
+          format: int64
+          description: The ICAN of one of your Fire accounts. Restrict this API Application to a certan account.
+        enabled:
+          type: boolean
+          example: true
+          description: Whether or not this API Application can be used
+        expiry:
+          type: string
+          format: date-time
+          example: "2019-08-22T07:48:56.460Z"
+          description: The date that this API Application can no longer be used.
+        applicationName:
+          type: string
+          description: A name for the API Application to help you identify it
+          example: Batch Processing API
+        numberOfPaymentApprovalsRequired:
+          type: integer
+          description: Number of approvals required to process a payment in a batch
+          example: 1
+        numberOfPayeeApprovalsRequired:
+          type: integer
+          description: Number of approvals required to create a payee in a batch
+          example: 1
+        permissions:
+          type: array
+          items:
+            type: string
+          description: The list of permissions required
+          example: [ "PERM_BUSINESS_POST_PAYMENT_REQUEST","PERM_BUSINESS_GET_ASPSPS" ]
+    ApiApplication:
+      type: object
+      properties:
+        applicationId:
+          type: integer
+          format: int64
+          description: The ID of the API Application
+          example: 45345
+        ican:
+          type: integer
+          format: int64
+          description: The ICAN of one of your Fire accounts. Restrict this API Application to a certan account.
+        enabled:
+          type: boolean
+          example: true
+          description: Whether or not this API Application can be used
+        expiry:
+          type: string
+          format: date-time
+          example: "2019-08-22T07:48:56.460Z"
+          description: The date that this API Application can no longer be used.
+        numberOfPaymentApprovalsRequired:
+          type: integer
+          description: Number of approvals required to process a payment in a batch
+          example: 1
+        numberOfPayeeApprovalsRequired:
+          type: integer
+          description: Number of approvals required to create a payee in a batch
+          example: 1
+        clientId:
+          type: string
+          description: The Client ID of the new API Application
+          example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+        clientKey:
+          type: string
+          description: The Client Key of the new API Application
+          example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+        refreshToken:
+          type: string
+          description: The Refresh Token of the new API Application
+          example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+    APIErrors:
+      type: object
+      properties:
+          errors:
+            type: array
+            items:
+              $ref: '#/components/schemas/APIError'
+    APIError:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+          description: Error Code
+          example: 50051
+        message:
+          type: string
+          description: The error message
+          example: Sorry, we are unable to proceed with your request.
   securitySchemes:
     bearerAuth:
       type: http
@@ -739,7 +1005,7 @@ tags:
   - name: fire.com Accounts
     description: fire.com Accounts are the equivalent of a bank account from bank.
   - name: Open Banking
-    description: > 
+    description: >
       Fire Open Payments is a feature of the fire.com business account that leverages Open Banking to allow your customers to pay you via bank transfer and to reconcile those payments as they are received into your fire.com GBP or EUR account.
 
 
@@ -767,42 +1033,42 @@ tags:
       The payer is brought through 5 stages to complete the payment:
 
       1. **View Payment Details page:** The payer must first be clear on the amount of the payment, who they are paying and the reason for the payment.
-      
+
       2. **Select Bank / Account Provider page:** The payer then selects their bank. Again this step is offered as part of the fire.com payment UI.
-      
+
       3. **Consent page:**  The payer must provide consent to the PISP (fire.com) prior to authorising the payment. This is a regulatory requirement, this page must be hosted by fire.com.
-      
+
       4. **Authenticate and Authorise Payment:** The payer will be redirected to their bank’s online site or mobile banking app. After authenticating, the details of the payment will be displayed, and the payer will authorise the payment.
-      
+
       5. **Response page:** It is a regulatory requirement that the PISP (fire.com) display the results of the payment and provide the same information that would be provided if the payer had made the payment via their banking application. fire.com must display this page, before optionally redirecting the payer back to your website.
-      
-      
+
+
       To implement the hosted Fire Open Payments option you need to do the following:
 
       1. You can create a new Fire Open Payment request either within Firework Online or via the API.
-      
+
       2. Create your new API application with the appropriate permissions required in Firework Online, as outlined in the “Authentication” steps. The permissions needed are:
           - “Create a Payment Request”
           - “Get Payment Details”
-      
+
       3. Use the Refresh Token, Client ID and Client Key to create an access token as outlined in the “Authentication” steps.
-      
+
       4. On your website, create a “Pay by Bank” button alongside your other available payment methods, such as Cards and PayPal.
-      
+
       5. After the user clicks on “Pay by Bank”, you need to create a new Fire Open Payment request as outlined in the “Create a Fire Open Payment” steps. The Create a Fire Open Payment request endpoint returns a unique code for the payment request.
-      
+
       6. Create a URL using the code returned in this format: `https://payments.fire.com/{code}` and redirect your customer to this page.
-      
+
       7. fire.com will host all the pages that the customer needs to review and authorise the payment. fire.com will will return the paymentUUID of the successful or failed transaction to the returnUrl that you supplied when creating the Fire Open Payment request. fire.com can also optionally send a “webhook” to your website notifying you of the transaction’s outcome.
-      
+
       8. Once fire.com responds with the paymentUUID and/or the webhook to your website, you need to call the “Get Payment Details” endpoint to get the details of the transaction. This will let you know whether the transaction was successful or not. You can set up the “Payment Request Payment Authorised” webhook to notify you once the payment is authorised or cancelled.
-      
+
       9. The funds will be received into your GBP or EUR account. Funding will typically be within 6 business hours.
-      
-      
+
+
       Once the code is returned the payment can be viewed and paid by going to the following URL: `https://payments.fire.com/{code}`
+  - name: API
+    description: Manage your API Applications and Webhooks
 
 
 
-
-    
