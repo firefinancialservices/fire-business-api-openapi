@@ -419,7 +419,7 @@ components:
             type: string
             example: Operating Account
             description: Name to give the new account
-            maximum: 50
+            maxLength: 50
           currency:
             type: string
             enum:
