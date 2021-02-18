@@ -276,6 +276,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiApplication'
+  /fundingsources:
+    get:
+      summary: List all Payee Bank Accounts
+      description: >
+        Returns all your payee bank accounts. 
+        
+        
+        Ordered by date added descending. 
+        
+       
+        Can be paginated.
+      tags:
+        - Payee Bank Accounts
+      operationId: getFundingSources
+      responses:
+        '200':
+          description: An array of Payee Bank Accounts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayeeBankAccount'
 components:
   schemas:
     AuthenticationData:
@@ -923,6 +944,66 @@ components:
           type: string
           description: The Refresh Token of the new API Application
           example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+    PayeeBankAccount:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Identifier for the fire.com payee bank account (assigned by fire.com).
+          example: 742
+        currency:
+          type: object
+          $ref: '#/components/schemas/Currency'
+        status:
+          type: string
+          enum:
+            - CREATED
+            - LIVE
+            - CLOSED
+            - ARCHIVED
+          description: The status of the payee. Only payees in LIVE status can be selected as a destination account for a bank transfer.
+          example: LIVE
+        accountName:
+          type: string
+          description: The alias attributed to the payee, usually set by the user when creating the payee.
+          example: Joe
+        accountHolderName:
+          type: string
+          description: The name on the payee bank account.
+          example: Joe Bloggs
+        bic:
+          type: string
+          description: The BIC of the account if currency is EUR.
+          example: BOFIIE2DXXX
+        iban:
+          type: string
+          description: The IBAN of the account if currency is EUR.
+          example: IE86BOFI90535211111111
+        nsc: 
+          type: string
+          description: The Sort Code of the account if currency is GBP.
+          example: null
+        accountNumber:
+          type: string
+          description: The Account Number of the account if currency is GBP.
+          example: null
+        createdBy:
+          type: string
+          enum:
+            - CUSTOMER
+            - LODGEMENT
+            - DIRECT DEBIT
+            - OPEN BANKING
+            - FIRE OPEN PAYMENT
+            - FIRE DIRECT
+          description: The creation source of the payee. 
+          example: CUSTOMER
+        dateCreated:
+          type: string
+          format: date-time
+          example: "2019-08-22T07:48:56.460Z"
+          description: The date the payee was created. Milliseconds since the epoch (1970).
     APIErrors:
       type: object
       properties:
