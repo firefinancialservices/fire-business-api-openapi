@@ -1074,7 +1074,7 @@ tags:
       Access to the API is by Bearer Tokens. The process is somewhat similar to OAuth2.0, but with some changes to improve security.
 
 
-      1. You must first log into the firework online application and create a new Application in the Profile > API page. (You will need your PIN digits and 2-Factor Authentication device).
+      1. **You must first log into the firework** online application and create a new Application in the Profile > API page. (You will need your PIN digits and 2-Factor Authentication device).
       
       
       2. Give your application a Name and select the scope/permissions you need the application to have (more on Scopes below).
