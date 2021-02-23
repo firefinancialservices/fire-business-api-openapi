@@ -338,7 +338,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiApplication'
-  /fundingsources:
+  /payees:
     get:
       summary: List all Payee Bank Accounts
       description: >
@@ -351,7 +351,7 @@ paths:
         Can be paginated.
       tags:
         - Payee Bank Accounts
-      operationId: getFundingSources
+      operationId: getPayees
       responses:
         '200':
           description: An array of Payee Bank Accounts
