@@ -120,6 +120,68 @@ paths:
                 $ref: '#/components/schemas/Account'
         '401':
           $ref: '#/components/responses/UnauthorisedError'
+  /accounts/{ican}/transactions:
+    get:
+      summary: List transactions for an account
+      description: Retrieve a list of transactions against an account.
+      tags:
+        - Transactions
+      operationId: getTransactionsById
+      parameters:
+            - in: path
+              name: ican
+              schema:
+                type: integer
+                format: int64
+                description: The ican of the account to retrieve
+              required: true
+      responses:
+        '200':
+          description: An array of transaction objects for the account with a count (`total`).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'                  
+                #TODO schema
+  /accounts/{ican}/transactions/filter:
+    get:
+      summary: Filtered list of transactions for an account
+      description: >
+        Retrieve a filtered list of transactions against an account.
+
+        * `dateRangeFrom` - A millisecond epoch time specifying the date range start date.
+
+        * `dateRangeTo` - A millisecond epoch time specifying the date range end date.
+
+        * `searchKeyword` - Search term to filter by from the reference field (`myRef`).
+
+        * `transactionTypes` - One or more of the transaction types above. This field can be repeated multiple times to allow for multiple transaction types.
+      tags:
+        - Transactions
+      operationId: getTransactionsFilteredById
+      parameters:
+            - in: path
+              name: ican
+              schema:
+                type: integer
+                format: int64
+                description: The ican of the account to retrieve
+              required: true
+            - in: path
+              name: filter
+              schema:
+                type: string
+                format: varchar
+                description: Query parameter which can be userd to filer the list
+              required: true            
+      responses:
+        '200':
+          description: An array of transaction objects for the account with a count (`total`) filtered by the specified query parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'      
+                #TODO schema            
   /paymentrequests:
     post:
       summary: Create a Fire Open Payment request
@@ -1070,6 +1132,8 @@ tags:
       Once the code is returned the payment can be viewed and paid by going to the following URL: `https://payments.fire.com/{code}`
   - name: API
     description: Manage your API Applications and Webhooks
+  - name: Transactions
+    description: While there are many types of transactions, they are all represented by the same JSON object with a different txnType.
 
 
 
