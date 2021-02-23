@@ -338,6 +338,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiApplication'
+  /fundingsources:
+    get:
+      summary: List all Payee Bank Accounts
+      description: >
+        Returns all your payee bank accounts. 
+        
+        
+        Ordered by date added descending. 
+        
+       
+        Can be paginated.
+      tags:
+        - Payee Bank Accounts
+      operationId: getFundingSources
+      responses:
+        '200':
+          description: An array of Payee Bank Accounts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayeeBankAccount'
 components:
   schemas:
     AuthenticationData:
@@ -985,6 +1006,66 @@ components:
           type: string
           description: The Refresh Token of the new API Application
           example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+    PayeeBankAccount:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Identifier for the fire.com payee bank account (assigned by fire.com).
+          example: 742
+        currency:
+          type: object
+          $ref: '#/components/schemas/Currency'
+        status:
+          type: string
+          enum:
+            - CREATED
+            - LIVE
+            - CLOSED
+            - ARCHIVED
+          description: The status of the payee. Only payees in LIVE status can be selected as a destination account for a bank transfer.
+          example: LIVE
+        accountName:
+          type: string
+          description: The alias attributed to the payee, usually set by the user when creating the payee.
+          example: Joe
+        accountHolderName:
+          type: string
+          description: The name on the payee bank account.
+          example: Joe Bloggs
+        bic:
+          type: string
+          description: The BIC of the account if currency is EUR.
+          example: BOFIIE2DXXX
+        iban:
+          type: string
+          description: The IBAN of the account if currency is EUR.
+          example: IE86BOFI90535211111111
+        nsc: 
+          type: string
+          description: The Sort Code of the account if currency is GBP.
+          example: null
+        accountNumber:
+          type: string
+          description: The Account Number of the account if currency is GBP.
+          example: null
+        createdBy:
+          type: string
+          enum:
+            - CUSTOMER
+            - LODGEMENT
+            - DIRECT DEBIT
+            - OPEN BANKING
+            - FIRE OPEN PAYMENT
+            - FIRE DIRECT
+          description: The creation source of the payee. 
+          example: CUSTOMER
+        dateCreated:
+          type: string
+          format: date-time
+          example: "2019-08-22T07:48:56.460Z"
+          description: The date the payee was created. Milliseconds since the epoch (1970).
     APIErrors:
       type: object
       properties:
@@ -1054,12 +1135,19 @@ tags:
     description: >
       Access to the API is by Bearer Tokens. The process is somewhat similar to OAuth2.0, but with some changes to improve security.
 
-      You must first log into the firework online application and create a new Application in the Profile > API page. (You will need your PIN digits and 2-Factor Authentication device.)
-      Give your application a Name and select the scope/permissions you need the application to have (more on Scopes below).
-      You will be provided with three pieces of information - the App Refresh Token, Client ID and Client Key. You need to take note of the Client Key when it is displayed - it will not be shown again.
+      1. You must first log into the firework online application and create a new Application in the Profile > API page. (You will need your PIN digits and 2-Factor Authentication device).
+      
+      2. Give your application a Name and select the scope/permissions you need the application to have (more on Scopes below).
+      
+      3. You will be provided with three pieces of information - the App Refresh Token, Client ID and Client Key. You need to take note of the Client Key when it is displayed - it will not be shown again.
+      
+      
       You now use these pieces of data to retrieve a short-term Access Token which you can use to access the API. The Access Token expires within a relatively short time, so even if it is compromised, the attacker will not have long to use it. The Client Key is the most important piece of information to keep secret. This should only ever be stored on a backend server, and never in a front end client or mobile app.
 
-      If you ever accidentally reveal the Client Key (or accidentally commit it to Github for instance) it is vital that you log into firework online and delete/recreate the App Tokens as soon as possible. Anyone who has these three pieces of data can access the API to view your data and set up payments from your account (depending on the scope of the tokens).
+
+      **If you ever accidentally reveal the Client Key (or accidentally commit it to Github for instance) it is vital that you log into firework online and delete/recreate the App Tokens as soon as possible. Anyone who has these three pieces of data can access the API to view your data and set up payments from your account (depending on the scope of the tokens).**
+      
+      
       Once you have the access token, pass it as a header for every call, like so:
 
       `Authorization: Bearer $ACCESS_TOKEN`
