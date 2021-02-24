@@ -29,9 +29,10 @@ servers:
   - url: https://api.fire.com/business/v1
     description: Production Server
 paths:
+
   /apps/accesstokens:
     post:
-      summary: Authenticate with the API.
+      summary: Authenticate with the API .
       description: TODO - Authenticate with the API.
       tags:
         - Authentication
@@ -51,6 +52,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccessToken'
+ 
+  /business/v1/cards:
+    get:
+      summary: View List of Cards.
+      description: Returns a list of cards related to your fire.com account.
+      tags:
+        - Cards
+      operationId: getListofCards
+      security: []
+      requestBody:
+        required: true
+      responses: 
+       '200':  
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListCards'
+       '403':
+          description: Forbidden - access denied
+       '401':
+          $ref: '#/components/responses/UnauthorisedError'   
+
+
+
+
+        
+
+    post:
+      summary: Create a new debit card.
+      description: You can create multiple debit cards which can be linked to your fire.com accounts.
+      tags:
+        - Cards
+
   /accounts:
     get:
       summary: List all fire.com Accounts
@@ -942,6 +977,70 @@ components:
           type: string
           description: The error message
           example: Sorry, we are unable to proceed with your request.
+    ListCards:
+      type: object
+      properties:
+        cardId:
+          type: integer
+          format: int64
+          description: The unique card ID to identify a card.
+          example: 34450
+        status:
+          type: string
+          enum:
+              - LIVE
+              - CREATED_ACTIVE
+              - CREATED_INACTIVE
+              - DEACTIVATED
+        eurIcan:
+          type: integer
+          format: int64
+          description: The EUR ican of the account that the card is linked to. 
+          example: 12850
+        gbpIcan:
+          type: integer
+          format: int64
+          description: The GBP ican of the account that the card is linked to. 
+          example: 12851
+        provider:
+          type: integer
+          format: int64
+          description: The GBP ican of the account that the card is linked to. 
+          example: MASTERCARD                    
+        expiryDate:
+          type: string
+          description: The expiry date for the card.
+          example: 2023-01-22T00:00:00.000Z
+        maskedPan:
+          type: string
+          description: The masked card number. 
+          example: 4319***********1234
+        blocked:
+          type: boolean
+          example: false
+          description: Whether or not the card is blocked. The card can be blocked and unblocked via the mobile app.
+        dateCreated:
+          type: string
+          description: The date the card was created.
+          example: 2021-01-22T00:00:00.000Z 
+        userId:
+          type: string
+          description: The id of the cardholder.
+          example: 12345 
+        firstName:
+          type: string
+          description: The cardholder's first name.
+          example: John          
+        lastName:
+          type: string
+          description: The cardholder's last name.
+          example: Doe  
+        email:
+          type: string
+          description: The cardholder's email address.
+          example: john.doe@fire.com                                                                     
+
+
   securitySchemes:
     bearerAuth:
       type: http
@@ -1003,6 +1102,9 @@ tags:
       `Authorization: Bearer $ACCESS_TOKEN`
 
       Whenever it expires, create a new nonce and get a new access token again.
+  
+  - name: Cards
+    description: You can create multiple debit cards which can be linked to your fire.com accounts.
   - name: fire.com Accounts
     description: fire.com Accounts are the equivalent of a bank account from bank.
   - name: Open Banking
