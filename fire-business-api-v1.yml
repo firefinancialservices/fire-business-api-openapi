@@ -29,9 +29,10 @@ servers:
   - url: https://api.fire.com/business/v1
     description: Production Server
 paths:
+
   /apps/accesstokens:
     post:
-      summary: Authenticate with the API.
+      summary: Authenticate with the API .
       description: TODO - Authenticate with the API.
       tags:
         - Authentication
@@ -120,6 +121,68 @@ paths:
                 $ref: '#/components/schemas/Account'
         '401':
           $ref: '#/components/responses/UnauthorisedError'
+  /accounts/{ican}/transactions:
+    get:
+      summary: List transactions for an account
+      description: Retrieve a list of transactions against an account.
+      tags:
+        - Transactions
+      operationId: getTransactionsById
+      parameters:
+            - in: path
+              name: ican
+              schema:
+                type: integer
+                format: int64
+                description: The ican of the account to retrieve
+              required: true
+      responses:
+        '200':
+          description: An array of transaction objects for the account with a count (`total`).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'                  
+                #TODO schema
+  /accounts/{ican}/transactions/filter:
+    get:
+      summary: Filtered list of transactions for an account
+      description: >
+        Retrieve a filtered list of transactions against an account.
+
+        * `dateRangeFrom` - A millisecond epoch time specifying the date range start date.
+
+        * `dateRangeTo` - A millisecond epoch time specifying the date range end date.
+
+        * `searchKeyword` - Search term to filter by from the reference field (`myRef`).
+
+        * `transactionTypes` - One or more of the transaction types above. This field can be repeated multiple times to allow for multiple transaction types.
+      tags:
+        - Transactions
+      operationId: getTransactionsFilteredById
+      parameters:
+            - in: path
+              name: ican
+              schema:
+                type: integer
+                format: int64
+                description: The ican of the account to retrieve
+              required: true
+            - in: path
+              name: filter
+              schema:
+                type: string
+                format: varchar
+                description: Query parameter which can be userd to filer the list
+              required: true            
+      responses:
+        '200':
+          description: An array of transaction objects for the account with a count (`total`) filtered by the specified query parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'      
+                #TODO schema            
   /paymentrequests:
     post:
       summary: Create a Fire Open Payment request
@@ -320,6 +383,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ApiApplication'
+  /payees:
+    get:
+      summary: List all Payee Bank Accounts
+      description: >
+        Returns all your payee bank accounts. 
+        
+        
+        Ordered by date added descending. 
+        
+       
+        Can be paginated.
+      tags:
+        - Payee Bank Accounts
+      operationId: getPayees
+      responses:
+        '200':
+          description: An array of Payee Bank Accounts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayeeBankAccount'
 components:
   schemas:
     AuthenticationData:
@@ -1027,6 +1111,66 @@ components:
                 "deviceName": "iPhone - iPhone",
                 "os": "IOS",
                 "deviceOsVersion": "14.4"}
+    PayeeBankAccount:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Identifier for the fire.com payee bank account (assigned by fire.com).
+          example: 742
+        currency:
+          type: object
+          $ref: '#/components/schemas/Currency'
+        status:
+          type: string
+          enum:
+            - CREATED
+            - LIVE
+            - CLOSED
+            - ARCHIVED
+          description: The status of the payee. Only payees in LIVE status can be selected as a destination account for a bank transfer.
+          example: LIVE
+        accountName:
+          type: string
+          description: The alias attributed to the payee, usually set by the user when creating the payee.
+          example: Joe
+        accountHolderName:
+          type: string
+          description: The name on the payee bank account.
+          example: Joe Bloggs
+        bic:
+          type: string
+          description: The BIC of the account if currency is EUR.
+          example: BOFIIE2DXXX
+        iban:
+          type: string
+          description: The IBAN of the account if currency is EUR.
+          example: IE86BOFI90535211111111
+        nsc: 
+          type: string
+          description: The Sort Code of the account if currency is GBP.
+          example: null
+        accountNumber:
+          type: string
+          description: The Account Number of the account if currency is GBP.
+          example: null
+        createdBy:
+          type: string
+          enum:
+            - CUSTOMER
+            - LODGEMENT
+            - DIRECT DEBIT
+            - OPEN BANKING
+            - FIRE OPEN PAYMENT
+            - FIRE DIRECT
+          description: The creation source of the payee. 
+          example: CUSTOMER
+        dateCreated:
+          type: string
+          format: date-time
+          example: "2019-08-22T07:48:56.460Z"
+          description: The date the payee was created. Milliseconds since the epoch (1970).
     APIErrors:
       type: object
       properties:
@@ -1046,6 +1190,70 @@ components:
           type: string
           description: The error message
           example: Sorry, we are unable to proceed with your request.
+    ListCards:
+      type: object
+      properties:
+        cardId:
+          type: integer
+          format: int64
+          description: The unique card ID to identify a card.
+          example: 34450
+        status:
+          type: string
+          enum:
+              - LIVE
+              - CREATED_ACTIVE
+              - CREATED_INACTIVE
+              - DEACTIVATED
+        eurIcan:
+          type: integer
+          format: int64
+          description: The EUR ican of the account that the card is linked to. 
+          example: 12850
+        gbpIcan:
+          type: integer
+          format: int64
+          description: The GBP ican of the account that the card is linked to. 
+          example: 12851
+        provider:
+          type: integer
+          format: int64
+          description: The GBP ican of the account that the card is linked to. 
+          example: MASTERCARD                    
+        expiryDate:
+          type: string
+          description: The expiry date for the card.
+          example: 2023-01-22T00:00:00.000Z
+        maskedPan:
+          type: string
+          description: The masked card number. 
+          example: 4319***********1234
+        blocked:
+          type: boolean
+          example: false
+          description: Whether or not the card is blocked. The card can be blocked and unblocked via the mobile app.
+        dateCreated:
+          type: string
+          description: The date the card was created.
+          example: 2021-01-22T00:00:00.000Z 
+        userId:
+          type: string
+          description: The id of the cardholder.
+          example: 12345 
+        firstName:
+          type: string
+          description: The cardholder's first name.
+          example: John          
+        lastName:
+          type: string
+          description: The cardholder's last name.
+          example: Doe  
+        email:
+          type: string
+          description: The cardholder's email address.
+          example: john.doe@fire.com                                                                     
+
+
   securitySchemes:
     bearerAuth:
       type: http
@@ -1096,17 +1304,27 @@ tags:
     description: >
       Access to the API is by Bearer Tokens. The process is somewhat similar to OAuth2.0, but with some changes to improve security.
 
-      You must first log into the firework online application and create a new Application in the Profile > API page. (You will need your PIN digits and 2-Factor Authentication device.)
-      Give your application a Name and select the scope/permissions you need the application to have (more on Scopes below).
-      You will be provided with three pieces of information - the App Refresh Token, Client ID and Client Key. You need to take note of the Client Key when it is displayed - it will not be shown again.
+      1. You must first log into the firework online application and create a new Application in the Profile > API page. (You will need your PIN digits and 2-Factor Authentication device).
+      
+      2. Give your application a Name and select the scope/permissions you need the application to have (more on Scopes below).
+      
+      3. You will be provided with three pieces of information - the App Refresh Token, Client ID and Client Key. You need to take note of the Client Key when it is displayed - it will not be shown again.
+      
+      
       You now use these pieces of data to retrieve a short-term Access Token which you can use to access the API. The Access Token expires within a relatively short time, so even if it is compromised, the attacker will not have long to use it. The Client Key is the most important piece of information to keep secret. This should only ever be stored on a backend server, and never in a front end client or mobile app.
 
-      If you ever accidentally reveal the Client Key (or accidentally commit it to Github for instance) it is vital that you log into firework online and delete/recreate the App Tokens as soon as possible. Anyone who has these three pieces of data can access the API to view your data and set up payments from your account (depending on the scope of the tokens).
+
+      **If you ever accidentally reveal the Client Key (or accidentally commit it to Github for instance) it is vital that you log into firework online and delete/recreate the App Tokens as soon as possible. Anyone who has these three pieces of data can access the API to view your data and set up payments from your account (depending on the scope of the tokens).**
+      
+      
       Once you have the access token, pass it as a header for every call, like so:
 
       `Authorization: Bearer $ACCESS_TOKEN`
 
       Whenever it expires, create a new nonce and get a new access token again.
+  
+  - name: Cards
+    description: You can create multiple debit cards which can be linked to your fire.com accounts.
   - name: fire.com Accounts
     description: fire.com Accounts are the equivalent of a bank account from bank.
   - name: Open Banking
@@ -1177,6 +1395,8 @@ tags:
   - name: Users
     description: The fire.com users are the business users you have set up on your account.
 
+  - name: Transactions
+    description: While there are many types of transactions, they are all represented by the same JSON object with a different txnType.
 
 
 
