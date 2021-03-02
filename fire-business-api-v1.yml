@@ -1075,7 +1075,7 @@ components:
           type: integer
           format: int64
           description: User mobile number
-          example: +353830386344
+          example: "+353830386344"
         role: 
           type: string
           description: User role
@@ -1144,9 +1144,8 @@ components:
          - "OTHER"
          description: Operating system of device.
         deviceOSVersion:
-         type: string
-         enum: 
-         - "TBC"
+         type: string 
+        #To determine potential enum for OS versions.....
          description: OS version for device.
     PayeeBankAccount:
       type: object
