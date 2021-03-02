@@ -415,11 +415,6 @@ paths:
 
 
         **HTTP REQUEST**
-
-
-        GET https://api.fire.com/business/v1/directdebits/{directDebitUuid}
-
-
       tags:
         - Direct Debits
       operationId: getDirectDebit
@@ -441,9 +436,6 @@ paths:
 
 
           **HTTP REQUEST**
-
-
-          GET https://api.fire.com/business/v1/directdebits
       tags:
         - Direct Debits
       operationId: getDirectDebitAssociatedWithMandate
@@ -465,9 +457,6 @@ paths:
 
 
         **HTTP REQUEST**
-
-
-        GET https://api.fire.com/business/v1/mandates/{mandateUuid}
       tags:
         - Direct Debits
       operationId: getDirectDebitMandateDetails
@@ -487,9 +476,6 @@ paths:
 
 
         **HTTP REQUEST**
-
-
-        GET https://api.fire.com/business/v1/mandates
       tags:
         - Direct Debits
       operationId: getDirectDebitMandateDetails
@@ -1287,7 +1273,7 @@ components:
             description:
               type: string
               description: The name of the currency
-              example: Great British Pound
+              example: Sterling
         status:
           type: string
           enum:
@@ -1354,6 +1340,10 @@ components:
           type: string
           description: The creator of the party who sets up the direct debit.
           example: Vodafone PLC
+        originatorAlias:
+          type: string
+          description: The Alias of the party who sets up the direct debit.
+          example: Three          
         directDebitReference: 
           type: string
           description: The direct debit reference.
@@ -1402,11 +1392,11 @@ components:
           type: string
           format: date-time
           description: Date the direct debit was last updated. Milliseconds since the epoch (1970).
-          example: 2016-12-15T22:56:05.937Z
+          example: "2016-12-15T22:56:05.937Z"
         dateCreated:
           type: string
           format: date-time
-          example: 2016-12-15T22:56:05.937Z
+          example: "2016-12-15T22:56:05.937Z"
           description: Date the direct debit was created. Milliseconds since the epoch (1970).
     DirectDebitPaymentsAssociatedWithMandate:
       type: object
@@ -1436,7 +1426,7 @@ components:
                   description:
                     type: string
                     description: The name of the currency
-                    example: Great British Pound
+                    example: Sterling
         status:
           type: string
           enum:
@@ -1594,7 +1584,17 @@ components:
             - 8
             - 9
           example: for BACS (ARUDD) 0|1|2|3|5|6|7|8
-          description: The reject code returned by the bank indicating an issue with the direct debit. Each ARRUD code represents a rejection reason.    
+          description: The reject code returned by the bank indicating an issue with the direct debit. Each ARRUD code represents a rejection reason.
+        lastUpdated:  
+          type: string
+          format: date-time
+          description: Date the direct debit was last updated. Milliseconds since the epoch (1970).
+          example: "2016-12-15T22:56:05.937Z"
+        dateCreated:
+          type: string
+          format: date-time
+          example: "2016-12-15T22:56:05.937Z"
+          description: Date the direct debit was created. Milliseconds since the epoch (1970).            
     DirectDebitMandateDetails:
       type: object
       properties:
@@ -1614,7 +1614,7 @@ components:
             description:
               type: string
               description: The name of the currency
-              example: Great British Pound
+              example: Sterling
         status:
           type: string
           enum:
@@ -1675,7 +1675,7 @@ components:
         originatorAlias:
           type: string
           description: The alias of the party who sets up the direct debit.
-          example: Vodafone PLC Alias
+          example: Vodafone PLC Alias          
         originatorLogoUrlSmall:
           type: string
           description: Logo url from party who sets up the direct debit.
@@ -1683,7 +1683,11 @@ components:
         originatorLogoUrlLarge:
           type: string
           description: Logo url from party who sets up the direct debit.
-          example: originatorLogoLarge  
+          example: originatorLogoLarge
+        mandateRefernce:
+          type: string
+          example: CRZ-102190123
+          description: the reference of the mandate  
         alias: 
           type: string
           example: Vodaphone
@@ -1711,7 +1715,7 @@ components:
         latestDirectDebitDate:
           type: string
           format: date-time
-          example: 2016-12-15T22:56:05.937Z
+          example: "2016-12-15T22:56:05.937Z"
           description: The date of latest direct debit collected
         fireRejectionReason:
           type: string
@@ -1792,26 +1796,26 @@ components:
           type: string
           format: date-time
           description: Date the direct debit was last updated. Milliseconds since the epoch (1970).
-          example: 2016-12-15T22:56:05.937Z
+          example: "2016-12-15T22:56:05.937Z"
         dateCreated:
           type: string
           format: date-time
-          example: 2016-12-15T22:56:05.937Z
+          example: "2016-12-15T22:56:05.937Z"
           description: Date the direct debit was created. Milliseconds since the epoch (1970).
         dateRejected:  
           type: string
           format: date-time
           description: Date the direct debit was rejected. Milliseconds since the epoch (1970).
-          example: 2016-12-15T22:56:05.937Z
+          example: "2016-12-15T22:56:05.937Z"
         dateCompleted:
           type: string
           format: date-time
-          example: 2016-12-15T22:56:05.937Z
+          example: "2016-12-15T22:56:05.937Z"
           description: Date the direct debit was completed. Milliseconds since the epoch (1970).
         dateCancelled:
           type: string
           format: date-time
-          example: 2016-12-15T22:56:05.937Z
+          example: "2016-12-15T22:56:05.937Z"
           description: Date the direct debit was canceled. Milliseconds since the epoch (1970).   
     DirectDebitMandates:
       type: object
@@ -1841,7 +1845,7 @@ components:
                   description:
                     type: string
                     description: The name of the currency
-                    example: Great British Pound
+                    example: Sterling
         status:
           type: string
           enum:
@@ -1898,10 +1902,26 @@ components:
           type: string
           description: The creator of the party who sets up the direct debit.
           example: Vodafone PLC
+        originatorAlias: 
+          type: string
+          example: Vodaphone PLC
+          description: The name of the alias
+        originatorLogoUrlSmall:
+          type: string
+          description: Logo url from party who sets up the direct debit.
+          example: originatorLogoSmall
+        originatorLogoUrlLarge:
+          type: string
+          description: Logo url from party who sets up the direct debit.
+          example: originatorLogoLarge
+        mandateRefernce:
+          type: string
+          example: CRZ-102190123
+          description: the reference of the mandate
         alias: 
           type: string
           example: Vodaphone
-          description: The name of the alias
+          description: The name of the alias          
         targetIcan:
           type: integer
           format: int64
@@ -1925,8 +1945,37 @@ components:
         latestDirectDebitDate:
           type: string
           format: date-time
-          example: 2016-12-15T22:56:05.937Z
+          example: "2016-12-15T22:56:05.937Z"
           description: The date of latest direct debit collected
+        fireRejectionReason:
+          type: string
+          enum:
+            - ACCOUNT_DOES_NOT_ACCEPT_DIRECT_DEBITS  
+            - DDIC  
+            - ACCOUNT_NOT_FOUND  
+            - ACCOUNT_NOT_LIVE   
+            - CUSTOMER_NOT_FOUND   
+            - BUSINESS_NOT_LIVE  
+            - BUSINESS_NOT_FULL 
+            - PERSONAL_USER_NOT_LIVE 
+            - PERSONAL_USER_NOT_FULL
+            - MANDATE_ALREADY_EXISTS 
+            - MANDATE_WITH_DIFERENT_ACCOUNT 
+            - NULL_MANDATE_REFERENCE 
+            - INVALID_ACCOUNT_CURRENCY 
+            - INVALID_MANDATE_REFERENCE 
+            - REQUESTED_BY_CUSTOMER_VIA_SUPPORT 
+            - CUSTOMER_ACCOUNT_CLOSED 
+            - CUSTOMER_DECEASED 
+            - ACCOUNT_TRANSFERRED 
+            - MANDATE_NOT_FOUND 
+            - ACCOUNT_TRANSFERRED_TO_DIFFERENT_ACCOUNT 
+            - INVALID_ACCOUNT_TYPE 
+            - MANDATE_EXPIRED 
+            - MANDATE_CANCELLED 
+            - REQUESTED_BY_CUSTOMER 
+          description: Rejection reason if transaction is rejected
+          example: ACCOUNT_DOES_NOT_ACCEPT_DIRECT_DEBITS           
         schemeCancelReason:
           type: string
           description: Reason for cancelation
@@ -1939,21 +1988,21 @@ components:
           type: string
           format: date-time
           description: Date the direct debit was last updated. Milliseconds since the epoch (1970).
-          example: 2016-12-15T22:56:05.937Z
+          example: "2016-12-15T22:56:05.937Z"
         dateCreated:
           type: string
           format: date-time
-          example: 2016-12-15T22:56:05.937Z
+          example: "2016-12-15T22:56:05.937Z"
           description: Date the direct debit was created. Milliseconds since the epoch (1970).
         dateCompleted:
           type: string
           format: date-time
-          example: 2016-12-15T22:56:05.937Z
+          example: "2016-12-15T22:56:05.937Z"
           description: Date the direct debit was completed. Milliseconds since the epoch (1970).
         dateCancelled:
           type: string
           format: date-time
-          example: 2016-12-15T22:56:05.937Z
+          example: "2016-12-15T22:56:05.937Z"
           description: Date the direct debit was canceled. Milliseconds since the epoch (1970).          
 
     
@@ -2009,7 +2058,7 @@ components:
         expiryDate:
           type: string
           description: The expiry date for the card.
-          example: 2023-01-22T00:00:00.000Z
+          example: "2023-01-22T00:00:00.000Z"
         maskedPan:
           type: string
           description: The masked card number. 
@@ -2021,7 +2070,7 @@ components:
         dateCreated:
           type: string
           description: The date the card was created.
-          example: 2021-01-22T00:00:00.000Z 
+          example: "2021-01-22T00:00:00.000Z" 
         userId:
           type: string
           description: The id of the cardholder.
@@ -2090,11 +2139,14 @@ tags:
     description: >
       Access to the API is by Bearer Tokens. The process is somewhat similar to OAuth2.0, but with some changes to improve security.
 
-      1. You must first log into the firework online application and create a new Application in the Profile > API page. (You will need your PIN digits and 2-Factor Authentication device).
-      
-      2. Give your application a Name and select the scope/permissions you need the application to have (more on Scopes below).
-      
-      3. You will be provided with three pieces of information - the App Refresh Token, Client ID and Client Key. You need to take note of the Client Key when it is displayed - it will not be shown again.
+
+      **1.** You must first log into the firework online application and create a new Application in the Profile > API page. (You will need your PIN digits and 2-Factor Authentication device).
+
+
+      **2.** Give your application a Name and select the scope/permissions you need the application to have (more on Scopes below).
+
+
+      **3.** You will be provided with three pieces of information - the App Refresh Token, Client ID and Client Key. You need to take note of the Client Key when it is displayed - it will not be shown again.
       
       
       You now use these pieces of data to retrieve a short-term Access Token which you can use to access the API. The Access Token expires within a relatively short time, so even if it is compromised, the attacker will not have long to use it. The Client Key is the most important piece of information to keep secret. This should only ever be stored on a backend server, and never in a front end client or mobile app.
