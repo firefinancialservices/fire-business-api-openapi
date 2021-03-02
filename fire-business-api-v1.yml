@@ -318,6 +318,50 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaymentRequestPayment'
+  /users:
+    get:
+      summary: Returns list of all users on your fire.com account
+      description: You can retrieve the details of all fire.com users on your acount.
+      tags:
+        - Users
+      operationId: getUsers
+      parameters:
+      - in: path
+        required: true
+        name: users
+        schema:
+          type: string 
+          description: Info on users
+          example: "14059, colmreid@gmail.com, Colm, Reid, 353830386344, ADMIN, LIVE, 2021-02-23T10:36:59.090Z, FULL, 14059, 18967, EBB10F29-A653-4DBA-9C8C-BA79F72F78B0, LIVE, iPhone - iPhone, IOS, 14.4"
+      responses:
+          '200':
+            description: List of all Users.
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/User"
+  /user/{userId}:
+    get:
+      summary: Returns details of a specific fire.com user.
+      description: You can retrieve the details of a specific fire.com user
+      tags:
+        - Users
+      operationId: getUser
+      parameters:
+      - in: path
+        required: true
+        name: user
+        schema:
+          type: string 
+          description: Lists a specific User
+          example: "14059, colmreid@gmail.com, Colm, Reid, 353830386344, ADMIN, LIVE, 2021-02-23T10:36:59.090Z, FULL, 14059, 18967, EBB10F29-A653-4DBA-9C8C-BA79F72F78B0, LIVE, iPhone - iPhone, IOS, 14.4"
+      responses:
+          '200':
+            description: Unique information about a User.
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/User"
   /apps:
     post:
       summary: Create a new API Application
