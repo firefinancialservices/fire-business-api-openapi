@@ -1228,8 +1228,8 @@ components:
          description: Operating system of device.
         deviceOSVersion:
          type: string 
-        #To determine potential enum for OS versions.....
          description: OS version for device.
+         example: "14.4"
     PayeeBankAccount:
       type: object
       properties:
