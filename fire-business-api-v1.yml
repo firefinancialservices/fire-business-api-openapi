@@ -403,6 +403,425 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PayeeBankAccount'
+  /directdebits:
+    get:
+      summary: Get all DD payments associated with a direct debit mandate
+      description: >
+          Retrieve all direct debit payments associated with a direct debit mandate.
+
+
+          The permision needed to access this endpoint is PERM_BUSINESS_GET_DIRECT_DEBITS
+
+
+          **HTTP REQUEST**
+      tags:
+        - Direct Debits
+      operationId: getDirectDebitAssociatedWithMandate
+      responses:
+        '200':
+          description: Retrieve all direct debit payments associated with a direct debit mandate.
+          content:
+            application/json:
+              schema:
+                 $ref: '#/components/schemas/DirectDebitPaymentsAssociatedWithMandate'
+  /directdebits/{directDebitUuid}:
+    get:
+      summary: Get the deails of a direct debit
+      description: >
+        Retrieve all details of a single direct debit collection/payment, whether successful or not.
+
+        
+        The permision needed to access this endpoint is **PERM_BUSINESS_GET_DIRECT_DEBIT**
+
+
+        **HTTP REQUEST**
+      tags:
+        - Direct Debits
+      operationId: getDirectDebit
+      responses:
+        '200':
+          description: Retrieve all details of a single direct debit collection/payment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DirectDebitDetails'
+  /directdebits/{directDebitUuid}/reject:
+    post:
+      summary: Reject a direct debit payment
+      description: >
+          This endpoint allows you to reject a direct debit payment where the status is still set to RECEIVED.
+
+
+          Permission name PERM_BUSINESS_POST_DIRECT_DEBIT_REJECT
+
+
+          **HTTP REQUEST**
+      tags:
+        - Direct Debits
+      operationId: posDirectDebitReject
+      responses:
+        '204':
+          description: 204 no content
+  /mandates:
+    get:
+      summary: List all direct debit mandates
+      description: >
+        The permision needed to access this endpoint is PERM_BUSINESS_GET_MANDATES
+
+
+        **HTTP REQUEST**
+      tags:
+        - Direct Debits
+      operationId: getAllDirectDebitMandateDetails
+      responses:
+        '200':
+          description: List all direct debit mandates.
+          content:
+           application/json:
+              schema:
+                $ref: '#/components/schemas/DirectDebitMandates'
+  /mandates/{mandateUuid}:
+    get:
+      summary: Get direct debit mandate details
+      description: >
+        Retrieve all details for a direct debit mandate.
+
+
+        The permision needed to access this endpoint is PERM_BUSINESS_GET_MANDATE
+
+
+        **HTTP REQUEST**
+      tags:
+        - Direct Debits
+      operationId: getDirectDebitMandateDetails
+      responses:
+        '200':
+          description: Retrieve all details for a direct debit mandate.
+          content:
+           application/json:
+              schema:
+                $ref: '#/components/schemas/DirectDebitMandateDetails'
+    post:
+      summary: Update a direct debit mandate alias
+      description: >
+        Update Direct Debit Mandate Alias
+
+
+        The permision needed to access this endpoint is PERM_BUSINESS_PUT_MANDATE
+
+
+        **HTTP REQUEST**
+      tags:
+        - Direct Debits
+      operationId: postDirectDebitUpdateMandate
+      responses:
+        '204':
+          description: 204 no content
+  /mandates/{mandateUuid}/cancel:
+    post:
+      summary: Cancel a direct debit mandate
+      description: >
+        This endpoint allows you to cancel a direct debit mandate.
+
+
+        The permision needed to access this endpoint is PERM_BUSINESS_POST_MANDATE_CANCEL
+
+
+        **HTTP REQUEST**
+      tags:
+        - Direct Debits
+      operationId: postDirectDebitCancelMandate
+      responses:
+        '204':
+          description: 204 no content 
+  /mandates/{mandateUuid}/activate:
+    post:
+      summary: Activate a direct debit mandate
+      description: >
+        This endpoint can only be used to activate a direct debit mandate when it is in the status REJECT_REQUESTED (even if the account has direct debits disabled). This action will also enable the account for direct debits if it was previously set to be disabled.
+
+
+        The permision needed to access this endpoint is PERM_BUSINESS_POST_MANDATE_ACTIVATE
+
+
+        **HTTP REQUEST**
+      tags:
+        - Direct Debits
+      operationId: postDirectDebitActivateMandate
+      responses:
+        '204':
+          description: 204 no content
+  /batches:
+    post:
+      summary: Create a new bath of payments
+      description: This is the first step in creating a batch payment.
+      tags:
+        - Payment Batches
+      operationId: createBatchPayment
+      requestBody:
+        required: true
+        description: Details of the batch payment
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBatchRequest'
+      responses:
+        '200':
+          description: Batch created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBatchRequestResponce'
+    put:
+      summary: Submit a batch for approval
+      description: >
+        Submits the Batch (for approval in the case of a **BANK_TRANSFER**). If this is an **INTERNAL_TRANSFER** batch, the transfers are immediately queued for processing. If this is a **BANK_TRANSFER** batch, this will trigger requests for approval to the firework mobile apps of authorised users. Once those users approve the batch, it is queued for processing.
+
+
+        You can only submit a batch while it is in the OPEN state.
+      tags:
+        - Payment Batches
+      operationId: submitBatch
+      responses:
+        '204':
+          description: No body is returned - a HTTP 204 No Content response signifies the call was successful.     
+    get:
+      summary: List batches
+      description: >
+        Returns the list of batch with the specified types and statuses.
+
+
+
+        **HTTP REQUEST**
+      tags:
+        - Payment Batches
+      operationId: getBatches
+      parameters:
+        - in: query
+          name: batchStatus
+          schema:
+            type: string
+            enum:
+                - SUBMITTED
+                - REMOVED
+                - SUCCEEDED
+                - FAILED
+            description: The status of the batch if internal transfer.
+            example: SUBMITTED
+        - in: query
+          name: batchTypes
+          schema:
+            type: string
+            enum:
+             - INTERNAL_TRANSFER
+             - BANK_TRANSFER
+             - NEW_PAYEE
+            description: The type of the batch. Can be one of the 3 listed enums.
+            example: "INTERNAL_TRANSFER"
+        - in: query
+          name: orderBy
+          schema:
+            type: string
+            enum:
+             - DATE
+            description: You can order the batches by date. No other options at this time
+            example: "DATE"            
+        - in: query
+          name: order
+          schema:
+            type: string
+            enum:
+             - DESC
+             - ASC
+            description: You can order the batches by ascending or descending order.
+            example: "DESC"     
+        - in: query
+          name: offset
+          schema:
+            type: integer
+            format: int64
+            description: The page offset. Defaults to 0. This is the record number that the returned list will start at. E.g. offset = 40 and limit = 20 will return records 40 to 59.
+            example: "0"  
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            format: int64
+            description: The number of records to return. Defaults to 10 - max is 200.
+            example: "10"                     
+      responses:
+        '200':
+          description: List all batches.
+          content:
+           application/json:
+              schema:
+                $ref: '#/components/schemas/listBatches'      
+  /batches/{batchUuid}/internaltransfers:
+    post:
+      summary: Add payment for an internal transfers
+      description: Simply specify the source account, destination account, amount and a reference.
+      tags:
+        - Payment Batches
+      operationId: addInternalTransferBatchPayment 
+      requestBody:
+        required: true
+        description: Details of the source account, destination account, amount and a reference.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddInternalTransferBatchPayment'
+      responses:
+        '200':
+          description: Batch payment added successfully. Note* Please use batchUuid when submitting a batch, not batchItemUuid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddInternalTransferBatchResponce' 
+    get:
+      summary: List items in a Batch
+      description: Returns a paginated list of items in the specified batch.
+      tags:
+        - Payment Batches
+      operationId: getItemsBatchInternalTrasnfer
+      parameters:
+        - in: query
+          name: offset
+          schema:
+            type: integer
+            format: int64
+            description: The page offset. Defaults to 0. This is the record number that the returned list will start at. E.g. offset = 40 and limit = 20 will return records 40 to 59.
+            example: "0"  
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            format: int64
+            description: The number of records to return. Defaults to 10 - max is 200.
+            example: "10"          
+      responses:
+        '200':
+          description: A fire.com list object of Batch Items (Internal transfers or Bank transfers).
+          content:
+            application/json:
+              schema:
+                 $ref: '#/components/schemas/listItemBatch'
+  /batches/{batchUuid}/banktransfers:
+    post:
+      summary: Add payment for an bank transfers
+      description: > 
+        There are two ways to process bank transfers - by Payee ID (**Mode 1**) or by Payee Account Details (**Mode 2**).
+
+
+        **Mode 1:** Use the payee IDs of existing approved payees set up against your account. These batches can be approved in the normal manner.
+
+
+        **Mode 2:** Use the account details of the payee. In the event that these details correspond to an existing approved payee, the batch can be approved as normal. If the account details are new, a batch of New Payees will automatically be created. This batch will need to be approved before the Payment batch can be approved. These payees will then exist as approved payees for future batches.
+      tags:
+        - Payment Batches
+      operationId: addBankTransferBatchPayment 
+      requestBody:
+        required: true
+        description: Details of **Mode 1** & **Mode 2**. 
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/addBatchMode1'
+                - $ref: '#/components/schemas/addBatchMode2EUR'
+                - $ref: '#/components/schemas/addBatchMode2GBP'
+      responses:
+        '200':
+          description: Batch payment added successfully. **Note*** Please use batchUuid when submitting a batch, not batchItemUuid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddInternalTransferBatchResponce' 
+    get:
+      summary: List items in a Batch
+      description: Returns a paginated list of items in the specified batch.
+      tags:
+        - Payment Batches
+      operationId: getItemsBatchBankTransfer
+      parameters:
+        - in: query
+          name: offset
+          schema:
+            type: integer
+            format: int64
+            description: The page offset. Defaults to 0. This is the record number that the returned list will start at. E.g. offset = 40 and limit = 20 will return records 40 to 59.
+            example: "0"  
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            format: int64
+            description: The number of records to return. Defaults to 10 - max is 200.
+            example: "10"          
+      responses:
+        '200':
+          description: A fire.com list object of Batch Items (Internal transfers or Bank transfers).
+          content:
+            application/json:
+              schema:
+                 $ref: '#/components/schemas/listItemBatch'
+  /batches/{batchUuid}/internaltransfers/{itemUuid}:
+    delete:
+      summary: Remove a Payment from the Batch (Internal Transfer)
+      description: Removes a Payment from the Batch (Internal Transfer). You can only remove payments before the batch is submitted for approval (while it is in the OPEN state).
+      tags:
+        - Payment Batches
+      operationId: deleteInternalTransferBatchPayment 
+      responses:
+        '200':
+          description: Batch payment deleted successfully. 
+  /batches/{batchUuid}/banktransfers/{itemUuid}:
+    delete:
+      summary: Remove a Payment from the Batch (Bank Transfers)
+      description: Removes a Payment from the Batch (Bank Transfers). You can only remove payments before the batch is submitted for approval (while it is in the OPEN state).
+      tags:
+        - Payment Batches
+      operationId: deleteBankTransferBatchPayment 
+      responses:
+        '200':
+          description: Batch payment deleted successfully.          
+  /batches/{batchUuid}:
+    delete:
+      summary: Cancel a batch
+      description: Cancels the Batch. You can only cancel a batch before it is submitted for approval (while it is in the OPEN state).
+      tags:
+        - Payment Batches
+      operationId: cancelBatchPayment 
+      responses:
+        '200':
+          description: Batch payment deleted successfully.      
+    get:
+      summary: Get details of a single Batch
+      description: Returns the details of the batch specified in the API endpoint - {batchUuid}.
+      tags:
+        - Payment Batches
+      operationId: getDetailsSingleBatch
+      responses:
+        '200':
+          description: Returns the details of the batch specified in the API endpoint - {batchUuid}.
+          content:
+            application/json:
+              schema:
+                 $ref: '#/components/schemas/ListSingleBatch'
+  /batches/{batchUuid}/approvals:
+     get:
+      summary: List Approvers for a Batch
+      description: Returns a list of approvers for this batch.
+      tags:
+        - Payment Batches
+      operationId: getListofApproversForBatch
+      responses:
+        '200':
+          description: A list of approvers for this batch.
+          content:
+            application/json:
+              schema:
+                 $ref: '#/components/schemas/ApproversForBatch'
+
 components:
   schemas:
     AuthenticationData:
@@ -1211,6 +1630,1149 @@ components:
           format: date-time
           example: "2019-08-22T07:48:56.460Z"
           description: The date the payee was created. Milliseconds since the epoch (1970).
+    DirectDebitDetails:
+      type: object
+      properties:
+        directDebitUuid:
+          type: string
+          description: The UUID for the direct debit payment
+          example: 42de0705-e3f1-44fa-8c41-79973eb80eb2
+        currency:
+          type: object
+          properties:
+            code:
+              type: string
+              description: The three letter code for the currency - `GBP` only supported at this time.
+              enum:
+                - GBP
+              example: GBP
+            description:
+              type: string
+              description: The name of the currency
+              example: Sterling
+        status:
+          type: string
+          enum:
+            - RECIEVED
+            - REJECT_REQUESTED
+            - REJECT_READY_FOR_PROCESSING
+            - REJECT_RECORD_IN_PROGRESS 
+            - REJECT_RECORDED 
+            - REJECT_FILE_CREATED
+            - REJECT_FILE_SENT 
+            - COLLECTED
+            - REFUND_REQUESTED
+            - REFUND_RECORD_IN_PROGRESS
+            - REFUND_RECORDED 
+            - REFUND_FILE_CREATED 
+            - REFUND_FILE_SENT
+          description: >
+            The statuses of the direct debit payments associated with the mandate.
+            
+            * 'RECIEVED' - Direct Debit has been recieved
+            
+            * 'REJECT_REQUESTED' - The direct debit has a rejected request associated with it
+            
+            * 'REJECT_READY_FOR_PROCESSING' 
+
+            * 'REJECT_RECORD_IN_PROGRESS'
+
+            * 'REJECT_RECORDED'
+
+            * 'REJECT_FILE_CREATED'
+
+            * 'REJECT_FILE_SENT'
+
+            * 'COLLECTED' - Direct debit collected
+
+            * 'REFUND_REQUESTED' - Refund requested on direct debit
+
+            * 'REFUND_RECORD_IN_PROGRESS' - Refund in progress on direct debit
+
+            * 'REFUND_RECORDED'
+
+            * 'REFUND_FILE_CREATED'
+
+            * 'REFUND_FILE_SENT' 
+          example: RECIEVED
+        type:  
+          type: string
+          enum: 
+            - FIRST_COLLECTION
+            - ONGOING_COLLECTION
+            - REPRESENTED_COLLECTION
+            - FINAL_COLLECTION
+          description: The type of the direct debit.
+          example: FIRST_COLLECTION
+        mandateUUid:
+          type: string
+          description: The UUID for the mandate
+          example: f171b143-e3eb-47de-85a6-1c1f1108c701
+        originatorReference:
+          type: string
+          description: Set by party who sets up the direct debit.
+          example: VODA-123456
+        originatorName:
+          type: string
+          description: The creator of the party who sets up the direct debit.
+          example: Vodafone PLC
+        originatorAlias:
+          type: string
+          description: The Alias of the party who sets up the direct debit.
+          example: Three          
+        directDebitReference: 
+          type: string
+          description: The direct debit reference.
+          example: VODA-ABC453-1
+        targetIcan:
+          type: integer
+          format: int64
+          description: The ican of your fire account that the money was taken from
+          example: 42
+        targetPayeeId:
+          type: integer
+          format: int64
+          description: The payee that was created when the DD was processed
+          example: 12
+        isDDIC:
+          type: boolean
+          description: DDIC is a Direct Debit Indemnity Claim (i.e.a refund). If if the DD is requested to be refunded it is marked isDDIC true.
+          example: false
+        amount: 
+          type: integer
+          format: int64
+          description: Value of the payment
+          example: 100
+        schemeRejectReason:
+          type: string
+          description: Reason why rejected
+          example: eg. Instruction cancelled by payer
+        schemeRejectReasonCode:
+          type: string
+          enum:
+            - 0
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5 
+            - 6
+            - 7 
+            - 8
+            - 9
+            - A
+            - B 
+          example: for BACS (ARUDD) 0|1|2|3|5|6|7|8|9|A|B
+          description: The reject code returned by the bank indicating an issue with the direct debit. Each ARRUD code represents a rejection reason.
+        lastUpdated:  
+          type: string
+          format: date-time
+          description: Date the direct debit was last updated. Milliseconds since the epoch (1970).
+          example: "2016-12-15T22:56:05.937Z"
+        dateCreated:
+          type: string
+          format: date-time
+          example: "2016-12-15T22:56:05.937Z"
+          description: Date the direct debit was created. Milliseconds since the epoch (1970).
+    DirectDebitPaymentsAssociatedWithMandate:
+      type: object
+      properties:
+        total: 
+          type: integer
+          format: int64
+          description: Number of direct debits found
+          example: 1
+        directdebits:
+          type: array
+          items:
+            properties:
+              directDebitUuid:
+                type: string
+                description: The UUID for the direct debit payment
+                example: 42de0705-e3f1-44fa-8c41-79973eb80eb2
+              currency:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The three letter code for the currency - `GBP` only supported at this moment.
+                    enum:
+                      - GBP
+                    example: GBP
+                  description:
+                    type: string
+                    description: The name of the currency
+                    example: Sterling
+        status:
+          type: string
+          enum:
+            - RECIEVED
+            - REJECT_REQUESTED
+            - REJECT_READY_FOR_PROCESSING
+            - REJECT_RECORD_IN_PROGRESS 
+            - REJECT_RECORDED 
+            - REJECT_FILE_CREATED
+            - REJECT_FILE_SENT 
+            - COLLECTED
+            - REFUND_REQUESTED
+            - REFUND_RECORD_IN_PROGRESS
+            - REFUND_RECORDED 
+            - REFUND_FILE_CREATED 
+            - REFUND_FILE_SENT
+          description: > 
+            The statuses of the direct debit payments associated with the mandate.
+                      The statuses of the direct debit payments associated with the mandate.
+            * 'RECIEVED' - Direct Debit has been recieved
+            
+            * 'REJECT_REQUESTED' - The direct debit has a rejected request associated with it
+            
+            * 'REJECT_READY_FOR_PROCESSING' 
+
+            * 'REJECT_RECORD_IN_PROGRESS'
+
+            * 'REJECT_RECORDED'
+
+            * 'REJECT_FILE_CREATED'
+
+            * 'REJECT_FILE_SENT'
+
+            * 'COLLECTED' - Direct debit collected
+
+            * 'REFUND_REQUESTED' - Refund requested on direct debit
+
+            * 'REFUND_RECORD_IN_PROGRESS' - Refund in progress on direct debit
+
+            * 'REFUND_RECORDED'
+
+            * 'REFUND_FILE_CREATED'
+
+            * 'REFUND_FILE_SENT'   
+          example: RECIEVED
+        type:  
+          type: string
+          enum: 
+            - FIRST_COLLECTION
+            - ONGOING_COLLECTION
+            - REPRESENTED_COLLECTION
+            - FINAL_COLLECTION
+          description: The type of the direct debit.
+          example: FIRST_COLLECTION
+        mandateUUid:
+          type: string
+          description: The UUID for the mandate
+          example: f171b143-e3eb-47de-85a6-1c1f1108c701
+        originatorReference:
+          type: string
+          description: Set by party who sets up the direct debit.
+          example: VODA-123456
+        originatorName:
+          type: string
+          description: The creator of the party who sets up the direct debit.
+          example: Vodafone PLC
+        originatorAlias:
+          type: string
+          description: The alias of the party who sets up the direct debit.
+          example: Vodafone PLC Alias
+        originatorLogoUrlSmall:
+          type: string
+          description: Logo url from party who sets up the direct debit.
+          example: originatorLogoSmall
+        originatorLogoUrlLarge:
+          type: string
+          description: Logo url from party who sets up the direct debit.
+          example: originatorLogoLarge        
+        directDebitReference: 
+          type: string
+          description: The direct debit reference.
+          example: VODA-ABC453-1
+        targetIcan:
+          type: integer
+          format: int64
+          description:  The ican of your fire account that the money was taken from
+          example: 42
+        targetPayeeId:
+          type: integer
+          format: int64
+          description: The payee that was created when the DD was processed
+          example: 12
+        amount: 
+          type: integer
+          format: int64
+          description: Value of the payment
+          example: 100
+        feeAmount: 
+          type: integer
+          format: int64
+          description: The fee for the transaction
+          example: 1
+        taxAmount:
+          type: integer
+          format: int64
+          description: The Tax for the transaction
+          example: 2
+        amountAfterCharges:
+          type: integer
+          format: int64
+          description: The amount recived after charges apply
+          example: 97
+        fireRejectionReason:
+          type: string
+          enum:
+            - ACCOUNT_NOT_FOUND 
+            - ACCOUNT_NOT_LIVE 
+            - ACCOUNT_DOES_NOT_ACCEPT_DIRECT_DEBITS 
+            - INVALID_ACCOUNT_CURRENCY  
+            - MANDATE_NOT_FOUND  
+            - MANDATE_INVALID_STATUS 
+            - BUSINESS_NOT_LIVE  
+            - BUSINESS_NOT_FULL 
+            - PERSONAL_USER_NOT_LIVE 
+            - PERSONAL_USER_NOT_FULL 
+            - INSUFFICIENT_FUNDS  
+            - REQUESTED_BY_CUSTOMER_VIA_SUPPORT  
+            - MANDATE_CANCELLED 
+            - CUSTOMER_DECEASED 
+            - ACCOUNT_TRANSFERRED 
+            - ADVANCE_NOTICE_DISPUTED_REQUESTED_BY_CUSTOMER 
+            - AMOUNT_DIFFERS_REQUESTED_BY_CUSTOMER 
+            - AMOUNT_NOT_DUE_REQUESTED_BY_CUSTOMER 
+            - PRESENTATION_OVERDUE_REQUESTED_BY_CUSTOMER 
+            - ORIGINATOR_DIFFERS 
+            - CUSTOMER_ACCOUNT_CLOSED 
+            - REQUESTED_BY_CUSTOMER
+          description: Rejection reason if transaction is rejected
+          example: ACCOUNT_NOT_FOUND                       
+        schemeRejectReason:
+          type: string
+          description: Reason why rejected
+          example: eg. Instruction cancelled by payer
+        schemeRejectReasonCode:
+          type: string
+          enum:
+            - 0
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5 
+            - 6
+            - 7 
+            - 8
+            - 9
+          example: for BACS (ARUDD) 0|1|2|3|5|6|7|8
+          description: The reject code returned by the bank indicating an issue with the direct debit. Each ARRUD code represents a rejection reason.
+        lastUpdated:  
+          type: string
+          format: date-time
+          description: Date the direct debit was last updated. Milliseconds since the epoch (1970).
+          example: "2016-12-15T22:56:05.937Z"
+        dateCreated:
+          type: string
+          format: date-time
+          example: "2016-12-15T22:56:05.937Z"
+          description: Date the direct debit was created. Milliseconds since the epoch (1970).            
+    DirectDebitMandateDetails:
+      type: object
+      properties:
+        mandateUuid:
+          type: string
+          description: The UUID for the mandate
+          example: 28d627c3-1889-44c8-ae59-6f6b20239260
+        currency:
+          type: object
+          properties:
+            code:
+              type: string
+              description: The three letter code for the currency - `GBP`only supported at this moment.
+              enum:
+                - GBP
+              example: GBP
+            description:
+              type: string
+              description: The name of the currency
+              example: Sterling
+        status:
+          type: string
+          enum:
+            - RECIEVED
+            - REJECT_REQUESTED
+            - REJECT_READY_FOR_PROCESSING
+            - REJECT_RECORD_IN_PROGRESS 
+            - REJECT_RECORDED 
+            - REJECT_FILE_CREATED
+            - REJECT_FILE_SENT 
+            - COLLECTED
+            - REFUND_REQUESTED
+            - REFUND_RECORD_IN_PROGRESS
+            - REFUND_RECORDED 
+            - REFUND_FILE_CREATED 
+            - REFUND_FILE_SENT
+          description: >
+              The statuses of the direct debit payments associated with the mandate.
+
+              * 'RECIEVED'
+
+              * 'REJECT_REQUESTED'
+
+              * 'REJECT_READY_FOR_PROCESSING'
+
+              * 'REJECT_RECORD_IN_PROGRESS'
+
+              * 'REJECT_RECORDED'
+
+              * 'REJECT_FILE_CREATED'
+
+              * 'REJECT_FILE_SENT'
+
+              * 'COLLECTED'
+
+              * 'REFUND_REQUESTED'
+
+              * 'REFUND_RECORD_IN_PROGRESS'
+
+              * 'REFUND_RECORDED'
+
+              * 'REFUND_RECORD_IN_PROGRESS'
+
+              * 'REFUND_RECORDED'
+
+              * 'REFUND_FILE_CREATED'
+
+              * 'REFUND_FILE_SENT'
+          example: RECIEVED 
+        originatorReference:
+          type: string
+          description: Set by party who sets up the direct debit.
+          example: VODA-123456
+        originatorName:
+          type: string
+          description: The creator of the party who sets up the direct debit.
+          example: Vodafone PLC
+        originatorAlias:
+          type: string
+          description: The alias of the party who sets up the direct debit.
+          example: Vodafone PLC Alias          
+        originatorLogoUrlSmall:
+          type: string
+          description: Logo url from party who sets up the direct debit.
+          example: originatorLogoSmall
+        originatorLogoUrlLarge:
+          type: string
+          description: Logo url from party who sets up the direct debit.
+          example: originatorLogoLarge
+        mandateRefernce:
+          type: string
+          example: CRZ-102190123
+          description: the reference of the mandate  
+        alias: 
+          type: string
+          example: Vodaphone
+          description: The name of the alias
+        targetIcan:
+          type: integer
+          format: int64
+          example: 1
+          description: Identifier for the fire.com account (assigned by fire.com)
+        numberOfDirectDebitCollected:
+          type: integer
+          format: int64
+          example: 2
+          description: The number of direct debits collected
+        valueOfDirectDebitCollected:
+          type: integer
+          format: int64
+          example: 2
+          description: The value of direct debits collected
+        latestDirectDebitAmount:
+          type: integer
+          format: int64
+          example: 2
+          description: The value of largest direct debit collected  
+        latestDirectDebitDate:
+          type: string
+          format: date-time
+          example: "2016-12-15T22:56:05.937Z"
+          description: The date of latest direct debit collected
+        fireRejectionReason:
+          type: string
+          enum:
+            - ACCOUNT_DOES_NOT_ACCEPT_DIRECT_DEBITS  
+            - DDIC  
+            - ACCOUNT_NOT_FOUND  
+            - ACCOUNT_NOT_LIVE   
+            - CUSTOMER_NOT_FOUND   
+            - BUSINESS_NOT_LIVE  
+            - BUSINESS_NOT_FULL 
+            - PERSONAL_USER_NOT_LIVE 
+            - PERSONAL_USER_NOT_FULL
+            - MANDATE_ALREADY_EXISTS 
+            - MANDATE_WITH_DIFERENT_ACCOUNT 
+            - NULL_MANDATE_REFERENCE 
+            - INVALID_ACCOUNT_CURRENCY 
+            - INVALID_MANDATE_REFERENCE 
+            - REQUESTED_BY_CUSTOMER_VIA_SUPPORT 
+            - CUSTOMER_ACCOUNT_CLOSED 
+            - CUSTOMER_DECEASED 
+            - ACCOUNT_TRANSFERRED 
+            - MANDATE_NOT_FOUND 
+            - ACCOUNT_TRANSFERRED_TO_DIFFERENT_ACCOUNT 
+            - INVALID_ACCOUNT_TYPE 
+            - MANDATE_EXPIRED 
+            - MANDATE_CANCELLED 
+            - REQUESTED_BY_CUSTOMER 
+          description: Rejection reason if transaction is rejected
+          example: ACCOUNT_DOES_NOT_ACCEPT_DIRECT_DEBITS                       
+        schemeRejectReason:
+          type: string
+          description: Reason why rejected
+          example: eg. Instruction cancelled by payer
+        schemeRejectReasonCode:
+          type: string
+          enum:
+            - 0
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5 
+            - 6
+            - B 
+            - C
+            - F
+            - G
+            - H 
+            - O
+            - K
+          example: for BACS (ARUDD) 0|1|2|3|5|6|B|C|F|G|H|O|K
+          description: The reject code returned by the bank indicating an issue with the direct debit. Each ARRUD code represents a rejection reason.          
+        fireCancelReason: 
+          type: string
+          enum:
+            - REFRER_TO_CUSTOMER 
+            - REQUESTED_BY_CUSTOMER_VIA_SUPPORT 
+            - CUSTOMER_DECEASED 
+            - CUSTOMER_ACCOUNT_CLOSED 
+            - ADVANCE_NOTICE_DISPUTED_VIA_SUPPORT 
+            - ACCOUNT_TRANSFERRED 
+            - ACCOUNT_TRANSFERRED_TO_DIFFERENT_ACCOUNT 
+            - MANDATE_AMENDED 
+            - MANDATE_REINSTATED 
+            - REQUESTED_BY_CUSTOMER
+          description: Reason why canceled 
+          example: REFRER_TO_CUSTOMER
+        schemeCancelReason:
+          type: string
+          description: Reason for cancelation
+          example: e.g. Instruction cancelled by payer 
+        schemeCancelReasonCode:
+          type: string
+          example: For BACS (ADDACS) - 0|1|2|3|B|C|D|E|R
+          description: The cancelation code returned by the bank indicating an issue with the direct debit. Each ARRUD code represents a rejection reason.          
+        lastUpdated:  
+          type: string
+          format: date-time
+          description: Date the direct debit was last updated. Milliseconds since the epoch (1970).
+          example: "2016-12-15T22:56:05.937Z"
+        dateCreated:
+          type: string
+          format: date-time
+          example: "2016-12-15T22:56:05.937Z"
+          description: Date the direct debit was created. Milliseconds since the epoch (1970).
+        dateRejected:  
+          type: string
+          format: date-time
+          description: Date the direct debit was rejected. Milliseconds since the epoch (1970).
+          example: "2016-12-15T22:56:05.937Z"
+        dateCompleted:
+          type: string
+          format: date-time
+          example: "2016-12-15T22:56:05.937Z"
+          description: Date the direct debit was completed. Milliseconds since the epoch (1970).
+        dateCancelled:
+          type: string
+          format: date-time
+          example: "2016-12-15T22:56:05.937Z"
+          description: Date the direct debit was canceled. Milliseconds since the epoch (1970).   
+    DirectDebitMandates:
+      type: object
+      properties:
+        total: 
+          type: integer
+          format: int64
+          description: Number of direct debits found
+          example: 1
+        mandates:
+          type: array
+          items:
+            properties:
+              mandateUuid:
+                type: string
+                description: The UUID for the  mandate
+                example: 28d627c3-1889-44c8-ae59-6f6b20239260
+              Currency:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    description: The three letter code for the currency -`GBP` only supported at this moment.
+                    enum:
+                      - GBP
+                    example: GBP
+                  description:
+                    type: string
+                    description: The name of the currency
+                    example: Sterling
+        status:
+          type: string
+          enum:
+            - CREATED
+            - LIVE
+            - REJECT_REQUESTED 
+            - REJECT_RECORD_IN_PROGRESS 
+            - REJECT_RECORDED 
+            - REJECT_FILE_CREATED
+            - REJECT_FILE_SENT 
+            - CANCEL_REQUESTED 
+            - CANCEL_RECORD_IN_PROGRESS 
+            - CANCEL_RECORDED 
+            - CANCEL_FILE_CREATED  
+            - CANCEL_FILE_SENT  
+            - COMPLETE 
+            - DORMANT
+          description: > 
+              The status of the mandate.
+
+              * 'CREATED'
+
+              * 'LIVE'
+
+              * 'REJECT_REQUESTED'
+
+              * 'REJECT_RECORD_IN_PROGRESS'
+
+              * 'REJECT_RECORDED'
+
+              * 'REJECT_FILE_CREATED'
+
+              * 'REJECT_FILE_SENT'
+
+              * 'CANCEL_REQUESTED'
+
+              * 'CANCEL_RECORD_IN_PROGRESS'
+
+              * 'CANCEL_RECORDED'
+
+              * 'CANCEL_FILE_CREATED'
+
+              * 'CANCEL_FILE_SENT'
+
+              * 'COMPLETE'
+
+              * 'DORMANT'
+          example: RECIEVED
+        originatorReference:
+          type: string
+          description: Set by party who sets up the direct debit.
+          example: VODA-123456
+        originatorName:
+          type: string
+          description: The creator of the party who sets up the direct debit.
+          example: Vodafone PLC
+        originatorAlias: 
+          type: string
+          example: Vodaphone PLC
+          description: The name of the alias
+        originatorLogoUrlSmall:
+          type: string
+          description: Logo url from party who sets up the direct debit.
+          example: originatorLogoSmall
+        originatorLogoUrlLarge:
+          type: string
+          description: Logo url from party who sets up the direct debit.
+          example: originatorLogoLarge
+        mandateRefernce:
+          type: string
+          example: CRZ-102190123
+          description: the reference of the mandate
+        alias: 
+          type: string
+          example: Vodaphone
+          description: The name of the alias          
+        targetIcan:
+          type: integer
+          format: int64
+          example: 1
+          description: Identifier for the fire.com account (assigned by fire.com)
+        numberOfDirectDebitCollected:
+          type: integer
+          format: int64
+          example: 2
+          description: The number of direct debits collected
+        valueOfDirectDebitCollected:
+          type: integer
+          format: int64
+          example: 2
+          description: The value of direct debits collected
+        latestDirectDebitAmount:
+          type: integer
+          format: int64
+          example: 2
+          description: The value of largest direct debit collected  
+        latestDirectDebitDate:
+          type: string
+          format: date-time
+          example: "2016-12-15T22:56:05.937Z"
+          description: The date of latest direct debit collected
+        fireRejectionReason:
+          type: string
+          enum:
+            - ACCOUNT_DOES_NOT_ACCEPT_DIRECT_DEBITS  
+            - DDIC  
+            - ACCOUNT_NOT_FOUND  
+            - ACCOUNT_NOT_LIVE   
+            - CUSTOMER_NOT_FOUND   
+            - BUSINESS_NOT_LIVE  
+            - BUSINESS_NOT_FULL 
+            - PERSONAL_USER_NOT_LIVE 
+            - PERSONAL_USER_NOT_FULL
+            - MANDATE_ALREADY_EXISTS 
+            - MANDATE_WITH_DIFERENT_ACCOUNT 
+            - NULL_MANDATE_REFERENCE 
+            - INVALID_ACCOUNT_CURRENCY 
+            - INVALID_MANDATE_REFERENCE 
+            - REQUESTED_BY_CUSTOMER_VIA_SUPPORT 
+            - CUSTOMER_ACCOUNT_CLOSED 
+            - CUSTOMER_DECEASED 
+            - ACCOUNT_TRANSFERRED 
+            - MANDATE_NOT_FOUND 
+            - ACCOUNT_TRANSFERRED_TO_DIFFERENT_ACCOUNT 
+            - INVALID_ACCOUNT_TYPE 
+            - MANDATE_EXPIRED 
+            - MANDATE_CANCELLED 
+            - REQUESTED_BY_CUSTOMER 
+          description: Rejection reason if transaction is rejected
+          example: ACCOUNT_DOES_NOT_ACCEPT_DIRECT_DEBITS           
+        schemeCancelReason:
+          type: string
+          description: Reason for cancelation
+          example: e.g. Instruction cancelled by payer 
+        schemeCancelReasonCode:
+          type: string
+          example: For BACS (ADDACS) - 0|1|2|3|B|C|D|E|R
+          description: The cancelation code returned by the bank indicating an issue with the direct debit. Each ARRUD code represents a rejection reason.
+        lastUpdated:  
+          type: string
+          format: date-time
+          description: Date the direct debit was last updated. Milliseconds since the epoch (1970).
+          example: "2016-12-15T22:56:05.937Z"
+        dateCreated:
+          type: string
+          format: date-time
+          example: "2016-12-15T22:56:05.937Z"
+          description: Date the direct debit was created. Milliseconds since the epoch (1970).
+        dateCompleted:
+          type: string
+          format: date-time
+          example: "2016-12-15T22:56:05.937Z"
+          description: Date the direct debit was completed. Milliseconds since the epoch (1970).
+        dateCancelled:
+          type: string
+          format: date-time
+          example: "2016-12-15T22:56:05.937Z"
+          description: Date the direct debit was canceled. Milliseconds since the epoch (1970).          
+    CreateBatchRequest:
+      type: object
+      properties:
+        type: 
+          type: string
+          enum:
+            - BANK_TRANSFER
+            - INTERNAL_TRANSFER
+            - NEW_PAYEE
+          description: The type of the batch - can be one of the listed 3
+        currency:
+          type: string
+          example: EUR
+          description: GBP or EUR
+        batchName:
+          type: string
+          example: January 2018 Payroll
+          description: An optional name you give to the batch at creation time. 
+        jobNumber:
+          type: string
+          example: 2022-01-PR
+          description: An optional job number you can give to the batch to help link it to your own system.
+        callBackUrl:
+          type: string 
+          example: https://my.webserver.com/cb/payroll
+          description: An optional POST URL that all events for this batch will be sent to.
+    CreateBatchRequestResponce:
+      type: object
+      properties:
+        batchUuid:
+          type: string
+          example: F2AF3F2B-4406-4199-B249-B354F2CC6019
+          description: A UUID for this item. Leave blank to let fire.com create it for you. Must be a UUID.
+    AddInternalTransferBatchPayment:
+      type: object
+      properties:
+        icanFrom:
+          type: integer
+          format: int64
+          example: 2001
+          description: The account ID for the fire.com account the funds are taken from
+        icanTo:
+          type: integer
+          format: int64
+          example: 3221
+          description: The account ID for the fire.com account the funds are directed to
+        amount:
+          type: integer
+          format: int64
+          example: 10000
+          description: amount of funds to be transfered
+        ref:
+          type: string
+          example: Moving funds to Operating Account
+          description: The reference on the transaction
+    AddInternalTransferBatchResponce:
+      type: object
+      properties:
+        batchItemUuid:
+          type: string
+          example: fba4a76a-ce51-4fc1-b562-98ec01299e4d
+          description: A Batch Item UUID for this item. Note* Do not confuse this for BatchUuid when submitting a batch. 
+    addBatchMode1:
+      type: object
+      properties:
+        icanFrom:
+          type: integer
+          format: int64
+          example: 2001
+          description: The Fire account ID for the fire.com account the funds are taken from.
+        payeeId:
+          type: integer
+          format: int64
+          example: 15002
+          description: The ID of the existing or automatically created payee
+        payeeType: 
+          type: string
+          enum:
+          - PAYEE_ID 
+          - ACCOUNT_DETAILS
+          example: PAYEE_ID
+          description: Use PAYEE_ID if you are paying existing approved payees (Mode 1). Specify the payee ID in the payeeId field. Use ACCOUNT_DETAILS if you are providing account numbers/sort codes/IBANs (Mode 2). Specify the account details in the destIban, destAccountHolderName, destNsc or destAccountNumber fields as appropriate.
+        amount:
+          type: integer
+          format: int64
+          example: 500
+          description: The value of the transaction
+        myRef:
+          type: string
+          example: Payment to John Smith for Consultancy in device.
+          description: The reference on the transaction for your records - not shown to the beneficiary.
+        yourRef:
+          type: string
+          example: ACME LTD - INV 23434
+          description: The reference on the transaction - displayed on the beneficiary bank statement.
+    addBatchMode2EUR:
+      type: object
+      properties:
+        icanFrom:
+          type: integer
+          format: int64
+          example: 2001
+          description: The Fire account ID for the fire.com account the funds are taken from.
+        payeeType: 
+          type: string
+          enum:
+          - PAYEE_ID 
+          - ACCOUNT_DETAILS
+          example: ACCOUNT_DETAILS
+          description: Use PAYEE_ID if you are paying existing approved payees (Mode 1). Specify the payee ID in the payeeId field. Use ACCOUNT_DETAILS if you are providing account numbers/sort codes/IBANs (Mode 2). Specify the account details in the destIban, destAccountHolderName, destNsc or destAccountNumber fields as appropriate.
+        destIban:
+          type: string
+          example: IE00AIBK93123412341234
+          description: The destination IBAN if a Euro Bank transfer
+        destAccountHolderName:
+          type: string
+          example: John Smith
+          description: The destination account holder name 
+        amount:
+          type: integer
+          format: int64
+          example: 500
+          description: The value of the transaction
+        myRef:
+          type: string
+          example: Payment to John Smith for Consultancy in device.
+          description: The reference on the transaction for your records - not shown to the beneficiary.
+        yourRef:
+          type: string
+          example: ACME LTD - INV 23434
+          description: The reference on the transaction - displayed on the beneficiary bank statement.    
+    addBatchMode2GBP:
+      type: object
+      properties:
+        icanFrom:
+          type: integer
+          format: int64
+          example: 2001
+          description: The Fire account ID for the fire.com account the funds are taken from.
+        payeeType: 
+          type: string
+          enum:
+          - PAYEE_ID 
+          - ACCOUNT_DETAILS
+          example: ACCOUNT_DETAILS
+          description: Use PAYEE_ID if you are paying existing approved payees (Mode 1). Specify the payee ID in the payeeId field. Use ACCOUNT_DETAILS if you are providing account numbers/sort codes/IBANs (Mode 2). Specify the account details in the destIban, destAccountHolderName, destNsc or destAccountNumber fields as appropriate.
+        destNsc:
+          type: integer
+          format: int64
+          example: 123456
+          description: The destination Nsc if a GBP bank transfer
+        destAccountNumber:
+          type: integer
+          format: int64
+          example: 567890
+          description: The destination Account Number if a GBP bank transfer
+        destAccountHolderName:
+          type: string
+          example: John Smith
+          description: The destination account holder name 
+        amount:
+          type: integer
+          format: int64
+          example: 500
+          description: The value of the transaction
+        myRef:
+          type: string
+          example: Payment to John Smith for Consultancy in device.
+          description: The reference on the transaction for your records - not shown to the beneficiary.
+        yourRef:
+          type: string
+          example: ACME LTD - INV 23434
+          description: The reference on the transaction - displayed on the beneficiary bank statement. 
+    listBatches:
+      type: object
+      properties:
+        total: 
+          type: integer
+          format: int64
+          example: 1
+          description: total number of batches returned
+        batchRequests:
+          type: array
+          items:
+             $ref: '#/components/schemas/ListSingleBatch'
+    ListSingleBatch:
+      type: object
+      properties:
+        batchUuid: 
+          type: string
+          example: F2AF3F2B-4406-4199-B249-B354F2CC6019
+          description: A UUID for this item.
+        type: 
+          type: string
+          enum: 
+          - INTERNAL_TRANSFER
+          - BANK_TRANSFER
+          - NEW_PAYEE
+          description: The type of the batch - can be one of the listed 3              
+        status:
+          type: string
+          enum:
+            - PENDING_APPROVAL
+            - REJECTED
+            - COMPLETE
+            - OPEN
+            - CANCELLED
+            - PENDING_PARENT_BATCH_APPROVAL
+            - READY_FOR_PROCESSING
+            - PROCESSING
+          example: COMPLETE
+          description: status of the batch object      
+        sourceName: 
+          type: string
+          description: A string describing where the batch originated - for instance the name of the API token that was used, or showing that the batch was automatically created by fire.com (in the case of a new payee batch).
+          example: Payment API
+        batchName: 
+          type: string
+          example: January 2018 Payroll
+          description: An optional name you give to the batch at creation time
+        jobNumber:
+          type: string
+          example: 2018-01-PR
+          description: An optional job number you can give to the batch to help link it to your own system.
+        callBackUrl:
+          type: string
+          example: https://my.webserver.com/cb/payroll
+          description: An optional POST URL that all events for this batch will be sent to.
+        currency:
+          type: string
+          description: All payments in the batch must be the same currency - either EUR or GBP
+          example: EUR
+        numberOfItemsSubmitted:
+          type: integer
+          format: int64
+          description: A count of the number of items in the batch
+          example: 1  
+        valueOfItemsSubmitted:
+          type: integer
+          format: int64
+          description: A sum of the value of items in the batch. Specified in pence or cent.
+          example: 10000
+        numberOfItemsFailed:
+          type: integer
+          format: int64
+          description: Once processed, a count of the number of items that didn’t process successfully.
+          example: 0   
+        valueOfItemsFailed:
+          type: integer
+          format: int64
+          description: Once processed, a sum of the value of items that didn’t process successfully. Specified in pence or cent.
+          example: 0    
+        numberOfItemsSucceeded:
+          type: integer
+          format: int64
+          description: Once processed, a count of the number of items that processed successfully.
+          example: 1   
+        valueOfItemsSucceeded:
+          type: integer
+          format: int64
+          description: Once processed, a sum of the value of items that processed successfully. Specified in pence or cent.
+          example: 10000               
+        lastUpdated:
+          type: string
+          format: date-time
+          example: "2021-04-04T10:48:53.540Z"
+          description: The datestamp of the last action on this batch - ISO format - e.g. 2018-04-04T10:48:53.540Z
+        dateCreated:
+          type: string
+          format: date-time
+          example: "2021-04-04T10:48:53.540Z"
+          description: The datestamp the batch was created - ISO format - e.g. 2018-04-04T00:53:21.910Z
+    listItemBatch:
+      type: object
+      properties:
+        total: 
+          type: integer
+          format: int64
+          example: 1
+          description: total number of batches returned
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              batchUuid: 
+                type: string
+                example: F2AF3F2B-4406-4199-B249-B354F2CC6019
+                description: A UUID for this item.            
+              status:
+                type: string
+                enum:
+                - SUBMITTED
+                - REMOVED
+                - SUCCEEDED
+                - FAILED
+                example: SUCCEEDED
+                description: status of the batch if internal trasnfer   
+              result:
+                type: object
+                description: The outcome of the attempted transaction.
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                    example: 500001
+                  message:
+                    type: string
+                    example: SUCCESS    
+              dateCreated:
+                type: string
+                format: date-time
+                example: "2021-04-04T10:48:53.540Z"
+                description: The datestamp the batch was created - ISO format - e.g. 2018-04-04T00:53:21.910Z              
+              lastUpdated:
+                type: string
+                format: date-time
+                example: "2021-04-04T10:48:53.540Z"
+                description: The datestamp of the last action on this batch - ISO format - e.g. 2018-04-04T10:48:53.540Z
+              feeAmount:
+                type: integer 
+                format: int64
+                example: 0
+                description: The fee charged by fire.com for the payment. In pence or cent.
+              taxAmount:
+                type: integer
+                format: int64
+                example: 0
+                description: Any taxes/duty collected by fire.com for this payments (e.g. stamp duty etc). In pence or cent.
+              amountAfterCharges:
+                type: integer
+                format: int64
+                example: 10000
+                description: The amount of the transfer after fees and taxes. in pence or cent.
+              icanFrom:
+                type: integer
+                format: int64
+                example: 2150
+                description: The Fire account ID of the source account.
+              icanTo:
+                type: integer
+                format: int64
+                example: 1002
+                description: The Fire account ID for the fire.com account the funds are sent to.
+              amount:
+                type: integer
+                format: int64
+                example: 10000
+                description: The amount of funds to send. In cent or pence
+              ref:
+                type: string
+                example: Testing a transfer via batch
+                description: The reference on the transaction.
+              refId:
+                type: integer
+                format: int64
+                example: 123782
+                description: The ID of the resulting payment in your account. Can be used to retrieve the transaction using the https://api.fire.com/business/v1/accounts/{accountId}/transactions/{refId} endpoint.
+    ApproversForBatch:
+      type: object
+      properties:
+        approvals:
+          type: array
+          items:
+            type: object
+            properties:
+              userId:
+                type: integer
+                format: int64
+                example: 3138
+                description: User id assigned by fire.com
+              emailAddress: 
+                type: string
+                example: jane.doe@example.com
+                description: User email address
+              firstName: 
+                type: string
+                example: Jane
+              lastName:
+                type: string
+                example: Doe
+              mobileNumber:
+                type: string
+                example: +353871234567
+              status: 
+                type: string
+                example: PENDING_APPROVAL
+              lastUpdated:
+                type: string
+                format: date-time
+                example: "2021-04-04T10:48:53.540Z"
+                description: The datestamp of the last action on this batch - ISO format - e.g. 2018-04-04T10:48:53.540Z
+    
     APIErrors:
       type: object
       properties:
@@ -1367,6 +2929,73 @@ tags:
     description: Manage your API Applications and Webhooks
   - name: Transactions
     description: While there are many types of transactions, they are all represented by the same JSON object with a different txnType.
+  - name: Direct Debits
+    description: > 
+      The fire.com api allows businesses to automate direct debit payment actions on their fire.com business accounts.
+
+
+      You can retrieve details of your direct debit payments, direct debit mandates and also take actions on both your direct debit payments and mandates.
+  - name: Payment Batches
+    description: >
+      The fire.com API allows businesses to automate payments between their accounts or to third parties across the UK and Europe.
+
+
+      For added security, the API can only set up the payments in batches. These batches must be approved by an authorised user via the firework mobile app.
+
+
+
+      The process is as follows:
+
+
+      **1.**Create a new batch
+      
+      
+      **2.**Add payments to the batch
+      
+      
+      **3.**Submit the batch for approval
+
+
+      Once the batch is submitted, the authorised users will receive notifications to their firework mobile apps. They can review the contents of the batch and then approve or reject it. If approved, the batch is then processed. You can avail of enhanced security by using Dual Authorisation to verify payments if you wish. Dual Authorisation can be enabled by you when setting up your API application in firework online.
+
+
+      **Batch Life Cycle Events**
+
+
+      A batch webhook can be specified to receive details of all the payments as they are processed. This webhook receives notifications for every event in the batch lifecycle.
+
+
+      The following events are triggered during a batch:
+
+
+      **batch.opened:** Contains the details of the batch opened. Checks that the callback URL exists - unless a HTTP 200 response is returned, the callback URL will not be configured.
+
+
+      **batch.item-added:** Details of the item added to the batch
+
+
+      **batch.item-removed:** Details of the item removed from the batch
+
+
+      **batch.cancelled:** Notifies that the batch was cancelled.
+
+
+      **batch.submitted:** Notifes that the batch was submitted
+
+
+      **batch.approved:** Notifies that the batch was approved.
+
+
+      **batch.rejected:** Notifies that the batch was rejected.
+
+
+      **batch.failed:** Notifies that the batch failed - includes the details of the failure (insufficient funds etc)
+
+
+      **batch.completed:** Notifies that the batch completed successfully. Includes a summary.
+
+
+      Push notifications are sent to the firework mobile app for many of these events too - these can be configured from within the app.
 
 
 
