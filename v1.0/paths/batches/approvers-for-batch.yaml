@@ -1,0 +1,13 @@
+get:
+summary: List Approvers for a Batch
+description: Returns a list of approvers for this batch.
+tags:
+  - Payment Batches
+operationId: getListofApproversForBatch
+responses:
+  '200':
+    description: A list of approvers for this batch.
+    content:
+      application/json:
+        schema:
+            $ref: ../../schemas/approvers-for-batch.yaml

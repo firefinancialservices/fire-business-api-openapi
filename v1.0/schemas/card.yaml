@@ -1,0 +1,18 @@
+type: object
+properties:
+  cardId:
+    type: number
+    format: int64
+  provider:
+    type: string
+  alias:
+    type: string
+  maskedPan:
+    type: string
+  embossCardName:
+    type: string
+  embossBusinessName:
+    type: string
+  expiryDate:
+    type: string
+    format: date-time

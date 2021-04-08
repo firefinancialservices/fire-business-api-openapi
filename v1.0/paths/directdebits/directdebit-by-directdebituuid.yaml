@@ -1,0 +1,17 @@
+get:
+  summary: Get the deails of a direct debit
+  description: >
+    Retrieve all details of a single direct debit collection/payment, whether successful or not.
+    
+    The permision needed to access this endpoint is **PERM_BUSINESS_GET_DIRECT_DEBIT**
+
+  tags:
+    - Direct Debits
+  operationId: getDirectDebitByUuid
+  responses:
+    '200':
+      description: Retrieve all details of a single direct debit collection/payment
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/direct-debit.yaml

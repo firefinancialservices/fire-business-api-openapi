@@ -1,0 +1,86 @@
+type: object
+properties:
+  batchUuid: 
+    type: string
+    example: F2AF3F2B-4406-4199-B249-B354F2CC6019
+    description: A UUID for this item.
+  type: 
+    type: string
+    enum: 
+    - INTERNAL_TRANSFER
+    - BANK_TRANSFER
+    - NEW_PAYEE
+    description: The type of the batch - can be one of the listed 3              
+  status:
+    type: string
+    enum:
+      - PENDING_APPROVAL
+      - REJECTED
+      - COMPLETE
+      - OPEN
+      - CANCELLED
+      - PENDING_PARENT_BATCH_APPROVAL
+      - READY_FOR_PROCESSING
+      - PROCESSING
+    example: COMPLETE
+    description: status of the batch object      
+  sourceName: 
+    type: string
+    description: A string describing where the batch originated - for instance the name of the API token that was used, or showing that the batch was automatically created by fire.com (in the case of a new payee batch).
+    example: Payment API
+  batchName: 
+    type: string
+    example: January 2018 Payroll
+    description: An optional name you give to the batch at creation time
+  jobNumber:
+    type: string
+    example: 2018-01-PR
+    description: An optional job number you can give to the batch to help link it to your own system.
+  callBackUrl:
+    type: string
+    example: https://my.webserver.com/cb/payroll
+    description: An optional POST URL that all events for this batch will be sent to.
+  currency:
+    type: string
+    description: All payments in the batch must be the same currency - either EUR or GBP
+    example: EUR
+  numberOfItemsSubmitted:
+    type: integer
+    format: int64
+    description: A count of the number of items in the batch
+    example: 1  
+  valueOfItemsSubmitted:
+    type: integer
+    format: int64
+    description: A sum of the value of items in the batch. Specified in pence or cent.
+    example: 10000
+  numberOfItemsFailed:
+    type: integer
+    format: int64
+    description: Once processed, a count of the number of items that didn’t process successfully.
+    example: 0   
+  valueOfItemsFailed:
+    type: integer
+    format: int64
+    description: Once processed, a sum of the value of items that didn’t process successfully. Specified in pence or cent.
+    example: 0    
+  numberOfItemsSucceeded:
+    type: integer
+    format: int64
+    description: Once processed, a count of the number of items that processed successfully.
+    example: 1   
+  valueOfItemsSucceeded:
+    type: integer
+    format: int64
+    description: Once processed, a sum of the value of items that processed successfully. Specified in pence or cent.
+    example: 10000               
+  lastUpdated:
+    type: string
+    format: date-time
+    example: "2021-04-04T10:48:53.540Z"
+    description: The datestamp of the last action on this batch - ISO format - e.g. 2018-04-04T10:48:53.540Z
+  dateCreated:
+    type: string
+    format: date-time
+    example: "2021-04-04T10:48:53.540Z"
+    description: The datestamp the batch was created - ISO format - e.g. 2018-04-04T00:53:21.910Z

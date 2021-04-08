@@ -1,0 +1,23 @@
+get:
+  summary: Retrieve the details of a fire.com Account
+  description: You can retrieve the details of a fire.com Account by its `ican`.
+  tags:
+      - fire.com Accounts
+  operationId: getAccountById
+  parameters:
+      - in: path
+        name: ican
+        schema:
+          type: integer
+          format: int64
+          description: The ican of the account to retrieve
+        required: true
+  responses:
+    '200':
+      description: An array of account objects.
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/account.yaml
+    '401':
+      $ref: ../../responses/unauthorised-error.yaml

@@ -1,0 +1,64 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+    description: Identifier for the fire.com payee bank account (assigned by fire.com).
+    example: 742
+  currency:
+    type: object
+    $ref: ./currency.yaml
+  status:
+    type: string
+    enum: 
+    - CREATED 
+    - LIVE 
+    - CLOSED 
+    - ARCHIVED
+    description: >
+      The status of the payee. Only payees in LIVE status can be selected as a destination account for an outgoing payment.
+        * 'CREATED' - The payee has been set-up via Bank Transfer Received, Direct Debit, or Open Banking. This payee must be converted to LIVE status to select as a destination account for an outgoing payment.
+        * 'LIVE' - The payee can be selected as a destination account for an outgoing payment.
+        * 'CLOSED'
+        * 'ARCHIVED' - The payee has been deleted and must be added again to be selected as a destination account for an outgoing payment.
+    example: LIVE
+  accountName:
+    type: string
+    description: The alias attributed to the payee, usually set by the user when creating the payee.
+    example: Joe
+  accountHolderName:
+    type: string
+    description: The name on the payee bank account.
+    example: Joe Bloggs
+  bic:
+    type: string
+    description: The BIC of the account if currency is EUR.
+    example: BOFIIE2DXXX
+  iban:
+    type: string
+    description: The IBAN of the account if currency is EUR.
+    example: IE86BOFI90535211111111
+  nsc: 
+    type: string
+    description: The Sort Code of the account if currency is GBP.
+    example: null
+  accountNumber:
+    type: string
+    description: The Account Number of the account if currency is GBP.
+    example: null
+  createdBy:
+    type: string
+    enum:
+      - CUSTOMER
+      - LODGEMENT
+      - DIRECT DEBIT
+      - OPEN BANKING
+      - FIRE OPEN PAYMENT
+      - FIRE DIRECT
+    description: The creation source of the payee. 
+    example: CUSTOMER
+  dateCreated:
+    type: string
+    format: date-time
+    example: "2019-08-22T07:48:56.460Z"
+    description: The date the payee was created. Milliseconds since the epoch (1970).

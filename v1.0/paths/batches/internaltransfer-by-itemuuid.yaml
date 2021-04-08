@@ -1,0 +1,9 @@
+delete:
+  summary: Remove a Payment from the Batch (Internal Transfer)
+  description: Removes a Payment from the Batch (Internal Transfer). You can only remove payments before the batch is submitted for approval (while it is in the OPEN state).
+  tags:
+    - Payment Batches
+  operationId: deleteInternalTransferBatchPayment 
+  responses:
+    '200':
+      description: Batch payment deleted successfully. 

@@ -1,0 +1,24 @@
+delete:
+  summary: Cancel a batch
+  description: Cancels the Batch. You can only cancel a batch before it is submitted for approval (while it is in the OPEN state).
+  tags:
+    - Payment Batches
+  operationId: cancelBatchPayment 
+  responses:
+    '200':
+      description: Batch payment deleted successfully.      
+
+      
+get:
+  summary: Get details of a single Batch
+  description: Returns the details of the batch specified in the API endpoint - {batchUuid}.
+  tags:
+    - Payment Batches
+  operationId: getDetailsSingleBatch
+  responses:
+    '200':
+      description: Returns the details of the batch specified in the API endpoint - {batchUuid}.
+      content:
+        application/json:
+          schema:
+              $ref: ../../schemas/batch-item.yaml

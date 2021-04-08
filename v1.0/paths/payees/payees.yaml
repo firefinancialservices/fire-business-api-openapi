@@ -1,0 +1,20 @@
+get:
+  summary: List all Payee Bank Accounts
+  description: >
+    Returns all your payee bank accounts. 
+    
+    
+    Ordered by date added descending. 
+    
+    
+    Can be paginated.
+  tags:
+    - Payee Bank Accounts
+  operationId: getPayees
+  responses:
+    '200':
+      description: An array of Payee Bank Accounts
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/payee-bank-account.yaml

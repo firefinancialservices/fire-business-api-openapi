@@ -1,0 +1,32 @@
+type: object
+properties:
+  currency:
+    type: string
+    enum:
+      - EUR
+      - GBP
+    description: Must correspond to the currency of the original payment
+  amount:
+    type: integer
+    format: int64
+    example: 1000
+    description: The amount to refund. Must be within a certain percentage of the original payment.
+  myRef:
+    type: string
+    example: Fees Refunded
+    description: An internal description of the refund request.
+  description:
+    type: string
+    example: Gym Fees Refunded Oct 2020
+    description: A public facing description of the refund request.
+  orderDetails:
+    type: object
+    properties:
+      merchantNumber:
+        type: string
+        example: 1234567
+        description: Your Merchant Number (if applicable).
+  reason:
+    type: string
+    example: Gym Closed for repairs.
+    description: A reason for the refund.

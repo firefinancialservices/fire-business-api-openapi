@@ -1,0 +1,17 @@
+type: object
+properties: 
+  buyCurrency:
+    type: string
+  sellCurrency: 
+    type: string
+  fixedSide:
+    type: string
+  buyAmount:
+    type: integer
+    format: int64
+  sellAmount:
+    type: integer
+    format: int64
+  rate4d:
+    type: integer
+    format: int64

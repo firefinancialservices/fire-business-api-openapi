@@ -1,0 +1,21 @@
+type: object
+properties:
+  icanFrom:
+    type: integer
+    format: int64
+    example: 2001
+    description: The account ID for the fire.com account the funds are taken from
+  icanTo:
+    type: integer
+    format: int64
+    example: 3221
+    description: The account ID for the fire.com account the funds are directed to
+  amount:
+    type: integer
+    format: int64
+    example: 10000
+    description: amount of funds to be transfered
+  ref:
+    type: string
+    example: Moving funds to Operating Account
+    description: The reference on the transaction
