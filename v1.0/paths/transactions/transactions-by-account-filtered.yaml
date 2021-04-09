@@ -14,20 +14,20 @@ get:
     - Transactions
   operationId: getTransactionsFilteredById
   parameters:
-        - in: path
-          name: ican
-          schema:
-            type: integer
-            format: int64
-            description: The ican of the account to retrieve
-          required: true
-        - in: path
-          name: filter
-          schema:
-            type: string
-            format: varchar
-            description: Query parameter which can be userd to filer the list
-          required: true            
+    - in: path
+      name: ican
+      schema:
+        type: integer
+        format: int64
+        description: The ican of the account to retrieve
+      required: true
+    - in: path
+      name: filter
+      schema:
+        type: string
+        format: varchar
+        description: Query parameter which can be userd to filer the list
+      required: true            
   responses:
     '200':
       description: An array of transaction objects for the account with a count (`total`) filtered by the specified query parameter.

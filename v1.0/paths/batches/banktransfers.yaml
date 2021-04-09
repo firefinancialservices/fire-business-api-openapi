@@ -11,6 +11,14 @@ post:
   tags:
     - Payment Batches
   operationId: addBankTransferBatchPayment 
+  parameters:
+    - in: path
+      required: true
+      name: batchUuid
+      schema:
+        type: string
+        description: The uuid of the batch.
+        example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
   requestBody:
     required: true
     description: Details of **Mode 1** & **Mode 2**. 
@@ -36,6 +44,13 @@ get:
     - Payment Batches
   operationId: getItemsBatchBankTransfer
   parameters:
+    - in: path
+      required: true
+      name: batchUuid
+      schema:
+        type: string
+        description: The uuid of the batch.
+        example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
     - in: query
       name: offset
       schema:

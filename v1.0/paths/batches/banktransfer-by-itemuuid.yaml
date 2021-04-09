@@ -3,7 +3,21 @@ delete:
   description: Removes a Payment from the Batch (Bank Transfers). You can only remove payments before the batch is submitted for approval (while it is in the OPEN state).
   tags:
     - Payment Batches
-  operationId: deleteBankTransferBatchPayment 
+  operationId: deleteBankTransferBatchPayment
+  parameters:
+    - in: path
+      required: true
+      name: batchUuid
+      schema:
+        type: string
+        description: The uuid of the batch.
+        example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+    - in: path
+      required: true
+      name: itemUuid
+      schema:
+        type: string
+        description: The uuid of the item to remove.
   responses:
     '200':
       description: Batch payment deleted successfully.   

@@ -4,6 +4,14 @@ delete:
   tags:
     - Payment Batches
   operationId: cancelBatchPayment 
+  parameters:
+    - in: path
+      required: true
+      name: batchUuid
+      schema:
+        type: string
+        description: The uuid of the batch.
+        example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
   responses:
     '200':
       description: Batch payment deleted successfully.      
@@ -15,6 +23,14 @@ get:
   tags:
     - Payment Batches
   operationId: getDetailsSingleBatch
+  parameters:
+    - in: path
+      required: true
+      name: batchUuid
+      schema:
+        type: string
+        description: The uuid of the batch.
+        example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
   responses:
     '200':
       description: Returns the details of the batch specified in the API endpoint - {batchUuid}.

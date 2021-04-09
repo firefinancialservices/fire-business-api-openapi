@@ -15,7 +15,6 @@ properties:
     deprecated: true
     example: ORANGE
   currency:
-    type: object
     $ref: './currency.yaml'
   balance:
     type: integer

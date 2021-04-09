@@ -7,6 +7,14 @@ post:
   tags:
     - Direct Debits
   operationId: activateMandate
+  parameters:
+    - in: path
+      required: true
+      name: mandateUuid
+      schema:
+        type: string
+        description: The uuid of the mandate to activate.
+        example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
   responses:
     '204':
       description: 204 no content

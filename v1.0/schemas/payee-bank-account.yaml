@@ -6,7 +6,6 @@ properties:
     description: Identifier for the fire.com payee bank account (assigned by fire.com).
     example: 742
   currency:
-    type: object
     $ref: ./currency.yaml
   status:
     type: string

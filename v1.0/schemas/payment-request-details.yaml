@@ -30,6 +30,5 @@ allOf:
           - RECEIVED
         description: The status of the transaction
       currency:
-        type: object
         $ref: ./currency.yaml
   - $ref: ./payment-request.yaml

@@ -4,6 +4,21 @@ delete:
   tags:
     - Payment Batches
   operationId: deleteInternalTransferBatchPayment 
+  parameters:
+    - in: path
+      required: true
+      name: batchUuid
+      schema:
+        type: string
+        description: The uuid of the batch.
+        example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+    - in: path
+      required: true
+      name: itemUuid
+      schema:
+        type: string
+        description: The uuid of the item to remove.
+        example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
   responses:
     '200':
       description: Batch payment deleted successfully. 

@@ -5,13 +5,13 @@ get:
     - Transactions
   operationId: getTransactionsById
   parameters:
-        - in: path
-          name: ican
-          schema:
-            type: integer
-            format: int64
-            description: The ican of the account to retrieve
-          required: true
+    - in: path
+      name: ican
+      schema:
+        type: integer
+        format: int64
+        description: The ican of the account to retrieve
+      required: true
   responses:
     '200':
       description: An array of transaction objects for the account with a count (`total`).

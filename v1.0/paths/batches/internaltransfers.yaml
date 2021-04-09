@@ -3,7 +3,15 @@ post:
   description: Simply specify the source account, destination account, amount and a reference.
   tags:
     - Payment Batches
-  operationId: addInternalTransferBatchPayment 
+  operationId: addInternalTransferBatchPayment
+  parameters:
+    - in: path
+      required: true
+      name: batchUuid
+      schema:
+        type: string
+        description: The uuid of the batch.
+        example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
   requestBody:
     required: true
     description: Details of the source account, destination account, amount and a reference.
@@ -27,6 +35,13 @@ get:
     - Payment Batches
   operationId: getItemsBatchInternalTrasnfer
   parameters:
+    - in: path
+      required: true
+      name: batchUuid
+      schema:
+        type: string
+        description: The uuid of the batch.
+        example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
     - in: query
       name: offset
       schema:

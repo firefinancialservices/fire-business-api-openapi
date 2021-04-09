@@ -7,4 +7,5 @@ properties:
     example: 1
   directdebits:
     type: array
-    $ref: ./direct-debit.yaml
+    items: 
+      $ref: ./direct-debit.yaml

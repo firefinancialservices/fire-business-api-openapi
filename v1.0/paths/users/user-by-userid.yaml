@@ -5,13 +5,13 @@ get:
     - Users
   operationId: getUser
   parameters:
-  - in: path
-    required: true
-    name: userId
-    schema:
-      type: number
-      description: Lists a specific User
-      example: 14059
+    - in: path
+      required: true
+      name: userId
+      schema:
+        type: number
+        description: Lists a specific User
+        example: 14059
   responses:
     '200':
       description: Unique information about a User.

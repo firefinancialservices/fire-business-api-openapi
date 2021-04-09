@@ -1,13 +1,21 @@
 get:
-summary: List Approvers for a Batch
-description: Returns a list of approvers for this batch.
-tags:
-  - Payment Batches
-operationId: getListofApproversForBatch
-responses:
-  '200':
-    description: A list of approvers for this batch.
-    content:
-      application/json:
-        schema:
-            $ref: ../../schemas/approvers-for-batch.yaml
+  summary: List Approvers for a Batch
+  description: Returns a list of approvers for this batch.
+  tags:
+    - Payment Batches
+  operationId: getListofApproversForBatch
+  parameters:
+    - in: path
+      required: true
+      name: batchUuid
+      schema:
+        type: string
+        description: The uuid of the batch.
+        example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+  responses:
+    '200':
+      description: A list of approvers for this batch.
+      content:
+        application/json:
+          schema:
+              $ref: ../../schemas/approvers-for-batch.yaml

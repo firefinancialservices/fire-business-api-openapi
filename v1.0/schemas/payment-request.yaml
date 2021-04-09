@@ -43,7 +43,6 @@ properties:
     example: https://example.com/callback
     description: The merchant return URL where the customer will be re-directed to with the result of the transaction.
   orderDetails:
-    type: object
     $ref: ./order-details.yaml
   collectFields:
     type: string
