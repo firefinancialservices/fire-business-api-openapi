@@ -1,0 +1,210 @@
+type: object
+properties:
+  mandateUuid:
+    type: string
+    description: The UUID for the mandate
+    example: 28d627c3-1889-44c8-ae59-6f6b20239260
+  currency:
+    $ref: ./currency.yaml
+  status:
+    type: string
+    enum:
+      - RECIEVED
+      - REJECT_REQUESTED
+      - REJECT_READY_FOR_PROCESSING
+      - REJECT_RECORD_IN_PROGRESS 
+      - REJECT_RECORDED 
+      - REJECT_FILE_CREATED
+      - REJECT_FILE_SENT 
+      - COLLECTED
+      - REFUND_REQUESTED
+      - REFUND_RECORD_IN_PROGRESS
+      - REFUND_RECORDED 
+      - REFUND_FILE_CREATED 
+      - REFUND_FILE_SENT
+    description: >
+        The statuses of the direct debit payments associated with the mandate.
+
+        * 'RECIEVED'
+
+        * 'REJECT_REQUESTED'
+
+        * 'REJECT_READY_FOR_PROCESSING'
+
+        * 'REJECT_RECORD_IN_PROGRESS'
+
+        * 'REJECT_RECORDED'
+
+        * 'REJECT_FILE_CREATED'
+
+        * 'REJECT_FILE_SENT'
+
+        * 'COLLECTED'
+
+        * 'REFUND_REQUESTED'
+
+        * 'REFUND_RECORD_IN_PROGRESS'
+
+        * 'REFUND_RECORDED'
+
+        * 'REFUND_RECORD_IN_PROGRESS'
+
+        * 'REFUND_RECORDED'
+
+        * 'REFUND_FILE_CREATED'
+
+        * 'REFUND_FILE_SENT'
+    example: RECIEVED 
+  originatorReference:
+    type: string
+    description: Set by party who sets up the direct debit.
+    example: VODA-123456
+  originatorName:
+    type: string
+    description: The creator of the party who sets up the direct debit.
+    example: Vodafone PLC
+  originatorAlias:
+    type: string
+    description: The alias of the party who sets up the direct debit.
+    example: Vodafone PLC Alias          
+  originatorLogoUrlSmall:
+    type: string
+    description: Logo url from party who sets up the direct debit.
+    example: originatorLogoSmall
+  originatorLogoUrlLarge:
+    type: string
+    description: Logo url from party who sets up the direct debit.
+    example: originatorLogoLarge
+  mandateRefernce:
+    type: string
+    example: CRZ-102190123
+    description: the reference of the mandate  
+  alias: 
+    type: string
+    example: Vodaphone
+    description: The name of the alias
+  targetIcan:
+    type: integer
+    format: int64
+    example: 1
+    description: Identifier for the fire.com account (assigned by fire.com)
+  numberOfDirectDebitCollected:
+    type: integer
+    format: int64
+    example: 2
+    description: The number of direct debits collected
+  valueOfDirectDebitCollected:
+    type: integer
+    format: int64
+    example: 2
+    description: The value of direct debits collected
+  latestDirectDebitAmount:
+    type: integer
+    format: int64
+    example: 2
+    description: The value of largest direct debit collected  
+  latestDirectDebitDate:
+    type: string
+    format: date-time
+    example: "2016-12-15T22:56:05.937Z"
+    description: The date of latest direct debit collected
+  fireRejectionReason:
+    type: string
+    enum:
+      - ACCOUNT_DOES_NOT_ACCEPT_DIRECT_DEBITS  
+      - DDIC  
+      - ACCOUNT_NOT_FOUND  
+      - ACCOUNT_NOT_LIVE   
+      - CUSTOMER_NOT_FOUND   
+      - BUSINESS_NOT_LIVE  
+      - BUSINESS_NOT_FULL 
+      - PERSONAL_USER_NOT_LIVE 
+      - PERSONAL_USER_NOT_FULL
+      - MANDATE_ALREADY_EXISTS 
+      - MANDATE_WITH_DIFERENT_ACCOUNT 
+      - NULL_MANDATE_REFERENCE 
+      - INVALID_ACCOUNT_CURRENCY 
+      - INVALID_MANDATE_REFERENCE 
+      - REQUESTED_BY_CUSTOMER_VIA_SUPPORT 
+      - CUSTOMER_ACCOUNT_CLOSED 
+      - CUSTOMER_DECEASED 
+      - ACCOUNT_TRANSFERRED 
+      - MANDATE_NOT_FOUND 
+      - ACCOUNT_TRANSFERRED_TO_DIFFERENT_ACCOUNT 
+      - INVALID_ACCOUNT_TYPE 
+      - MANDATE_EXPIRED 
+      - MANDATE_CANCELLED 
+      - REQUESTED_BY_CUSTOMER 
+    description: Rejection reason if transaction is rejected
+    example: ACCOUNT_DOES_NOT_ACCEPT_DIRECT_DEBITS                       
+  schemeRejectReason:
+    type: string
+    description: Reason why rejected
+    example: eg. Instruction cancelled by payer
+  schemeRejectReasonCode:
+    type: string
+    enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5 
+      - 6
+      - B 
+      - C
+      - F
+      - G
+      - H 
+      - O
+      - K
+    example: for BACS (ARUDD) 0|1|2|3|5|6|B|C|F|G|H|O|K
+    description: The reject code returned by the bank indicating an issue with the direct debit. Each ARRUD code represents a rejection reason.          
+  fireCancelReason: 
+    type: string
+    enum:
+      - REFRER_TO_CUSTOMER 
+      - REQUESTED_BY_CUSTOMER_VIA_SUPPORT 
+      - CUSTOMER_DECEASED 
+      - CUSTOMER_ACCOUNT_CLOSED 
+      - ADVANCE_NOTICE_DISPUTED_VIA_SUPPORT 
+      - ACCOUNT_TRANSFERRED 
+      - ACCOUNT_TRANSFERRED_TO_DIFFERENT_ACCOUNT 
+      - MANDATE_AMENDED 
+      - MANDATE_REINSTATED 
+      - REQUESTED_BY_CUSTOMER
+    description: Reason why canceled 
+    example: REFRER_TO_CUSTOMER
+  schemeCancelReason:
+    type: string
+    description: Reason for cancelation
+    example: e.g. Instruction cancelled by payer 
+  schemeCancelReasonCode:
+    type: string
+    example: For BACS (ADDACS) - 0|1|2|3|B|C|D|E|R
+    description: The cancelation code returned by the bank indicating an issue with the direct debit. Each ARRUD code represents a rejection reason.          
+  lastUpdated:  
+    type: string
+    format: date-time
+    description: Date the direct debit was last updated. Milliseconds since the epoch (1970).
+    example: "2016-12-15T22:56:05.937Z"
+  dateCreated:
+    type: string
+    format: date-time
+    example: "2016-12-15T22:56:05.937Z"
+    description: Date the direct debit was created. Milliseconds since the epoch (1970).
+  dateRejected:  
+    type: string
+    format: date-time
+    description: Date the direct debit was rejected. Milliseconds since the epoch (1970).
+    example: "2016-12-15T22:56:05.937Z"
+  dateCompleted:
+    type: string
+    format: date-time
+    example: "2016-12-15T22:56:05.937Z"
+    description: Date the direct debit was completed. Milliseconds since the epoch (1970).
+  dateCancelled:
+    type: string
+    format: date-time
+    example: "2016-12-15T22:56:05.937Z"
+    description: Date the direct debit was canceled. Milliseconds since the epoch (1970).   

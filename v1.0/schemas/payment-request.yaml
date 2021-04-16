@@ -1,0 +1,58 @@
+type: object
+required:
+  - "type"
+  - "icanTo"
+  - "currency"
+  - "myRef"
+  - "description"
+properties:
+  type:
+    type: string
+    enum:
+      - OTHER
+    description: The type of Fire Open Payment that was created
+  icanTo:
+    type: integer
+    format: int64
+    example: 42
+    description: The ican of the account to collect the funds into. Must be one of your fire.com Accounts.
+  amount:
+    type: integer
+    format: int64
+    example: 1000
+    description: The requested amount to pay. Note the last two digits represent pennies/cents, (e.g., £1.00 = 100).
+  myRef:
+    type: string
+    example: Fees
+    description: An internal description of the request.
+  description:
+    type: string
+    example: Gym Fees Oct 2020
+    description: A public facing description of the request. This will be shown to the user when they tap or scan the request.
+  maxNumberPayments:
+    type: integer
+    example: 1
+    description: The max number of people who can pay this request. Must be set to 1 for the ECOMMERCE_GOODS and ECOMMERCE_SERVICES types.
+  expiry:
+    type: string
+    format: date-time
+    example: "2020-10-22T07:48:56.460Z"
+    description: This is the expiry of the payment request. After this time, the payment cannot be paid.
+  returnUrl:
+    type: string
+    example: https://example.com/callback
+    description: The merchant return URL where the customer will be re-directed to with the result of the transaction.
+  orderDetails:
+    $ref: ./order-details.yaml
+  collectFields:
+    type: string
+    example: "ADDRESS|REFERENCE|COMMENT1"
+    description: For the hosted option, the payer will be asked to fill in these fields but they will not be mandatory. You can choose to collect any of the payer's `ADDRESS`, `REFERENCE` and/or `COMMENT1`. If you choose to collect these fields from the payer, you cannot set 'delivery’, 'variableReference’ or 'comment1’ fields respectively.
+  mandatoryFields:
+    type: string
+    example: "ADDRESS|REFERENCE|COMMENT1"
+    description: For the hosted option, these fields will be madatory for the payer to fill in on the hosted payment page. You can choose to collect any the payer's `ADDRESS`, `REFERENCE` and/or `COMMENT1`. If you choose to collect these fields from the payer, you cannot set 'delivery’, 'variableReference’ or 'comment1’ fields respectively.
+  additionalFields:
+    type: string
+    example: ORDER_ID|PRODUCT_ID|CUSTOMER_ID|CUSTOMER_NUMBER|COMMENT2
+    description: These fields will be dispalyed to the payer when using the hosted option. You can choose to display any of `ORDER_ID`, `PRODUCT_ID`, `CUSTOMER_ID`, `CUSTOMER_NUMBER` and `COMMENT2` to the payer.

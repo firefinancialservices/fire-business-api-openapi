@@ -1,0 +1,46 @@
+type: object
+properties: 
+  txnId:
+    type: integer
+    format: int64
+  refId:
+    type: integer
+    format: int64
+  ican:
+    type: integer
+    format: int64
+  currency:
+    $ref: "./currency.yaml"
+  amountBeforeCharges:
+    type: integer
+    format: int64
+  feeAmount:
+    type: integer
+    format: int64
+  taxAmount:
+    type: integer
+    format: int64
+  amountAfterCharges:
+    type: integer
+    format: int64
+  balance:
+    type: integer
+    format: int64
+  myRef:
+    type: string
+  paymentRequestPublicCode:
+    type: string
+  date:
+    type: string
+    format: date-time
+  card:
+    $ref: "./card.yaml"
+  type:
+    type: string
+  dateAcknowledged:
+    type: string
+    format: date-time
+  fxTradeDetails: 
+    $ref: "./fx-trade-details.yaml"
+  relatedParty:
+    $ref: "./related-party.yaml"

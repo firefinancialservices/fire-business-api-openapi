@@ -1,0 +1,54 @@
+type: object
+properties:
+  merchantNumber:
+    type: string
+    example: 1234567
+    description: Your Merchant Number (if applicable).
+  orderId:
+    type: string
+    example: "6c28a47d-4502-4111"
+    description: Use this field to store the order id for the transaction. The Order Id cannot be set unless the `maxNumberPayments` is 1.
+  productId:
+    type: string
+    example: "ZFDAA-1221"
+    description: Use this field to store a product id for the transaction (for example).
+  customerNumber:
+    type: string
+    example: "123645"
+    description: Use this field to store a customer number for the transaction (for example).
+  variableReference:
+    type: string
+    example: "John Doe"
+    description: Use this field to store any other reference for the transaction (for example, a phone number).
+  comment1:
+    type: string
+    example: "Additional comments about the transaction"
+    description: This is your own comment for the transaction.
+  comment2:
+    type: string
+    example: "Additional comments about the transaction"
+    description: This is your own comment for the transaction.
+  merchantCustomerIdentification:
+    type: string
+    example: "08303863544"
+    description: This is a reference you use to uniquely identify each of your customers.
+  deliveryAddressLine1:
+    type: string
+    example: "12 The Street"
+    description: The first line of the delivery address.
+  deliveryAddressLine2:
+    type: string
+    example: "The Way"
+    description: The second line of the delivery address.
+  deliveryCity:
+    type: string
+    example: "London"
+    description: Delivery address city
+  deliveryPostCode:
+    type: string
+    example: "EC15155"
+    description: Delivery address post code
+  deliveryCountry:
+    type: string
+    example: "GB"
+    description: 2-digit code for the country

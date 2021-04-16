@@ -1,0 +1,10 @@
+type: object
+properties:
+  code:
+    type: string
+    description: The 2-letter code for the country - e.g. `IE`, `GP`...
+    example: "GB"
+  description:
+    type: string
+    description: The name of the country
+    example: United Kingdom

@@ -1,0 +1,39 @@
+get:
+  summary: Get Payment Details
+  description: >
+    Returns the details of a specific payment.
+
+
+    As the customer goes through the process of making the payment the status of the payment will change.
+
+
+    * `AWAITING_AUTHORISATION` -This is the initial status of all your payments.
+
+    * `AUTHORISED` - This is the status that your payment is set to after the customer has authorised the payment with their ASPSP / bank.
+
+    * `AWAITING_MULTI_AUTHORISATION` - Some business accounts such as charities require dual authorisation.
+
+    * `NOT_AUTHORISED` - Either your customer clicked on cancel or the payment was rejected by their ASPSP / bank.
+
+    * `PAID` - Funds were received into your fire.com GBP or EUR account from your customer’s ASPSP / bank.
+
+
+    You will need to enable the `PERM_BUSINESS_GET_PAYMENT` permission to use this endpoint.
+  tags:
+    - Open Banking
+  operationId: getPaymentDetails
+  parameters:
+  - in: path
+    required: true
+    name: paymentUuid
+    schema:
+      type: string
+      description: The unique id for the transaction.
+      example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+  responses:
+    '200':
+      description: The Payment Request details object
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/payment-request-details.yaml

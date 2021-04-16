@@ -1,0 +1,51 @@
+type: object
+properties:
+  Id:
+    type: integer
+    format: int64
+    description: The User ID for this User
+    example: "14059"
+  emailAddress:
+    type: string
+    description: email address for user
+    example: "user@example.com"
+  firstName: 
+    type: string
+    description: User first name
+    example: "Colm"
+  lastName:
+    type: string
+    description: User second name
+    example: "User"
+  mobileNumber: 
+    type: integer
+    format: int64
+    description: User mobile number
+    example: "+35371234567"
+  role: 
+    type: string
+    description: User role
+    enum: 
+    - "ADMIN"
+    - "FULL_USER"
+    - "READ_ONLY"
+    - "CARD_ONLY"
+  status:
+    type: string
+    description: Status of user
+    enum: 
+    - "LIVE"
+    - "CLOSED"
+    - "FROZEN"
+    - "INVITE_SENT"
+    - "SMS_CODE_SENT"
+  lastlogin:
+    type: string
+    description: Timestamp on when user last logged in.
+    example: "2012-01-20T11:21:35.000Z"
+  userCvl: 
+    type: string
+    description: Users Cvl type ID (shows up when status is LIVE)
+    example: "FULL"
+  mobileApplicationDetails: 
+    $ref: ./mobile-application.yaml

@@ -1,0 +1,12 @@
+type: object
+properties:
+  code:
+    type: string
+    description: The three letter code for the currency - either `EUR` or `GBP`.
+    enum:
+      - EUR
+      - GBP
+  description:
+    type: string
+    description: The name of the currency
+    example: Euro

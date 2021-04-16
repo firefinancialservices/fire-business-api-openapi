@@ -1,0 +1,42 @@
+type: object
+properties: 
+  businessUserId: 
+    type: integer
+    format: int64
+    description: Business user ID
+    example: "14059"
+  mobileApplicationId: 
+    type: integer
+    format: int64
+    description: Mobile application id for user.
+    example: "18967"
+  clientID:
+    type: string
+    description: Client ID of user.
+    example: "EBB10F29-A653-4DBA-9C8C-BA79F72F78B0"
+  status:
+    type: string
+    description: Status of user
+    enum: 
+    - "LIVE"
+    - "CLOSED"
+    - "LOCKED"
+    - "SMS_SENT"
+  deviceName:
+    type: string
+    enum: 
+    - "iPhone"
+    - "Android"
+    - "Other"
+    description: type of device. 
+  OS: 
+    type: string
+    enum: 
+    - "Android"
+    - "IOS" 
+    - "OTHER"
+    description: Operating system of device.
+  deviceOSVersion:
+    type: string 
+    description: OS version for device.
+    example: "14.4"

@@ -1,0 +1,11 @@
+type: object
+properties:
+  total: 
+    type: integer
+    format: int64
+    description: Number of direct debits found
+    example: 1
+  directdebits:
+    type: array
+    items: 
+      $ref: ./direct-debit.yaml

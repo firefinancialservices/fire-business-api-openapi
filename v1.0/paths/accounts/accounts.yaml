@@ -1,0 +1,45 @@
+get:
+  summary: List all fire.com Accounts
+  description: Returns all your fire.com Accounts. Ordered by Alias ascending. Can be paginated.
+  tags:
+      - fire.com Accounts
+  operationId: getAccounts
+  responses:
+    '200':
+      description: An array of account objects.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              accounts:
+                type: array
+                items:
+                  $ref: '../../schemas/account.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+
+post:
+  summary: Add a new account
+  description: >
+    Creates a new fire.com account.
+
+
+    **Please note there is a charge associated with creating a new account.**
+  tags:
+      - fire.com Accounts
+  operationId: addAccount
+  requestBody:
+    required: true
+    description: Details of the new account
+    content:
+        application/json:
+          schema:
+            $ref: '../../schemas/account-new.yaml'
+  responses:
+    '201':
+      description: The details of the new account
+      content:
+          application/json:
+            schema:
+              $ref: '../../schemas/account.yaml'
