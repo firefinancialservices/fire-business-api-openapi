@@ -1,0 +1,13 @@
+post:
+  description: An event has occurred on your account. 
+  requestBody:
+    required: true
+    content: 
+      application/jwt:
+        schema:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
+  responses:
+    '200':
+      description: A 200 response is required from your server. 
+        

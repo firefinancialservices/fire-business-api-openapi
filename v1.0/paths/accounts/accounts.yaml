@@ -2,7 +2,7 @@ get:
   summary: List all fire.com Accounts
   description: Returns all your fire.com Accounts. Ordered by Alias ascending. Can be paginated.
   tags:
-      - fire.com Accounts
+      - Accounts
   operationId: getAccounts
   responses:
     '200':
@@ -27,7 +27,7 @@ post:
 
     **Please note there is a charge associated with creating a new account.**
   tags:
-      - fire.com Accounts
+      - Accounts
   operationId: addAccount
   requestBody:
     required: true

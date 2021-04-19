@@ -113,8 +113,9 @@ paths:
   /batches/{batchUuid}/approvals:
     $ref: ./v1.0/paths/batches/approvers-for-batch.yaml
 
-  /webhooks:
-    $ref: ./v1.0/paths/webhooks/webhooks.yaml
+# webhooks:
+#   events:
+#     $ref: ./v1.0/webhooks/events.yaml
 
 components:
   securitySchemes:
@@ -185,7 +186,7 @@ tags:
       `Authorization: Bearer $ACCESS_TOKEN`
 
       Whenever it expires, create a new nonce and get a new access token again.
-  - name: fire.com Accounts
+  - name: Accounts
     description: fire.com Accounts are the equivalent of a bank account from bank.
   - name: Open Banking
     description: >

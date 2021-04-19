@@ -106,18 +106,18 @@ properties:
   schemeRejectReasonCode:
     type: string
     enum:
-      - 0
-      - 1
-      - 2
-      - 3
-      - 4
-      - 5 
-      - 6
-      - 7 
-      - 8
-      - 9
-      - A
-      - B 
+      - "0"
+      - "1"
+      - "2"
+      - "3"
+      - "4"
+      - "5" 
+      - "6"
+      - "7" 
+      - "8"
+      - "9"
+      - "A"
+      - "B" 
     example: for BACS (ARUDD) 0|1|2|3|5|6|7|8|9|A|B
     description: The reject code returned by the bank indicating an issue with the direct debit. Each ARRUD code represents a rejection reason.
   lastUpdated:  
