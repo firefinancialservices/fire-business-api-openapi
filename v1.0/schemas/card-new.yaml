@@ -1,0 +1,26 @@
+type: object
+properties:
+  userId:
+    type: number
+    format: int64
+    example: 3245
+  cardPin:
+    type: string
+    example: 5345
+  eurIcan:
+    type: integer
+    format: int64
+    example: 2150
+  gbpIcan:
+    type: integer
+    format: int64
+    example: 2152
+  addressType:
+    type: string
+    enum:
+      - HOME
+      - BUSINESS
+    example: BUSINESS
+  acceptFeesAndCharges:
+    type: boolean
+    example: true

@@ -34,7 +34,7 @@ properties:
     type: string
     format: date-time
   card:
-    $ref: "./card.yaml"
+    $ref: "./related-card.yaml"
   type:
     type: string
   dateAcknowledged:

@@ -44,6 +44,9 @@ paths:
   /accounts/{ican}/transactions/filter:
     $ref: ./v1.0/paths/transactions/transactions-by-account-filtered.yaml 
 
+  /cards:
+    $ref: ./v1.0/paths/cards/cards.yaml
+    
   /paymentrequests:
     $ref: ./v1.0/paths/paymentrequests/paymentrequests.yaml
 
@@ -109,6 +112,9 @@ paths:
 
   /batches/{batchUuid}/approvals:
     $ref: ./v1.0/paths/batches/approvers-for-batch.yaml
+
+  /webhooks:
+    $ref: ./v1.0/paths/webhooks/webhooks.yaml
 
 components:
   securitySchemes:

@@ -1,18 +1,61 @@
 type: object
 properties:
-  cardId:
-    type: number
+  blocked: 
+    type: boolean
+    example: false
+  cardId: 
+    type: integer
     format: int64
-  provider:
+    example: 51
+  dateCreated: 
     type: string
-  alias:
+    format: date-time
+    example: "2017-01-19T16:38:15.803Z"
+  emailAddress: 
     type: string
-  maskedPan:
-    type: string
-  embossCardName:
-    type: string
-  embossBusinessName:
-    type: string
+    example: user@example.com 
   expiryDate:
     type: string
     format: date-time
+    example: "2019-01-31T00:00:00.000Z"
+  firstName:
+    type: string
+    example: John
+  lastName:
+    type: string
+    example: Doe
+  eurIcan:
+    type: integer
+    format: int64
+    example: 2150
+  gbpIcan:
+    type: integer
+    format: int64
+    example: 2152
+  maskedPan:
+    type: string
+    example: 537455******1111
+  provider:
+    type: string
+    enum: 
+      - MASTERCARD
+    example: MASTERCARD
+  status:
+    type: string
+    enum:
+      - LIVE
+      - CREATED_ACTIVE
+      - CREATED_INACTIVE
+      - DEACTIVATED
+    example: LIVE
+  statusReason:
+    type: string
+    enum:
+      - LOST_CARD
+      - STOLEN_CARD
+      - CARD_DESTROYED
+    example: LOST_CARD
+  userId:
+    type: integer
+    format: int64
+    example: 3138
