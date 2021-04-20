@@ -19,7 +19,7 @@ properties:
       billAmt:
         type: number
         format: int64
-        example: -90000
+        example: -1000
       billCcy:
         type: string
         example: "978"
@@ -33,7 +33,7 @@ properties:
         example: "013152429"
       merchNameDe43:
         type: string
-        example: "KILLARNEY TYRE CENTRE  V93Y6NH       IRL"
+        example: "ABC Coffee Shop"
       posDataDe61:
         type: string
         example: "000001000030037299999"
@@ -61,7 +61,7 @@ properties:
       txnAmt4d:
         type: number
         format: int64
-        example: 9000000
+        example: 1000
       txnCcy:
         type: string
         example: "978"
@@ -70,7 +70,7 @@ properties:
         example: "IRL"
       txnDesc:
         type: string
-        example: "KILLARNEY TYRE CENTRE  V93Y6NH       IRL"
+        example: "ABC Coffee Shop"
       txnStatCode:
         type: string
         example: "A"
@@ -79,12 +79,13 @@ properties:
         example: "A"
       additionalDataDe48:
         type: string
-        example: "018R610500001710418C"
+        example: "010X610500000"
       authorisedByGps:
         type: string
         example: "N"
       avsResult:
         type: string
+        example: "N"
       mtId:
         type: string
         example: "0100"
