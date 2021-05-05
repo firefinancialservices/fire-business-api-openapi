@@ -15,7 +15,10 @@ get:
 
     * `NOT_AUTHORISED` - Either your customer clicked on cancel or the payment was rejected by their ASPSP / bank.
 
+    * `PENDING` - This is the status that your payment is set to after the customer has authorised the payment with their ASPSP / bank but the bank may want to carry out another check before funding the transaction.
+
     * `PAID` - Funds were received into your fire.com GBP or EUR account from your customer’s ASPSP / bank.
+
 
 
     You will need to enable the `PERM_BUSINESS_GET_PAYMENT` permission to use this endpoint.
