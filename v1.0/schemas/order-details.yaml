@@ -3,7 +3,7 @@ type: object
 properties:
   merchantNumber:
     type: string
-    example: 1234567
+    example: "1234567"
     description: Your Merchant Number (if applicable).
   orderId:
     type: string
