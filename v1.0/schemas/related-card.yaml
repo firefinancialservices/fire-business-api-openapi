@@ -1,3 +1,4 @@
+title: RelatedCard
 type: object
 properties:
   cardId:

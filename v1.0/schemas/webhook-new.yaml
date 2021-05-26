@@ -1,3 +1,4 @@
+title: NewWebhook
 type: object
 properties:
   webhookUrl: 

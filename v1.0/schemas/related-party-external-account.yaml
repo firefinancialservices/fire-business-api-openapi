@@ -1,3 +1,4 @@
+title: RelatedPartyExternalAccount
 type: object
 properties:
   type:

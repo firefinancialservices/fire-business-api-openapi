@@ -1,3 +1,4 @@
+title: NewPaymentRequestResponse
 type: object
 properties:
   code:

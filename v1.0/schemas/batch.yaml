@@ -1,3 +1,4 @@
+title: Batch
 type: object
 properties:
   batchUuid: 

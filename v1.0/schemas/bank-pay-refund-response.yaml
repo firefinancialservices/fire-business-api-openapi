@@ -1,3 +1,4 @@
+title: BankPayRefundResponse
 type: object
 properties:
   status:

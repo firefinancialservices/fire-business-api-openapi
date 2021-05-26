@@ -1,3 +1,4 @@
+title: Mandate
 type: object
 properties:
   mandateUuid:
@@ -74,7 +75,7 @@ properties:
     type: string
     description: Logo url from party who sets up the direct debit.
     example: originatorLogoLarge
-  mandateRefernce:
+  mandateReference:
     type: string
     example: CRZ-102190123
     description: the reference of the mandate

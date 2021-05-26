@@ -1,3 +1,4 @@
+title: Payee
 type: object
 properties:
   id:

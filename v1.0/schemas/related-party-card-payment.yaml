@@ -1,3 +1,4 @@
+title: RelatedPartyCardPayment
 type: object
 properties:
   type:

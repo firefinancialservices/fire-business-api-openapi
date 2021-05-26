@@ -1,3 +1,4 @@
+title: NewBatchItemResponse
 type: object
 properties:
   batchItemUuid:

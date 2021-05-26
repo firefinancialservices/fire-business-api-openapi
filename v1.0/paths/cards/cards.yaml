@@ -10,12 +10,7 @@ get:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              cards:
-                type: array
-                items: 
-                  $ref: '../../schemas/card.yaml' 
+            $ref: '../../schemas/cards.yaml' 
     '403':
       $ref: ../../responses/unauthorised-error.yaml
     '401':

@@ -75,7 +75,7 @@ properties:
     type: string
     description: Logo url from party who sets up the direct debit.
     example: originatorLogoLarge
-  mandateRefernce:
+  mandateReference:
     type: string
     example: CRZ-102190123
     description: the reference of the mandate  
@@ -182,7 +182,7 @@ properties:
   schemeCancelReasonCode:
     type: string
     example: For BACS (ADDACS) - 0|1|2|3|B|C|D|E|R
-    description: The cancelation code returned by the bank indicating an issue with the direct debit. Each ARRUD code represents a rejection reason.          
+    description: The cancelation code returned by the bank indicating an issue with the direct debit. Each ARRUD code represents a rejection reason.
   lastUpdated:  
     type: string
     format: date-time

@@ -1,3 +1,4 @@
+title: NewCard
 type: object
 properties:
   userId:

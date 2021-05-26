@@ -1,3 +1,4 @@
+title: Card
 type: object
 properties:
   blocked: 
@@ -12,7 +13,7 @@ properties:
   dateCreated: 
     type: string
     format: date-time
-    description: 
+    description: The date-time the card was created
     example: "2017-01-19T16:38:15.803Z"
   emailAddress: 
     type: string

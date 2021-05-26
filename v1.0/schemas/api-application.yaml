@@ -1,4 +1,4 @@
-
+title: ApiApplication
 type: object
 properties:
   applicationId:

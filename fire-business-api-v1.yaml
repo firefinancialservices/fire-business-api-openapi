@@ -23,6 +23,10 @@ info:
 
     These provide information about your service configs - applications, webhooks, API tokens, etc.
   version: '1.0'
+  contact: 
+    name: Fire API
+    url: https://docs.fire.com
+    email: api@fire.com
 servers:
   - url: https://api-preprod.fire.com/business/v1
     description: Preproduction/Sandbox Server

@@ -1,3 +1,4 @@
+title: Transaction
 type: object
 properties: 
   txnId:

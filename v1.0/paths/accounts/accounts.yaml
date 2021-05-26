@@ -10,12 +10,7 @@ get:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              accounts:
-                type: array
-                items:
-                  $ref: '../../schemas/account.yaml'
+            $ref: '../../schemas/accounts.yaml'
     '401':
       $ref: '../../responses/unauthorised-error.yaml'
 

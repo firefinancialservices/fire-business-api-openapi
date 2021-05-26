@@ -1,3 +1,4 @@
+title: NewCardResponse
 type: object
 properties:
   cardId: 
