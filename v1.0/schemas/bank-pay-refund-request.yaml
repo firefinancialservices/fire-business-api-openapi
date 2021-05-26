@@ -26,7 +26,7 @@ properties:
     properties:
       merchantNumber:
         type: string
-        example: 1234567
+        example: "1234567"
         description: Your Merchant Number (if applicable).
   reason:
     type: string
