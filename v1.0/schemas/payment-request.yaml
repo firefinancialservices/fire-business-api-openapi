@@ -61,7 +61,7 @@ properties:
   expiry:
     type: string
     format: date-time
-    example: "2020-10-22T07:48:56.460Z"
+    example: "2024-10-22T07:48:56.460Z"
     description: This is the expiry of the payment request. After this time, the payment cannot be paid.
   returnUrl:
     type: string
