@@ -1,6 +1,6 @@
 post:
   summary: Authenticate with the API.
-  description: TODO - Authenticate with the API.
+  description: Authenticate with the API.
   tags:
     - Authentication
   operationId: authenticate
