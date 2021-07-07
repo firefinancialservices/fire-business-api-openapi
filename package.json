@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "The Fire Business API",
   "scripts": {
-    "test": "speccy lint --skip openapi-tags-alphabetical --skip  parameter-description fire-business-api-v1.yaml",
-    "publish": "mkdir -p dist && json-refs resolve --yaml -w ./fire-business-api-v1.yaml > ./dist/fire-business-api-v1.yaml"
+    "test": "speccy lint --skip openapi-tags-alphabetical --skip  parameter-description ./dist/fire-business-api-v1.yaml",
+    "publish": "json-refs resolve --yaml -w ./fire-business-api-v1.yaml > ./dist/fire-business-api-v1.yaml"
   },
   "devDependencies": {
     "speccy": "^0.8",

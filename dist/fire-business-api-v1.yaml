@@ -43,7 +43,7 @@ paths:
   /apps/accesstokens:
     post:
       summary: Authenticate with the API.
-      description: TODO - Authenticate with the API.
+      description: Authenticate with the API.
       tags:
         - Authentication
       operationId: authenticate
@@ -1520,7 +1520,7 @@ paths:
                   properties:
                     merchantNumber:
                       type: string
-                      example: 1234567
+                      example: '1234567'
                       description: Your Merchant Number (if applicable).
                     orderId:
                       type: string
@@ -1781,7 +1781,7 @@ paths:
                   properties:
                     merchantNumber:
                       type: string
-                      example: 1234567
+                      example: '1234567'
                       description: Your Merchant Number (if applicable).
                 reason:
                   type: string
@@ -1974,7 +1974,7 @@ paths:
                   expiry:
                     type: string
                     format: date-time
-                    example: '2020-10-22T07:48:56.460Z'
+                    example: '2024-10-22T07:48:56.460Z'
                     description: >-
                       This is the expiry of the payment request. After this
                       time, the payment cannot be paid.
@@ -1990,7 +1990,7 @@ paths:
                     properties:
                       merchantNumber:
                         type: string
-                        example: 1234567
+                        example: '1234567'
                         description: Your Merchant Number (if applicable).
                       orderId:
                         type: string
