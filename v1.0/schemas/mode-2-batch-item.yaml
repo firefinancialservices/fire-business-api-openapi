@@ -17,14 +17,12 @@ properties:
     example: IE00AIBK93123412341234
     description: The destination IBAN if a Euro Bank transfer
   destNsc:
-    type: integer
-    format: int64
-    example: 123456
+    type: string
+    example: "123456"
     description: The destination Nsc if a GBP bank transfer
   destAccountNumber:
-    type: integer
-    format: int64
-    example: 567890
+    type: string
+    example: "12345678"
     description: The destination Account Number if a GBP bank transfer
   destAccountHolderName:
     type: string

@@ -26,8 +26,8 @@ post:
       application/json:
         schema:
           oneOf:
-            - $ref: ../../schemas/mode-1-batch-item.yaml
             - $ref: ../../schemas/mode-2-batch-item.yaml
+            - $ref: ../../schemas/mode-1-batch-item.yaml
   responses:
     '200':
       description: Batch payment added successfully. **Note*** Please use batchUuid when submitting a batch, not batchItemUuid.
