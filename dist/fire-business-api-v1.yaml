@@ -1984,6 +1984,12 @@ paths:
                     description: >-
                       The merchant return URL where the customer will be
                       re-directed to with the result of the transaction.
+                  webhookUrl:
+                    type: string
+                    example: 'https://example.com/webhook'
+                    description: >-
+                      A URL to be called in the background with the details of
+                      the payment after the payment is complete
                   orderDetails:
                     title: OrderDetails
                     type: object
