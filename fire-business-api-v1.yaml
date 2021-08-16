@@ -57,8 +57,9 @@ paths:
   /aspsps:
     $ref: ./v1.0/paths/aspsps/aspsps.yaml
 
-  /payments/{paymentUuid}/bankpayrefund:
-    $ref: ./v1.0/paths/payments/refund-payment-by-paymentuuid.yaml
+# This endpoint is for Bankpay only. 
+#  /payments/{paymentUuid}/bankpayrefund:
+#    $ref: ./v1.0/paths/payments/refund-payment-by-paymentuuid.yaml
 
   /payments/{paymentUuid}:
     $ref: ./v1.0/paths/payments/payments-by-paymentuuid.yaml
