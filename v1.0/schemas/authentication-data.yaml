@@ -21,5 +21,5 @@ properties:
     description: Always `AccessToken`. (This will change to `refresh_token` in a future release.)
   clientSecret:
     type: string
-    description: The SHA256 hash of the nonce above and the app’s Client Key. The Client Key will only be shown to you when you create the app, so don’t forget to save it somewhere safe.
+    description: The SHA256 hash of the nonce above and the app’s Client Key. The Client Key will only be shown to you when you create the app, so don’t forget to save it somewhere safe. SECRET=( `/bin/echo -n $NONCE$CLIENT_KEY | sha256sum` ).
     example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
