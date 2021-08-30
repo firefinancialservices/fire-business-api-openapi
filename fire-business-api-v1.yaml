@@ -50,6 +50,15 @@ paths:
 
   /cards:
     $ref: ./v1.0/paths/cards/cards.yaml
+
+  /cards/{cardid}/transactions:
+    $ref: ./v1.0/paths/cards/card-transactions.yaml
+
+  /cards/{cardId}/block:
+    $ref: ./v1.0/paths/cards/card-block.yaml
+
+  /cards/{cardId}/unblock:
+    $ref: ./v1.0/paths/cards/card-unblock.yaml
     
   /paymentrequests:
     $ref: ./v1.0/paths/paymentrequests/paymentrequests.yaml
