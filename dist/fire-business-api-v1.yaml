@@ -84,7 +84,8 @@ paths:
                   description: >-
                     The SHA256 hash of the nonce above and the app’s Client Key.
                     The Client Key will only be shown to you when you create the
-                    app, so don’t forget to save it somewhere safe.
+                    app, so don’t forget to save it somewhere safe. SECRET=(
+                    `/bin/echo -n $NONCE$CLIENT_KEY | sha256sum` ).
                   example: 4ADFB67A-0F5B-4A9A-9D74-34437250045C
       responses:
         '200':
@@ -474,6 +475,23 @@ paths:
             format: int64
             description: The ican of the account to retrieve
           required: true
+        - in: query
+          name: limit
+          schema:
+            type: number
+            format: int64
+            description: The number of records to return. Defaults to 10 - max is 200.
+          required: true
+        - in: query
+          name: offset
+          schema:
+            type: number
+            format: int64
+            description: >-
+              The page offset. Defaults to 0. This is the record number that the
+              returned list will start at. E.g. offset = 40 and limit = 20 will
+              return records 40 to 59.
+          required: true
       responses:
         '200':
           description: >-
@@ -482,361 +500,381 @@ paths:
           content:
             application/json:
               schema:
-                title: Transaction
+                title: card-transactions
                 type: object
                 properties:
-                  txnId:
+                  total:
                     type: integer
-                    format: int64
-                    description: >-
-                      The id of this side of the transaction (each transaction
-                      has two sides - a to and a from). This is used to get the
-                      details of the transaction.
-                    example: 30157
-                  refId:
+                    example: 1
+                    description: The total number of card transactions in the list.
+                  dateRangeTo:
                     type: integer
-                    format: int64
-                    description: The id of the transaction.
-                    example: 26774
-                  ican:
-                    type: integer
-                    format: int64
-                    description: >-
-                      identifier for the fire.com account (assigned by fire.com)
-                      This field is only used in the condensed version.
-                    example: 1951
-                  currency:
-                    title: Currency
-                    type: object
-                    properties:
-                      code:
-                        type: string
-                        description: >-
-                          The three letter code for the currency - either `EUR`
-                          or `GBP`.
-                        enum:
-                          - EUR
-                          - GBP
-                      description:
-                        type: string
-                        description: The name of the currency
-                        example: Euro
-                  amountBeforeCharges:
-                    type: integer
-                    format: int64
-                    description: >-
-                      Amount of the transaction before the fees and taxes were
-                      applied.
-                    example: 5000
-                  feeAmount:
-                    type: integer
-                    format: int64
-                    description: 'The amount of the fee, if any.'
-                    example: 0
-                  taxAmount:
-                    type: integer
-                    format: int64
-                    description: >-
-                      The amount of the tax, if any (e.g. Stamp duty for ATM
-                      transactions)
-                    example: 0
-                  amountAfterCharges:
-                    type: integer
-                    format: int64
-                    description: >-
-                      Net amount lodged or taken from the account after fees and
-                      charges were applied.
-                    example: 5000
-                  balance:
-                    type: integer
-                    format: int64
-                    description: >-
-                      the balance of the account (in minor currency units -
-                      pence, cent etc. 434050 == 4,340.50 GBP for a GBP
-                      account).
-                    example: 8500
-                  myRef:
-                    type: string
-                    description: The comment/reference on the transaction
-                    example: Transfer to main account
-                  paymentRequestPublicCode:
-                    type: string
-                    description: >-
-                      The code that was returned when you created the payment
-                      request.
-                    example: 1abcdefg
-                  date:
-                    type: string
-                    format: date-time
-                    description: Date of the transaction
-                    example: 2021-04-13T11:06:32.437Z
-                  card:
-                    title: RelatedCard
-                    type: object
-                    properties:
-                      cardId:
-                        type: number
-                        format: int64
-                      provider:
-                        type: string
-                      alias:
-                        type: string
-                      maskedPan:
-                        type: string
-                      embossCardName:
-                        type: string
-                      embossBusinessName:
-                        type: string
-                      expiryDate:
-                        type: string
-                        format: date-time
-                  type:
-                    type: string
-                    description: "Retrieve a filtered list of transactions against an account.\n* `LODGEMENT` - Bank Transfer received\n* `PIS_LODGEMENT` - Fire Open Payments Lodgement received\n* `MANUAL_TRANSFER` - Manual Transfer to\n* `WITHDRAWAL` - Bank Transfer sent\n* `REVERSAL` - Credit Reversal\n* `INTERNAL_TRANSFER_TO` - Internal Transfer sent (between two of my accounts of the same currency)\n* `INTERNAL_TRANSFER_FROM` - Internal Transfer received (between two of my accounts of the same currency)\n* `WITHDRAWAL_RETURNED` - Bank Transfer sent returned\n* `LODGEMENT_REVERSED` - Bank Transfer received returned\n* `FX_INTERNAL_TRANSFER_FROM` - FX Internal Transfer received (between two of my accounts of different currency)\n* `FX_INTERNAL_TRANSFER_TO` - FX Internal Transfer sent (between two of my accounts of different currency)\n* `CARD_POS_CONTACT_DEBIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACT_CREDIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACTLESS_DEBIT` - Card used in store; read by NFC\n* `CARD_POS_CONTACTLESS_CREDIT` - Card used in store; read by NFC\n* `CARD_ECOMMERCE_DEBIT` - Card used on the internet\n* `CARD_ECOMMERCE_CREDIT` - Card used on the internet\n* `CARD_ATM_DEBIT` - Card used in an ATM\n* `CARD_ATM_CREDIT` - Card used in an ATM\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT\t` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ATM_DEBIT` - Card used in an ATM in non-processing currency\n* `CARD_INTERNATIONAL_ATM_CREDIT` - Card used in an ATM in non-processing currency\n* `CARD_POS_CONTACT_DEBIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACT_CREDIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_POS_CONTACTLESS_CREDIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_ECOMMERCE_DEBIT_REVERSAL\t` - Card used on the internet - reversed\n* `CARD_ECOMMERCE_CREDIT_REVERSAL` - Card used on the internet - reversed\n* `CARD_ATM_DEBIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_ATM_CREDIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT_REVERSAL` - One or more of the transaction types above. This field can be repeated multiple times to allow for multiple transaction types.\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n* `CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n"
-                    example: WITHDRAWAL
-                  dateAcknowledged:
-                    type: string
-                    format: date-time
-                    example: 2021-04-13T11:06:32.437Z
-                  fxTradeDetails:
-                    title: FxTrade
-                    type: object
-                    properties:
-                      buyCurrency:
-                        type: string
-                        description: currency which is being bought
-                        example: GBP
-                      sellCurrency:
-                        type: string
-                        example: EUR
-                        description: currency which is being sold
-                      fixedSide:
-                        type: string
-                        description: type of trade
-                        example: SELL
-                      buyAmount:
-                        type: integer
-                        format: int64
-                        description: amount of buyCurrency being bought
-                        example: 359
-                      sellAmount:
-                        type: integer
-                        format: int64
-                        description: amount of sellCurrency being sold
-                        example: 500
-                      rate4d:
-                        type: integer
-                        format: int64
-                        description: exchange rate
-                        example: 7180
-                  relatedParty:
-                    title: RelatedParty
-                    oneOf:
-                      - title: RelatedPartyFireAccount
-                        type: object
-                        properties:
-                          type:
-                            type: string
-                            enum:
-                              - FIRE_ACCOUNT
-                          account:
-                            type: object
-                            properties:
-                              id:
-                                type: integer
-                                format: int64
-                                description: >-
-                                  identifier for the fire.com account (assigned
-                                  by fire.com)
-                                example: 42
-                              alias:
-                                type: string
-                                description: >-
-                                  the name the user gives to the account to help
-                                  them identify it.
-                                example: Main Account
-                              bic:
-                                type: string
-                                example: CPAYIE2D
-                                description: >-
-                                  the BIC of the account (provided if currency
-                                  is EUR).
-                              iban:
-                                type: string
-                                example: IE54CPAY99119911111111
-                                description: >-
-                                  the IBAN of the account (provided if currency
-                                  is EUR).
-                              nsc:
-                                type: string
-                                example: '232221'
-                                description: the Sort Code of the account.
-                              accountNumber:
-                                type: string
-                                example: '11111111'
-                                description: the Account Number of the account.
-                      - title: RelatedPartyExternalAccount
-                        type: object
-                        properties:
-                          type:
-                            type: string
-                            enum:
-                              - EXTERNAL_ACCOUNT
-                          account:
-                            type: object
-                            properties:
-                              id:
-                                type: integer
-                                format: int64
-                              alias:
-                                type: string
-                              nsc:
-                                type: string
-                              accountNumber:
-                                type: string
-                              bic:
-                                type: string
-                              iban:
-                                type: string
-                      - title: RelatedPartyPayee
-                        type: object
-                        properties:
-                          type:
-                            type: string
-                            enum:
-                              - WITHDRAWAL_ACCOUNT
-                          account:
-                            type: object
-                            properties:
-                              id:
-                                type: integer
-                                format: int64
-                                example: 123
-                                description: >-
-                                  The ID number of the Withdrawl account in
-                                  reference
-                              alias:
-                                type: string
-                                example: Smyth and Co.
-                                description: >-
-                                  The Alias name of the Withdrawl account in
-                                  reference
-                              nsc:
-                                type: string
-                                example: 991199
-                                description: >-
-                                  (Conditional) Provide this field if using Mode
-                                  2 and the payee account is in GBP.
-                              accountNumber:
-                                type: string
-                                example: 0
-                                description: >-
-                                  The account number of the Withdrawl account in
-                                  reference
-                              bic:
-                                type: string
-                                example: CPAYIE2D
-                                description: The BIC of the Withdrawl account in reference
-                              iban:
-                                type: string
-                                example: IE76CPAY99119900000000
-                                description: The BIC of the Withdrawl account in reference
-                      - title: RelatedPartyCardPayment
-                        type: object
-                        properties:
-                          type:
-                            type: string
-                            enum:
-                              - CARD_MERCHANT
-                              - CARD_ATM
-                          cardMerchant:
-                            type: object
-                            properties:
-                              acquirerIdDe32:
-                                type: string
-                                example: 06011319
-                              additionalAmtDe54:
-                                type: string
-                              authCodeDe38:
-                                type: string
-                                example: '177449'
-                              billAmt:
-                                type: number
-                                format: int64
-                                example: -1000
-                              billCcy:
-                                type: string
-                                example: '978'
-                              expiryDate:
-                                type: string
-                              mccCode:
-                                type: string
-                                example: '5521'
-                              merchIdDe42:
-                                type: string
-                                example: 013152429
-                              merchNameDe43:
-                                type: string
-                                example: ABC Coffee Shop
-                              posDataDe61:
-                                type: string
-                                example: 000001000030037299999
-                              posTermnlDe41:
-                                type: string
-                                example: '80266721'
-                              posDataDe22:
-                                type: string
-                                example: '051'
-                              procCode:
-                                type: string
-                                example: '000000'
-                              respCodeDe39:
-                                type: string
-                                example: '00'
-                              retRefNoDe37:
-                                type: string
-                                example: 010900006720
-                              statusCode:
-                                type: string
-                                example: '00'
-                              token:
-                                type: string
-                                example: '976307363'
-                              txnAmt4d:
-                                type: number
-                                format: int64
-                                example: 1000
-                              txnCcy:
-                                type: string
-                                example: '978'
-                              txnCtry:
-                                type: string
-                                example: IRL
-                              txnDesc:
-                                type: string
-                                example: ABC Coffee Shop
-                              txnStatCode:
-                                type: string
-                                example: A
-                              txnType:
-                                type: string
-                                example: A
-                              additionalDataDe48:
-                                type: string
-                                example: 010X610500000
-                              authorisedByGps:
-                                type: string
-                                example: 'N'
-                              avsResult:
-                                type: string
-                                example: 'N'
-                              mtId:
-                                type: string
-                                example: '0100'
-                              recordDataDe120:
-                                type: string
-                              additionalDataDe124:
-                                type: string
+                    example: 1547744156603
+                    description: milisecond timestamp of date range to value.
+                  transactions:
+                    type: array
+                    items:
+                      title: Transaction
+                      type: object
+                      properties:
+                        txnId:
+                          type: integer
+                          format: int64
+                          description: >-
+                            The id of this side of the transaction (each
+                            transaction has two sides - a to and a from). This
+                            is used to get the details of the transaction.
+                          example: 30157
+                        refId:
+                          type: integer
+                          format: int64
+                          description: The id of the transaction.
+                          example: 26774
+                        ican:
+                          type: integer
+                          format: int64
+                          description: >-
+                            identifier for the fire.com account (assigned by
+                            fire.com) This field is only used in the condensed
+                            version.
+                          example: 1951
+                        currency:
+                          title: Currency
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              description: >-
+                                The three letter code for the currency - either
+                                `EUR` or `GBP`.
+                              enum:
+                                - EUR
+                                - GBP
+                            description:
+                              type: string
+                              description: The name of the currency
+                              example: Euro
+                        amountBeforeCharges:
+                          type: integer
+                          format: int64
+                          description: >-
+                            Amount of the transaction before the fees and taxes
+                            were applied.
+                          example: 5000
+                        feeAmount:
+                          type: integer
+                          format: int64
+                          description: 'The amount of the fee, if any.'
+                          example: 0
+                        taxAmount:
+                          type: integer
+                          format: int64
+                          description: >-
+                            The amount of the tax, if any (e.g. Stamp duty for
+                            ATM transactions)
+                          example: 0
+                        amountAfterCharges:
+                          type: integer
+                          format: int64
+                          description: >-
+                            Net amount lodged or taken from the account after
+                            fees and charges were applied.
+                          example: 5000
+                        balance:
+                          type: integer
+                          format: int64
+                          description: >-
+                            the balance of the account (in minor currency units
+                            - pence, cent etc. 434050 == 4,340.50 GBP for a GBP
+                            account).
+                          example: 8500
+                        myRef:
+                          type: string
+                          description: The comment/reference on the transaction
+                          example: Transfer to main account
+                        paymentRequestPublicCode:
+                          type: string
+                          description: >-
+                            The code that was returned when you created the
+                            payment request.
+                          example: 1abcdefg
+                        date:
+                          type: string
+                          format: date-time
+                          description: Date of the transaction
+                          example: 2021-04-13T11:06:32.437Z
+                        card:
+                          title: RelatedCard
+                          type: object
+                          properties:
+                            cardId:
+                              type: number
+                              format: int64
+                            provider:
+                              type: string
+                            alias:
+                              type: string
+                            maskedPan:
+                              type: string
+                            embossCardName:
+                              type: string
+                            embossBusinessName:
+                              type: string
+                            expiryDate:
+                              type: string
+                              format: date-time
+                        type:
+                          type: string
+                          description: "Retrieve a filtered list of transactions against an account.\n* `LODGEMENT` - Bank Transfer received\n* `PIS_LODGEMENT` - Fire Open Payments Lodgement received\n* `MANUAL_TRANSFER` - Manual Transfer to\n* `WITHDRAWAL` - Bank Transfer sent\n* `REVERSAL` - Credit Reversal\n* `INTERNAL_TRANSFER_TO` - Internal Transfer sent (between two of my accounts of the same currency)\n* `INTERNAL_TRANSFER_FROM` - Internal Transfer received (between two of my accounts of the same currency)\n* `WITHDRAWAL_RETURNED` - Bank Transfer sent returned\n* `LODGEMENT_REVERSED` - Bank Transfer received returned\n* `FX_INTERNAL_TRANSFER_FROM` - FX Internal Transfer received (between two of my accounts of different currency)\n* `FX_INTERNAL_TRANSFER_TO` - FX Internal Transfer sent (between two of my accounts of different currency)\n* `CARD_POS_CONTACT_DEBIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACT_CREDIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACTLESS_DEBIT` - Card used in store; read by NFC\n* `CARD_POS_CONTACTLESS_CREDIT` - Card used in store; read by NFC\n* `CARD_ECOMMERCE_DEBIT` - Card used on the internet\n* `CARD_ECOMMERCE_CREDIT` - Card used on the internet\n* `CARD_ATM_DEBIT` - Card used in an ATM\n* `CARD_ATM_CREDIT` - Card used in an ATM\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT\t` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ATM_DEBIT` - Card used in an ATM in non-processing currency\n* `CARD_INTERNATIONAL_ATM_CREDIT` - Card used in an ATM in non-processing currency\n* `CARD_POS_CONTACT_DEBIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACT_CREDIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_POS_CONTACTLESS_CREDIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_ECOMMERCE_DEBIT_REVERSAL\t` - Card used on the internet - reversed\n* `CARD_ECOMMERCE_CREDIT_REVERSAL` - Card used on the internet - reversed\n* `CARD_ATM_DEBIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_ATM_CREDIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT_REVERSAL` - One or more of the transaction types above. This field can be repeated multiple times to allow for multiple transaction types.\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n* `CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n"
+                          example: WITHDRAWAL
+                        dateAcknowledged:
+                          type: string
+                          format: date-time
+                          example: 2021-04-13T11:06:32.437Z
+                        fxTradeDetails:
+                          title: FxTrade
+                          type: object
+                          properties:
+                            buyCurrency:
+                              type: string
+                              description: currency which is being bought
+                              example: GBP
+                            sellCurrency:
+                              type: string
+                              example: EUR
+                              description: currency which is being sold
+                            fixedSide:
+                              type: string
+                              description: type of trade
+                              example: SELL
+                            buyAmount:
+                              type: integer
+                              format: int64
+                              description: amount of buyCurrency being bought
+                              example: 359
+                            sellAmount:
+                              type: integer
+                              format: int64
+                              description: amount of sellCurrency being sold
+                              example: 500
+                            rate4d:
+                              type: integer
+                              format: int64
+                              description: exchange rate
+                              example: 7180
+                        relatedParty:
+                          title: RelatedParty
+                          oneOf:
+                            - title: RelatedPartyFireAccount
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  enum:
+                                    - FIRE_ACCOUNT
+                                account:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      format: int64
+                                      description: >-
+                                        identifier for the fire.com account
+                                        (assigned by fire.com)
+                                      example: 42
+                                    alias:
+                                      type: string
+                                      description: >-
+                                        the name the user gives to the account
+                                        to help them identify it.
+                                      example: Main Account
+                                    bic:
+                                      type: string
+                                      example: CPAYIE2D
+                                      description: >-
+                                        the BIC of the account (provided if
+                                        currency is EUR).
+                                    iban:
+                                      type: string
+                                      example: IE54CPAY99119911111111
+                                      description: >-
+                                        the IBAN of the account (provided if
+                                        currency is EUR).
+                                    nsc:
+                                      type: string
+                                      example: '232221'
+                                      description: the Sort Code of the account.
+                                    accountNumber:
+                                      type: string
+                                      example: '11111111'
+                                      description: the Account Number of the account.
+                            - title: RelatedPartyExternalAccount
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  enum:
+                                    - EXTERNAL_ACCOUNT
+                                account:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      format: int64
+                                    alias:
+                                      type: string
+                                    nsc:
+                                      type: string
+                                    accountNumber:
+                                      type: string
+                                    bic:
+                                      type: string
+                                    iban:
+                                      type: string
+                            - title: RelatedPartyPayee
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  enum:
+                                    - WITHDRAWAL_ACCOUNT
+                                account:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      format: int64
+                                      example: 123
+                                      description: >-
+                                        The ID number of the Withdrawl account
+                                        in reference
+                                    alias:
+                                      type: string
+                                      example: Smyth and Co.
+                                      description: >-
+                                        The Alias name of the Withdrawl account
+                                        in reference
+                                    nsc:
+                                      type: string
+                                      example: 991199
+                                      description: >-
+                                        (Conditional) Provide this field if
+                                        using Mode 2 and the payee account is in
+                                        GBP.
+                                    accountNumber:
+                                      type: string
+                                      example: 0
+                                      description: >-
+                                        The account number of the Withdrawl
+                                        account in reference
+                                    bic:
+                                      type: string
+                                      example: CPAYIE2D
+                                      description: >-
+                                        The BIC of the Withdrawl account in
+                                        reference
+                                    iban:
+                                      type: string
+                                      example: IE76CPAY99119900000000
+                                      description: >-
+                                        The BIC of the Withdrawl account in
+                                        reference
+                            - title: RelatedPartyCardPayment
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  enum:
+                                    - CARD_MERCHANT
+                                    - CARD_ATM
+                                cardMerchant:
+                                  type: object
+                                  properties:
+                                    acquirerIdDe32:
+                                      type: string
+                                      example: 06011319
+                                    additionalAmtDe54:
+                                      type: string
+                                    authCodeDe38:
+                                      type: string
+                                      example: '177449'
+                                    billAmt:
+                                      type: number
+                                      format: int64
+                                      example: -1000
+                                    billCcy:
+                                      type: string
+                                      example: '978'
+                                    expiryDate:
+                                      type: string
+                                    mccCode:
+                                      type: string
+                                      example: '5521'
+                                    merchIdDe42:
+                                      type: string
+                                      example: 013152429
+                                    merchNameDe43:
+                                      type: string
+                                      example: ABC Coffee Shop
+                                    posDataDe61:
+                                      type: string
+                                      example: 000001000030037299999
+                                    posTermnlDe41:
+                                      type: string
+                                      example: '80266721'
+                                    posDataDe22:
+                                      type: string
+                                      example: '051'
+                                    procCode:
+                                      type: string
+                                      example: '000000'
+                                    respCodeDe39:
+                                      type: string
+                                      example: '00'
+                                    retRefNoDe37:
+                                      type: string
+                                      example: 010900006720
+                                    statusCode:
+                                      type: string
+                                      example: '00'
+                                    token:
+                                      type: string
+                                      example: '976307363'
+                                    txnAmt4d:
+                                      type: number
+                                      format: int64
+                                      example: 1000
+                                    txnCcy:
+                                      type: string
+                                      example: '978'
+                                    txnCtry:
+                                      type: string
+                                      example: IRL
+                                    txnDesc:
+                                      type: string
+                                      example: ABC Coffee Shop
+                                    txnStatCode:
+                                      type: string
+                                      example: A
+                                    txnType:
+                                      type: string
+                                      example: A
+                                    additionalDataDe48:
+                                      type: string
+                                      example: 010X610500000
+                                    authorisedByGps:
+                                      type: string
+                                      example: 'N'
+                                    avsResult:
+                                      type: string
+                                      example: 'N'
+                                    mtId:
+                                      type: string
+                                      example: '0100'
+                                    recordDataDe120:
+                                      type: string
+                                    additionalDataDe124:
+                                      type: string
   '/accounts/{ican}/transactions/filter':
     get:
       summary: Filtered list of transactions for an account
@@ -855,6 +893,10 @@ paths:
         * `transactionTypes` - One or more of the transaction types above. This
         field can be repeated multiple times to allow for multiple transaction
         types.
+
+        * `offset` - The page offset. Defaults to 0. This is the record number
+        that the returned list will start at. E.g. offset = 40 and limit = 20
+        will return records 40 to 59.
       tags:
         - Transactions
       operationId: getTransactionsFilteredById
@@ -896,6 +938,16 @@ paths:
               One or more of the transaction types above. This field can be
               repeated multiple times to allow for multiple transaction types.
           required: true
+        - in: query
+          name: offset
+          schema:
+            type: number
+            format: int64
+            description: >-
+              The page offset. Defaults to 0. This is the record number that the
+              returned list will start at. E.g. offset = 40 and limit = 20 will
+              return records 40 to 59.
+          required: true
       responses:
         '200':
           description: >-
@@ -904,361 +956,381 @@ paths:
           content:
             application/json:
               schema:
-                title: Transaction
+                title: card-transactions
                 type: object
                 properties:
-                  txnId:
+                  total:
                     type: integer
-                    format: int64
-                    description: >-
-                      The id of this side of the transaction (each transaction
-                      has two sides - a to and a from). This is used to get the
-                      details of the transaction.
-                    example: 30157
-                  refId:
+                    example: 1
+                    description: The total number of card transactions in the list.
+                  dateRangeTo:
                     type: integer
-                    format: int64
-                    description: The id of the transaction.
-                    example: 26774
-                  ican:
-                    type: integer
-                    format: int64
-                    description: >-
-                      identifier for the fire.com account (assigned by fire.com)
-                      This field is only used in the condensed version.
-                    example: 1951
-                  currency:
-                    title: Currency
-                    type: object
-                    properties:
-                      code:
-                        type: string
-                        description: >-
-                          The three letter code for the currency - either `EUR`
-                          or `GBP`.
-                        enum:
-                          - EUR
-                          - GBP
-                      description:
-                        type: string
-                        description: The name of the currency
-                        example: Euro
-                  amountBeforeCharges:
-                    type: integer
-                    format: int64
-                    description: >-
-                      Amount of the transaction before the fees and taxes were
-                      applied.
-                    example: 5000
-                  feeAmount:
-                    type: integer
-                    format: int64
-                    description: 'The amount of the fee, if any.'
-                    example: 0
-                  taxAmount:
-                    type: integer
-                    format: int64
-                    description: >-
-                      The amount of the tax, if any (e.g. Stamp duty for ATM
-                      transactions)
-                    example: 0
-                  amountAfterCharges:
-                    type: integer
-                    format: int64
-                    description: >-
-                      Net amount lodged or taken from the account after fees and
-                      charges were applied.
-                    example: 5000
-                  balance:
-                    type: integer
-                    format: int64
-                    description: >-
-                      the balance of the account (in minor currency units -
-                      pence, cent etc. 434050 == 4,340.50 GBP for a GBP
-                      account).
-                    example: 8500
-                  myRef:
-                    type: string
-                    description: The comment/reference on the transaction
-                    example: Transfer to main account
-                  paymentRequestPublicCode:
-                    type: string
-                    description: >-
-                      The code that was returned when you created the payment
-                      request.
-                    example: 1abcdefg
-                  date:
-                    type: string
-                    format: date-time
-                    description: Date of the transaction
-                    example: 2021-04-13T11:06:32.437Z
-                  card:
-                    title: RelatedCard
-                    type: object
-                    properties:
-                      cardId:
-                        type: number
-                        format: int64
-                      provider:
-                        type: string
-                      alias:
-                        type: string
-                      maskedPan:
-                        type: string
-                      embossCardName:
-                        type: string
-                      embossBusinessName:
-                        type: string
-                      expiryDate:
-                        type: string
-                        format: date-time
-                  type:
-                    type: string
-                    description: "Retrieve a filtered list of transactions against an account.\n* `LODGEMENT` - Bank Transfer received\n* `PIS_LODGEMENT` - Fire Open Payments Lodgement received\n* `MANUAL_TRANSFER` - Manual Transfer to\n* `WITHDRAWAL` - Bank Transfer sent\n* `REVERSAL` - Credit Reversal\n* `INTERNAL_TRANSFER_TO` - Internal Transfer sent (between two of my accounts of the same currency)\n* `INTERNAL_TRANSFER_FROM` - Internal Transfer received (between two of my accounts of the same currency)\n* `WITHDRAWAL_RETURNED` - Bank Transfer sent returned\n* `LODGEMENT_REVERSED` - Bank Transfer received returned\n* `FX_INTERNAL_TRANSFER_FROM` - FX Internal Transfer received (between two of my accounts of different currency)\n* `FX_INTERNAL_TRANSFER_TO` - FX Internal Transfer sent (between two of my accounts of different currency)\n* `CARD_POS_CONTACT_DEBIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACT_CREDIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACTLESS_DEBIT` - Card used in store; read by NFC\n* `CARD_POS_CONTACTLESS_CREDIT` - Card used in store; read by NFC\n* `CARD_ECOMMERCE_DEBIT` - Card used on the internet\n* `CARD_ECOMMERCE_CREDIT` - Card used on the internet\n* `CARD_ATM_DEBIT` - Card used in an ATM\n* `CARD_ATM_CREDIT` - Card used in an ATM\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT\t` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ATM_DEBIT` - Card used in an ATM in non-processing currency\n* `CARD_INTERNATIONAL_ATM_CREDIT` - Card used in an ATM in non-processing currency\n* `CARD_POS_CONTACT_DEBIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACT_CREDIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_POS_CONTACTLESS_CREDIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_ECOMMERCE_DEBIT_REVERSAL\t` - Card used on the internet - reversed\n* `CARD_ECOMMERCE_CREDIT_REVERSAL` - Card used on the internet - reversed\n* `CARD_ATM_DEBIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_ATM_CREDIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT_REVERSAL` - One or more of the transaction types above. This field can be repeated multiple times to allow for multiple transaction types.\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n* `CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n"
-                    example: WITHDRAWAL
-                  dateAcknowledged:
-                    type: string
-                    format: date-time
-                    example: 2021-04-13T11:06:32.437Z
-                  fxTradeDetails:
-                    title: FxTrade
-                    type: object
-                    properties:
-                      buyCurrency:
-                        type: string
-                        description: currency which is being bought
-                        example: GBP
-                      sellCurrency:
-                        type: string
-                        example: EUR
-                        description: currency which is being sold
-                      fixedSide:
-                        type: string
-                        description: type of trade
-                        example: SELL
-                      buyAmount:
-                        type: integer
-                        format: int64
-                        description: amount of buyCurrency being bought
-                        example: 359
-                      sellAmount:
-                        type: integer
-                        format: int64
-                        description: amount of sellCurrency being sold
-                        example: 500
-                      rate4d:
-                        type: integer
-                        format: int64
-                        description: exchange rate
-                        example: 7180
-                  relatedParty:
-                    title: RelatedParty
-                    oneOf:
-                      - title: RelatedPartyFireAccount
-                        type: object
-                        properties:
-                          type:
-                            type: string
-                            enum:
-                              - FIRE_ACCOUNT
-                          account:
-                            type: object
-                            properties:
-                              id:
-                                type: integer
-                                format: int64
-                                description: >-
-                                  identifier for the fire.com account (assigned
-                                  by fire.com)
-                                example: 42
-                              alias:
-                                type: string
-                                description: >-
-                                  the name the user gives to the account to help
-                                  them identify it.
-                                example: Main Account
-                              bic:
-                                type: string
-                                example: CPAYIE2D
-                                description: >-
-                                  the BIC of the account (provided if currency
-                                  is EUR).
-                              iban:
-                                type: string
-                                example: IE54CPAY99119911111111
-                                description: >-
-                                  the IBAN of the account (provided if currency
-                                  is EUR).
-                              nsc:
-                                type: string
-                                example: '232221'
-                                description: the Sort Code of the account.
-                              accountNumber:
-                                type: string
-                                example: '11111111'
-                                description: the Account Number of the account.
-                      - title: RelatedPartyExternalAccount
-                        type: object
-                        properties:
-                          type:
-                            type: string
-                            enum:
-                              - EXTERNAL_ACCOUNT
-                          account:
-                            type: object
-                            properties:
-                              id:
-                                type: integer
-                                format: int64
-                              alias:
-                                type: string
-                              nsc:
-                                type: string
-                              accountNumber:
-                                type: string
-                              bic:
-                                type: string
-                              iban:
-                                type: string
-                      - title: RelatedPartyPayee
-                        type: object
-                        properties:
-                          type:
-                            type: string
-                            enum:
-                              - WITHDRAWAL_ACCOUNT
-                          account:
-                            type: object
-                            properties:
-                              id:
-                                type: integer
-                                format: int64
-                                example: 123
-                                description: >-
-                                  The ID number of the Withdrawl account in
-                                  reference
-                              alias:
-                                type: string
-                                example: Smyth and Co.
-                                description: >-
-                                  The Alias name of the Withdrawl account in
-                                  reference
-                              nsc:
-                                type: string
-                                example: 991199
-                                description: >-
-                                  (Conditional) Provide this field if using Mode
-                                  2 and the payee account is in GBP.
-                              accountNumber:
-                                type: string
-                                example: 0
-                                description: >-
-                                  The account number of the Withdrawl account in
-                                  reference
-                              bic:
-                                type: string
-                                example: CPAYIE2D
-                                description: The BIC of the Withdrawl account in reference
-                              iban:
-                                type: string
-                                example: IE76CPAY99119900000000
-                                description: The BIC of the Withdrawl account in reference
-                      - title: RelatedPartyCardPayment
-                        type: object
-                        properties:
-                          type:
-                            type: string
-                            enum:
-                              - CARD_MERCHANT
-                              - CARD_ATM
-                          cardMerchant:
-                            type: object
-                            properties:
-                              acquirerIdDe32:
-                                type: string
-                                example: 06011319
-                              additionalAmtDe54:
-                                type: string
-                              authCodeDe38:
-                                type: string
-                                example: '177449'
-                              billAmt:
-                                type: number
-                                format: int64
-                                example: -1000
-                              billCcy:
-                                type: string
-                                example: '978'
-                              expiryDate:
-                                type: string
-                              mccCode:
-                                type: string
-                                example: '5521'
-                              merchIdDe42:
-                                type: string
-                                example: 013152429
-                              merchNameDe43:
-                                type: string
-                                example: ABC Coffee Shop
-                              posDataDe61:
-                                type: string
-                                example: 000001000030037299999
-                              posTermnlDe41:
-                                type: string
-                                example: '80266721'
-                              posDataDe22:
-                                type: string
-                                example: '051'
-                              procCode:
-                                type: string
-                                example: '000000'
-                              respCodeDe39:
-                                type: string
-                                example: '00'
-                              retRefNoDe37:
-                                type: string
-                                example: 010900006720
-                              statusCode:
-                                type: string
-                                example: '00'
-                              token:
-                                type: string
-                                example: '976307363'
-                              txnAmt4d:
-                                type: number
-                                format: int64
-                                example: 1000
-                              txnCcy:
-                                type: string
-                                example: '978'
-                              txnCtry:
-                                type: string
-                                example: IRL
-                              txnDesc:
-                                type: string
-                                example: ABC Coffee Shop
-                              txnStatCode:
-                                type: string
-                                example: A
-                              txnType:
-                                type: string
-                                example: A
-                              additionalDataDe48:
-                                type: string
-                                example: 010X610500000
-                              authorisedByGps:
-                                type: string
-                                example: 'N'
-                              avsResult:
-                                type: string
-                                example: 'N'
-                              mtId:
-                                type: string
-                                example: '0100'
-                              recordDataDe120:
-                                type: string
-                              additionalDataDe124:
-                                type: string
+                    example: 1547744156603
+                    description: milisecond timestamp of date range to value.
+                  transactions:
+                    type: array
+                    items:
+                      title: Transaction
+                      type: object
+                      properties:
+                        txnId:
+                          type: integer
+                          format: int64
+                          description: >-
+                            The id of this side of the transaction (each
+                            transaction has two sides - a to and a from). This
+                            is used to get the details of the transaction.
+                          example: 30157
+                        refId:
+                          type: integer
+                          format: int64
+                          description: The id of the transaction.
+                          example: 26774
+                        ican:
+                          type: integer
+                          format: int64
+                          description: >-
+                            identifier for the fire.com account (assigned by
+                            fire.com) This field is only used in the condensed
+                            version.
+                          example: 1951
+                        currency:
+                          title: Currency
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              description: >-
+                                The three letter code for the currency - either
+                                `EUR` or `GBP`.
+                              enum:
+                                - EUR
+                                - GBP
+                            description:
+                              type: string
+                              description: The name of the currency
+                              example: Euro
+                        amountBeforeCharges:
+                          type: integer
+                          format: int64
+                          description: >-
+                            Amount of the transaction before the fees and taxes
+                            were applied.
+                          example: 5000
+                        feeAmount:
+                          type: integer
+                          format: int64
+                          description: 'The amount of the fee, if any.'
+                          example: 0
+                        taxAmount:
+                          type: integer
+                          format: int64
+                          description: >-
+                            The amount of the tax, if any (e.g. Stamp duty for
+                            ATM transactions)
+                          example: 0
+                        amountAfterCharges:
+                          type: integer
+                          format: int64
+                          description: >-
+                            Net amount lodged or taken from the account after
+                            fees and charges were applied.
+                          example: 5000
+                        balance:
+                          type: integer
+                          format: int64
+                          description: >-
+                            the balance of the account (in minor currency units
+                            - pence, cent etc. 434050 == 4,340.50 GBP for a GBP
+                            account).
+                          example: 8500
+                        myRef:
+                          type: string
+                          description: The comment/reference on the transaction
+                          example: Transfer to main account
+                        paymentRequestPublicCode:
+                          type: string
+                          description: >-
+                            The code that was returned when you created the
+                            payment request.
+                          example: 1abcdefg
+                        date:
+                          type: string
+                          format: date-time
+                          description: Date of the transaction
+                          example: 2021-04-13T11:06:32.437Z
+                        card:
+                          title: RelatedCard
+                          type: object
+                          properties:
+                            cardId:
+                              type: number
+                              format: int64
+                            provider:
+                              type: string
+                            alias:
+                              type: string
+                            maskedPan:
+                              type: string
+                            embossCardName:
+                              type: string
+                            embossBusinessName:
+                              type: string
+                            expiryDate:
+                              type: string
+                              format: date-time
+                        type:
+                          type: string
+                          description: "Retrieve a filtered list of transactions against an account.\n* `LODGEMENT` - Bank Transfer received\n* `PIS_LODGEMENT` - Fire Open Payments Lodgement received\n* `MANUAL_TRANSFER` - Manual Transfer to\n* `WITHDRAWAL` - Bank Transfer sent\n* `REVERSAL` - Credit Reversal\n* `INTERNAL_TRANSFER_TO` - Internal Transfer sent (between two of my accounts of the same currency)\n* `INTERNAL_TRANSFER_FROM` - Internal Transfer received (between two of my accounts of the same currency)\n* `WITHDRAWAL_RETURNED` - Bank Transfer sent returned\n* `LODGEMENT_REVERSED` - Bank Transfer received returned\n* `FX_INTERNAL_TRANSFER_FROM` - FX Internal Transfer received (between two of my accounts of different currency)\n* `FX_INTERNAL_TRANSFER_TO` - FX Internal Transfer sent (between two of my accounts of different currency)\n* `CARD_POS_CONTACT_DEBIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACT_CREDIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACTLESS_DEBIT` - Card used in store; read by NFC\n* `CARD_POS_CONTACTLESS_CREDIT` - Card used in store; read by NFC\n* `CARD_ECOMMERCE_DEBIT` - Card used on the internet\n* `CARD_ECOMMERCE_CREDIT` - Card used on the internet\n* `CARD_ATM_DEBIT` - Card used in an ATM\n* `CARD_ATM_CREDIT` - Card used in an ATM\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT\t` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ATM_DEBIT` - Card used in an ATM in non-processing currency\n* `CARD_INTERNATIONAL_ATM_CREDIT` - Card used in an ATM in non-processing currency\n* `CARD_POS_CONTACT_DEBIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACT_CREDIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_POS_CONTACTLESS_CREDIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_ECOMMERCE_DEBIT_REVERSAL\t` - Card used on the internet - reversed\n* `CARD_ECOMMERCE_CREDIT_REVERSAL` - Card used on the internet - reversed\n* `CARD_ATM_DEBIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_ATM_CREDIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT_REVERSAL` - One or more of the transaction types above. This field can be repeated multiple times to allow for multiple transaction types.\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n* `CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n"
+                          example: WITHDRAWAL
+                        dateAcknowledged:
+                          type: string
+                          format: date-time
+                          example: 2021-04-13T11:06:32.437Z
+                        fxTradeDetails:
+                          title: FxTrade
+                          type: object
+                          properties:
+                            buyCurrency:
+                              type: string
+                              description: currency which is being bought
+                              example: GBP
+                            sellCurrency:
+                              type: string
+                              example: EUR
+                              description: currency which is being sold
+                            fixedSide:
+                              type: string
+                              description: type of trade
+                              example: SELL
+                            buyAmount:
+                              type: integer
+                              format: int64
+                              description: amount of buyCurrency being bought
+                              example: 359
+                            sellAmount:
+                              type: integer
+                              format: int64
+                              description: amount of sellCurrency being sold
+                              example: 500
+                            rate4d:
+                              type: integer
+                              format: int64
+                              description: exchange rate
+                              example: 7180
+                        relatedParty:
+                          title: RelatedParty
+                          oneOf:
+                            - title: RelatedPartyFireAccount
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  enum:
+                                    - FIRE_ACCOUNT
+                                account:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      format: int64
+                                      description: >-
+                                        identifier for the fire.com account
+                                        (assigned by fire.com)
+                                      example: 42
+                                    alias:
+                                      type: string
+                                      description: >-
+                                        the name the user gives to the account
+                                        to help them identify it.
+                                      example: Main Account
+                                    bic:
+                                      type: string
+                                      example: CPAYIE2D
+                                      description: >-
+                                        the BIC of the account (provided if
+                                        currency is EUR).
+                                    iban:
+                                      type: string
+                                      example: IE54CPAY99119911111111
+                                      description: >-
+                                        the IBAN of the account (provided if
+                                        currency is EUR).
+                                    nsc:
+                                      type: string
+                                      example: '232221'
+                                      description: the Sort Code of the account.
+                                    accountNumber:
+                                      type: string
+                                      example: '11111111'
+                                      description: the Account Number of the account.
+                            - title: RelatedPartyExternalAccount
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  enum:
+                                    - EXTERNAL_ACCOUNT
+                                account:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      format: int64
+                                    alias:
+                                      type: string
+                                    nsc:
+                                      type: string
+                                    accountNumber:
+                                      type: string
+                                    bic:
+                                      type: string
+                                    iban:
+                                      type: string
+                            - title: RelatedPartyPayee
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  enum:
+                                    - WITHDRAWAL_ACCOUNT
+                                account:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      format: int64
+                                      example: 123
+                                      description: >-
+                                        The ID number of the Withdrawl account
+                                        in reference
+                                    alias:
+                                      type: string
+                                      example: Smyth and Co.
+                                      description: >-
+                                        The Alias name of the Withdrawl account
+                                        in reference
+                                    nsc:
+                                      type: string
+                                      example: 991199
+                                      description: >-
+                                        (Conditional) Provide this field if
+                                        using Mode 2 and the payee account is in
+                                        GBP.
+                                    accountNumber:
+                                      type: string
+                                      example: 0
+                                      description: >-
+                                        The account number of the Withdrawl
+                                        account in reference
+                                    bic:
+                                      type: string
+                                      example: CPAYIE2D
+                                      description: >-
+                                        The BIC of the Withdrawl account in
+                                        reference
+                                    iban:
+                                      type: string
+                                      example: IE76CPAY99119900000000
+                                      description: >-
+                                        The BIC of the Withdrawl account in
+                                        reference
+                            - title: RelatedPartyCardPayment
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  enum:
+                                    - CARD_MERCHANT
+                                    - CARD_ATM
+                                cardMerchant:
+                                  type: object
+                                  properties:
+                                    acquirerIdDe32:
+                                      type: string
+                                      example: 06011319
+                                    additionalAmtDe54:
+                                      type: string
+                                    authCodeDe38:
+                                      type: string
+                                      example: '177449'
+                                    billAmt:
+                                      type: number
+                                      format: int64
+                                      example: -1000
+                                    billCcy:
+                                      type: string
+                                      example: '978'
+                                    expiryDate:
+                                      type: string
+                                    mccCode:
+                                      type: string
+                                      example: '5521'
+                                    merchIdDe42:
+                                      type: string
+                                      example: 013152429
+                                    merchNameDe43:
+                                      type: string
+                                      example: ABC Coffee Shop
+                                    posDataDe61:
+                                      type: string
+                                      example: 000001000030037299999
+                                    posTermnlDe41:
+                                      type: string
+                                      example: '80266721'
+                                    posDataDe22:
+                                      type: string
+                                      example: '051'
+                                    procCode:
+                                      type: string
+                                      example: '000000'
+                                    respCodeDe39:
+                                      type: string
+                                      example: '00'
+                                    retRefNoDe37:
+                                      type: string
+                                      example: 010900006720
+                                    statusCode:
+                                      type: string
+                                      example: '00'
+                                    token:
+                                      type: string
+                                      example: '976307363'
+                                    txnAmt4d:
+                                      type: number
+                                      format: int64
+                                      example: 1000
+                                    txnCcy:
+                                      type: string
+                                      example: '978'
+                                    txnCtry:
+                                      type: string
+                                      example: IRL
+                                    txnDesc:
+                                      type: string
+                                      example: ABC Coffee Shop
+                                    txnStatCode:
+                                      type: string
+                                      example: A
+                                    txnType:
+                                      type: string
+                                      example: A
+                                    additionalDataDe48:
+                                      type: string
+                                      example: 010X610500000
+                                    authorisedByGps:
+                                      type: string
+                                      example: 'N'
+                                    avsResult:
+                                      type: string
+                                      example: 'N'
+                                    mtId:
+                                      type: string
+                                      example: '0100'
+                                    recordDataDe120:
+                                      type: string
+                                    additionalDataDe124:
+                                      type: string
   /cards:
     get:
       summary: View List of Cards.
@@ -1429,6 +1501,450 @@ paths:
                       - CREATED_ACTIVE
                       - CREATED_INACTIVE
                     example: CREATED_ACTIVE
+  '/cards/{cardid}/transactions':
+    get:
+      summary: List Card Transactions.
+      description: Returns a list of cards transactions related to your fire.com card.
+      tags:
+        - Cards
+      operationId: getListofCardTransactions
+      parameters:
+        - in: path
+          name: cardid
+          schema:
+            type: integer
+            format: int64
+            description: The cardid of the card to retrieve the associated transactions
+          required: true
+        - in: query
+          name: limit
+          schema:
+            type: number
+            format: int64
+            description: The number of records to return
+          required: true
+        - in: query
+          name: offset
+          schema:
+            type: number
+            format: int64
+            description: The offset of the page to retreive.
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  title: card-transactions
+                  type: object
+                  properties:
+                    total:
+                      type: integer
+                      example: 1
+                      description: The total number of card transactions in the list.
+                    dateRangeTo:
+                      type: integer
+                      example: 1547744156603
+                      description: milisecond timestamp of date range to value.
+                    transactions:
+                      type: array
+                      items:
+                        title: Transaction
+                        type: object
+                        properties:
+                          txnId:
+                            type: integer
+                            format: int64
+                            description: >-
+                              The id of this side of the transaction (each
+                              transaction has two sides - a to and a from). This
+                              is used to get the details of the transaction.
+                            example: 30157
+                          refId:
+                            type: integer
+                            format: int64
+                            description: The id of the transaction.
+                            example: 26774
+                          ican:
+                            type: integer
+                            format: int64
+                            description: >-
+                              identifier for the fire.com account (assigned by
+                              fire.com) This field is only used in the condensed
+                              version.
+                            example: 1951
+                          currency:
+                            title: Currency
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                description: >-
+                                  The three letter code for the currency -
+                                  either `EUR` or `GBP`.
+                                enum:
+                                  - EUR
+                                  - GBP
+                              description:
+                                type: string
+                                description: The name of the currency
+                                example: Euro
+                          amountBeforeCharges:
+                            type: integer
+                            format: int64
+                            description: >-
+                              Amount of the transaction before the fees and
+                              taxes were applied.
+                            example: 5000
+                          feeAmount:
+                            type: integer
+                            format: int64
+                            description: 'The amount of the fee, if any.'
+                            example: 0
+                          taxAmount:
+                            type: integer
+                            format: int64
+                            description: >-
+                              The amount of the tax, if any (e.g. Stamp duty for
+                              ATM transactions)
+                            example: 0
+                          amountAfterCharges:
+                            type: integer
+                            format: int64
+                            description: >-
+                              Net amount lodged or taken from the account after
+                              fees and charges were applied.
+                            example: 5000
+                          balance:
+                            type: integer
+                            format: int64
+                            description: >-
+                              the balance of the account (in minor currency
+                              units - pence, cent etc. 434050 == 4,340.50 GBP
+                              for a GBP account).
+                            example: 8500
+                          myRef:
+                            type: string
+                            description: The comment/reference on the transaction
+                            example: Transfer to main account
+                          paymentRequestPublicCode:
+                            type: string
+                            description: >-
+                              The code that was returned when you created the
+                              payment request.
+                            example: 1abcdefg
+                          date:
+                            type: string
+                            format: date-time
+                            description: Date of the transaction
+                            example: 2021-04-13T11:06:32.437Z
+                          card:
+                            title: RelatedCard
+                            type: object
+                            properties:
+                              cardId:
+                                type: number
+                                format: int64
+                              provider:
+                                type: string
+                              alias:
+                                type: string
+                              maskedPan:
+                                type: string
+                              embossCardName:
+                                type: string
+                              embossBusinessName:
+                                type: string
+                              expiryDate:
+                                type: string
+                                format: date-time
+                          type:
+                            type: string
+                            description: "Retrieve a filtered list of transactions against an account.\n* `LODGEMENT` - Bank Transfer received\n* `PIS_LODGEMENT` - Fire Open Payments Lodgement received\n* `MANUAL_TRANSFER` - Manual Transfer to\n* `WITHDRAWAL` - Bank Transfer sent\n* `REVERSAL` - Credit Reversal\n* `INTERNAL_TRANSFER_TO` - Internal Transfer sent (between two of my accounts of the same currency)\n* `INTERNAL_TRANSFER_FROM` - Internal Transfer received (between two of my accounts of the same currency)\n* `WITHDRAWAL_RETURNED` - Bank Transfer sent returned\n* `LODGEMENT_REVERSED` - Bank Transfer received returned\n* `FX_INTERNAL_TRANSFER_FROM` - FX Internal Transfer received (between two of my accounts of different currency)\n* `FX_INTERNAL_TRANSFER_TO` - FX Internal Transfer sent (between two of my accounts of different currency)\n* `CARD_POS_CONTACT_DEBIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACT_CREDIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACTLESS_DEBIT` - Card used in store; read by NFC\n* `CARD_POS_CONTACTLESS_CREDIT` - Card used in store; read by NFC\n* `CARD_ECOMMERCE_DEBIT` - Card used on the internet\n* `CARD_ECOMMERCE_CREDIT` - Card used on the internet\n* `CARD_ATM_DEBIT` - Card used in an ATM\n* `CARD_ATM_CREDIT` - Card used in an ATM\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT\t` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ATM_DEBIT` - Card used in an ATM in non-processing currency\n* `CARD_INTERNATIONAL_ATM_CREDIT` - Card used in an ATM in non-processing currency\n* `CARD_POS_CONTACT_DEBIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACT_CREDIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_POS_CONTACTLESS_CREDIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_ECOMMERCE_DEBIT_REVERSAL\t` - Card used on the internet - reversed\n* `CARD_ECOMMERCE_CREDIT_REVERSAL` - Card used on the internet - reversed\n* `CARD_ATM_DEBIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_ATM_CREDIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT_REVERSAL` - One or more of the transaction types above. This field can be repeated multiple times to allow for multiple transaction types.\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n* `CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n"
+                            example: WITHDRAWAL
+                          dateAcknowledged:
+                            type: string
+                            format: date-time
+                            example: 2021-04-13T11:06:32.437Z
+                          fxTradeDetails:
+                            title: FxTrade
+                            type: object
+                            properties:
+                              buyCurrency:
+                                type: string
+                                description: currency which is being bought
+                                example: GBP
+                              sellCurrency:
+                                type: string
+                                example: EUR
+                                description: currency which is being sold
+                              fixedSide:
+                                type: string
+                                description: type of trade
+                                example: SELL
+                              buyAmount:
+                                type: integer
+                                format: int64
+                                description: amount of buyCurrency being bought
+                                example: 359
+                              sellAmount:
+                                type: integer
+                                format: int64
+                                description: amount of sellCurrency being sold
+                                example: 500
+                              rate4d:
+                                type: integer
+                                format: int64
+                                description: exchange rate
+                                example: 7180
+                          relatedParty:
+                            title: RelatedParty
+                            oneOf:
+                              - title: RelatedPartyFireAccount
+                                type: object
+                                properties:
+                                  type:
+                                    type: string
+                                    enum:
+                                      - FIRE_ACCOUNT
+                                  account:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: integer
+                                        format: int64
+                                        description: >-
+                                          identifier for the fire.com account
+                                          (assigned by fire.com)
+                                        example: 42
+                                      alias:
+                                        type: string
+                                        description: >-
+                                          the name the user gives to the account
+                                          to help them identify it.
+                                        example: Main Account
+                                      bic:
+                                        type: string
+                                        example: CPAYIE2D
+                                        description: >-
+                                          the BIC of the account (provided if
+                                          currency is EUR).
+                                      iban:
+                                        type: string
+                                        example: IE54CPAY99119911111111
+                                        description: >-
+                                          the IBAN of the account (provided if
+                                          currency is EUR).
+                                      nsc:
+                                        type: string
+                                        example: '232221'
+                                        description: the Sort Code of the account.
+                                      accountNumber:
+                                        type: string
+                                        example: '11111111'
+                                        description: the Account Number of the account.
+                              - title: RelatedPartyExternalAccount
+                                type: object
+                                properties:
+                                  type:
+                                    type: string
+                                    enum:
+                                      - EXTERNAL_ACCOUNT
+                                  account:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: integer
+                                        format: int64
+                                      alias:
+                                        type: string
+                                      nsc:
+                                        type: string
+                                      accountNumber:
+                                        type: string
+                                      bic:
+                                        type: string
+                                      iban:
+                                        type: string
+                              - title: RelatedPartyPayee
+                                type: object
+                                properties:
+                                  type:
+                                    type: string
+                                    enum:
+                                      - WITHDRAWAL_ACCOUNT
+                                  account:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: integer
+                                        format: int64
+                                        example: 123
+                                        description: >-
+                                          The ID number of the Withdrawl account
+                                          in reference
+                                      alias:
+                                        type: string
+                                        example: Smyth and Co.
+                                        description: >-
+                                          The Alias name of the Withdrawl account
+                                          in reference
+                                      nsc:
+                                        type: string
+                                        example: 991199
+                                        description: >-
+                                          (Conditional) Provide this field if
+                                          using Mode 2 and the payee account is in
+                                          GBP.
+                                      accountNumber:
+                                        type: string
+                                        example: 0
+                                        description: >-
+                                          The account number of the Withdrawl
+                                          account in reference
+                                      bic:
+                                        type: string
+                                        example: CPAYIE2D
+                                        description: >-
+                                          The BIC of the Withdrawl account in
+                                          reference
+                                      iban:
+                                        type: string
+                                        example: IE76CPAY99119900000000
+                                        description: >-
+                                          The BIC of the Withdrawl account in
+                                          reference
+                              - title: RelatedPartyCardPayment
+                                type: object
+                                properties:
+                                  type:
+                                    type: string
+                                    enum:
+                                      - CARD_MERCHANT
+                                      - CARD_ATM
+                                  cardMerchant:
+                                    type: object
+                                    properties:
+                                      acquirerIdDe32:
+                                        type: string
+                                        example: 06011319
+                                      additionalAmtDe54:
+                                        type: string
+                                      authCodeDe38:
+                                        type: string
+                                        example: '177449'
+                                      billAmt:
+                                        type: number
+                                        format: int64
+                                        example: -1000
+                                      billCcy:
+                                        type: string
+                                        example: '978'
+                                      expiryDate:
+                                        type: string
+                                      mccCode:
+                                        type: string
+                                        example: '5521'
+                                      merchIdDe42:
+                                        type: string
+                                        example: 013152429
+                                      merchNameDe43:
+                                        type: string
+                                        example: ABC Coffee Shop
+                                      posDataDe61:
+                                        type: string
+                                        example: 000001000030037299999
+                                      posTermnlDe41:
+                                        type: string
+                                        example: '80266721'
+                                      posDataDe22:
+                                        type: string
+                                        example: '051'
+                                      procCode:
+                                        type: string
+                                        example: '000000'
+                                      respCodeDe39:
+                                        type: string
+                                        example: '00'
+                                      retRefNoDe37:
+                                        type: string
+                                        example: 010900006720
+                                      statusCode:
+                                        type: string
+                                        example: '00'
+                                      token:
+                                        type: string
+                                        example: '976307363'
+                                      txnAmt4d:
+                                        type: number
+                                        format: int64
+                                        example: 1000
+                                      txnCcy:
+                                        type: string
+                                        example: '978'
+                                      txnCtry:
+                                        type: string
+                                        example: IRL
+                                      txnDesc:
+                                        type: string
+                                        example: ABC Coffee Shop
+                                      txnStatCode:
+                                        type: string
+                                        example: A
+                                      txnType:
+                                        type: string
+                                        example: A
+                                      additionalDataDe48:
+                                        type: string
+                                        example: 010X610500000
+                                      authorisedByGps:
+                                        type: string
+                                        example: 'N'
+                                      avsResult:
+                                        type: string
+                                        example: 'N'
+                                      mtId:
+                                        type: string
+                                        example: '0100'
+                                      recordDataDe120:
+                                        type: string
+                                      additionalDataDe124:
+                                        type: string
+        '401':
+          description: Access Token is Invalid or missing
+        '403':
+          description: Access Token is Invalid or missing
+  '/cards/{cardId}/block':
+    post:
+      summary: Block a card
+      description: >-
+        Updates status of an existing card to “Blocked” which prevents any
+        transactions being carried out with that card.
+      tags:
+        - Cards
+      operationId: blockCard
+      responses:
+        '204':
+          description: >-
+            No body is returned - “Status 204 No Content” signifies the call was
+            successful.
+  '/cards/{cardId}/unblock':
+    post:
+      summary: Unblock a card
+      description: >-
+        Updates status of an existing card to “unblocked” which means that
+        transactions can be carried out with that card.
+      tags:
+        - Cards
+      operationId: unBlockCard
+      responses:
+        '204':
+          description: >-
+            No body is returned - “Status 204 No Content” signifies the call was
+            successful.
   /paymentrequests:
     post:
       summary: Create a Fire Open Payment request
@@ -3300,7 +3816,7 @@ paths:
           description: 204 no content
   /batches:
     post:
-      summary: Create a new bath of payments
+      summary: Create a new batch of payments
       description: This is the first step in creating a batch payment.
       tags:
         - Payment Batches
