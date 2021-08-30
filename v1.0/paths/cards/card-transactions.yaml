@@ -20,11 +20,11 @@ get:
         description: The number of records to return
       required: true
     - in: query
-      name: dateRangeTo
+      name: offset
       schema:
         type: number
         format: int64
-        description: A millisecond epoch time specifying the date range end date.
+        description: The offset of the page to retreive. 
       required: true     
   responses: 
     '200':  
