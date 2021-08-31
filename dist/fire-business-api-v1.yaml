@@ -1522,14 +1522,14 @@ paths:
             type: number
             format: int64
             description: The number of records to return
-          required: true
+          required: false
         - in: query
-          name: dateRangeTo
+          name: offset
           schema:
             type: number
             format: int64
-            description: A millisecond epoch time specifying the date range end date.
-          required: true
+            description: The page of records to return
+          required: false
       responses:
         '200':
           description: Successful response
