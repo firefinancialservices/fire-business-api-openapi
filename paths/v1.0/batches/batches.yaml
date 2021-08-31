@@ -1,0 +1,90 @@
+post:
+  summary: Create a new bath of payments
+  description: This is the first step in creating a batch payment.
+  tags:
+    - Payment Batches
+  operationId: createBatchPayment
+  requestBody:
+    required: true
+    description: Details of the batch payment
+    content:
+      application/json:
+        schema:
+          $ref: ../../schemas/new-batch.yaml
+  responses:
+    '200':
+      description: Batch created successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/new-batch-response.yaml
+            
+
+put:
+  summary: Submit a batch for approval
+  description: >
+    Submits the Batch (for approval in the case of a **BANK_TRANSFER**). If this is an **INTERNAL_TRANSFER** batch, the transfers are immediately queued for processing. If this is a **BANK_TRANSFER** batch, this will trigger requests for approval to the firework mobile apps of authorised users. Once those users approve the batch, it is queued for processing.
+
+
+    You can only submit a batch while it is in the OPEN state.
+  tags:
+    - Payment Batches
+  operationId: submitBatch
+  responses:
+    '204':
+      description: No body is returned - a HTTP 204 No Content response signifies the call was successful.     
+
+
+get:
+  summary: List batches
+  description: >
+    Returns the list of batch with the specified types and statuses.
+  tags:
+    - Payment Batches
+  operationId: getBatches
+  parameters:
+    - in: query
+      name: batchStatus
+      schema:
+        type: string
+        enum:
+            - SUBMITTED
+            - REMOVED
+            - SUCCEEDED
+            - FAILED
+        description: The status of the batch if internal transfer.
+        example: SUBMITTED
+    - in: query
+      name: batchTypes
+      schema:
+        type: string
+        enum:
+          - INTERNAL_TRANSFER
+          - BANK_TRANSFER
+          - NEW_PAYEE
+        description: The type of the batch. Can be one of the 3 listed enums.
+        example: "INTERNAL_TRANSFER"
+    - in: query
+      name: orderBy
+      schema:
+        type: string
+        enum:
+          - DATE
+        description: You can order the batches by date. No other options at this time
+        example: "DATE"            
+    - in: query
+      name: order
+      schema:
+        type: string
+        enum:
+          - DESC
+          - ASC
+        description: You can order the batches by ascending or descending order.
+        example: "DESC"     
+  responses:
+    '200':
+      description: List all batches.
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/batch-items.yaml
