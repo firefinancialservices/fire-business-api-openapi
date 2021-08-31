@@ -18,6 +18,6 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../schemas/account.yaml
+            $ref: ../../../schemas/account.yaml
     '401':
-      $ref: ../../responses/unauthorised-error.yaml
+      $ref: ../../../responses/unauthorised-error.yaml

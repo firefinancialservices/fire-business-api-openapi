@@ -11,11 +11,11 @@ post:
     content:
         application/json:
           schema:
-            $ref: ../../schemas/authentication-data.yaml
+            $ref: ../../../schemas/authentication-data.yaml
   responses:
     '200':
       description: Successfully authenticated
       content:
         application/json:
           schema:
-            $ref: ../../schemas/access-token.yaml
+            $ref: ../../../schemas/access-token.yaml

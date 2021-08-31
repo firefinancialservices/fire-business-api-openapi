@@ -22,4 +22,4 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../schemas/direct-debit.yaml
+            $ref: ../../../schemas/direct-debit.yaml

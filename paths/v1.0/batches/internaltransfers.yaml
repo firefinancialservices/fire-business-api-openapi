@@ -18,14 +18,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../../schemas/internal-transfer-batch-item.yaml
+          $ref: ../../../schemas/internal-transfer-batch-item.yaml
   responses:
     '200':
       description: Batch payment added successfully. Note* Please use batchUuid when submitting a batch, not batchItemUuid.
       content:
         application/json:
           schema:
-            $ref: ../../schemas/add-batch-item-response.yaml
+            $ref: ../../../schemas/add-batch-item-response.yaml
 
 
 get:
@@ -62,4 +62,4 @@ get:
       content:
         application/json:
           schema:
-              $ref: ../../schemas/batch-items.yaml
+              $ref: ../../../schemas/batch-items.yaml

@@ -39,4 +39,4 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../schemas/payment-request.yaml
+            $ref: ../../../schemas/payment-request.yaml

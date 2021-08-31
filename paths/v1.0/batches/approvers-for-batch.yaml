@@ -18,4 +18,4 @@ get:
       content:
         application/json:
           schema:
-              $ref: ../../schemas/approvers-for-batch.yaml
+              $ref: ../../../schemas/approvers-for-batch.yaml

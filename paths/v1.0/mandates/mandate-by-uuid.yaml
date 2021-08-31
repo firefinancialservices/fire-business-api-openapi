@@ -21,7 +21,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../schemas/mandate.yaml
+            $ref: ../../../schemas/mandate.yaml
 
 post:
   summary: Update a direct debit mandate alias

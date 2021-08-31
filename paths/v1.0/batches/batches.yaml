@@ -10,14 +10,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../../schemas/new-batch.yaml
+          $ref: ../../../schemas/new-batch.yaml
   responses:
     '200':
       description: Batch created successfully
       content:
         application/json:
           schema:
-            $ref: ../../schemas/new-batch-response.yaml
+            $ref: ../../../schemas/new-batch-response.yaml
             
 
 put:
@@ -87,4 +87,4 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../schemas/batch-items.yaml
+            $ref: ../../../schemas/batch-items.yaml

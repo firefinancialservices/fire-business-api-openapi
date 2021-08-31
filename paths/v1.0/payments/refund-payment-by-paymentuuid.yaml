@@ -18,17 +18,17 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../../schemas/bank-pay-refund-request.yaml
+          $ref: ../../../schemas/bank-pay-refund-request.yaml
   responses:
     '200':
       description: Refund Request successful
       content:
         application/json:
           schema:
-            $ref: ../../schemas/bank-pay-refund-response.yaml
+            $ref: ../../../schemas/bank-pay-refund-response.yaml
     '405':
       description: Error Method not Allowed
       content:
         application/json:
           schema:
-            $ref: ../../schemas/api-errors.yaml
+            $ref: ../../../schemas/api-errors.yaml

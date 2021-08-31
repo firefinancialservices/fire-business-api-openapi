@@ -51,7 +51,7 @@ paths:
   /cards:
     $ref: ./paths/v1.0/cards/cards.yaml
 
-  /cards/{cardid}/transactions:
+  /cards/{cardId}/transactions:
     $ref: ./paths/v1.0/cards/card-transactions.yaml
 
   /cards/{cardId}/block:

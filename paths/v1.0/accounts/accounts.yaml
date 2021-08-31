@@ -10,9 +10,9 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../../schemas/accounts.yaml'
+            $ref: '../../../schemas/accounts.yaml'
     '401':
-      $ref: '../../responses/unauthorised-error.yaml'
+      $ref: '../../../responses/unauthorised-error.yaml'
 
 post:
   summary: Add a new account
@@ -30,11 +30,11 @@ post:
     content:
         application/json:
           schema:
-            $ref: '../../schemas/account-new.yaml'
+            $ref: '../../../schemas/account-new.yaml'
   responses:
     '201':
       description: The details of the new account
       content:
           application/json:
             schema:
-              $ref: '../../schemas/account.yaml'
+              $ref: '../../../schemas/account.yaml'

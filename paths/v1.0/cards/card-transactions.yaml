@@ -6,7 +6,7 @@ get:
   operationId: getListofCardTransactions
   parameters:
     - in: path
-      name: cardid
+      name: cardId
       schema:
         type: integer
         format: int64
@@ -34,8 +34,8 @@ get:
           schema:
             type: array
             items:            
-              $ref: '../../schemas/transactions.yaml' 
+              $ref: '../../../schemas/transactions.yaml' 
     '403':
-      $ref: ../../responses/unauthorised-error.yaml
+      $ref: ../../../responses/unauthorised-error.yaml
     '401':
-      $ref: ../../responses/unauthorised-error.yaml
+      $ref: ../../../responses/unauthorised-error.yaml

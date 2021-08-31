@@ -1,9 +1,0 @@
-post:
-  summary: Block a card
-  description: Updates status of an existing card to “Blocked” which prevents any transactions being carried out with that card.
-  tags:
-    - Cards
-  operationId: blockCard
-  responses:
-    '204':
-      description: No body is returned - “Status 204 No Content” signifies the call was successful.

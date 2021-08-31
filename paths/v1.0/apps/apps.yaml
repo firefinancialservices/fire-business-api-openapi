@@ -10,11 +10,11 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../../schemas/new-api-application.yaml
+          $ref: ../../../schemas/new-api-application.yaml
   responses:
     '200':
       description: API Application created successfully
       content:
         application/json:
           schema:
-            $ref: ../../schemas/api-application.yaml
+            $ref: ../../../schemas/api-application.yaml

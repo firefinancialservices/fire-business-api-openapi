@@ -32,4 +32,4 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../../schemas/transactions.yaml'
+            $ref: '../../../schemas/transactions.yaml'

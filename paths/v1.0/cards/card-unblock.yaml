@@ -1,9 +1,17 @@
 post:
   summary: Unblock a card
-  description: Updates status of an existing card to “unblocked” which means that transactions can be carried out with that card.
+  description: Updates status of an existing card to unblock which means that transactions can be carried out with that card.
   tags:
     - Cards
-  operationId: unBlockCard
+  operationId: unblockCard
+  parameters:
+    - in: path
+      name: cardId
+      schema:
+        type: integer
+        format: int64
+        description: The cardid of the card to unblock
+      required: true
   responses:
     '204':
       description: No body is returned - “Status 204 No Content” signifies the call was successful.

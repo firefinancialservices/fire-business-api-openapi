@@ -14,11 +14,11 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../../schemas/new-payment-request.yaml
+          $ref: ../../../schemas/new-payment-request.yaml
   responses:
     '200':
       description: Payment Request created successfully
       content:
         application/json:
           schema:
-            $ref: ../../schemas/payment-request-response.yaml
+            $ref: ../../../schemas/payment-request-response.yaml

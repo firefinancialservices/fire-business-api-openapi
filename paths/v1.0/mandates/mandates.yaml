@@ -11,4 +11,4 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../schemas/mandates.yaml
+            $ref: ../../../schemas/mandates.yaml
