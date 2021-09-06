@@ -1,5 +1,5 @@
 post:
-  summary: Create a new bath of payments
+  summary: Create a new batch of payments
   description: This is the first step in creating a batch payment.
   tags:
     - Payment Batches
