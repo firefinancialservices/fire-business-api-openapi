@@ -1,0 +1,12 @@
+title: Aspsps
+type: object
+properties:
+  total:
+    type: integer
+    example: 10
+    description: The total number of ASPSPs in the list.
+  aspsps:
+    type: array
+    items:
+      $ref: ./aspsp.yaml
+

@@ -1,0 +1,16 @@
+title: card-transactions
+type: object
+properties:
+  total:
+    type: integer
+    example: 1
+    description: The total number of card transactions in the list.
+  dateRangeTo:
+    type: integer
+    example: 1547744156603
+    description: milisecond timestamp of date range to value.
+  transactions:
+    type: array
+    items:
+      $ref: ./transaction.yaml
+  
