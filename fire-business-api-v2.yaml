@@ -1,6 +1,6 @@
 openapi: '3.0.2'
 info:
-  title: Fire Financial Services Business API
+  title: Fire Financial Services Business API (v2.0)
   description: >
     The fire.com API allows you to deeply integrate Business Account features into your application or back-office systems.
 
