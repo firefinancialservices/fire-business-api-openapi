@@ -1,5 +1,5 @@
 post:
-  summary: Add payment for an internal transfers
+  summary: Add an internal transfer payment to the batch
   description: Simply specify the source account, destination account, amount and a reference.
   tags:
     - Payment Batches
