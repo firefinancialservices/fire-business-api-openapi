@@ -52,3 +52,7 @@ properties:
     type: boolean
     example: false
     description: Whether or not direct debits can be set up on this account.
+  fopOnly:
+    type: boolean
+    example: false
+    description: Indicates that this account is for collecting Fire Open Payments only. All other payments to this account will be returned. 

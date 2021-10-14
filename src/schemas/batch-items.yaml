@@ -1,4 +1,4 @@
-title: BatchItems
+title: batchItems
 type: object
 properties:
   total: 

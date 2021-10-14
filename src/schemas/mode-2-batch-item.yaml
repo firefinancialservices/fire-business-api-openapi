@@ -1,4 +1,4 @@
-title: BatchItemBankTransferMode2
+title: batchItemBankTransferMode2
 type: object
 properties:
   icanFrom:

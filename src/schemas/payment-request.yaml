@@ -1,4 +1,4 @@
-title: PaymentRequest
+title: paymentRequest
 type: object
 properties:
   paymentRequestCode:

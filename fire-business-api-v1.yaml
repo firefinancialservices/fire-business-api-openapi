@@ -54,7 +54,7 @@ paths:
         content:
           application/json:
             schema:
-              title: Authentication
+              title: authentication
               type: object
               properties:
                 clientId:
@@ -93,7 +93,7 @@ paths:
           content:
             application/json:
               schema:
-                title: AccessToken
+                title: accessToken
                 type: object
                 properties:
                   businessId:
@@ -143,7 +143,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Accounts
+                title: accounts
                 type: object
                 properties:
                   accounts:
@@ -171,7 +171,7 @@ paths:
                           deprecated: true
                           example: ORANGE
                         currency:
-                          title: Currency
+                          title: currency
                           type: object
                           properties:
                             code:
@@ -235,6 +235,13 @@ paths:
                           description: >-
                             Whether or not direct debits can be set up on this
                             account.
+                        fopOnly:
+                          type: boolean
+                          example: false
+                          description: >-
+                            Indicates that this account is for collecting Fire
+                            Open Payments only. All other payments to this
+                            account will be returned.
         '401':
           description: Access Token is Invalid or missing
     post:
@@ -254,7 +261,7 @@ paths:
         content:
           application/json:
             schema:
-              title: NewAccount
+              title: newAccount
               type: object
               properties:
                 accountName:
@@ -297,7 +304,7 @@ paths:
                     deprecated: true
                     example: ORANGE
                   currency:
-                    title: Currency
+                    title: currency
                     type: object
                     properties:
                       code:
@@ -357,6 +364,13 @@ paths:
                     description: >-
                       Whether or not direct debits can be set up on this
                       account.
+                  fopOnly:
+                    type: boolean
+                    example: false
+                    description: >-
+                      Indicates that this account is for collecting Fire Open
+                      Payments only. All other payments to this account will be
+                      returned.
   '/accounts/{ican}':
     get:
       summary: Retrieve the details of a fire.com Account
@@ -398,7 +412,7 @@ paths:
                     deprecated: true
                     example: ORANGE
                   currency:
-                    title: Currency
+                    title: currency
                     type: object
                     properties:
                       code:
@@ -458,6 +472,13 @@ paths:
                     description: >-
                       Whether or not direct debits can be set up on this
                       account.
+                  fopOnly:
+                    type: boolean
+                    example: false
+                    description: >-
+                      Indicates that this account is for collecting Fire Open
+                      Payments only. All other payments to this account will be
+                      returned.
         '401':
           description: Access Token is Invalid or missing
   '/accounts/{ican}/transactions':
@@ -500,7 +521,7 @@ paths:
           content:
             application/json:
               schema:
-                title: card-transactions
+                title: cardTransactions
                 type: object
                 properties:
                   total:
@@ -514,7 +535,7 @@ paths:
                   transactions:
                     type: array
                     items:
-                      title: Transaction
+                      title: transaction
                       type: object
                       properties:
                         txnId:
@@ -539,7 +560,7 @@ paths:
                             version.
                           example: 1951
                         currency:
-                          title: Currency
+                          title: currency
                           type: object
                           properties:
                             code:
@@ -604,7 +625,7 @@ paths:
                           description: Date of the transaction
                           example: 2021-04-13T11:06:32.437Z
                         card:
-                          title: RelatedCard
+                          title: relatedCard
                           type: object
                           properties:
                             cardId:
@@ -632,7 +653,7 @@ paths:
                           format: date-time
                           example: 2021-04-13T11:06:32.437Z
                         fxTradeDetails:
-                          title: FxTrade
+                          title: fxTrade
                           type: object
                           properties:
                             buyCurrency:
@@ -663,9 +684,9 @@ paths:
                               description: exchange rate
                               example: 7180
                         relatedParty:
-                          title: RelatedParty
+                          title: relatedParty
                           oneOf:
-                            - title: RelatedPartyFireAccount
+                            - title: relatedPartyFireAccount
                               type: object
                               properties:
                                 type:
@@ -708,7 +729,7 @@ paths:
                                       type: string
                                       example: '11111111'
                                       description: the Account Number of the account.
-                            - title: RelatedPartyExternalAccount
+                            - title: relatedPartyExternalAccount
                               type: object
                               properties:
                                 type:
@@ -731,7 +752,7 @@ paths:
                                       type: string
                                     iban:
                                       type: string
-                            - title: RelatedPartyPayee
+                            - title: relatedPartyPayee
                               type: object
                               properties:
                                 type:
@@ -779,7 +800,7 @@ paths:
                                       description: >-
                                         The BIC of the Withdrawl account in
                                         reference
-                            - title: RelatedPartyCardPayment
+                            - title: relatedPartyCardPayment
                               type: object
                               properties:
                                 type:
@@ -956,7 +977,7 @@ paths:
           content:
             application/json:
               schema:
-                title: card-transactions
+                title: cardTransactions
                 type: object
                 properties:
                   total:
@@ -970,7 +991,7 @@ paths:
                   transactions:
                     type: array
                     items:
-                      title: Transaction
+                      title: transaction
                       type: object
                       properties:
                         txnId:
@@ -995,7 +1016,7 @@ paths:
                             version.
                           example: 1951
                         currency:
-                          title: Currency
+                          title: currency
                           type: object
                           properties:
                             code:
@@ -1060,7 +1081,7 @@ paths:
                           description: Date of the transaction
                           example: 2021-04-13T11:06:32.437Z
                         card:
-                          title: RelatedCard
+                          title: relatedCard
                           type: object
                           properties:
                             cardId:
@@ -1088,7 +1109,7 @@ paths:
                           format: date-time
                           example: 2021-04-13T11:06:32.437Z
                         fxTradeDetails:
-                          title: FxTrade
+                          title: fxTrade
                           type: object
                           properties:
                             buyCurrency:
@@ -1119,9 +1140,9 @@ paths:
                               description: exchange rate
                               example: 7180
                         relatedParty:
-                          title: RelatedParty
+                          title: relatedParty
                           oneOf:
-                            - title: RelatedPartyFireAccount
+                            - title: relatedPartyFireAccount
                               type: object
                               properties:
                                 type:
@@ -1164,7 +1185,7 @@ paths:
                                       type: string
                                       example: '11111111'
                                       description: the Account Number of the account.
-                            - title: RelatedPartyExternalAccount
+                            - title: relatedPartyExternalAccount
                               type: object
                               properties:
                                 type:
@@ -1187,7 +1208,7 @@ paths:
                                       type: string
                                     iban:
                                       type: string
-                            - title: RelatedPartyPayee
+                            - title: relatedPartyPayee
                               type: object
                               properties:
                                 type:
@@ -1235,7 +1256,7 @@ paths:
                                       description: >-
                                         The BIC of the Withdrawl account in
                                         reference
-                            - title: RelatedPartyCardPayment
+                            - title: relatedPartyCardPayment
                               type: object
                               properties:
                                 type:
@@ -1344,13 +1365,13 @@ paths:
           content:
             application/json:
               schema:
-                title: Cards
+                title: cards
                 type: object
                 properties:
                   cards:
                     type: array
                     items:
-                      title: Card
+                      title: card
                       type: object
                       properties:
                         blocked:
@@ -1448,7 +1469,7 @@ paths:
         content:
           application/json:
             schema:
-              title: NewCard
+              title: newCard
               type: object
               properties:
                 userId:
@@ -1481,7 +1502,7 @@ paths:
           content:
             application/json:
               schema:
-                title: NewCardResponse
+                title: newCardResponse
                 type: object
                 properties:
                   cardId:
@@ -1538,7 +1559,7 @@ paths:
               schema:
                 type: array
                 items:
-                  title: card-transactions
+                  title: cardTransactions
                   type: object
                   properties:
                     total:
@@ -1552,7 +1573,7 @@ paths:
                     transactions:
                       type: array
                       items:
-                        title: Transaction
+                        title: transaction
                         type: object
                         properties:
                           txnId:
@@ -1577,7 +1598,7 @@ paths:
                               version.
                             example: 1951
                           currency:
-                            title: Currency
+                            title: currency
                             type: object
                             properties:
                               code:
@@ -1642,7 +1663,7 @@ paths:
                             description: Date of the transaction
                             example: 2021-04-13T11:06:32.437Z
                           card:
-                            title: RelatedCard
+                            title: relatedCard
                             type: object
                             properties:
                               cardId:
@@ -1670,7 +1691,7 @@ paths:
                             format: date-time
                             example: 2021-04-13T11:06:32.437Z
                           fxTradeDetails:
-                            title: FxTrade
+                            title: fxTrade
                             type: object
                             properties:
                               buyCurrency:
@@ -1701,9 +1722,9 @@ paths:
                                 description: exchange rate
                                 example: 7180
                           relatedParty:
-                            title: RelatedParty
+                            title: relatedParty
                             oneOf:
-                              - title: RelatedPartyFireAccount
+                              - title: relatedPartyFireAccount
                                 type: object
                                 properties:
                                   type:
@@ -1746,7 +1767,7 @@ paths:
                                         type: string
                                         example: '11111111'
                                         description: the Account Number of the account.
-                              - title: RelatedPartyExternalAccount
+                              - title: relatedPartyExternalAccount
                                 type: object
                                 properties:
                                   type:
@@ -1769,7 +1790,7 @@ paths:
                                         type: string
                                       iban:
                                         type: string
-                              - title: RelatedPartyPayee
+                              - title: relatedPartyPayee
                                 type: object
                                 properties:
                                   type:
@@ -1817,7 +1838,7 @@ paths:
                                         description: >-
                                           The BIC of the Withdrawl account in
                                           reference
-                              - title: RelatedPartyCardPayment
+                              - title: relatedPartyCardPayment
                                 type: object
                                 properties:
                                   type:
@@ -1979,7 +2000,7 @@ paths:
         content:
           application/json:
             schema:
-              title: NewPaymentRequest
+              title: newPaymentRequest
               type: object
               required:
                 - type
@@ -2047,7 +2068,7 @@ paths:
                     The merchant return URL where the customer will be
                     re-directed to with the result of the transaction.
                 orderDetails:
-                  title: OrderDetails
+                  title: orderDetails
                   type: object
                   properties:
                     merchantNumber:
@@ -2147,7 +2168,7 @@ paths:
           content:
             application/json:
               schema:
-                title: NewPaymentRequestResponse
+                title: newPaymentRequestResponse
                 type: object
                 properties:
                   code:
@@ -2195,7 +2216,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Aspsps
+                title: aspsps
                 type: object
                 properties:
                   total:
@@ -2205,7 +2226,7 @@ paths:
                   aspsps:
                     type: array
                     items:
-                      title: Aspsp
+                      title: aspsp
                       type: object
                       properties:
                         aspspUuid:
@@ -2221,7 +2242,7 @@ paths:
                           example: 'https://assets.fire.com/pisp/demo.svg'
                           description: A link to the ASPSP / bank's logo in SVG format.
                         country:
-                          title: Country
+                          title: country
                           type: object
                           properties:
                             code:
@@ -2235,7 +2256,7 @@ paths:
                               description: The name of the country
                               example: United Kingdom
                         currency:
-                          title: Currency
+                          title: currency
                           type: object
                           properties:
                             code:
@@ -2311,7 +2332,7 @@ paths:
           content:
             application/json:
               schema:
-                title: PaymentRequest
+                title: paymentRequest
                 type: object
                 properties:
                   paymentRequestCode:
@@ -2345,7 +2366,7 @@ paths:
                       - RECEIVED
                     description: The status of the transaction
                   currency:
-                    title: Currency
+                    title: currency
                     type: object
                     properties:
                       code:
@@ -2416,7 +2437,7 @@ paths:
                       A URL to be called in the background with the details of
                       the payment after the payment is complete
                   orderDetails:
-                    title: OrderDetails
+                    title: orderDetails
                     type: object
                     properties:
                       merchantNumber:
@@ -2525,7 +2546,7 @@ paths:
               schema:
                 type: array
                 items:
-                  title: User
+                  title: user
                   type: object
                   properties:
                     id:
@@ -2575,7 +2596,7 @@ paths:
                       description: Users Cvl type ID (shows up when status is LIVE)
                       example: FULL
                     mobileApplicationDetails:
-                      title: MobileApplication
+                      title: mobileApplication
                       type: object
                       properties:
                         businessUserId:
@@ -2640,7 +2661,7 @@ paths:
           content:
             application/json:
               schema:
-                title: User
+                title: user
                 type: object
                 properties:
                   id:
@@ -2690,7 +2711,7 @@ paths:
                     description: Users Cvl type ID (shows up when status is LIVE)
                     example: FULL
                   mobileApplicationDetails:
-                    title: MobileApplication
+                    title: mobileApplication
                     type: object
                     properties:
                       businessUserId:
@@ -2746,7 +2767,7 @@ paths:
         content:
           application/json:
             schema:
-              title: NewApiApplication
+              title: newApiApplication
               type: object
               properties:
                 ican:
@@ -2790,7 +2811,7 @@ paths:
           content:
             application/json:
               schema:
-                title: ApiApplication
+                title: apiApplication
                 type: object
                 properties:
                   applicationId:
@@ -2853,7 +2874,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Payee
+                title: payee
                 type: object
                 properties:
                   id:
@@ -2864,7 +2885,7 @@ paths:
                       by fire.com).
                     example: 742
                   currency:
-                    title: Currency
+                    title: currency
                     type: object
                     properties:
                       code:
@@ -2966,7 +2987,7 @@ paths:
           content:
             application/json:
               schema:
-                title: DirectDebits
+                title: directDebits
                 type: object
                 properties:
                   total:
@@ -2977,7 +2998,7 @@ paths:
                   directdebits:
                     type: array
                     items:
-                      title: DirectDebit
+                      title: directDebit
                       type: object
                       properties:
                         directDebitUuid:
@@ -2985,7 +3006,7 @@ paths:
                           description: The UUID for the direct debit payment
                           example: 42de0705-e3f1-44fa-8c41-79973eb80eb2
                         currency:
-                          title: Currency
+                          title: currency
                           type: object
                           properties:
                             code:
@@ -3168,7 +3189,7 @@ paths:
           content:
             application/json:
               schema:
-                title: DirectDebit
+                title: directDebit
                 type: object
                 properties:
                   directDebitUuid:
@@ -3176,7 +3197,7 @@ paths:
                     description: The UUID for the direct debit payment
                     example: 42de0705-e3f1-44fa-8c41-79973eb80eb2
                   currency:
-                    title: Currency
+                    title: currency
                     type: object
                     properties:
                       code:
@@ -3367,7 +3388,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Mandates
+                title: mandates
                 type: object
                 properties:
                   total:
@@ -3378,7 +3399,7 @@ paths:
                   mandates:
                     type: array
                     items:
-                      title: Mandate
+                      title: mandate
                       type: object
                       properties:
                         mandateUuid:
@@ -3386,7 +3407,7 @@ paths:
                           description: The UUID for the  mandate
                           example: 28d627c3-1889-44c8-ae59-6f6b20239260
                         currency:
-                          title: Currency
+                          title: currency
                           type: object
                           properties:
                             code:
@@ -3585,7 +3606,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Mandate
+                title: mandate
                 type: object
                 properties:
                   mandateUuid:
@@ -3593,7 +3614,7 @@ paths:
                     description: The UUID for the  mandate
                     example: 28d627c3-1889-44c8-ae59-6f6b20239260
                   currency:
-                    title: Currency
+                    title: currency
                     type: object
                     properties:
                       code:
@@ -3844,7 +3865,7 @@ paths:
         content:
           application/json:
             schema:
-              title: NewBatch
+              title: newBatch
               type: object
               properties:
                 type:
@@ -3879,7 +3900,7 @@ paths:
           content:
             application/json:
               schema:
-                title: NewBatchResponse
+                title: newBatchResponse
                 type: object
                 properties:
                   batchUuid:
@@ -3957,7 +3978,7 @@ paths:
           content:
             application/json:
               schema:
-                title: BatchItems
+                title: batchItems
                 type: object
                 properties:
                   total:
@@ -3968,7 +3989,7 @@ paths:
                   items:
                     type: array
                     items:
-                      title: BatchItem
+                      title: batchItem
                       type: object
                       properties:
                         batchItemUuid:
@@ -4085,7 +4106,7 @@ paths:
         content:
           application/json:
             schema:
-              title: BatchItemInternalTransfer
+              title: batchItemInternalTransfer
               type: object
               properties:
                 icanFrom:
@@ -4119,7 +4140,7 @@ paths:
           content:
             application/json:
               schema:
-                title: NewBatchItemResponse
+                title: newBatchItemResponse
                 type: object
                 properties:
                   batchItemUuid:
@@ -4167,7 +4188,7 @@ paths:
           content:
             application/json:
               schema:
-                title: BatchItems
+                title: batchItems
                 type: object
                 properties:
                   total:
@@ -4178,7 +4199,7 @@ paths:
                   items:
                     type: array
                     items:
-                      title: BatchItem
+                      title: batchItem
                       type: object
                       properties:
                         batchItemUuid:
@@ -4306,7 +4327,7 @@ paths:
           application/json:
             schema:
               oneOf:
-                - title: BatchItemBankTransferMode2
+                - title: batchItemBankTransferMode2
                   type: object
                   properties:
                     icanFrom:
@@ -4359,7 +4380,7 @@ paths:
                       description: >-
                         The reference on the transaction - displayed on the
                         beneficiary bank statement.
-                - title: BatchItemBankTransferMode1
+                - title: batchItemBankTransferMode1
                   type: object
                   properties:
                     icanFrom:
@@ -4407,7 +4428,7 @@ paths:
           content:
             application/json:
               schema:
-                title: NewBatchItemResponse
+                title: newBatchItemResponse
                 type: object
                 properties:
                   batchItemUuid:
@@ -4455,7 +4476,7 @@ paths:
           content:
             application/json:
               schema:
-                title: BatchItems
+                title: batchItems
                 type: object
                 properties:
                   total:
@@ -4466,7 +4487,7 @@ paths:
                   items:
                     type: array
                     items:
-                      title: BatchItem
+                      title: batchItem
                       type: object
                       properties:
                         batchItemUuid:
@@ -4657,7 +4678,7 @@ paths:
           content:
             application/json:
               schema:
-                title: Batch
+                title: batch
                 type: object
                 properties:
                   batchUuid:
@@ -4789,7 +4810,7 @@ paths:
           content:
             application/json:
               schema:
-                title: BatchApprovers
+                title: batchApprovers
                 type: object
                 properties:
                   approvals:

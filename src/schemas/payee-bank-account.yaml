@@ -1,4 +1,4 @@
-title: Payee
+title: payee
 type: object
 properties:
   id:

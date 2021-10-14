@@ -1,4 +1,4 @@
-title: Country
+title: country
 type: object
 properties:
   code:

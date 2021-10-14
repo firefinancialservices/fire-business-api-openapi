@@ -1,4 +1,4 @@
-title: BankPayRefund
+title: bankPayRefund
 type: object
 properties:
   currency:

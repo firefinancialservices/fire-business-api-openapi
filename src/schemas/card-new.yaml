@@ -1,4 +1,4 @@
-title: NewCard
+title: newCard
 type: object
 properties:
   userId:

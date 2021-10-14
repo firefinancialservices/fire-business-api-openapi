@@ -1,4 +1,4 @@
-title: NewPaymentRequest
+title: newPaymentRequest
 type: object
 required:
   - "type"

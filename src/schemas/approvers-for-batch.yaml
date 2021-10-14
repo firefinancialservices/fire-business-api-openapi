@@ -1,4 +1,4 @@
-title: BatchApprovers
+title: batchApprovers
 type: object
 properties:
   approvals:

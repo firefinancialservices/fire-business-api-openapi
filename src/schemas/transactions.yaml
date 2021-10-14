@@ -1,4 +1,4 @@
-title: card-transactions
+title: cardTransactions
 type: object
 properties:
   total:

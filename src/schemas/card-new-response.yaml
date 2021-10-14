@@ -1,4 +1,4 @@
-title: NewCardResponse
+title: newCardResponse
 type: object
 properties:
   cardId: 

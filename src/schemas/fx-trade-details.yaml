@@ -1,4 +1,4 @@
-title: FxTrade
+title: fxTrade
 type: object
 properties: 
   buyCurrency:

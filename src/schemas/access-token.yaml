@@ -1,4 +1,4 @@
-title: AccessToken
+title: accessToken
 type: object
 properties:
   businessId:
