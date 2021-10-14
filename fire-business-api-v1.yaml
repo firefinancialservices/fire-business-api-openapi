@@ -4083,7 +4083,7 @@ paths:
                             endpoint.
   '/batches/{batchUuid}/internaltransfers':
     post:
-      summary: Add payment for an internal transfers
+      summary: Add an internal transfer payment to the batch
       description: >-
         Simply specify the source account, destination account, amount and a
         reference.
@@ -4293,7 +4293,7 @@ paths:
                             endpoint.
   '/batches/{batchUuid}/banktransfers':
     post:
-      summary: Add payment for an bank transfers
+      summary: Add a bank transfer payment to the batch.
       description: >
         There are two ways to process bank transfers - by Payee ID (**Mode 1**)
         or by Payee Account Details (**Mode 2**).
