@@ -2,7 +2,7 @@ title: RelatedCard
 type: object
 properties:
   cardId:
-    type: number
+    type: integer
     format: int64
   provider:
     type: string

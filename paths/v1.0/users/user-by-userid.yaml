@@ -9,7 +9,8 @@ get:
       required: true
       name: userId
       schema:
-        type: number
+        type: integer
+        format: int64
         description: Lists a specific User
         example: 14059
   responses:

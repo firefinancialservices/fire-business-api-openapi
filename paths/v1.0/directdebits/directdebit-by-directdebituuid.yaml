@@ -1,5 +1,5 @@
 get:
-  summary: Get the deails of a direct debit
+  summary: Get the details of a direct debit
   description: >
     Retrieve all details of a single direct debit collection/payment, whether successful or not.
     

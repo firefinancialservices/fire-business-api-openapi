@@ -15,14 +15,14 @@ get:
     - in: query
       name: limit
       schema:
-        type: number
+        type: integer
         format: int64
         description: The number of records to return. Defaults to 10 - max is 200.
       required: true
     - in: query
       name: offset
       schema:
-        type: number
+        type: integer
         format: int64
         description: The page offset. Defaults to 0. This is the record number that the returned list will start at. E.g. offset = 40 and limit = 20 will return records 40 to 59.
       required: true     

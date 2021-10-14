@@ -2,7 +2,7 @@ title: NewCard
 type: object
 properties:
   userId:
-    type: number
+    type: integer
     format: int64
     example: 3245
   cardPin:

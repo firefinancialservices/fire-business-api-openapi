@@ -15,14 +15,14 @@ get:
     - in: query
       name: limit
       schema:
-        type: number
+        type: integer
         format: int64
         description: The number of records to return
       required: false
     - in: query
       name: offset
       schema:
-        type: number
+        type: integer
         format: int64
         description: The page of records to return 
       required: false    
