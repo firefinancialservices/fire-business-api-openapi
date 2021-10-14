@@ -1,4 +1,4 @@
-title: RelatedPartyCardPayment
+title: relatedPartyCardPayment
 type: object
 properties:
   type:

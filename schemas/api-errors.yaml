@@ -1,4 +1,4 @@
-title: ApiErrors
+title: apiErrors
 type: object
 properties:
     errors:

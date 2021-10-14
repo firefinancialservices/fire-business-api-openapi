@@ -1,4 +1,4 @@
-title: RelatedCard
+title: relatedCard
 type: object
 properties:
   cardId:

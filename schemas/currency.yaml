@@ -1,4 +1,4 @@
-title: Currency
+title: currency
 type: object
 properties:
   code:

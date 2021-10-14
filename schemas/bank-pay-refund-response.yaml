@@ -1,4 +1,4 @@
-title: BankPayRefundResponse
+title: bankPayRefundResponse
 type: object
 properties:
   status:

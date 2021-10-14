@@ -1,4 +1,4 @@
-title: NewBatchResponse
+title: newBatchResponse
 type: object
 properties:
   batchUuid: 

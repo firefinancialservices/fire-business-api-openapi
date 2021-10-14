@@ -1,4 +1,4 @@
-title: RelatedParty
+title: relatedParty
 oneOf:
   - $ref: "./related-party-fire-account.yaml"
   - $ref: "./related-party-external-account.yaml"  

@@ -1,4 +1,4 @@
-title: RelatedPartyExternalAccount
+title: relatedPartyExternalAccount
 type: object
 properties:
   type:

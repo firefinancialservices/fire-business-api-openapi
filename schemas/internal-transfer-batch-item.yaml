@@ -1,4 +1,4 @@
-title: BatchItemInternalTransfer
+title: batchItemInternalTransfer
 type: object
 properties:
   icanFrom:

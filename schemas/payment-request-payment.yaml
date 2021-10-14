@@ -1,4 +1,4 @@
-title: PaymentRequestPayment
+title: paymentRequestPayment
 type: object
 properties:
   type:

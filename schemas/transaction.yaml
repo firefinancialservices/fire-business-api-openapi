@@ -1,4 +1,4 @@
-title: Transaction
+title: transaction
 type: object
 properties: 
   txnId:

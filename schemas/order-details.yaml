@@ -1,4 +1,4 @@
-title: OrderDetails
+title: orderDetails
 type: object
 properties:
   merchantNumber:

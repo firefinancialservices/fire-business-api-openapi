@@ -1,4 +1,4 @@
-title: User
+title: user
 type: object
 properties:
   id:

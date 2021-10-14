@@ -1,4 +1,4 @@
-title: RelatedPartyPayee
+title: relatedPartyPayee
 type: object
 properties:
   type:

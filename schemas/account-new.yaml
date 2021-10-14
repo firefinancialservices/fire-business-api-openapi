@@ -1,4 +1,4 @@
-title: NewAccount
+title: newAccount
 type: object
 properties:
     accountName:

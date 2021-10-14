@@ -1,4 +1,4 @@
-title: DirectDebit
+title: directDebit
 type: object
 properties:
   directDebitUuid:
