@@ -198,7 +198,7 @@ paths:
                           type: string
                           enum:
                             - LIVE
-                            - MIGRATED
+                            - BREXIT_MIGRATED
                           description: >-
                             Live accounts can be used as normal. Migrated
                             accounts were used before Brexit and are read-only.
@@ -324,7 +324,7 @@ paths:
                     type: string
                     enum:
                       - LIVE
-                      - MIGRATED
+                      - BREXIT_MIGRATED
                     description: >-
                       Live accounts can be used as normal. Migrated accounts
                       were used before Brexit and are read-only.
@@ -425,7 +425,7 @@ paths:
                     type: string
                     enum:
                       - LIVE
-                      - MIGRATED
+                      - BREXIT_MIGRATED
                     description: >-
                       Live accounts can be used as normal. Migrated accounts
                       were used before Brexit and are read-only.
@@ -478,14 +478,14 @@ paths:
         - in: query
           name: limit
           schema:
-            type: number
+            type: integer
             format: int64
             description: The number of records to return. Defaults to 10 - max is 200.
           required: true
         - in: query
           name: offset
           schema:
-            type: number
+            type: integer
             format: int64
             description: >-
               The page offset. Defaults to 0. This is the record number that the
@@ -608,7 +608,7 @@ paths:
                           type: object
                           properties:
                             cardId:
-                              type: number
+                              type: integer
                               format: int64
                             provider:
                               type: string
@@ -799,7 +799,7 @@ paths:
                                       type: string
                                       example: '177449'
                                     billAmt:
-                                      type: number
+                                      type: integer
                                       format: int64
                                       example: -1000
                                     billCcy:
@@ -841,7 +841,7 @@ paths:
                                       type: string
                                       example: '976307363'
                                     txnAmt4d:
-                                      type: number
+                                      type: integer
                                       format: int64
                                       example: 1000
                                     txnCcy:
@@ -911,14 +911,14 @@ paths:
         - in: query
           name: dateRangeFrom
           schema:
-            type: number
+            type: integer
             format: int64
             description: A millisecond epoch time specifying the date range start date.
           required: true
         - in: query
           name: dateRangeTo
           schema:
-            type: number
+            type: integer
             format: int64
             description: A millisecond epoch time specifying the date range end date.
           required: true
@@ -941,7 +941,7 @@ paths:
         - in: query
           name: offset
           schema:
-            type: number
+            type: integer
             format: int64
             description: >-
               The page offset. Defaults to 0. This is the record number that the
@@ -1064,7 +1064,7 @@ paths:
                           type: object
                           properties:
                             cardId:
-                              type: number
+                              type: integer
                               format: int64
                             provider:
                               type: string
@@ -1255,7 +1255,7 @@ paths:
                                       type: string
                                       example: '177449'
                                     billAmt:
-                                      type: number
+                                      type: integer
                                       format: int64
                                       example: -1000
                                     billCcy:
@@ -1297,7 +1297,7 @@ paths:
                                       type: string
                                       example: '976307363'
                                     txnAmt4d:
-                                      type: number
+                                      type: integer
                                       format: int64
                                       example: 1000
                                     txnCcy:
@@ -1452,7 +1452,7 @@ paths:
               type: object
               properties:
                 userId:
-                  type: number
+                  type: integer
                   format: int64
                   example: 3245
                 cardPin:
@@ -1519,14 +1519,14 @@ paths:
         - in: query
           name: limit
           schema:
-            type: number
+            type: integer
             format: int64
             description: The number of records to return
           required: false
         - in: query
           name: offset
           schema:
-            type: number
+            type: integer
             format: int64
             description: The page of records to return
           required: false
@@ -1646,7 +1646,7 @@ paths:
                             type: object
                             properties:
                               cardId:
-                                type: number
+                                type: integer
                                 format: int64
                               provider:
                                 type: string
@@ -1837,7 +1837,7 @@ paths:
                                         type: string
                                         example: '177449'
                                       billAmt:
-                                        type: number
+                                        type: integer
                                         format: int64
                                         example: -1000
                                       billCcy:
@@ -1879,7 +1879,7 @@ paths:
                                         type: string
                                         example: '976307363'
                                       txnAmt4d:
-                                        type: number
+                                        type: integer
                                         format: int64
                                         example: 1000
                                       txnCcy:
@@ -2630,7 +2630,8 @@ paths:
           required: true
           name: userId
           schema:
-            type: number
+            type: integer
+            format: int64
             description: Lists a specific User
             example: 14059
       responses:
@@ -3143,7 +3144,7 @@ paths:
                             since the epoch (1970).
   '/directdebits/{directDebitUuid}':
     get:
-      summary: Get the deails of a direct debit
+      summary: Get the details of a direct debit
       description: >
         Retrieve all details of a single direct debit collection/payment,
         whether successful or not.
@@ -4656,40 +4657,103 @@ paths:
           content:
             application/json:
               schema:
-                title: BatchItem
+                title: Batch
                 type: object
                 properties:
-                  batchItemUuid:
+                  batchUuid:
                     type: string
                     example: F2AF3F2B-4406-4199-B249-B354F2CC6019
                     description: A UUID for this item.
+                  type:
+                    type: string
+                    enum:
+                      - INTERNAL_TRANSFER
+                      - BANK_TRANSFER
+                      - NEW_PAYEE
+                    description: The type of the batch - can be one of the listed 3
                   status:
                     type: string
                     enum:
-                      - SUBMITTED
-                      - REMOVED
-                      - SUCCEEDED
-                      - FAILED
-                    example: SUCCEEDED
-                    description: status of the batch if internal trasnfer
-                  result:
-                    type: object
-                    description: The outcome of the attempted transaction.
-                    properties:
-                      code:
-                        type: integer
-                        format: int64
-                        example: 500001
-                      message:
-                        type: string
-                        example: SUCCESS
-                  dateCreated:
+                      - PENDING_APPROVAL
+                      - REJECTED
+                      - COMPLETE
+                      - OPEN
+                      - CANCELLED
+                      - PENDING_PARENT_BATCH_APPROVAL
+                      - READY_FOR_PROCESSING
+                      - PROCESSING
+                    example: COMPLETE
+                    description: status of the batch object
+                  sourceName:
                     type: string
-                    format: date-time
-                    example: '2021-04-04T10:48:53.540Z'
                     description: >-
-                      The datestamp the batch was created - ISO format - e.g.
-                      2018-04-04T00:53:21.910Z
+                      A string describing where the batch originated - for
+                      instance the name of the API token that was used, or
+                      showing that the batch was automatically created by
+                      fire.com (in the case of a new payee batch).
+                    example: Payment API
+                  batchName:
+                    type: string
+                    example: January 2018 Payroll
+                    description: An optional name you give to the batch at creation time
+                  jobNumber:
+                    type: string
+                    example: 2018-01-PR
+                    description: >-
+                      An optional job number you can give to the batch to help
+                      link it to your own system.
+                  callBackUrl:
+                    type: string
+                    example: 'https://my.webserver.com/cb/payroll'
+                    description: >-
+                      An optional POST URL that all events for this batch will
+                      be sent to.
+                  currency:
+                    type: string
+                    description: >-
+                      All payments in the batch must be the same currency -
+                      either EUR or GBP
+                    example: EUR
+                  numberOfItemsSubmitted:
+                    type: integer
+                    format: int64
+                    description: A count of the number of items in the batch
+                    example: 1
+                  valueOfItemsSubmitted:
+                    type: integer
+                    format: int64
+                    description: >-
+                      A sum of the value of items in the batch. Specified in
+                      pence or cent.
+                    example: 10000
+                  numberOfItemsFailed:
+                    type: integer
+                    format: int64
+                    description: >-
+                      Once processed, a count of the number of items that didn’t
+                      process successfully.
+                    example: 0
+                  valueOfItemsFailed:
+                    type: integer
+                    format: int64
+                    description: >-
+                      Once processed, a sum of the value of items that didn’t
+                      process successfully. Specified in pence or cent.
+                    example: 0
+                  numberOfItemsSucceeded:
+                    type: integer
+                    format: int64
+                    description: >-
+                      Once processed, a count of the number of items that
+                      processed successfully.
+                    example: 1
+                  valueOfItemsSucceeded:
+                    type: integer
+                    format: int64
+                    description: >-
+                      Once processed, a sum of the value of items that processed
+                      successfully. Specified in pence or cent.
+                    example: 10000
                   lastUpdated:
                     type: string
                     format: date-time
@@ -4697,57 +4761,13 @@ paths:
                     description: >-
                       The datestamp of the last action on this batch - ISO
                       format - e.g. 2018-04-04T10:48:53.540Z
-                  feeAmount:
-                    type: integer
-                    format: int64
-                    example: 0
-                    description: >-
-                      The fee charged by fire.com for the payment. In pence or
-                      cent.
-                  taxAmount:
-                    type: integer
-                    format: int64
-                    example: 0
-                    description: >-
-                      Any taxes/duty collected by fire.com for this payments
-                      (e.g. stamp duty etc). In pence or cent.
-                  amountAfterCharges:
-                    type: integer
-                    format: int64
-                    example: 10000
-                    description: >-
-                      The amount of the transfer after fees and taxes. in pence
-                      or cent.
-                  icanFrom:
-                    type: integer
-                    format: int64
-                    example: 2150
-                    description: The Fire account ID of the source account.
-                  icanTo:
-                    type: integer
-                    format: int64
-                    example: 1002
-                    description: >-
-                      The Fire account ID for the fire.com account the funds are
-                      sent to.
-                  amount:
-                    type: integer
-                    format: int64
-                    example: 10000
-                    description: The amount of funds to send. In cent or pence
-                  ref:
+                  dateCreated:
                     type: string
-                    example: Testing a transfer via batch
-                    description: The reference on the transaction.
-                  refId:
-                    type: integer
-                    format: int64
-                    example: 123782
+                    format: date-time
+                    example: '2021-04-04T10:48:53.540Z'
                     description: >-
-                      The ID of the resulting payment in your account. Can be
-                      used to retrieve the transaction using the
-                      https://api.fire.com/business/v1/accounts/{accountId}/transactions/{refId}
-                      endpoint.
+                      The datestamp the batch was created - ISO format - e.g.
+                      2018-04-04T00:53:21.910Z
   '/batches/{batchUuid}/approvals':
     get:
       summary: List Approvers for a Batch

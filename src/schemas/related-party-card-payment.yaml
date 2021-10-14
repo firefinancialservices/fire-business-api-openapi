@@ -18,7 +18,7 @@ properties:
         type: string
         example: "177449"
       billAmt:
-        type: number
+        type: integer
         format: int64
         example: -1000
       billCcy:
@@ -60,7 +60,7 @@ properties:
         type: string
         example: "976307363"
       txnAmt4d:
-        type: number
+        type: integer
         format: int64
         example: 1000
       txnCcy:

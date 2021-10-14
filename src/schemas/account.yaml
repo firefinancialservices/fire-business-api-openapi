@@ -26,7 +26,7 @@ properties:
     type: string
     enum:
       - LIVE
-      - MIGRATED
+      - BREXIT_MIGRATED
     description: Live accounts can be used as normal. Migrated accounts were used before Brexit and are read-only.
   cbic:
     type: string
