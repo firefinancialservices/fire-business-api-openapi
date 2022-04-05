@@ -1,7 +1,0 @@
-title: NewBatchResponse
-type: object
-properties:
-  batchUuid: 
-    type: string
-    example: F2AF3F2B-4406-4199-B249-B354F2CC6019
-    description: A UUID for this item.

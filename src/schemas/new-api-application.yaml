@@ -1,0 +1,34 @@
+title: newApiApplication
+type: object
+properties:
+  ican:
+    type: integer
+    format: int64
+    description: The ICAN of one of your Fire accounts. Restrict this API Application to a certan account.
+  enabled:
+    type: boolean
+    example: true
+    description: Whether or not this API Application can be used
+  expiry:
+    type: string
+    format: date-time
+    example: "2019-08-22T07:48:56.460Z"
+    description: The date that this API Application can no longer be used.
+  applicationName:
+    type: string
+    description: A name for the API Application to help you identify it
+    example: Batch Processing API
+  numberOfPaymentApprovalsRequired:
+    type: integer
+    description: Number of approvals required to process a payment in a batch
+    example: 1
+  numberOfPayeeApprovalsRequired:
+    type: integer
+    description: Number of approvals required to create a payee in a batch
+    example: 1
+  permissions:
+    type: array
+    items:
+      type: string
+    description: The list of permissions required
+    example: [ "PERM_BUSINESS_POST_PAYMENT_REQUEST","PERM_BUSINESS_GET_ASPSPS" ]

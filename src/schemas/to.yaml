@@ -1,0 +1,13 @@
+title: to
+type: object
+properties:
+  type:
+    type: string
+    enum:
+      - FIRE_ACCOUNT
+      - WITHDRAWAL_ACCOUNT
+    example: "FIRE_ACCOUNT"
+    description: the type of destination account.
+  account:
+    type: object
+    $ref: ./related-party-fire-account.yaml

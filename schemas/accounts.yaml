@@ -1,8 +1,0 @@
-title: Accounts
-type: object
-properties:
-  accounts:
-    type: array
-    items:
-      $ref: './account.yaml'
-

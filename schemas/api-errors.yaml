@@ -1,7 +1,0 @@
-title: ApiErrors
-type: object
-properties:
-    errors:
-      type: array
-      items:
-        $ref: ./api-error.yaml

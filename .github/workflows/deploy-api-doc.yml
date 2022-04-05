@@ -16,4 +16,4 @@ jobs:
       with:
         doc: ${{ secrets.DOC_ID }}
         token: ${{ secrets.DOC_TOKEN }}
-        file: dist/fire-business-api-v1.yaml
+        file: fire-business-api-v1.yaml

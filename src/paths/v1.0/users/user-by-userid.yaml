@@ -1,0 +1,22 @@
+get:
+  summary: Returns details of a specific fire.com user.
+  description: You can retrieve the details of a specific fire.com user
+  tags:
+    - Users
+  operationId: getUser
+  parameters:
+    - in: path
+      required: true
+      name: userId
+      schema:
+        type: integer
+        format: int64
+        description: Lists a specific User
+        example: 14059
+  responses:
+    '200':
+      description: Unique information about a User.
+      content:
+        application/json:
+          schema:
+            $ref: ../../../schemas/user.yaml

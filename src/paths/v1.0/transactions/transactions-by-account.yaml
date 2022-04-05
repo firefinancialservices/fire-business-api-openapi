@@ -1,0 +1,35 @@
+get:
+  summary: List transactions for an account
+  description: Retrieve a list of transactions against an account.
+  tags:
+    - Transactions
+  operationId: getTransactionsById
+  parameters:
+    - in: path
+      name: ican
+      schema:
+        type: integer
+        format: int64
+        description: The ican of the account to retrieve
+      required: true
+    - in: query
+      name: limit
+      schema:
+        type: integer
+        format: int64
+        description: The number of records to return. Defaults to 10 - max is 200.
+      required: true
+    - in: query
+      name: offset
+      schema:
+        type: integer
+        format: int64
+        description: The page offset. Defaults to 0. This is the record number that the returned list will start at. E.g. offset = 40 and limit = 20 will return records 40 to 59.
+      required: true     
+  responses:
+    '200':
+      description: An array of transaction objects for the account with a count (`total`).
+      content:
+        application/json:
+          schema:
+            $ref: '../../../schemas/transactions.yaml'

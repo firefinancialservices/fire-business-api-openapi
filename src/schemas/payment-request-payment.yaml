@@ -1,0 +1,124 @@
+title: paymentRequestPayment
+type: object
+properties:
+  type:
+    type: string
+    enum:
+      - OTHER
+    description: The type of Fire Open Payment that was created
+  paymentRequestCode:
+    type: string
+    description: The code that was returned when you created the payment request.
+    example: "1234abcd"
+    maxLength: 8
+    minLength: 8
+  transactionType:
+    type: string
+    enum:
+      - REFUND_REQUEST
+      - PAYMENT
+    description: The type of payment request payment
+  endToEndId:
+    type: string
+    example: FIRE1234567890
+    description: The unique Open Banking payment ID assigned to this payment.
+  paymentUuid:
+    type: string
+    description: A unique id for the transaction.
+    example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+  relatedPaymentUuid:
+    type: string
+    description: The original payment that this payment is linked to
+    example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+  status:
+    type: string
+    enum:
+      - AWAITING_AUTHORISATION
+      - AUTHORISED
+      - AWAITING_MULTI_AUTHORISATION
+      - NOT_AUTHORISED
+      - PAID
+      - REJECTED
+      - ACCEPTED
+      - RECEIVED
+    description: The status of the transaction
+  reason:
+    type: string
+    example: Gym Closed for repairs.
+    description: The reason for the refund.
+  amountBeforeCharges:
+    type: integer
+    format: int64
+    example: 1000
+    description: The requested amount (before Fire fees and taxes). Note the last two digits represent pennies/cents, (e.g., £1.00 = 100).
+  feeAmount:
+    type: integer
+    format: int64
+    example: 1000
+    description: The fee for the payment
+  amountAfterCharges:
+    type: integer
+    format: int64
+    example: 1000
+    description: The amount after Fire fees and taxes. Note the last two digits represent pennies/cents, (e.g., £1.00 = 100).
+  currency:
+    type: object
+    $ref: ./currency.yaml
+  myRef:
+    type: string
+    example: Fees
+    description: An internal description of the request.
+  description:
+    type: string
+    example: Gym Fees Oct 2020
+    description: A public facing description of the request. This will be shown to the user when they tap or scan the request.
+  returnUrl:
+    type: string
+    example: https://example.com/callback
+    description: The merchant return URL where the customer will be re-directed to with the result of the transaction.
+  webhookUrl:
+    type: string
+    example: https://example.com/webhook
+    description: A URL to be called in the background with the details of the payment after the payment is complete  
+  relatedAccountTxnId:
+    type: integer
+    format: int64
+    example: 41234
+    description: The ID of the related transaction in your fire account.
+  relatedPayeeId:
+    type: integer
+    format: int64
+    example: 41234
+    description: The ID of the payee making the payment.
+  dateFundsReceived:
+    type: string
+    format: date-time
+    example: "2020-10-22T07:48:56.460Z"
+    description: The date the funds were received into your fire account.
+  dateCreated:
+    type: string
+    format: date-time
+    example: "2020-10-22T07:48:56.460Z"
+    description: This is the date the payment was initiated.
+  lastUpdated:
+    type: string
+    format: date-time
+    example: "2019-08-22T07:48:56.460Z"
+    description: The date payment was last updated.
+  orderDetails:
+    type: object
+    $ref: ./order-details.yaml
+  to:
+    type: object
+    $ref: ./to.yaml
+  bank:
+    type: object
+    $ref: ./aspsp.yaml
+  domesticPaymentId:
+    type: string
+    description: The ID assigned by the ASPSP to this payment.
+    example: "sdp-1-66ebd30c-c0e1-4a54-9865-f2a7bfedabcf"
+  allowFopReceipt:
+    type: boolean
+    example: true
+    description: whether or not a receipt option was offered to the payer.

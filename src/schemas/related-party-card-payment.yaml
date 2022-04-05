@@ -1,0 +1,96 @@
+title: relatedPartyCardPayment
+type: object
+properties:
+  type:
+    type: string
+    enum:
+      - CARD_MERCHANT
+      - CARD_ATM
+  cardMerchant:
+    type: object
+    properties:
+      acquirerIdDe32:
+        type: string
+        example: "06011319"
+      additionalAmtDe54:
+        type: string
+      authCodeDe38:
+        type: string
+        example: "177449"
+      billAmt:
+        type: integer
+        format: int64
+        example: -1000
+      billCcy:
+        type: string
+        example: "978"
+      expiryDate:
+        type: string
+      mccCode:
+        type: string
+        example: "5521"
+      merchIdDe42:
+        type: string
+        example: "013152429"
+      merchNameDe43:
+        type: string
+        example: "ABC Coffee Shop"
+      posDataDe61:
+        type: string
+        example: "000001000030037299999"
+      posTermnlDe41:
+        type: string
+        example: "80266721"
+      posDataDe22:
+        type: string
+        example: "051"
+      procCode:
+        type: string
+        example: "000000"
+      respCodeDe39:
+        type: string
+        example: "00"
+      retRefNoDe37:
+        type: string
+        example: "010900006720"
+      statusCode:
+        type: string
+        example: "00"
+      token:
+        type: string
+        example: "976307363"
+      txnAmt4d:
+        type: integer
+        format: int64
+        example: 1000
+      txnCcy:
+        type: string
+        example: "978"
+      txnCtry:
+        type: string
+        example: "IRL"
+      txnDesc:
+        type: string
+        example: "ABC Coffee Shop"
+      txnStatCode:
+        type: string
+        example: "A"
+      txnType:
+        type: string
+        example: "A"
+      additionalDataDe48:
+        type: string
+        example: "010X610500000"
+      authorisedByGps:
+        type: string
+        example: "N"
+      avsResult:
+        type: string
+        example: "N"
+      mtId:
+        type: string
+        example: "0100"
+      recordDataDe120:
+        type: string
+      additionalDataDe124:
+        type: string

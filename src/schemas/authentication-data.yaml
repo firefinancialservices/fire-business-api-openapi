@@ -1,0 +1,25 @@
+title: authentication
+type: object
+properties:
+  clientId:
+    type: string
+    description: The Client ID for this API Application
+    example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+  refreshToken:
+    type: string
+    description: The Refresh Token for this API Application
+    example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+  nonce:
+    type: integer
+    format: int64
+    description: A random non-repeating number used as a salt for the `clientSecret` below. The simplest nonce is a unix time.
+    example: 728345638475
+  grantType:
+    type: string
+    enum:
+      - AccessToken
+    description: Always `AccessToken`. (This will change to `refresh_token` in a future release.)
+  clientSecret:
+    type: string
+    description: The SHA256 hash of the nonce above and the app’s Client Key. The Client Key will only be shown to you when you create the app, so don’t forget to save it somewhere safe. SECRET=( `/bin/echo -n $NONCE$CLIENT_KEY | sha256sum` ).
+    example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"

@@ -1,0 +1,29 @@
+title: aspsp
+type: object
+properties:
+  aspspUuid:
+    type: string
+    description: The UUID associated with the ASPSP / bank.
+    example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+  alias:
+    type: string
+    example: Demo Bank
+    description: The name of the ASPSP / bank.
+  logoUrl:
+    type: string
+    example: "https://assets.fire.com/pisp/demo.svg"
+    description: A link to the ASPSP / bank's logo in SVG format.
+  country:
+    $ref: ./country.yaml
+  currency:
+    $ref: ./currency.yaml
+  dateCreated:
+    type: string
+    format: date-time
+    example: "2019-08-22T07:48:56.460Z"
+    description: The date the ASPSP / bank was created.
+  lastUpdated:
+    type: string
+    format: date-time
+    example: "2019-08-22T07:48:56.460Z"
+    description: The date the ASPSP / bank was last updated.

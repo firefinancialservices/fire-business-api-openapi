@@ -1,0 +1,32 @@
+title: batchItemBankTransferMode1
+type: object
+properties:
+  icanFrom:
+    type: integer
+    format: int64
+    example: 2001
+    description: The Fire account ID for the fire.com account the funds are taken from.
+  payeeId:
+    type: integer
+    format: int64
+    example: 15002
+    description: The ID of the existing or automatically created payee
+  payeeType: 
+    type: string
+    enum:
+    - PAYEE_ID 
+    example: PAYEE_ID
+    description: Use PAYEE_ID if you are paying existing approved payees (Mode 1). 
+  amount:
+    type: integer
+    format: int64
+    example: 500
+    description: The value of the transaction
+  myRef:
+    type: string
+    example: Payment to John Smith for Consultancy in device.
+    description: The reference on the transaction for your records - not shown to the beneficiary.
+  yourRef:
+    type: string
+    example: ACME LTD - INV 23434
+    description: The reference on the transaction - displayed on the beneficiary bank statement.

@@ -1,0 +1,25 @@
+title: newBatch
+type: object
+properties:
+  type: 
+    type: string
+    enum:
+      - BANK_TRANSFER
+      - INTERNAL_TRANSFER
+    description: The type of the batch - can be one of the listed 3
+  currency:
+    type: string
+    example: EUR
+    description: GBP or EUR
+  batchName:
+    type: string
+    example: January 2018 Payroll
+    description: An optional name you give to the batch at creation time. 
+  jobNumber:
+    type: string
+    example: 2022-01-PR
+    description: An optional job number you can give to the batch to help link it to your own system.
+  callBackUrl:
+    type: string 
+    example: https://my.webserver.com/cb/payroll
+    description: An optional POST URL that all events for this batch will be sent to.

@@ -1,0 +1,67 @@
+get:
+  summary: Filtered list of transactions for an account
+  description: >
+    Retrieve a filtered list of transactions against an account.
+
+    * `dateRangeFrom` - A millisecond epoch time specifying the date range start date.
+
+    * `dateRangeTo` - A millisecond epoch time specifying the date range end date.
+
+    * `searchKeyword` - Search term to filter by from the reference field (`myRef`).
+
+    * `transactionTypes` - One or more of the transaction types above. This field can be repeated multiple times to allow for multiple transaction types.
+
+    * `offset` - The page offset. Defaults to 0. This is the record number that the returned list will start at. E.g. offset = 40 and limit = 20 will return records 40 to 59.
+  tags:
+    - Transactions
+  operationId: getTransactionsFilteredById
+  parameters:
+    - in: path
+      name: ican
+      schema:
+        type: integer
+        format: int64
+        description: The ican of the account to retrieve
+      required: true
+    - in: query
+      name: dateRangeFrom
+      schema:
+        type: integer
+        format: int64
+        description: A millisecond epoch time specifying the date range start date.
+      required: true
+    - in: query
+      name: dateRangeTo
+      schema:
+        type: integer
+        format: int64
+        description: A millisecond epoch time specifying the date range end date.
+      required: true     
+    - in: query
+      name: searchKeyword
+      schema:
+        type: string
+        description: Search term to filter by from the reference field (`myRef`).
+      required: true   
+    - in: query
+      name: transactionTypes
+      schema:
+        type: array
+        items:
+          type: string
+        description: One or more of the transaction types above. This field can be repeated multiple times to allow for multiple transaction types.
+      required: true
+    - in: query
+      name: offset
+      schema:
+        type: integer
+        format: int64
+        description: The page offset. Defaults to 0. This is the record number that the returned list will start at. E.g. offset = 40 and limit = 20 will return records 40 to 59.
+      required: true              
+  responses:
+    '200':
+      description: An array of transaction objects for the account with a count (`total`) filtered by the specified query parameter.
+      content:
+        application/json:
+          schema:
+            $ref: ../../../schemas/transactions.yaml

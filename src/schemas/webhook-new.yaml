@@ -1,0 +1,22 @@
+title: newWebhook
+type: object
+properties:
+  webhookUrl: 
+    type: string
+    format: uri
+    example: https://example.com/callback
+  webhookEvents: 
+    type: array
+    items:
+      type: string
+      enum: 
+        - LODGEMENT_RECEIVED
+        - PAYMENT_RECEIVED
+        - PAYMENT_REQUEST_PAYMENT_RECEIVED
+        - ACCOUNT_CREATED
+        - CARD_CREATED
+        - CARD_AUTHORISATION
+        - CARD_SETTLEMENT
+        - PAYMENT_REQUEST_PAYMENT_AUTHORISED
+        - PIS_LODGEMENT_RECEIVE
+      example: CARD_AUTHORISATION

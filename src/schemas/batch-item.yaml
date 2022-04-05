@@ -1,0 +1,76 @@
+title: batchItem
+type: object
+properties:
+  batchItemUuid: 
+    type: string
+    example: F2AF3F2B-4406-4199-B249-B354F2CC6019
+    description: A UUID for this item.            
+  status:
+    type: string
+    enum:
+    - SUBMITTED
+    - REMOVED
+    - SUCCEEDED
+    - FAILED
+    example: SUCCEEDED
+    description: status of the batch if internal trasnfer   
+  result:
+    type: object
+    description: The outcome of the attempted transaction.
+    properties:
+      code:
+        type: integer
+        format: int64
+        example: 500001
+      message:
+        type: string
+        example: SUCCESS    
+  dateCreated:
+    type: string
+    format: date-time
+    example: "2021-04-04T10:48:53.540Z"
+    description: The datestamp the batch was created - ISO format - e.g. 2018-04-04T00:53:21.910Z              
+  lastUpdated:
+    type: string
+    format: date-time
+    example: "2021-04-04T10:48:53.540Z"
+    description: The datestamp of the last action on this batch - ISO format - e.g. 2018-04-04T10:48:53.540Z
+  feeAmount:
+    type: integer 
+    format: int64
+    example: 0
+    description: The fee charged by fire.com for the payment. In pence or cent.
+  taxAmount:
+    type: integer
+    format: int64
+    example: 0
+    description: Any taxes/duty collected by fire.com for this payments (e.g. stamp duty etc). In pence or cent.
+  amountAfterCharges:
+    type: integer
+    format: int64
+    example: 10000
+    description: The amount of the transfer after fees and taxes. in pence or cent.
+  icanFrom:
+    type: integer
+    format: int64
+    example: 2150
+    description: The Fire account ID of the source account.
+  icanTo:
+    type: integer
+    format: int64
+    example: 1002
+    description: The Fire account ID for the fire.com account the funds are sent to.
+  amount:
+    type: integer
+    format: int64
+    example: 10000
+    description: The amount of funds to send. In cent or pence
+  ref:
+    type: string
+    example: Testing a transfer via batch
+    description: The reference on the transaction.
+  refId:
+    type: integer
+    format: int64
+    example: 123782
+    description: The ID of the resulting payment in your account. Can be used to retrieve the transaction using the https://api.fire.com/business/v1/accounts/{accountId}/transactions/{refId} endpoint.
