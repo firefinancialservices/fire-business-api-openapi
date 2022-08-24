@@ -4,7 +4,7 @@ get:
     Returns all your payee bank accounts. 
     
     
-    Ordered by date added descending. 
+    Ordered by payee name ascending. 
     
     
     Can be paginated.
@@ -17,4 +17,4 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../../schemas/payee-bank-account.yaml
+            $ref: ../../../schemas/payee-bank-accounts.yaml

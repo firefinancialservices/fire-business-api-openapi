@@ -1,0 +1,12 @@
+title: payeeBankAccounts
+type: object
+properties:
+  total:
+    type: integer
+    example: 1
+    description: The total number of payees in the list.
+  fundingSources:
+    type: array
+    items:
+      $ref: ./payee-bank-account.yaml
+  
