@@ -61,4 +61,4 @@ properties:
     type: string
     format: date-time
     example: "2019-08-22T07:48:56.460Z"
-    description: The date the payee was created. Milliseconds since the epoch (1970).
+    description: The date the payee was created. ISO Date Time.
