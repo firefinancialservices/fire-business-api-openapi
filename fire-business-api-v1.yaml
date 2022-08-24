@@ -3089,13 +3089,13 @@ paths:
                         nsc:
                           type: string
                           description: The Sort Code of the account if currency is GBP.
-                          example: 998822
+                          example: '998822'
                         accountNumber:
                           type: string
                           description: >-
                             The Account Number of the account if currency is
                             GBP.
-                          example: 12345678
+                          example: '12345678'
                         createdBy:
                           type: string
                           enum:
