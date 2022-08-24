@@ -41,11 +41,11 @@ properties:
   nsc: 
     type: string
     description: The Sort Code of the account if currency is GBP.
-    example: null
+    example: 998822
   accountNumber:
     type: string
     description: The Account Number of the account if currency is GBP.
-    example: null
+    example: 12345678
   createdBy:
     type: string
     enum:
