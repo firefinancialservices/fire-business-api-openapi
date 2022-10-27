@@ -9,10 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: readmeio/github-readme-sync@v2
+      - uses: readmeio/rdme@7.5.0
         with:
-          readme-oas-key: ${{ secrets.README_OAS_KEY }}
-           
-          # OPTIONAL CONFIG, use if necessary
-          oas-file-path: './fire-business-api-v1.yaml'
-          # api-version: 'v1.0.0'
+          rdme: openapi ./fire-business-api-v1.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.README_API_DEFINITION_ID }}
+      
