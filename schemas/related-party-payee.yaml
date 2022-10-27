@@ -19,11 +19,11 @@ properties:
         description: The Alias name of the Withdrawl account in reference 
       nsc:
         type: string
-        example: 991199
+        example: "991199"
         description: (Conditional) Provide this field if using Mode 2 and the payee account is in GBP.
       accountNumber: 
         type: string
-        example: 00000000
+        example: "00000000"
         description: The account number of the Withdrawl account in reference 
       bic:
         type: string

@@ -19,7 +19,7 @@ properties:
     type: string
     example: 2022-01-PR
     description: An optional job number you can give to the batch to help link it to your own system.
-  callBackUrl:
+  callbackUrl:
     type: string 
     example: https://my.webserver.com/cb/payroll
     description: An optional POST URL that all events for this batch will be sent to.

@@ -11,7 +11,7 @@ properties:
     properties:
       acquirerIdDe32:
         type: string
-        example: "06011319"
+        example: '06011329'
       additionalAmtDe54:
         type: string
       authCodeDe38:
@@ -31,13 +31,13 @@ properties:
         example: "5521"
       merchIdDe42:
         type: string
-        example: "013152429"
+        example: '013152429'
       merchNameDe43:
         type: string
         example: "ABC Coffee Shop"
       posDataDe61:
         type: string
-        example: "000001000030037299999"
+        example: '000001000030037299999'
       posTermnlDe41:
         type: string
         example: "80266721"
@@ -52,7 +52,7 @@ properties:
         example: "00"
       retRefNoDe37:
         type: string
-        example: "010900006720"
+        example: '010900006720'
       statusCode:
         type: string
         example: "00"
