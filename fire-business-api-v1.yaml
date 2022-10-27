@@ -765,14 +765,30 @@ paths:
                                       format: int64
                                     alias:
                                       type: string
+                                      description: >-
+                                        the name the user gives to the account
+                                        to help them identify it.
+                                      example: Main Account
                                     nsc:
                                       type: string
+                                      example: '232221'
+                                      description: the Sort Code of the account.
                                     accountNumber:
                                       type: string
+                                      example: '11111111'
+                                      description: the Account Number of the account.
                                     bic:
                                       type: string
+                                      example: CPAYIE2D
+                                      description: >-
+                                        the BIC of the account (provided if
+                                        currency is EUR).
                                     iban:
                                       type: string
+                                      example: IE54CPAY99119911111111
+                                      description: >-
+                                        the IBAN of the account (provided if
+                                        currency is EUR).
                             - title: relatedPartyPayee
                               type: object
                               properties:
@@ -798,14 +814,14 @@ paths:
                                         in reference
                                     nsc:
                                       type: string
-                                      example: 991199
+                                      example: '991199'
                                       description: >-
                                         (Conditional) Provide this field if
                                         using Mode 2 and the payee account is in
                                         GBP.
                                     accountNumber:
                                       type: string
-                                      example: 0
+                                      example: '00000000'
                                       description: >-
                                         The account number of the Withdrawl
                                         account in reference
@@ -834,7 +850,7 @@ paths:
                                   properties:
                                     acquirerIdDe32:
                                       type: string
-                                      example: 06011319
+                                      example: 06011329
                                     additionalAmtDe54:
                                       type: string
                                     authCodeDe38:
@@ -1221,14 +1237,30 @@ paths:
                                       format: int64
                                     alias:
                                       type: string
+                                      description: >-
+                                        the name the user gives to the account
+                                        to help them identify it.
+                                      example: Main Account
                                     nsc:
                                       type: string
+                                      example: '232221'
+                                      description: the Sort Code of the account.
                                     accountNumber:
                                       type: string
+                                      example: '11111111'
+                                      description: the Account Number of the account.
                                     bic:
                                       type: string
+                                      example: CPAYIE2D
+                                      description: >-
+                                        the BIC of the account (provided if
+                                        currency is EUR).
                                     iban:
                                       type: string
+                                      example: IE54CPAY99119911111111
+                                      description: >-
+                                        the IBAN of the account (provided if
+                                        currency is EUR).
                             - title: relatedPartyPayee
                               type: object
                               properties:
@@ -1254,14 +1286,14 @@ paths:
                                         in reference
                                     nsc:
                                       type: string
-                                      example: 991199
+                                      example: '991199'
                                       description: >-
                                         (Conditional) Provide this field if
                                         using Mode 2 and the payee account is in
                                         GBP.
                                     accountNumber:
                                       type: string
-                                      example: 0
+                                      example: '00000000'
                                       description: >-
                                         The account number of the Withdrawl
                                         account in reference
@@ -1290,7 +1322,7 @@ paths:
                                   properties:
                                     acquirerIdDe32:
                                       type: string
-                                      example: 06011319
+                                      example: 06011329
                                     additionalAmtDe54:
                                       type: string
                                     authCodeDe38:
@@ -1803,14 +1835,30 @@ paths:
                                         format: int64
                                       alias:
                                         type: string
+                                        description: >-
+                                          the name the user gives to the account
+                                          to help them identify it.
+                                        example: Main Account
                                       nsc:
                                         type: string
+                                        example: '232221'
+                                        description: the Sort Code of the account.
                                       accountNumber:
                                         type: string
+                                        example: '11111111'
+                                        description: the Account Number of the account.
                                       bic:
                                         type: string
+                                        example: CPAYIE2D
+                                        description: >-
+                                          the BIC of the account (provided if
+                                          currency is EUR).
                                       iban:
                                         type: string
+                                        example: IE54CPAY99119911111111
+                                        description: >-
+                                          the IBAN of the account (provided if
+                                          currency is EUR).
                               - title: relatedPartyPayee
                                 type: object
                                 properties:
@@ -1836,14 +1884,14 @@ paths:
                                           in reference
                                       nsc:
                                         type: string
-                                        example: 991199
+                                        example: '991199'
                                         description: >-
                                           (Conditional) Provide this field if
                                           using Mode 2 and the payee account is in
                                           GBP.
                                       accountNumber:
                                         type: string
-                                        example: 0
+                                        example: '00000000'
                                         description: >-
                                           The account number of the Withdrawl
                                           account in reference
@@ -1872,7 +1920,7 @@ paths:
                                     properties:
                                       acquirerIdDe32:
                                         type: string
-                                        example: 06011319
+                                        example: 06011329
                                       additionalAmtDe54:
                                         type: string
                                       authCodeDe38:
@@ -4119,7 +4167,7 @@ paths:
                   description: >-
                     An optional job number you can give to the batch to help
                     link it to your own system.
-                callBackUrl:
+                callbackUrl:
                   type: string
                   example: 'https://my.webserver.com/cb/payroll'
                   description: >-
@@ -4954,7 +5002,7 @@ paths:
                     description: >-
                       An optional job number you can give to the batch to help
                       link it to your own system.
-                  callBackUrl:
+                  callbackUrl:
                     type: string
                     example: 'https://my.webserver.com/cb/payroll'
                     description: >-

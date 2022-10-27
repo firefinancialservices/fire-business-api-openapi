@@ -7,7 +7,6 @@
     "publish": "json-refs resolve --yaml -w ./src/fire-business-api-v1.yaml > ./fire-business-api-v1.yaml"
   },
   "devDependencies": {
-    "speccy": "*",
     "json-refs": "*"
   }
 }
