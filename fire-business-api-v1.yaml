@@ -35,8 +35,6 @@ info:
     url: 'https://docs.fire.com'
     email: api@fire.com
 servers:
-  - url: 'https://api-preprod.fire.com/business/v1'
-    description: Preproduction/Sandbox Server
   - url: 'https://api.fire.com/business/v1'
     description: Production Server
 paths:
