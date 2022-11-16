@@ -1067,7 +1067,11 @@ paths:
   '/v3/accounts/{ican}/transactions':
     get:
       summary: List transactions for an account (v3)
-      description: Retrieve a list of transactions against an account.
+      description: >
+        Retrieve a list of transactions against an account. Initially, use the
+        optional `limit`, `dateRangeFrom` and `dateRangeTo` query params to
+        limit your query, then use the embedded `next` or `prev` links in the
+        response to get newer or older pages.
       tags:
         - Transactions
       operationId: getTransactionsByIdv3
