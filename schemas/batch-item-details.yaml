@@ -1,0 +1,19 @@
+title: batchItemDetails
+type: object
+properties:
+  batchPublicUuid: 
+    type: string
+    example: F2AF3F2B-4406-4199-B249-B354F2CC6019
+    description: The UUID for this batch.
+  batchItemPublicUuid: 
+    type: string
+    example: F2AF3F2B-4406-4199-B249-B354F2CC6019
+    description: The UUID for this item in the batch.            
+  batchName:
+    type: string
+    example: Payroll 2022-11
+    description: The optional name given to the batch at creation time.
+  jobNumber:
+    type: string
+    example: 2018-01-PR
+    description: The optional job number given to the batch to link it to your own system.

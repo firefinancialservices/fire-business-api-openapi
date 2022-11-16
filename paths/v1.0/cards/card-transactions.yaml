@@ -34,7 +34,7 @@ get:
           schema:
             type: array
             items:            
-              $ref: '../../../schemas/transactions.yaml' 
+              $ref: '../../../schemas/transactions-v1.yaml' 
     '403':
       $ref: ../../../responses/unauthorised-error.yaml
     '401':

@@ -1,0 +1,21 @@
+title: cardTransactionsv3
+type: object
+properties:
+  links:
+    type: array
+    items:
+      type: object
+      properties: 
+        rel:
+          type: string
+          example: self
+          description: The relationship of this link to the current object - self, next, prev page.
+        href:
+          type: string
+          example: The URL of the linked page
+          description: https://api.fire.com/business/v3/accounts/1/transactions?startAfter=eyJpY2F
+  content:
+    type: array
+    items:
+      $ref: ./transaction.yaml
+  

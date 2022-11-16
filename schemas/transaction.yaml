@@ -47,21 +47,25 @@ properties:
     type: string
     description: The comment/reference on the transaction
     example: Transfer to main account
-  paymentRequestPublicCode:
+  yourRef:
     type: string
-    description: The code that was returned when you created the payment request.
-    example: 1abcdefg
+    description: The comment/reference on the transaction that appears on the recipients statement. Only for withdrawals
+    example: From John Smith
   date:
     type: string
     format: date-time
     description: Date of the transaction
     example: 2021-04-13T11:06:32.437Z
+  paymentRequestPublicCode:
+    type: string
+    description: (FOP payments only) The FOP Payment Code that was used to make this payment.
+    example: 1abcdefg
   card:
     $ref: "./related-card.yaml"
   type:
     type: string
     description: >   
-      Retrieve a filtered list of transactions against an account.
+      The type of the transaction:
 
       * `LODGEMENT` - Bank Transfer received
 
@@ -73,6 +77,12 @@ properties:
 
       * `REVERSAL` - Credit Reversal
 
+      * `DIRECT_DEBIT` - A direct debit.
+
+      * `DIRECT_DEBIT_REPRESENTED` - A Direct Debit that was requested again after initially failing.
+      
+      * `DIRECT_DEBIT_REFUND` - A refund of a Direct debit.
+      
       * `INTERNAL_TRANSFER_TO` - Internal Transfer sent (between two of my accounts of the same currency)
 
       * `INTERNAL_TRANSFER_FROM` - Internal Transfer received (between two of my accounts of the same currency)
@@ -84,6 +94,12 @@ properties:
       * `FX_INTERNAL_TRANSFER_FROM` - FX Internal Transfer received (between two of my accounts of different currency)
 
       * `FX_INTERNAL_TRANSFER_TO` - FX Internal Transfer sent (between two of my accounts of different currency)
+
+      * `CREATE_CARD` - The fee taken when a debit card is issued.
+
+      * `ADD_ACCOUNT` - The fee taken when an account is created.
+
+      * `CREATE_ADDITIONAL_USER` - The fee taken when an additional user is created.       
 
       * `CARD_POS_CONTACT_DEBIT` - Card used in store; read by magnetic stripe or pin
 
@@ -155,5 +171,15 @@ properties:
     example: 2021-04-13T11:06:32.437Z
   fxTradeDetails: 
     $ref: "./fx-trade-details.yaml"
+  batchItemDetails: 
+    $ref: "./batch-item-details.yaml"
+  directDebitDetails: 
+    $ref: "./direct-debit-details.yaml"
+  proprietarySchemeDetails: 
+    $ref: "./proprietary-scheme-details.yaml"
   relatedParty:
     $ref: "./related-party.yaml"
+  eventUuid:
+    type: string
+    description: An internal Fire reference for the transaction (UUID)
+    example: 42de0705-e3f1-44fa-8c41-79973eb80eb2
