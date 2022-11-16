@@ -1,4 +1,5 @@
 title: relatedCard
+description: Details of the card used (if applicable)
 type: object
 properties:
   cardId:
