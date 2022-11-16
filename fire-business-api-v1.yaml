@@ -505,7 +505,7 @@ paths:
           description: Access Token is Invalid or missing
   '/v1/accounts/{ican}/transactions':
     get:
-      summary: List transactions for an account (v1 - deprecated)
+      summary: List transactions for an account (v1)
       deprecated: true
       description: >-
         Retrieve a list of transactions against an account. Recommended to use
@@ -724,6 +724,9 @@ paths:
                               description: The FX provider used to make the trade.
                         batchItemDetails:
                           title: batchItemDetails
+                          description: >-
+                            Details of the batch run if this transaction was
+                            part of a batch.
                           type: object
                           properties:
                             batchPublicUuid:
@@ -1299,6 +1302,9 @@ paths:
                               description: The FX provider used to make the trade.
                         batchItemDetails:
                           title: batchItemDetails
+                          description: >-
+                            Details of the batch run if this transaction was
+                            part of a batch.
                           type: object
                           properties:
                             batchPublicUuid:
@@ -1638,7 +1644,7 @@ paths:
                           example: 42de0705-e3f1-44fa-8c41-79973eb80eb2
   '/v1/accounts/{ican}/transactions/filter':
     get:
-      summary: Filtered list of transactions for an account (v1 - deprecated)
+      summary: Filtered list of transactions for an account (v1)
       deprecated: true
       description: >
         Retrieve a filtered list of transactions against an account. Recommended
@@ -1897,6 +1903,9 @@ paths:
                               description: The FX provider used to make the trade.
                         batchItemDetails:
                           title: batchItemDetails
+                          description: >-
+                            Details of the batch run if this transaction was
+                            part of a batch.
                           type: object
                           properties:
                             batchPublicUuid:
@@ -2619,6 +2628,9 @@ paths:
                                 description: The FX provider used to make the trade.
                           batchItemDetails:
                             title: batchItemDetails
+                            description: >-
+                              Details of the batch run if this transaction was
+                              part of a batch.
                             type: object
                             properties:
                               batchPublicUuid:
