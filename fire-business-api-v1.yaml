@@ -688,7 +688,7 @@ paths:
                           example: 2021-04-13T11:06:32.437Z
                         fxTradeDetails:
                           title: fxTrade
-                          description: Details of the FX transaction (if applicable)
+                          description: Details of the FX trade (if applicable)
                           type: object
                           properties:
                             buyCurrency:
@@ -1070,7 +1070,7 @@ paths:
       description: Retrieve a list of transactions against an account.
       tags:
         - Transactions
-      operationId: getTransactionsByIdv
+      operationId: getTransactionsByIdv3
       parameters:
         - in: path
           name: ican
@@ -1266,7 +1266,7 @@ paths:
                           example: 2021-04-13T11:06:32.437Z
                         fxTradeDetails:
                           title: fxTrade
-                          description: Details of the FX transaction (if applicable)
+                          description: Details of the FX trade (if applicable)
                           type: object
                           properties:
                             buyCurrency:
@@ -1867,7 +1867,7 @@ paths:
                           example: 2021-04-13T11:06:32.437Z
                         fxTradeDetails:
                           title: fxTrade
-                          description: Details of the FX transaction (if applicable)
+                          description: Details of the FX trade (if applicable)
                           type: object
                           properties:
                             buyCurrency:
@@ -2592,7 +2592,7 @@ paths:
                             example: 2021-04-13T11:06:32.437Z
                           fxTradeDetails:
                             title: fxTrade
-                            description: Details of the FX transaction (if applicable)
+                            description: Details of the FX trade (if applicable)
                             type: object
                             properties:
                               buyCurrency:
