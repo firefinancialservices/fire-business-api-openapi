@@ -1,5 +1,5 @@
 title: fxTrade
-description: Details of the FX transaction (if applicable)
+description: Details of the FX trade (if applicable)
 type: object
 properties: 
   buyCurrency:
