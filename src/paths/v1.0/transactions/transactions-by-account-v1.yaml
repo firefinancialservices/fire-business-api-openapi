@@ -1,6 +1,6 @@
 get:
-  summary: List transactions for an account
-  description: Retrieve a list of transactions against an account.
+  summary: List transactions for an account (v1 - deprecated)
+  description: Retrieve a list of transactions against an account. Recommended to use the v3 endpoint instead.
   tags:
     - Transactions
   operationId: getTransactionsByIdv1

@@ -1,7 +1,7 @@
 get:
-  summary: Filtered list of transactions for an account
+  summary: Filtered list of transactions for an account (v1 - deprecated)
   description: >
-    Retrieve a filtered list of transactions against an account.
+    Retrieve a filtered list of transactions against an account. Recommended to use the v3 endpoint instead.
 
     * `dateRangeFrom` - A millisecond epoch time specifying the date range start date.
 
