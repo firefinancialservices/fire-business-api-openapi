@@ -1,5 +1,5 @@
 get:
-  summary: List transactions for an account
+  summary: List transactions for an account (v3)
   description: Retrieve a list of transactions against an account.
   tags:
     - Transactions
