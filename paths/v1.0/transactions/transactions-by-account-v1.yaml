@@ -1,5 +1,6 @@
 get:
   summary: List transactions for an account (v1 - deprecated)
+  deprecated: true
   description: Retrieve a list of transactions against an account. Recommended to use the v3 endpoint instead.
   tags:
     - Transactions

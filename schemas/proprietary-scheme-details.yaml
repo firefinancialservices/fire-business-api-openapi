@@ -1,4 +1,5 @@
 title: proprietarySchemeDetails
+description: Extra details about the transaction based on the scheme used to make the payment. 
 type: array
 items:
   type: object

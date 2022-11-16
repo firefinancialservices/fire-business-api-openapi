@@ -1,4 +1,5 @@
 title: directDebitDetails
+description: Details of the direct debit (if applicable)
 type: object
 properties:
   directDebitUuid:
