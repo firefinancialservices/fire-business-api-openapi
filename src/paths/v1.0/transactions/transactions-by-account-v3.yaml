@@ -3,7 +3,7 @@ get:
   description: Retrieve a list of transactions against an account.
   tags:
     - Transactions
-  operationId: getTransactionsByIdv
+  operationId: getTransactionsByIdv3
   parameters:
     - in: path
       name: ican
