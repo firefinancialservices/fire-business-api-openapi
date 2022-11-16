@@ -1,4 +1,5 @@
 title: batchItemDetails
+description: Details of the batch run if this transaction was part of a batch.
 type: object
 properties:
   batchPublicUuid: 
