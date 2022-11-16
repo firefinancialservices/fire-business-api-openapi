@@ -28,101 +28,104 @@ info:
     url: https://docs.fire.com
     email: api@fire.com
 servers:
-  - url: https://api.fire.com/business/v1
+  - url: https://api.fire.com/business
     description: Production Server
 paths:
-  /apps/accesstokens:
+  /v1/apps/accesstokens:
     $ref: ./paths/v1.0/apps/accesstokens.yaml
     
-  /accounts:
+  /v1/accounts:
     $ref: ./paths/v1.0/accounts/accounts.yaml
     
-  /accounts/{ican}:
+  /v1/accounts/{ican}:
     $ref: ./paths/v1.0/accounts/accounts-by-ican.yaml
 
-  /accounts/{ican}/transactions:
-    $ref: ./paths/v1.0/transactions/transactions-by-account.yaml 
+  /v1/accounts/{ican}/transactions:
+    $ref: ./paths/v1.0/transactions/transactions-by-account-v1.yaml 
 
-  /accounts/{ican}/transactions/filter:
+  /v3/accounts/{ican}/transactions:
+    $ref: ./paths/v1.0/transactions/transactions-by-account-v3.yaml 
+
+  /v1/accounts/{ican}/transactions/filter:
     $ref: ./paths/v1.0/transactions/transactions-by-account-filtered.yaml 
 
-  /cards:
+  /v1/cards:
     $ref: ./paths/v1.0/cards/cards.yaml
 
-  /cards/{cardId}/transactions:
+  /v1/cards/{cardId}/transactions:
     $ref: ./paths/v1.0/cards/card-transactions.yaml
 
-  /cards/{cardId}/block:
+  /v1/cards/{cardId}/block:
     $ref: ./paths/v1.0/cards/card-block.yaml
 
-  /cards/{cardId}/unblock:
+  /v1/cards/{cardId}/unblock:
     $ref: ./paths/v1.0/cards/card-unblock.yaml
     
-  /paymentrequests:
+  /v1/paymentrequests:
     $ref: ./paths/v1.0/paymentrequests/paymentrequests.yaml
 
-  /aspsps:
+  /v1/aspsps:
     $ref: ./paths/v1.0/aspsps/aspsps.yaml
 
 # This endpoint is for Bankpay only. 
 #  /payments/{paymentUuid}/bankpayrefund:
 #    $ref: ./paths/v1.0/payments/refund-payment-by-paymentuuid.yaml
 
-  /payments/{paymentUuid}:
+  /v1/payments/{paymentUuid}:
     $ref: ./paths/v1.0/payments/payments-by-paymentuuid.yaml
 
-  /users:
+  /v1/users:
     $ref: ./paths/v1.0/users/users.yaml
 
-  /user/{userId}:
+  /v1/user/{userId}:
     $ref: ./paths/v1.0/users/user-by-userid.yaml
 
-  /apps:
+  /v1/apps:
     $ref: ./paths/v1.0/apps/apps.yaml
 
-  /payees:
+  /v1/payees:
     $ref: ./paths/v1.0/payees/payees.yaml
 
-  /directdebits:
+  /v1/directdebits:
     $ref: ./paths/v1.0/directdebits/directdebits.yaml
 
-  /directdebits/{directDebitUuid}:
+  /v1/directdebits/{directDebitUuid}:
     $ref: ./paths/v1.0/directdebits/directdebit-by-directdebituuid.yaml
 
-  /directdebits/{directDebitUuid}/reject:
+  /v1/directdebits/{directDebitUuid}/reject:
     $ref: ./paths/v1.0/directdebits/reject-directdebit-by-uuid.yaml
 
-  /mandates:
+  /v1/mandates:
     $ref: ./paths/v1.0/mandates/mandates.yaml
 
-  /mandates/{mandateUuid}:
+  /v1/mandates/{mandateUuid}:
     $ref: ./paths/v1.0/mandates/mandate-by-uuid.yaml
 
-  /mandates/{mandateUuid}/cancel:
+  /v1/mandates/{mandateUuid}/cancel:
     $ref: ./paths/v1.0/mandates/cancel-mandate-by-uuid.yaml
 
-  /mandates/{mandateUuid}/activate:
+  /v1/mandates/{mandateUuid}/activate:
     $ref: ./paths/v1.0/mandates/activate-mandate-by-uuid.yaml
 
-  /batches:
+  /v1/batches:
     $ref: ./paths/v1.0/batches/batches.yaml
 
-  /batches/{batchUuid}/internaltransfers:
+  /v1/batches/{batchUuid}/internaltransfers:
     $ref: ./paths/v1.0/batches/internaltransfers.yaml
 
-  /batches/{batchUuid}/banktransfers:
+  /v1/batches/{batchUuid}/banktransfers:
     $ref: ./paths/v1.0/batches/banktransfers.yaml
 
-  /batches/{batchUuid}/internaltransfers/{itemUuid}:
+  /v1/batches/{batchUuid}/internaltransfers/{itemUuid}:
     $ref: ./paths/v1.0/batches/internaltransfer-by-itemuuid.yaml
 
-  /batches/{batchUuid}/banktransfers/{itemUuid}:
+  /v1/batches/{batchUuid}/banktransfers/{itemUuid}:
     $ref: ./paths/v1.0/batches/banktransfer-by-itemuuid.yaml
 
-  /batches/{batchUuid}:
+  /v1/batches/{batchUuid}:
     $ref: ./paths/v1.0/batches/batch-by-batchuuid.yaml
 
-  /batches/{batchUuid}/approvals:
+  /v1/batches/{batchUuid}/approvals:
     $ref: ./paths/v1.0/batches/approvers-for-batch.yaml
 
 # webhooks:

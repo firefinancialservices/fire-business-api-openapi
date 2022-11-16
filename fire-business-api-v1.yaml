@@ -35,10 +35,10 @@ info:
     url: 'https://docs.fire.com'
     email: api@fire.com
 servers:
-  - url: 'https://api.fire.com/business/v1'
+  - url: 'https://api.fire.com/business'
     description: Production Server
 paths:
-  /apps/accesstokens:
+  /v1/apps/accesstokens:
     post:
       summary: Authenticate with the API.
       description: >
@@ -147,7 +147,7 @@ paths:
                       The App Bearer Access Token you can use in further API
                       calls.
                     example: 4ADFB67A-0F5B-4A9A-9D74-34437250045C
-  /accounts:
+  /v1/accounts:
     get:
       summary: List all fire.com Accounts
       description: >-
@@ -390,7 +390,7 @@ paths:
                       Indicates that this account is for collecting Fire Open
                       Payments only. All other payments to this account will be
                       returned.
-  '/accounts/{ican}':
+  '/v1/accounts/{ican}':
     get:
       summary: Retrieve the details of a fire.com Account
       description: You can retrieve the details of a fire.com Account by its `ican`.
@@ -500,13 +500,13 @@ paths:
                       returned.
         '401':
           description: Access Token is Invalid or missing
-  '/accounts/{ican}/transactions':
+  '/v1/accounts/{ican}/transactions':
     get:
       summary: List transactions for an account
       description: Retrieve a list of transactions against an account.
       tags:
         - Transactions
-      operationId: getTransactionsById
+      operationId: getTransactionsByIdv1
       parameters:
         - in: path
           name: ican
@@ -540,7 +540,7 @@ paths:
           content:
             application/json:
               schema:
-                title: cardTransactions
+                title: cardTransactionsv1
                 type: object
                 properties:
                   total:
@@ -632,17 +632,24 @@ paths:
                           type: string
                           description: The comment/reference on the transaction
                           example: Transfer to main account
-                        paymentRequestPublicCode:
+                        yourRef:
                           type: string
                           description: >-
-                            The code that was returned when you created the
-                            payment request.
-                          example: 1abcdefg
+                            The comment/reference on the transaction that
+                            appears on the recipients statement. Only for
+                            withdrawals
+                          example: From John Smith
                         date:
                           type: string
                           format: date-time
                           description: Date of the transaction
                           example: 2021-04-13T11:06:32.437Z
+                        paymentRequestPublicCode:
+                          type: string
+                          description: >-
+                            (FOP payments only) The FOP Payment Code that was
+                            used to make this payment.
+                          example: 1abcdefg
                         card:
                           title: relatedCard
                           type: object
@@ -665,7 +672,7 @@ paths:
                               format: date-time
                         type:
                           type: string
-                          description: "Retrieve a filtered list of transactions against an account.\n* `LODGEMENT` - Bank Transfer received\n* `PIS_LODGEMENT` - Fire Open Payments Lodgement received\n* `MANUAL_TRANSFER` - Manual Transfer to\n* `WITHDRAWAL` - Bank Transfer sent\n* `REVERSAL` - Credit Reversal\n* `INTERNAL_TRANSFER_TO` - Internal Transfer sent (between two of my accounts of the same currency)\n* `INTERNAL_TRANSFER_FROM` - Internal Transfer received (between two of my accounts of the same currency)\n* `WITHDRAWAL_RETURNED` - Bank Transfer sent returned\n* `LODGEMENT_REVERSED` - Bank Transfer received returned\n* `FX_INTERNAL_TRANSFER_FROM` - FX Internal Transfer received (between two of my accounts of different currency)\n* `FX_INTERNAL_TRANSFER_TO` - FX Internal Transfer sent (between two of my accounts of different currency)\n* `CARD_POS_CONTACT_DEBIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACT_CREDIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACTLESS_DEBIT` - Card used in store; read by NFC\n* `CARD_POS_CONTACTLESS_CREDIT` - Card used in store; read by NFC\n* `CARD_ECOMMERCE_DEBIT` - Card used on the internet\n* `CARD_ECOMMERCE_CREDIT` - Card used on the internet\n* `CARD_ATM_DEBIT` - Card used in an ATM\n* `CARD_ATM_CREDIT` - Card used in an ATM\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT\t` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ATM_DEBIT` - Card used in an ATM in non-processing currency\n* `CARD_INTERNATIONAL_ATM_CREDIT` - Card used in an ATM in non-processing currency\n* `CARD_POS_CONTACT_DEBIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACT_CREDIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_POS_CONTACTLESS_CREDIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_ECOMMERCE_DEBIT_REVERSAL\t` - Card used on the internet - reversed\n* `CARD_ECOMMERCE_CREDIT_REVERSAL` - Card used on the internet - reversed\n* `CARD_ATM_DEBIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_ATM_CREDIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT_REVERSAL` - One or more of the transaction types above. This field can be repeated multiple times to allow for multiple transaction types.\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n* `CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n"
+                          description: "The type of the transaction:\n* `LODGEMENT` - Bank Transfer received\n* `PIS_LODGEMENT` - Fire Open Payments Lodgement received\n* `MANUAL_TRANSFER` - Manual Transfer to\n* `WITHDRAWAL` - Bank Transfer sent\n* `REVERSAL` - Credit Reversal\n* `DIRECT_DEBIT` - A direct debit.\n* `DIRECT_DEBIT_REPRESENTED` - A Direct Debit that was requested again after initially failing.\n* `DIRECT_DEBIT_REFUND` - A refund of a Direct debit.\n* `INTERNAL_TRANSFER_TO` - Internal Transfer sent (between two of my accounts of the same currency)\n* `INTERNAL_TRANSFER_FROM` - Internal Transfer received (between two of my accounts of the same currency)\n* `WITHDRAWAL_RETURNED` - Bank Transfer sent returned\n* `LODGEMENT_REVERSED` - Bank Transfer received returned\n* `FX_INTERNAL_TRANSFER_FROM` - FX Internal Transfer received (between two of my accounts of different currency)\n* `FX_INTERNAL_TRANSFER_TO` - FX Internal Transfer sent (between two of my accounts of different currency)\n* `CREATE_CARD` - The fee taken when a debit card is issued.\n* `ADD_ACCOUNT` - The fee taken when an account is created.\n* `CREATE_ADDITIONAL_USER` - The fee taken when an additional user is created.       \n* `CARD_POS_CONTACT_DEBIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACT_CREDIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACTLESS_DEBIT` - Card used in store; read by NFC\n* `CARD_POS_CONTACTLESS_CREDIT` - Card used in store; read by NFC\n* `CARD_ECOMMERCE_DEBIT` - Card used on the internet\n* `CARD_ECOMMERCE_CREDIT` - Card used on the internet\n* `CARD_ATM_DEBIT` - Card used in an ATM\n* `CARD_ATM_CREDIT` - Card used in an ATM\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT\t` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ATM_DEBIT` - Card used in an ATM in non-processing currency\n* `CARD_INTERNATIONAL_ATM_CREDIT` - Card used in an ATM in non-processing currency\n* `CARD_POS_CONTACT_DEBIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACT_CREDIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_POS_CONTACTLESS_CREDIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_ECOMMERCE_DEBIT_REVERSAL\t` - Card used on the internet - reversed\n* `CARD_ECOMMERCE_CREDIT_REVERSAL` - Card used on the internet - reversed\n* `CARD_ATM_DEBIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_ATM_CREDIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT_REVERSAL` - One or more of the transaction types above. This field can be repeated multiple times to allow for multiple transaction types.\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n* `CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n"
                           example: WITHDRAWAL
                         dateAcknowledged:
                           type: string
@@ -685,7 +692,7 @@ paths:
                               description: currency which is being sold
                             fixedSide:
                               type: string
-                              description: type of trade
+                              description: type of trade - BUY or SELL
                               example: SELL
                             buyAmount:
                               type: integer
@@ -702,6 +709,107 @@ paths:
                               format: int64
                               description: exchange rate
                               example: 7180
+                            provider:
+                              type: string
+                              example: TCC
+                              description: The FX provider used to make the trade.
+                        batchItemDetails:
+                          title: batchItemDetails
+                          type: object
+                          properties:
+                            batchPublicUuid:
+                              type: string
+                              example: F2AF3F2B-4406-4199-B249-B354F2CC6019
+                              description: The UUID for this batch.
+                            batchItemPublicUuid:
+                              type: string
+                              example: F2AF3F2B-4406-4199-B249-B354F2CC6019
+                              description: The UUID for this item in the batch.
+                            batchName:
+                              type: string
+                              example: Payroll 2022-11
+                              description: >-
+                                The optional name given to the batch at creation
+                                time.
+                            jobNumber:
+                              type: string
+                              example: 2018-01-PR
+                              description: >-
+                                The optional job number given to the batch to
+                                link it to your own system.
+                        directDebitDetails:
+                          title: directDebitDetails
+                          type: object
+                          properties:
+                            directDebitUuid:
+                              type: string
+                              description: The UUID for the direct debit payment
+                              example: 42de0705-e3f1-44fa-8c41-79973eb80eb2
+                            mandateUUid:
+                              type: string
+                              description: The UUID for the mandate
+                              example: f171b143-e3eb-47de-85a6-1c1f1108c701
+                            originatorReference:
+                              type: string
+                              description: Set by party who sets up the direct debit.
+                              example: VODA-123456
+                            originatorName:
+                              type: string
+                              description: >-
+                                The creator of the party who sets up the direct
+                                debit.
+                              example: Vodafone PLC
+                            originatorAlias:
+                              type: string
+                              description: >-
+                                The Alias of the party who sets up the direct
+                                debit.
+                              example: Three
+                            directDebitReference:
+                              type: string
+                              description: The direct debit reference.
+                              example: VODA-ABC453-1
+                            originatorLogoUrlSmall:
+                              type: string
+                              description: >-
+                                URL pointing to a small version of the
+                                Originator Logo (if available)
+                              example: >-
+                                https://s3-eu-west-1.amazonaws.com/live-fire-assets/prod/49dc9a01-8261-4d98-bebf-c3842c2d3c5d-small.png
+                            originatorLogoUrlLarge:
+                              type: string
+                              description: >-
+                                URL pointing to a large version of the
+                                Originator Logo (if available)
+                              example: >-
+                                https://s3-eu-west-1.amazonaws.com/live-fire-assets/prod/49dc9a01-8261-4d98-bebf-c3842c2d3c5d-small.png
+                            mandateReference:
+                              type: string
+                              example: CRZ-102190123
+                              description: the reference of the mandate
+                            mandateUuid:
+                              type: string
+                              description: The UUID for the mandate
+                              example: 28d627c3-1889-44c8-ae59-6f6b20239260
+                        proprietarySchemeDetails:
+                          title: proprietarySchemeDetails
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              type:
+                                type: string
+                                description: >-
+                                  the type of proprietary scheme - SCT for SEPA,
+                                  FPS for Faster Payments etc.
+                                example: SCT
+                              data:
+                                type: string
+                                example: >-
+                                  remittanceInfoUnstructured^FIRE440286865OD1|instructionId^O223151336499079
+                                description: >-
+                                  the scheme proprietary data - key pairs
+                                  separated by | and key/values separated by ^
                         relatedParty:
                           title: relatedParty
                           oneOf:
@@ -931,7 +1039,578 @@ paths:
                                       type: string
                                     additionalDataDe124:
                                       type: string
-  '/accounts/{ican}/transactions/filter':
+                        eventUuid:
+                          type: string
+                          description: >-
+                            An internal Fire reference for the transaction
+                            (UUID)
+                          example: 42de0705-e3f1-44fa-8c41-79973eb80eb2
+  '/v3/accounts/{ican}/transactions':
+    get:
+      summary: List transactions for an account
+      description: Retrieve a list of transactions against an account.
+      tags:
+        - Transactions
+      operationId: getTransactionsById
+      parameters:
+        - in: path
+          name: ican
+          schema:
+            type: integer
+            format: int64
+            description: The ican of the account to retrieve
+          required: true
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            format: int64
+            description: The number of records to return. Defaults to 10 - max is 200.
+          required: false
+        - in: query
+          name: dateRangeFrom
+          schema:
+            type: integer
+            format: int64
+            description: A millisecond epoch time specifying the date range start date.
+          required: false
+        - in: query
+          name: dateRangeTo
+          schema:
+            type: integer
+            format: int64
+            description: A millisecond epoch time specifying the date range end date.
+          required: false
+        - in: query
+          name: startAfter
+          schema:
+            type: string
+            description: >-
+              A pointer to the position in the resultset to start from. Used
+              when paging through results using the linked pages.
+          required: false
+      responses:
+        '200':
+          description: >-
+            An array of transaction objects for the account with a count
+            (`total`).
+          content:
+            application/json:
+              schema:
+                title: cardTransactionsv3
+                type: object
+                properties:
+                  links:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        rel:
+                          type: string
+                          example: self
+                          description: >-
+                            The relationship of this link to the current object
+                            - self, next, prev page.
+                        href:
+                          type: string
+                          example: The URL of the linked page
+                          description: >-
+                            https://api.fire.com/business/v3/accounts/1/transactions?startAfter=eyJpY2F
+                  content:
+                    type: array
+                    items:
+                      title: transaction
+                      type: object
+                      properties:
+                        txnId:
+                          type: integer
+                          format: int64
+                          description: >-
+                            The id of this side of the transaction (each
+                            transaction has two sides - a to and a from). This
+                            is used to get the details of the transaction.
+                          example: 30157
+                        refId:
+                          type: integer
+                          format: int64
+                          description: The id of the transaction.
+                          example: 26774
+                        ican:
+                          type: integer
+                          format: int64
+                          description: >-
+                            identifier for the fire.com account (assigned by
+                            fire.com) This field is only used in the condensed
+                            version.
+                          example: 1951
+                        currency:
+                          title: currency
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              description: >-
+                                The three letter code for the currency - either
+                                `EUR` or `GBP`.
+                              enum:
+                                - EUR
+                                - GBP
+                            description:
+                              type: string
+                              description: The name of the currency
+                              example: Euro
+                        amountBeforeCharges:
+                          type: integer
+                          format: int64
+                          description: >-
+                            Amount of the transaction before the fees and taxes
+                            were applied.
+                          example: 5000
+                        feeAmount:
+                          type: integer
+                          format: int64
+                          description: 'The amount of the fee, if any.'
+                          example: 0
+                        taxAmount:
+                          type: integer
+                          format: int64
+                          description: >-
+                            The amount of the tax, if any (e.g. Stamp duty for
+                            ATM transactions)
+                          example: 0
+                        amountAfterCharges:
+                          type: integer
+                          format: int64
+                          description: >-
+                            Net amount lodged or taken from the account after
+                            fees and charges were applied.
+                          example: 5000
+                        balance:
+                          type: integer
+                          format: int64
+                          description: >-
+                            the balance of the account (in minor currency units
+                            - pence, cent etc. 434050 == 4,340.50 GBP for a GBP
+                            account).
+                          example: 8500
+                        myRef:
+                          type: string
+                          description: The comment/reference on the transaction
+                          example: Transfer to main account
+                        yourRef:
+                          type: string
+                          description: >-
+                            The comment/reference on the transaction that
+                            appears on the recipients statement. Only for
+                            withdrawals
+                          example: From John Smith
+                        date:
+                          type: string
+                          format: date-time
+                          description: Date of the transaction
+                          example: 2021-04-13T11:06:32.437Z
+                        paymentRequestPublicCode:
+                          type: string
+                          description: >-
+                            (FOP payments only) The FOP Payment Code that was
+                            used to make this payment.
+                          example: 1abcdefg
+                        card:
+                          title: relatedCard
+                          type: object
+                          properties:
+                            cardId:
+                              type: integer
+                              format: int64
+                            provider:
+                              type: string
+                            alias:
+                              type: string
+                            maskedPan:
+                              type: string
+                            embossCardName:
+                              type: string
+                            embossBusinessName:
+                              type: string
+                            expiryDate:
+                              type: string
+                              format: date-time
+                        type:
+                          type: string
+                          description: "The type of the transaction:\n* `LODGEMENT` - Bank Transfer received\n* `PIS_LODGEMENT` - Fire Open Payments Lodgement received\n* `MANUAL_TRANSFER` - Manual Transfer to\n* `WITHDRAWAL` - Bank Transfer sent\n* `REVERSAL` - Credit Reversal\n* `DIRECT_DEBIT` - A direct debit.\n* `DIRECT_DEBIT_REPRESENTED` - A Direct Debit that was requested again after initially failing.\n* `DIRECT_DEBIT_REFUND` - A refund of a Direct debit.\n* `INTERNAL_TRANSFER_TO` - Internal Transfer sent (between two of my accounts of the same currency)\n* `INTERNAL_TRANSFER_FROM` - Internal Transfer received (between two of my accounts of the same currency)\n* `WITHDRAWAL_RETURNED` - Bank Transfer sent returned\n* `LODGEMENT_REVERSED` - Bank Transfer received returned\n* `FX_INTERNAL_TRANSFER_FROM` - FX Internal Transfer received (between two of my accounts of different currency)\n* `FX_INTERNAL_TRANSFER_TO` - FX Internal Transfer sent (between two of my accounts of different currency)\n* `CREATE_CARD` - The fee taken when a debit card is issued.\n* `ADD_ACCOUNT` - The fee taken when an account is created.\n* `CREATE_ADDITIONAL_USER` - The fee taken when an additional user is created.       \n* `CARD_POS_CONTACT_DEBIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACT_CREDIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACTLESS_DEBIT` - Card used in store; read by NFC\n* `CARD_POS_CONTACTLESS_CREDIT` - Card used in store; read by NFC\n* `CARD_ECOMMERCE_DEBIT` - Card used on the internet\n* `CARD_ECOMMERCE_CREDIT` - Card used on the internet\n* `CARD_ATM_DEBIT` - Card used in an ATM\n* `CARD_ATM_CREDIT` - Card used in an ATM\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT\t` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ATM_DEBIT` - Card used in an ATM in non-processing currency\n* `CARD_INTERNATIONAL_ATM_CREDIT` - Card used in an ATM in non-processing currency\n* `CARD_POS_CONTACT_DEBIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACT_CREDIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_POS_CONTACTLESS_CREDIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_ECOMMERCE_DEBIT_REVERSAL\t` - Card used on the internet - reversed\n* `CARD_ECOMMERCE_CREDIT_REVERSAL` - Card used on the internet - reversed\n* `CARD_ATM_DEBIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_ATM_CREDIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT_REVERSAL` - One or more of the transaction types above. This field can be repeated multiple times to allow for multiple transaction types.\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n* `CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n"
+                          example: WITHDRAWAL
+                        dateAcknowledged:
+                          type: string
+                          format: date-time
+                          example: 2021-04-13T11:06:32.437Z
+                        fxTradeDetails:
+                          title: fxTrade
+                          type: object
+                          properties:
+                            buyCurrency:
+                              type: string
+                              description: currency which is being bought
+                              example: GBP
+                            sellCurrency:
+                              type: string
+                              example: EUR
+                              description: currency which is being sold
+                            fixedSide:
+                              type: string
+                              description: type of trade - BUY or SELL
+                              example: SELL
+                            buyAmount:
+                              type: integer
+                              format: int64
+                              description: amount of buyCurrency being bought
+                              example: 359
+                            sellAmount:
+                              type: integer
+                              format: int64
+                              description: amount of sellCurrency being sold
+                              example: 500
+                            rate4d:
+                              type: integer
+                              format: int64
+                              description: exchange rate
+                              example: 7180
+                            provider:
+                              type: string
+                              example: TCC
+                              description: The FX provider used to make the trade.
+                        batchItemDetails:
+                          title: batchItemDetails
+                          type: object
+                          properties:
+                            batchPublicUuid:
+                              type: string
+                              example: F2AF3F2B-4406-4199-B249-B354F2CC6019
+                              description: The UUID for this batch.
+                            batchItemPublicUuid:
+                              type: string
+                              example: F2AF3F2B-4406-4199-B249-B354F2CC6019
+                              description: The UUID for this item in the batch.
+                            batchName:
+                              type: string
+                              example: Payroll 2022-11
+                              description: >-
+                                The optional name given to the batch at creation
+                                time.
+                            jobNumber:
+                              type: string
+                              example: 2018-01-PR
+                              description: >-
+                                The optional job number given to the batch to
+                                link it to your own system.
+                        directDebitDetails:
+                          title: directDebitDetails
+                          type: object
+                          properties:
+                            directDebitUuid:
+                              type: string
+                              description: The UUID for the direct debit payment
+                              example: 42de0705-e3f1-44fa-8c41-79973eb80eb2
+                            mandateUUid:
+                              type: string
+                              description: The UUID for the mandate
+                              example: f171b143-e3eb-47de-85a6-1c1f1108c701
+                            originatorReference:
+                              type: string
+                              description: Set by party who sets up the direct debit.
+                              example: VODA-123456
+                            originatorName:
+                              type: string
+                              description: >-
+                                The creator of the party who sets up the direct
+                                debit.
+                              example: Vodafone PLC
+                            originatorAlias:
+                              type: string
+                              description: >-
+                                The Alias of the party who sets up the direct
+                                debit.
+                              example: Three
+                            directDebitReference:
+                              type: string
+                              description: The direct debit reference.
+                              example: VODA-ABC453-1
+                            originatorLogoUrlSmall:
+                              type: string
+                              description: >-
+                                URL pointing to a small version of the
+                                Originator Logo (if available)
+                              example: >-
+                                https://s3-eu-west-1.amazonaws.com/live-fire-assets/prod/49dc9a01-8261-4d98-bebf-c3842c2d3c5d-small.png
+                            originatorLogoUrlLarge:
+                              type: string
+                              description: >-
+                                URL pointing to a large version of the
+                                Originator Logo (if available)
+                              example: >-
+                                https://s3-eu-west-1.amazonaws.com/live-fire-assets/prod/49dc9a01-8261-4d98-bebf-c3842c2d3c5d-small.png
+                            mandateReference:
+                              type: string
+                              example: CRZ-102190123
+                              description: the reference of the mandate
+                            mandateUuid:
+                              type: string
+                              description: The UUID for the mandate
+                              example: 28d627c3-1889-44c8-ae59-6f6b20239260
+                        proprietarySchemeDetails:
+                          title: proprietarySchemeDetails
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              type:
+                                type: string
+                                description: >-
+                                  the type of proprietary scheme - SCT for SEPA,
+                                  FPS for Faster Payments etc.
+                                example: SCT
+                              data:
+                                type: string
+                                example: >-
+                                  remittanceInfoUnstructured^FIRE440286865OD1|instructionId^O223151336499079
+                                description: >-
+                                  the scheme proprietary data - key pairs
+                                  separated by | and key/values separated by ^
+                        relatedParty:
+                          title: relatedParty
+                          oneOf:
+                            - title: relatedPartyFireAccount
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  enum:
+                                    - FIRE_ACCOUNT
+                                account:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      format: int64
+                                      description: >-
+                                        identifier for the fire.com account
+                                        (assigned by fire.com)
+                                      example: 42
+                                    alias:
+                                      type: string
+                                      description: >-
+                                        the name the user gives to the account
+                                        to help them identify it.
+                                      example: Main Account
+                                    bic:
+                                      type: string
+                                      example: CPAYIE2D
+                                      description: >-
+                                        the BIC of the account (provided if
+                                        currency is EUR).
+                                    iban:
+                                      type: string
+                                      example: IE54CPAY99119911111111
+                                      description: >-
+                                        the IBAN of the account (provided if
+                                        currency is EUR).
+                                    nsc:
+                                      type: string
+                                      example: '232221'
+                                      description: the Sort Code of the account.
+                                    accountNumber:
+                                      type: string
+                                      example: '11111111'
+                                      description: the Account Number of the account.
+                            - title: relatedPartyExternalAccount
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  enum:
+                                    - EXTERNAL_ACCOUNT
+                                account:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      format: int64
+                                    alias:
+                                      type: string
+                                      description: >-
+                                        the name the user gives to the account
+                                        to help them identify it.
+                                      example: Main Account
+                                    nsc:
+                                      type: string
+                                      example: '232221'
+                                      description: the Sort Code of the account.
+                                    accountNumber:
+                                      type: string
+                                      example: '11111111'
+                                      description: the Account Number of the account.
+                                    bic:
+                                      type: string
+                                      example: CPAYIE2D
+                                      description: >-
+                                        the BIC of the account (provided if
+                                        currency is EUR).
+                                    iban:
+                                      type: string
+                                      example: IE54CPAY99119911111111
+                                      description: >-
+                                        the IBAN of the account (provided if
+                                        currency is EUR).
+                            - title: relatedPartyPayee
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  enum:
+                                    - WITHDRAWAL_ACCOUNT
+                                account:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                      format: int64
+                                      example: 123
+                                      description: >-
+                                        The ID number of the Withdrawl account
+                                        in reference
+                                    alias:
+                                      type: string
+                                      example: Smyth and Co.
+                                      description: >-
+                                        The Alias name of the Withdrawl account
+                                        in reference
+                                    nsc:
+                                      type: string
+                                      example: '991199'
+                                      description: >-
+                                        (Conditional) Provide this field if
+                                        using Mode 2 and the payee account is in
+                                        GBP.
+                                    accountNumber:
+                                      type: string
+                                      example: '00000000'
+                                      description: >-
+                                        The account number of the Withdrawl
+                                        account in reference
+                                    bic:
+                                      type: string
+                                      example: CPAYIE2D
+                                      description: >-
+                                        The BIC of the Withdrawl account in
+                                        reference
+                                    iban:
+                                      type: string
+                                      example: IE76CPAY99119900000000
+                                      description: >-
+                                        The BIC of the Withdrawl account in
+                                        reference
+                            - title: relatedPartyCardPayment
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  enum:
+                                    - CARD_MERCHANT
+                                    - CARD_ATM
+                                cardMerchant:
+                                  type: object
+                                  properties:
+                                    acquirerIdDe32:
+                                      type: string
+                                      example: 06011329
+                                    additionalAmtDe54:
+                                      type: string
+                                    authCodeDe38:
+                                      type: string
+                                      example: '177449'
+                                    billAmt:
+                                      type: integer
+                                      format: int64
+                                      example: -1000
+                                    billCcy:
+                                      type: string
+                                      example: '978'
+                                    expiryDate:
+                                      type: string
+                                    mccCode:
+                                      type: string
+                                      example: '5521'
+                                    merchIdDe42:
+                                      type: string
+                                      example: 013152429
+                                    merchNameDe43:
+                                      type: string
+                                      example: ABC Coffee Shop
+                                    posDataDe61:
+                                      type: string
+                                      example: 000001000030037299999
+                                    posTermnlDe41:
+                                      type: string
+                                      example: '80266721'
+                                    posDataDe22:
+                                      type: string
+                                      example: '051'
+                                    procCode:
+                                      type: string
+                                      example: '000000'
+                                    respCodeDe39:
+                                      type: string
+                                      example: '00'
+                                    retRefNoDe37:
+                                      type: string
+                                      example: 010900006720
+                                    statusCode:
+                                      type: string
+                                      example: '00'
+                                    token:
+                                      type: string
+                                      example: '976307363'
+                                    txnAmt4d:
+                                      type: integer
+                                      format: int64
+                                      example: 1000
+                                    txnCcy:
+                                      type: string
+                                      example: '978'
+                                    txnCtry:
+                                      type: string
+                                      example: IRL
+                                    txnDesc:
+                                      type: string
+                                      example: ABC Coffee Shop
+                                    txnStatCode:
+                                      type: string
+                                      example: A
+                                    txnType:
+                                      type: string
+                                      example: A
+                                    additionalDataDe48:
+                                      type: string
+                                      example: 010X610500000
+                                    authorisedByGps:
+                                      type: string
+                                      example: 'N'
+                                    avsResult:
+                                      type: string
+                                      example: 'N'
+                                    mtId:
+                                      type: string
+                                      example: '0100'
+                                    recordDataDe120:
+                                      type: string
+                                    additionalDataDe124:
+                                      type: string
+                        eventUuid:
+                          type: string
+                          description: >-
+                            An internal Fire reference for the transaction
+                            (UUID)
+                          example: 42de0705-e3f1-44fa-8c41-79973eb80eb2
+  '/v1/accounts/{ican}/transactions/filter':
     get:
       summary: Filtered list of transactions for an account
       description: >
@@ -1012,7 +1691,7 @@ paths:
           content:
             application/json:
               schema:
-                title: cardTransactions
+                title: cardTransactionsv1
                 type: object
                 properties:
                   total:
@@ -1104,17 +1783,24 @@ paths:
                           type: string
                           description: The comment/reference on the transaction
                           example: Transfer to main account
-                        paymentRequestPublicCode:
+                        yourRef:
                           type: string
                           description: >-
-                            The code that was returned when you created the
-                            payment request.
-                          example: 1abcdefg
+                            The comment/reference on the transaction that
+                            appears on the recipients statement. Only for
+                            withdrawals
+                          example: From John Smith
                         date:
                           type: string
                           format: date-time
                           description: Date of the transaction
                           example: 2021-04-13T11:06:32.437Z
+                        paymentRequestPublicCode:
+                          type: string
+                          description: >-
+                            (FOP payments only) The FOP Payment Code that was
+                            used to make this payment.
+                          example: 1abcdefg
                         card:
                           title: relatedCard
                           type: object
@@ -1137,7 +1823,7 @@ paths:
                               format: date-time
                         type:
                           type: string
-                          description: "Retrieve a filtered list of transactions against an account.\n* `LODGEMENT` - Bank Transfer received\n* `PIS_LODGEMENT` - Fire Open Payments Lodgement received\n* `MANUAL_TRANSFER` - Manual Transfer to\n* `WITHDRAWAL` - Bank Transfer sent\n* `REVERSAL` - Credit Reversal\n* `INTERNAL_TRANSFER_TO` - Internal Transfer sent (between two of my accounts of the same currency)\n* `INTERNAL_TRANSFER_FROM` - Internal Transfer received (between two of my accounts of the same currency)\n* `WITHDRAWAL_RETURNED` - Bank Transfer sent returned\n* `LODGEMENT_REVERSED` - Bank Transfer received returned\n* `FX_INTERNAL_TRANSFER_FROM` - FX Internal Transfer received (between two of my accounts of different currency)\n* `FX_INTERNAL_TRANSFER_TO` - FX Internal Transfer sent (between two of my accounts of different currency)\n* `CARD_POS_CONTACT_DEBIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACT_CREDIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACTLESS_DEBIT` - Card used in store; read by NFC\n* `CARD_POS_CONTACTLESS_CREDIT` - Card used in store; read by NFC\n* `CARD_ECOMMERCE_DEBIT` - Card used on the internet\n* `CARD_ECOMMERCE_CREDIT` - Card used on the internet\n* `CARD_ATM_DEBIT` - Card used in an ATM\n* `CARD_ATM_CREDIT` - Card used in an ATM\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT\t` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ATM_DEBIT` - Card used in an ATM in non-processing currency\n* `CARD_INTERNATIONAL_ATM_CREDIT` - Card used in an ATM in non-processing currency\n* `CARD_POS_CONTACT_DEBIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACT_CREDIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_POS_CONTACTLESS_CREDIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_ECOMMERCE_DEBIT_REVERSAL\t` - Card used on the internet - reversed\n* `CARD_ECOMMERCE_CREDIT_REVERSAL` - Card used on the internet - reversed\n* `CARD_ATM_DEBIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_ATM_CREDIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT_REVERSAL` - One or more of the transaction types above. This field can be repeated multiple times to allow for multiple transaction types.\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n* `CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n"
+                          description: "The type of the transaction:\n* `LODGEMENT` - Bank Transfer received\n* `PIS_LODGEMENT` - Fire Open Payments Lodgement received\n* `MANUAL_TRANSFER` - Manual Transfer to\n* `WITHDRAWAL` - Bank Transfer sent\n* `REVERSAL` - Credit Reversal\n* `DIRECT_DEBIT` - A direct debit.\n* `DIRECT_DEBIT_REPRESENTED` - A Direct Debit that was requested again after initially failing.\n* `DIRECT_DEBIT_REFUND` - A refund of a Direct debit.\n* `INTERNAL_TRANSFER_TO` - Internal Transfer sent (between two of my accounts of the same currency)\n* `INTERNAL_TRANSFER_FROM` - Internal Transfer received (between two of my accounts of the same currency)\n* `WITHDRAWAL_RETURNED` - Bank Transfer sent returned\n* `LODGEMENT_REVERSED` - Bank Transfer received returned\n* `FX_INTERNAL_TRANSFER_FROM` - FX Internal Transfer received (between two of my accounts of different currency)\n* `FX_INTERNAL_TRANSFER_TO` - FX Internal Transfer sent (between two of my accounts of different currency)\n* `CREATE_CARD` - The fee taken when a debit card is issued.\n* `ADD_ACCOUNT` - The fee taken when an account is created.\n* `CREATE_ADDITIONAL_USER` - The fee taken when an additional user is created.       \n* `CARD_POS_CONTACT_DEBIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACT_CREDIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACTLESS_DEBIT` - Card used in store; read by NFC\n* `CARD_POS_CONTACTLESS_CREDIT` - Card used in store; read by NFC\n* `CARD_ECOMMERCE_DEBIT` - Card used on the internet\n* `CARD_ECOMMERCE_CREDIT` - Card used on the internet\n* `CARD_ATM_DEBIT` - Card used in an ATM\n* `CARD_ATM_CREDIT` - Card used in an ATM\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT\t` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ATM_DEBIT` - Card used in an ATM in non-processing currency\n* `CARD_INTERNATIONAL_ATM_CREDIT` - Card used in an ATM in non-processing currency\n* `CARD_POS_CONTACT_DEBIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACT_CREDIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_POS_CONTACTLESS_CREDIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_ECOMMERCE_DEBIT_REVERSAL\t` - Card used on the internet - reversed\n* `CARD_ECOMMERCE_CREDIT_REVERSAL` - Card used on the internet - reversed\n* `CARD_ATM_DEBIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_ATM_CREDIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT_REVERSAL` - One or more of the transaction types above. This field can be repeated multiple times to allow for multiple transaction types.\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n* `CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n"
                           example: WITHDRAWAL
                         dateAcknowledged:
                           type: string
@@ -1157,7 +1843,7 @@ paths:
                               description: currency which is being sold
                             fixedSide:
                               type: string
-                              description: type of trade
+                              description: type of trade - BUY or SELL
                               example: SELL
                             buyAmount:
                               type: integer
@@ -1174,6 +1860,107 @@ paths:
                               format: int64
                               description: exchange rate
                               example: 7180
+                            provider:
+                              type: string
+                              example: TCC
+                              description: The FX provider used to make the trade.
+                        batchItemDetails:
+                          title: batchItemDetails
+                          type: object
+                          properties:
+                            batchPublicUuid:
+                              type: string
+                              example: F2AF3F2B-4406-4199-B249-B354F2CC6019
+                              description: The UUID for this batch.
+                            batchItemPublicUuid:
+                              type: string
+                              example: F2AF3F2B-4406-4199-B249-B354F2CC6019
+                              description: The UUID for this item in the batch.
+                            batchName:
+                              type: string
+                              example: Payroll 2022-11
+                              description: >-
+                                The optional name given to the batch at creation
+                                time.
+                            jobNumber:
+                              type: string
+                              example: 2018-01-PR
+                              description: >-
+                                The optional job number given to the batch to
+                                link it to your own system.
+                        directDebitDetails:
+                          title: directDebitDetails
+                          type: object
+                          properties:
+                            directDebitUuid:
+                              type: string
+                              description: The UUID for the direct debit payment
+                              example: 42de0705-e3f1-44fa-8c41-79973eb80eb2
+                            mandateUUid:
+                              type: string
+                              description: The UUID for the mandate
+                              example: f171b143-e3eb-47de-85a6-1c1f1108c701
+                            originatorReference:
+                              type: string
+                              description: Set by party who sets up the direct debit.
+                              example: VODA-123456
+                            originatorName:
+                              type: string
+                              description: >-
+                                The creator of the party who sets up the direct
+                                debit.
+                              example: Vodafone PLC
+                            originatorAlias:
+                              type: string
+                              description: >-
+                                The Alias of the party who sets up the direct
+                                debit.
+                              example: Three
+                            directDebitReference:
+                              type: string
+                              description: The direct debit reference.
+                              example: VODA-ABC453-1
+                            originatorLogoUrlSmall:
+                              type: string
+                              description: >-
+                                URL pointing to a small version of the
+                                Originator Logo (if available)
+                              example: >-
+                                https://s3-eu-west-1.amazonaws.com/live-fire-assets/prod/49dc9a01-8261-4d98-bebf-c3842c2d3c5d-small.png
+                            originatorLogoUrlLarge:
+                              type: string
+                              description: >-
+                                URL pointing to a large version of the
+                                Originator Logo (if available)
+                              example: >-
+                                https://s3-eu-west-1.amazonaws.com/live-fire-assets/prod/49dc9a01-8261-4d98-bebf-c3842c2d3c5d-small.png
+                            mandateReference:
+                              type: string
+                              example: CRZ-102190123
+                              description: the reference of the mandate
+                            mandateUuid:
+                              type: string
+                              description: The UUID for the mandate
+                              example: 28d627c3-1889-44c8-ae59-6f6b20239260
+                        proprietarySchemeDetails:
+                          title: proprietarySchemeDetails
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              type:
+                                type: string
+                                description: >-
+                                  the type of proprietary scheme - SCT for SEPA,
+                                  FPS for Faster Payments etc.
+                                example: SCT
+                              data:
+                                type: string
+                                example: >-
+                                  remittanceInfoUnstructured^FIRE440286865OD1|instructionId^O223151336499079
+                                description: >-
+                                  the scheme proprietary data - key pairs
+                                  separated by | and key/values separated by ^
                         relatedParty:
                           title: relatedParty
                           oneOf:
@@ -1403,7 +2190,13 @@ paths:
                                       type: string
                                     additionalDataDe124:
                                       type: string
-  /cards:
+                        eventUuid:
+                          type: string
+                          description: >-
+                            An internal Fire reference for the transaction
+                            (UUID)
+                          example: 42de0705-e3f1-44fa-8c41-79973eb80eb2
+  /v1/cards:
     get:
       summary: View List of Cards.
       description: Returns a list of cards related to your fire.com account.
@@ -1573,7 +2366,7 @@ paths:
                       - CREATED_ACTIVE
                       - CREATED_INACTIVE
                     example: CREATED_ACTIVE
-  '/cards/{cardId}/transactions':
+  '/v1/cards/{cardId}/transactions':
     get:
       summary: List Card Transactions.
       description: Returns a list of cards transactions related to your fire.com card.
@@ -1610,7 +2403,7 @@ paths:
               schema:
                 type: array
                 items:
-                  title: cardTransactions
+                  title: cardTransactionsv1
                   type: object
                   properties:
                     total:
@@ -1702,17 +2495,24 @@ paths:
                             type: string
                             description: The comment/reference on the transaction
                             example: Transfer to main account
-                          paymentRequestPublicCode:
+                          yourRef:
                             type: string
                             description: >-
-                              The code that was returned when you created the
-                              payment request.
-                            example: 1abcdefg
+                              The comment/reference on the transaction that
+                              appears on the recipients statement. Only for
+                              withdrawals
+                            example: From John Smith
                           date:
                             type: string
                             format: date-time
                             description: Date of the transaction
                             example: 2021-04-13T11:06:32.437Z
+                          paymentRequestPublicCode:
+                            type: string
+                            description: >-
+                              (FOP payments only) The FOP Payment Code that was
+                              used to make this payment.
+                            example: 1abcdefg
                           card:
                             title: relatedCard
                             type: object
@@ -1735,7 +2535,7 @@ paths:
                                 format: date-time
                           type:
                             type: string
-                            description: "Retrieve a filtered list of transactions against an account.\n* `LODGEMENT` - Bank Transfer received\n* `PIS_LODGEMENT` - Fire Open Payments Lodgement received\n* `MANUAL_TRANSFER` - Manual Transfer to\n* `WITHDRAWAL` - Bank Transfer sent\n* `REVERSAL` - Credit Reversal\n* `INTERNAL_TRANSFER_TO` - Internal Transfer sent (between two of my accounts of the same currency)\n* `INTERNAL_TRANSFER_FROM` - Internal Transfer received (between two of my accounts of the same currency)\n* `WITHDRAWAL_RETURNED` - Bank Transfer sent returned\n* `LODGEMENT_REVERSED` - Bank Transfer received returned\n* `FX_INTERNAL_TRANSFER_FROM` - FX Internal Transfer received (between two of my accounts of different currency)\n* `FX_INTERNAL_TRANSFER_TO` - FX Internal Transfer sent (between two of my accounts of different currency)\n* `CARD_POS_CONTACT_DEBIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACT_CREDIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACTLESS_DEBIT` - Card used in store; read by NFC\n* `CARD_POS_CONTACTLESS_CREDIT` - Card used in store; read by NFC\n* `CARD_ECOMMERCE_DEBIT` - Card used on the internet\n* `CARD_ECOMMERCE_CREDIT` - Card used on the internet\n* `CARD_ATM_DEBIT` - Card used in an ATM\n* `CARD_ATM_CREDIT` - Card used in an ATM\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT\t` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ATM_DEBIT` - Card used in an ATM in non-processing currency\n* `CARD_INTERNATIONAL_ATM_CREDIT` - Card used in an ATM in non-processing currency\n* `CARD_POS_CONTACT_DEBIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACT_CREDIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_POS_CONTACTLESS_CREDIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_ECOMMERCE_DEBIT_REVERSAL\t` - Card used on the internet - reversed\n* `CARD_ECOMMERCE_CREDIT_REVERSAL` - Card used on the internet - reversed\n* `CARD_ATM_DEBIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_ATM_CREDIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT_REVERSAL` - One or more of the transaction types above. This field can be repeated multiple times to allow for multiple transaction types.\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n* `CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n"
+                            description: "The type of the transaction:\n* `LODGEMENT` - Bank Transfer received\n* `PIS_LODGEMENT` - Fire Open Payments Lodgement received\n* `MANUAL_TRANSFER` - Manual Transfer to\n* `WITHDRAWAL` - Bank Transfer sent\n* `REVERSAL` - Credit Reversal\n* `DIRECT_DEBIT` - A direct debit.\n* `DIRECT_DEBIT_REPRESENTED` - A Direct Debit that was requested again after initially failing.\n* `DIRECT_DEBIT_REFUND` - A refund of a Direct debit.\n* `INTERNAL_TRANSFER_TO` - Internal Transfer sent (between two of my accounts of the same currency)\n* `INTERNAL_TRANSFER_FROM` - Internal Transfer received (between two of my accounts of the same currency)\n* `WITHDRAWAL_RETURNED` - Bank Transfer sent returned\n* `LODGEMENT_REVERSED` - Bank Transfer received returned\n* `FX_INTERNAL_TRANSFER_FROM` - FX Internal Transfer received (between two of my accounts of different currency)\n* `FX_INTERNAL_TRANSFER_TO` - FX Internal Transfer sent (between two of my accounts of different currency)\n* `CREATE_CARD` - The fee taken when a debit card is issued.\n* `ADD_ACCOUNT` - The fee taken when an account is created.\n* `CREATE_ADDITIONAL_USER` - The fee taken when an additional user is created.       \n* `CARD_POS_CONTACT_DEBIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACT_CREDIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACTLESS_DEBIT` - Card used in store; read by NFC\n* `CARD_POS_CONTACTLESS_CREDIT` - Card used in store; read by NFC\n* `CARD_ECOMMERCE_DEBIT` - Card used on the internet\n* `CARD_ECOMMERCE_CREDIT` - Card used on the internet\n* `CARD_ATM_DEBIT` - Card used in an ATM\n* `CARD_ATM_CREDIT` - Card used in an ATM\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT\t` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ATM_DEBIT` - Card used in an ATM in non-processing currency\n* `CARD_INTERNATIONAL_ATM_CREDIT` - Card used in an ATM in non-processing currency\n* `CARD_POS_CONTACT_DEBIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACT_CREDIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_POS_CONTACTLESS_CREDIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_ECOMMERCE_DEBIT_REVERSAL\t` - Card used on the internet - reversed\n* `CARD_ECOMMERCE_CREDIT_REVERSAL` - Card used on the internet - reversed\n* `CARD_ATM_DEBIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_ATM_CREDIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT_REVERSAL` - One or more of the transaction types above. This field can be repeated multiple times to allow for multiple transaction types.\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n* `CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n"
                             example: WITHDRAWAL
                           dateAcknowledged:
                             type: string
@@ -1755,7 +2555,7 @@ paths:
                                 description: currency which is being sold
                               fixedSide:
                                 type: string
-                                description: type of trade
+                                description: type of trade - BUY or SELL
                                 example: SELL
                               buyAmount:
                                 type: integer
@@ -1772,6 +2572,107 @@ paths:
                                 format: int64
                                 description: exchange rate
                                 example: 7180
+                              provider:
+                                type: string
+                                example: TCC
+                                description: The FX provider used to make the trade.
+                          batchItemDetails:
+                            title: batchItemDetails
+                            type: object
+                            properties:
+                              batchPublicUuid:
+                                type: string
+                                example: F2AF3F2B-4406-4199-B249-B354F2CC6019
+                                description: The UUID for this batch.
+                              batchItemPublicUuid:
+                                type: string
+                                example: F2AF3F2B-4406-4199-B249-B354F2CC6019
+                                description: The UUID for this item in the batch.
+                              batchName:
+                                type: string
+                                example: Payroll 2022-11
+                                description: >-
+                                  The optional name given to the batch at
+                                  creation time.
+                              jobNumber:
+                                type: string
+                                example: 2018-01-PR
+                                description: >-
+                                  The optional job number given to the batch to
+                                  link it to your own system.
+                          directDebitDetails:
+                            title: directDebitDetails
+                            type: object
+                            properties:
+                              directDebitUuid:
+                                type: string
+                                description: The UUID for the direct debit payment
+                                example: 42de0705-e3f1-44fa-8c41-79973eb80eb2
+                              mandateUUid:
+                                type: string
+                                description: The UUID for the mandate
+                                example: f171b143-e3eb-47de-85a6-1c1f1108c701
+                              originatorReference:
+                                type: string
+                                description: Set by party who sets up the direct debit.
+                                example: VODA-123456
+                              originatorName:
+                                type: string
+                                description: >-
+                                  The creator of the party who sets up the
+                                  direct debit.
+                                example: Vodafone PLC
+                              originatorAlias:
+                                type: string
+                                description: >-
+                                  The Alias of the party who sets up the direct
+                                  debit.
+                                example: Three
+                              directDebitReference:
+                                type: string
+                                description: The direct debit reference.
+                                example: VODA-ABC453-1
+                              originatorLogoUrlSmall:
+                                type: string
+                                description: >-
+                                  URL pointing to a small version of the
+                                  Originator Logo (if available)
+                                example: >-
+                                  https://s3-eu-west-1.amazonaws.com/live-fire-assets/prod/49dc9a01-8261-4d98-bebf-c3842c2d3c5d-small.png
+                              originatorLogoUrlLarge:
+                                type: string
+                                description: >-
+                                  URL pointing to a large version of the
+                                  Originator Logo (if available)
+                                example: >-
+                                  https://s3-eu-west-1.amazonaws.com/live-fire-assets/prod/49dc9a01-8261-4d98-bebf-c3842c2d3c5d-small.png
+                              mandateReference:
+                                type: string
+                                example: CRZ-102190123
+                                description: the reference of the mandate
+                              mandateUuid:
+                                type: string
+                                description: The UUID for the mandate
+                                example: 28d627c3-1889-44c8-ae59-6f6b20239260
+                          proprietarySchemeDetails:
+                            title: proprietarySchemeDetails
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                type:
+                                  type: string
+                                  description: >-
+                                    the type of proprietary scheme - SCT for
+                                    SEPA, FPS for Faster Payments etc.
+                                  example: SCT
+                                data:
+                                  type: string
+                                  example: >-
+                                    remittanceInfoUnstructured^FIRE440286865OD1|instructionId^O223151336499079
+                                  description: >-
+                                    the scheme proprietary data - key pairs
+                                    separated by | and key/values separated by ^
                           relatedParty:
                             title: relatedParty
                             oneOf:
@@ -2001,11 +2902,17 @@ paths:
                                         type: string
                                       additionalDataDe124:
                                         type: string
+                          eventUuid:
+                            type: string
+                            description: >-
+                              An internal Fire reference for the transaction
+                              (UUID)
+                            example: 42de0705-e3f1-44fa-8c41-79973eb80eb2
         '401':
           description: Access Token is Invalid or missing
         '403':
           description: Access Token is Invalid or missing
-  '/cards/{cardId}/block':
+  '/v1/cards/{cardId}/block':
     post:
       summary: Block a card
       description: >-
@@ -2027,7 +2934,7 @@ paths:
           description: >-
             No body is returned - “Status 204 No Content” signifies the call was
             successful.
-  '/cards/{cardId}/unblock':
+  '/v1/cards/{cardId}/unblock':
     post:
       summary: Unblock a card
       description: >-
@@ -2049,7 +2956,7 @@ paths:
           description: >-
             No body is returned - “Status 204 No Content” signifies the call was
             successful.
-  /paymentrequests:
+  /v1/paymentrequests:
     post:
       summary: Create a Fire Open Payment request
       description: >
@@ -2373,7 +3280,7 @@ paths:
                     enum:
                       - OTHER
                     description: The type of Fire Open Payment that was created.
-  /aspsps:
+  /v1/aspsps:
     get:
       summary: Get list of ASPSPs / Banks
       description: >
@@ -2469,7 +3376,7 @@ paths:
                           format: date-time
                           example: '2019-08-22T07:48:56.460Z'
                           description: The date the ASPSP / bank was last updated.
-  '/payments/{paymentUuid}':
+  '/v1/payments/{paymentUuid}':
     get:
       summary: Get Payment Details
       description: >
@@ -2719,7 +3626,7 @@ paths:
                       hosted option. You can choose to display any of
                       `ORDER_ID`, `PRODUCT_ID`, `CUSTOMER_ID`, `CUSTOMER_NUMBER`
                       and `COMMENT2` to the payer.
-  /users:
+  /v1/users:
     get:
       summary: Returns list of all users on your fire.com account
       description: You can retrieve the details of all fire.com users on your acount.
@@ -2827,7 +3734,7 @@ paths:
                           type: string
                           description: OS version for device.
                           example: '14.4'
-  '/user/{userId}':
+  '/v1/user/{userId}':
     get:
       summary: Returns details of a specific fire.com user.
       description: You can retrieve the details of a specific fire.com user
@@ -2942,7 +3849,7 @@ paths:
                         type: string
                         description: OS version for device.
                         example: '14.4'
-  /apps:
+  /v1/apps:
     post:
       summary: Create a new API Application
       description: Create a new API Application with specified permissions
@@ -3044,7 +3951,7 @@ paths:
                     type: string
                     description: The Refresh Token of the new API Application
                     example: 4ADFB67A-0F5B-4A9A-9D74-34437250045C
-  /payees:
+  /v1/payees:
     get:
       summary: List all Payee Bank Accounts
       description: |
@@ -3158,7 +4065,7 @@ paths:
                           format: date-time
                           example: '2019-08-22T07:48:56.460Z'
                           description: The date the payee was created. ISO Date Time.
-  /directdebits:
+  /v1/directdebits:
     get:
       summary: Get all DD payments associated with a direct debit mandate
       description: >
@@ -3362,7 +4269,7 @@ paths:
                           description: >-
                             Date the direct debit was created. Milliseconds
                             since the epoch (1970).
-  '/directdebits/{directDebitUuid}':
+  '/v1/directdebits/{directDebitUuid}':
     get:
       summary: Get the details of a direct debit
       description: >
@@ -3550,7 +4457,7 @@ paths:
                     description: >-
                       Date the direct debit was created. Milliseconds since the
                       epoch (1970).
-  '/directdebits/{directDebitUuid}/reject':
+  '/v1/directdebits/{directDebitUuid}/reject':
     post:
       summary: Reject a direct debit payment
       description: >
@@ -3572,7 +4479,7 @@ paths:
       responses:
         '204':
           description: 204 no content
-  /mandates:
+  /v1/mandates:
     get:
       summary: List all direct debit mandates
       description: >
@@ -3603,7 +4510,7 @@ paths:
                       properties:
                         mandateUuid:
                           type: string
-                          description: The UUID for the  mandate
+                          description: The UUID for the mandate
                           example: 28d627c3-1889-44c8-ae59-6f6b20239260
                         currency:
                           title: currency
@@ -3780,7 +4687,7 @@ paths:
                           description: >-
                             Date the direct debit was canceled. Milliseconds
                             since the epoch (1970).
-  '/mandates/{mandateUuid}':
+  '/v1/mandates/{mandateUuid}':
     get:
       summary: Get direct debit mandate details
       description: >
@@ -3810,7 +4717,7 @@ paths:
                 properties:
                   mandateUuid:
                     type: string
-                    description: The UUID for the  mandate
+                    description: The UUID for the mandate
                     example: 28d627c3-1889-44c8-ae59-6f6b20239260
                   currency:
                     title: currency
@@ -4004,7 +4911,7 @@ paths:
       responses:
         '204':
           description: 204 no content
-  '/mandates/{mandateUuid}/cancel':
+  '/v1/mandates/{mandateUuid}/cancel':
     post:
       summary: Cancel a direct debit mandate
       description: >
@@ -4026,7 +4933,7 @@ paths:
       responses:
         '204':
           description: 204 no content
-  '/mandates/{mandateUuid}/activate':
+  '/v1/mandates/{mandateUuid}/activate':
     post:
       summary: Activate a direct debit mandate
       description: >
@@ -4051,7 +4958,7 @@ paths:
       responses:
         '204':
           description: 204 no content
-  /batches:
+  /v1/batches:
     post:
       summary: Create a new batch of payments
       description: >
@@ -4358,7 +5265,7 @@ paths:
                             be used to retrieve the transaction using the
                             https://api.fire.com/business/v1/accounts/{accountId}/transactions/{refId}
                             endpoint.
-  '/batches/{batchUuid}/internaltransfers':
+  '/v1/batches/{batchUuid}/internaltransfers':
     post:
       summary: Add an internal transfer payment to the batch
       description: >-
@@ -4568,7 +5475,7 @@ paths:
                             be used to retrieve the transaction using the
                             https://api.fire.com/business/v1/accounts/{accountId}/transactions/{refId}
                             endpoint.
-  '/batches/{batchUuid}/banktransfers':
+  '/v1/batches/{batchUuid}/banktransfers':
     post:
       summary: Add a bank transfer payment to the batch.
       description: >
@@ -4856,7 +5763,7 @@ paths:
                             be used to retrieve the transaction using the
                             https://api.fire.com/business/v1/accounts/{accountId}/transactions/{refId}
                             endpoint.
-  '/batches/{batchUuid}/internaltransfers/{itemUuid}':
+  '/v1/batches/{batchUuid}/internaltransfers/{itemUuid}':
     delete:
       summary: Remove a Payment from the Batch (Internal Transfer)
       description: >-
@@ -4884,7 +5791,7 @@ paths:
       responses:
         '200':
           description: Batch payment deleted successfully.
-  '/batches/{batchUuid}/banktransfers/{itemUuid}':
+  '/v1/batches/{batchUuid}/banktransfers/{itemUuid}':
     delete:
       summary: Remove a Payment from the Batch (Bank Transfers)
       description: >-
@@ -4911,7 +5818,7 @@ paths:
       responses:
         '200':
           description: Batch payment deleted successfully.
-  '/batches/{batchUuid}':
+  '/v1/batches/{batchUuid}':
     delete:
       summary: Cancel a batch
       description: >-
@@ -5066,7 +5973,7 @@ paths:
                     description: >-
                       The datestamp the batch was created - ISO format - e.g.
                       2018-04-04T00:53:21.910Z
-  '/batches/{batchUuid}/approvals':
+  '/v1/batches/{batchUuid}/approvals':
     get:
       summary: List Approvers for a Batch
       description: Returns a list of approvers for this batch.

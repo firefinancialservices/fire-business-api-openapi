@@ -3,7 +3,7 @@ type: object
 properties:
   mandateUuid:
     type: string
-    description: The UUID for the  mandate
+    description: The UUID for the mandate
     example: 28d627c3-1889-44c8-ae59-6f6b20239260
   currency:
     $ref: ./currency.yaml

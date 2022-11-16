@@ -11,7 +11,7 @@ properties:
     description: currency which is being sold
   fixedSide:
     type: string
-    description: type of trade
+    description: type of trade - BUY or SELL
     example: "SELL"
   buyAmount:
     type: integer
@@ -28,3 +28,7 @@ properties:
     format: int64
     description: exchange rate 
     example: 7180
+  provider:
+    type: string
+    example: "TCC"
+    description: The FX provider used to make the trade. 
