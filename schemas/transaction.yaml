@@ -17,6 +17,7 @@ properties:
     description: identifier for the fire.com account (assigned by fire.com) This field is only used in the condensed version.
     example: 1951
   currency:
+    description: The currency of the transaction.
     $ref: "./currency.yaml"
   amountBeforeCharges:
     type: integer
@@ -61,6 +62,7 @@ properties:
     description: (FOP payments only) The FOP Payment Code that was used to make this payment.
     example: 1abcdefg
   card:
+    description: Details of the card used (if applicable)
     $ref: "./related-card.yaml"
   type:
     type: string
@@ -170,14 +172,19 @@ properties:
     format: date-time
     example: 2021-04-13T11:06:32.437Z
   fxTradeDetails: 
+    description: Details of the FX transaction (if applicable)
     $ref: "./fx-trade-details.yaml"
   batchItemDetails: 
+    description: Details of the batch run if this transaction was part of a batch.
     $ref: "./batch-item-details.yaml"
   directDebitDetails: 
+    description: Details of the direct debit (if applicable)
     $ref: "./direct-debit-details.yaml"
   proprietarySchemeDetails: 
+    description: Extra details about the transaction based on the scheme used to make the payment. 
     $ref: "./proprietary-scheme-details.yaml"
   relatedParty:
+    description: Details of the related third party involved in the transaction. 
     $ref: "./related-party.yaml"
   eventUuid:
     type: string
