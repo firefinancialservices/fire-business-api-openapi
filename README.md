@@ -7,3 +7,5 @@ npm run publish
 npm run test 
 ``` 
 That tests the OpenAPI and creates the flat file in the dist folder. 
+
+Once you commit to github, the automatic workflows push the change to Readme. 
