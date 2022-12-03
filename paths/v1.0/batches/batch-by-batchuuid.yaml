@@ -49,6 +49,14 @@ put:
   tags:
     - Payment Batches
   operationId: submitBatch
+  parameters:
+  - in: path
+    required: true
+    name: batchUuid
+    schema:
+      type: string
+      description: The uuid of the batch.
+      example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
   responses:
     '204':
       description: No body is returned - a HTTP 204 No Content response signifies the call was successful.     
