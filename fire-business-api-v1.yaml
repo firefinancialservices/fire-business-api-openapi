@@ -5162,25 +5162,6 @@ paths:
                     type: string
                     example: F2AF3F2B-4406-4199-B249-B354F2CC6019
                     description: A UUID for this item.
-    put:
-      summary: Submit a batch for approval
-      description: >
-        Submits the Batch (for approval in the case of a **BANK_TRANSFER**). If
-        this is an **INTERNAL_TRANSFER** batch, the transfers are immediately
-        queued for processing. If this is a **BANK_TRANSFER** batch, this will
-        trigger requests for approval to the firework mobile apps of authorised
-        users. Once those users approve the batch, it is queued for processing.
-
-
-        You can only submit a batch while it is in the OPEN state.
-      tags:
-        - Payment Batches
-      operationId: submitBatch
-      responses:
-        '204':
-          description: >-
-            No body is returned - a HTTP 204 No Content response signifies the
-            call was successful.
     get:
       summary: List batches
       description: |
@@ -6044,6 +6025,25 @@ paths:
                     description: >-
                       The datestamp the batch was created - ISO format - e.g.
                       2018-04-04T00:53:21.910Z
+    put:
+      summary: Submit a batch for approval
+      description: >
+        Submits the Batch (for approval in the case of a **BANK_TRANSFER**). If
+        this is an **INTERNAL_TRANSFER** batch, the transfers are immediately
+        queued for processing. If this is a **BANK_TRANSFER** batch, this will
+        trigger requests for approval to the firework mobile apps of authorised
+        users. Once those users approve the batch, it is queued for processing.
+
+
+        You can only submit a batch while it is in the OPEN state.
+      tags:
+        - Payment Batches
+      operationId: submitBatch
+      responses:
+        '204':
+          description: >-
+            No body is returned - a HTTP 204 No Content response signifies the
+            call was successful.
   '/v1/batches/{batchUuid}/approvals':
     get:
       summary: List Approvers for a Batch
