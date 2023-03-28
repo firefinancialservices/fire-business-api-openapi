@@ -512,7 +512,7 @@ paths:
         the v3 endpoint instead.
       tags:
         - Transactions
-      operationId: getTransactionsByIdv1
+      operationId: getTransactionsByAccountIdv1
       parameters:
         - in: path
           name: ican
@@ -551,10 +551,12 @@ paths:
                 properties:
                   total:
                     type: integer
+                    format: int64
                     example: 1
                     description: The total number of card transactions in the list.
                   dateRangeTo:
                     type: integer
+                    format: int64
                     example: 1547744156603
                     description: milisecond timestamp of date range to value.
                   transactions:
@@ -1074,7 +1076,7 @@ paths:
         response to get newer or older pages.
       tags:
         - Transactions
-      operationId: getTransactionsByIdv3
+      operationId: getTransactionsByAccountIdv3
       parameters:
         - in: path
           name: ican
@@ -1672,7 +1674,7 @@ paths:
         will return records 40 to 59.
       tags:
         - Transactions
-      operationId: getTransactionsFilteredById
+      operationId: getTransactionsByAccountIdFiltered
       parameters:
         - in: path
           name: ican
@@ -1734,10 +1736,12 @@ paths:
                 properties:
                   total:
                     type: integer
+                    format: int64
                     example: 1
                     description: The total number of card transactions in the list.
                   dateRangeTo:
                     type: integer
+                    format: int64
                     example: 1547744156603
                     description: milisecond timestamp of date range to value.
                   transactions:
@@ -2459,10 +2463,12 @@ paths:
                   properties:
                     total:
                       type: integer
+                      format: int64
                       example: 1
                       description: The total number of card transactions in the list.
                     dateRangeTo:
                       type: integer
+                      format: int64
                       example: 1547744156603
                       description: milisecond timestamp of date range to value.
                     transactions:
