@@ -10,8 +10,9 @@ properties:
     enum: 
     - INTERNAL_TRANSFER
     - BANK_TRANSFER
+    - INTERNATIONAL_TRANSFER
     - NEW_PAYEE
-    description: The type of the batch - can be one of the listed 3              
+    description: The type of the batch - can be one of the listed 4              
   status:
     type: string
     enum:
@@ -43,8 +44,8 @@ properties:
     description: An optional POST URL that all events for this batch will be sent to.
   currency:
     type: string
-    description: All payments in the batch must be the same currency - either EUR or GBP
-    example: EUR
+    description: All payments in the batch must be the same currency.
+    example: EUR, GBP, USD
   numberOfItemsSubmitted:
     type: integer
     format: int64
