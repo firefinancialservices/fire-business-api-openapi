@@ -41,13 +41,13 @@ paths:
     $ref: ./paths/v1.0/accounts/accounts-by-ican.yaml
 
   /v1/accounts/{ican}/transactions:
-    $ref: ./paths/v1.0/transactions/transactions-by-account-v1.yaml 
+    $ref: ./paths/v1.0/accounts/transactions-by-account-v1.yaml 
 
   /v3/accounts/{ican}/transactions:
-    $ref: ./paths/v1.0/transactions/transactions-by-account-v3.yaml 
+    $ref: ./paths/v1.0/accounts/transactions-by-account-v3.yaml 
 
   /v1/accounts/{ican}/transactions/filter:
-    $ref: ./paths/v1.0/transactions/transactions-by-account-filtered.yaml 
+    $ref: ./paths/v1.0/accounts/transactions-by-account-filtered.yaml 
 
   /v1/cards:
     $ref: ./paths/v1.0/cards/cards.yaml

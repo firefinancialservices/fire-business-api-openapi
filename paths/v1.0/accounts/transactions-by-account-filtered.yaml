@@ -15,7 +15,7 @@ get:
     * `offset` - The page offset. Defaults to 0. This is the record number that the returned list will start at. E.g. offset = 40 and limit = 20 will return records 40 to 59.
   tags:
     - Transactions
-  operationId: getTransactionsFilteredById
+  operationId: getTransactionsByAccountIdFiltered
   parameters:
     - in: path
       name: ican
