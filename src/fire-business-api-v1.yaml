@@ -116,11 +116,18 @@ paths:
   /v1/batches/{batchUuid}/banktransfers:
     $ref: ./paths/v1.0/batches/banktransfers.yaml
 
+  /v2/batches/{batchUuid}/internationaltransfers:
+    $ref: ./paths/v1.0/batches/internationaltransfers.yaml
+
   /v1/batches/{batchUuid}/internaltransfers/{itemUuid}:
     $ref: ./paths/v1.0/batches/internaltransfer-by-itemuuid.yaml
 
   /v1/batches/{batchUuid}/banktransfers/{itemUuid}:
     $ref: ./paths/v1.0/batches/banktransfer-by-itemuuid.yaml
+
+  /v2/batches/{batchUuid}/internationaltransfers/{itemUuid}:
+    $ref: ./paths/v1.0/batches/internationaltransfer-by-itemuuid.yaml
+
 
   /v1/batches/{batchUuid}:
     $ref: ./paths/v1.0/batches/batch-by-batchuuid.yaml

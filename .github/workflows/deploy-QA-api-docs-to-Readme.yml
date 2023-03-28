@@ -1,0 +1,14 @@
+name: Sync OAS to ReadMe
+on:
+  push:
+    branches:
+      - qa
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: readmeio/rdme@7.5.0
+        with:
+          rdme: openapi ./fire-business-api-v1.yaml --version=v1.0-qa --key=${{ secrets.README_API_KEY }} --id=${{ secrets.README_API_DEFINITION_ID }}
+      
