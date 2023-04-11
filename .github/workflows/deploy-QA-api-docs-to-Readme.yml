@@ -1,0 +1,14 @@
+name: Sync OAS to ReadMe
+on:
+  push:
+    branches:
+      - qa
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: readmeio/rdme@7.5.0
+        with:
+          rdme: openapi ./fire-business-api-v1.yaml --key=${{ secrets.README_API_KEY }} --id=6422b12bda8f98007a57366d
+# 6422b12bda8f98007a57366d is the _id for the v1.0-qa version. Got this from the ReadMe API Get Versions endpoint https://docs.readme.com/main/reference/getversions
