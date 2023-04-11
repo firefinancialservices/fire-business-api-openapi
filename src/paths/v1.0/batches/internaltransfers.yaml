@@ -29,7 +29,7 @@ post:
 
 
 get:
-  summary: List items in a Batch
+  summary: List items in a Batch (Internal Transfers)
   description: Returns a paginated list of items in the specified batch.
   tags:
     - Payment Batches
