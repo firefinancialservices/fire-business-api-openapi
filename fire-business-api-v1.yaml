@@ -128,7 +128,6 @@ paths:
   /v2/batches/{batchUuid}/internationaltransfers/{itemUuid}:
     $ref: ./paths/v1.0/batches/internationaltransfer-by-itemuuid.yaml
 
-
   /v1/batches/{batchUuid}:
     $ref: ./paths/v1.0/batches/batch-by-batchuuid.yaml
 
