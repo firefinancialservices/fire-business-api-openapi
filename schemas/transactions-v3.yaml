@@ -1,4 +1,4 @@
-title: cardTransactionsv3
+title: transactionsv3
 type: object
 properties:
   links:
@@ -12,8 +12,8 @@ properties:
           description: The relationship of this link to the current object - self, next, prev page.
         href:
           type: string
-          example: The URL of the linked page
-          description: https://api.fire.com/business/v3/accounts/1/transactions?startAfter=eyJpY2F
+          example: https://api.fire.com/business/v3/accounts/1/transactions?startAfter=eyJpY2F
+          description: The URL of the linked page
   content:
     type: array
     items:
