@@ -38,7 +38,7 @@ post:
 
 
 get:
-  summary: List items in a Batch
+  summary: List items in a Batch (Bank Transfers)
   description: Returns a paginated list of items in the specified batch.
   tags:
     - Payment Batches
