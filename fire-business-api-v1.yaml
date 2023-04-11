@@ -1,4 +1,4 @@
-openapi: 3.0.2
+openapi: 3.1.0
 info:
   title: Fire Financial Services Business API
   description: >
@@ -29,7 +29,7 @@ info:
 
     These provide information about your service configs - applications,
     webhooks, API tokens, etc.
-  version: '1.0'
+  version: v1.0
   contact:
     name: Fire API
     url: 'https://docs.fire.com'
@@ -546,7 +546,7 @@ paths:
           content:
             application/json:
               schema:
-                title: cardTransactionsv1
+                title: transactionsv1
                 type: object
                 properties:
                   total:
@@ -1120,7 +1120,7 @@ paths:
           content:
             application/json:
               schema:
-                title: cardTransactionsv3
+                title: transactionsv3
                 type: object
                 properties:
                   links:
@@ -1136,9 +1136,9 @@ paths:
                             - self, next, prev page.
                         href:
                           type: string
-                          example: The URL of the linked page
-                          description: >-
+                          example: >-
                             https://api.fire.com/business/v3/accounts/1/transactions?startAfter=eyJpY2F
+                          description: The URL of the linked page
                   content:
                     type: array
                     items:
@@ -1729,7 +1729,7 @@ paths:
           content:
             application/json:
               schema:
-                title: cardTransactionsv1
+                title: transactionsv1
                 type: object
                 properties:
                   total:
@@ -2454,7 +2454,7 @@ paths:
               schema:
                 type: array
                 items:
-                  title: cardTransactionsv1
+                  title: transactionsv1
                   type: object
                   properties:
                     total:
@@ -6365,6 +6365,21 @@ paths:
                           description: >-
                             The datestamp of the last action on this batch - ISO
                             format - e.g. 2018-04-04T10:48:53.540Z
+webhooks:
+  events:
+    post:
+      description: An event has occurred on your account.
+      requestBody:
+        required: true
+        content:
+          application/jwt:
+            schema:
+              type: string
+              example: >-
+                eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
+      responses:
+        '200':
+          description: A 200 response is required from your server.
 components:
   securitySchemes:
     bearerAuth:
