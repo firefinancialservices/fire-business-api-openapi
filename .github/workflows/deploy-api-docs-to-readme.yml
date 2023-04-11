@@ -11,5 +11,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: readmeio/rdme@7.5.0
         with:
-          rdme: openapi ./fire-business-api-v1.yaml --key=${{ secrets.README_API_KEY }} --id=${{ secrets.README_API_DEFINITION_ID }}
+          rdme: openapi ./fire-business-api-v1.yaml --key=${{ secrets.README_API_KEY }} --id=5f6fc3cc6768a5003ca89036
+# 5f6fc3cc6768a5003ca89036 is the _id for the v1.0 version. Got this from the ReadMe API Get Versions endpoint https://docs.readme.com/main/reference/getversions
       

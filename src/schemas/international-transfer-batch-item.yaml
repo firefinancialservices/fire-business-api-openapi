@@ -24,10 +24,6 @@ properties:
     type: string
     example: ACME LTD - INV 23434
     description: The reference on the transaction - displayed on the beneficiary bank statement.
-  paymentReference:
-    type: string
-    example: ACME LTD - INV 23434
-    description: The reference on the transaction - repeat yourRef.
   paymentReason:
     type: string
     example: Invoice Payment, Salary/Dividend Payment
