@@ -5191,8 +5191,9 @@ paths:
             enum:
               - INTERNAL_TRANSFER
               - BANK_TRANSFER
+              - INTERNATIONAL_TRANSFER
               - NEW_PAYEE
-            description: The type of the batch. Can be one of the 3 listed enums.
+            description: The type of the batch. Can be one of the listed enums.
             example: INTERNAL_TRANSFER
         - in: query
           name: orderBy
@@ -6183,7 +6184,7 @@ paths:
                       - BANK_TRANSFER
                       - INTERNATIONAL_TRANSFER
                       - NEW_PAYEE
-                    description: The type of the batch - can be one of the listed 4
+                    description: The type of the batch - can be one of the listed enums
                   status:
                     type: string
                     enum:

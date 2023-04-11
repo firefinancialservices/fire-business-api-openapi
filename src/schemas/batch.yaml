@@ -12,7 +12,7 @@ properties:
     - BANK_TRANSFER
     - INTERNATIONAL_TRANSFER
     - NEW_PAYEE
-    description: The type of the batch - can be one of the listed 4              
+    description: The type of the batch - can be one of the listed enums              
   status:
     type: string
     enum:
