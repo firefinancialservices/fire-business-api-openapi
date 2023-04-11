@@ -5128,11 +5128,14 @@ paths:
                   enum:
                     - BANK_TRANSFER
                     - INTERNAL_TRANSFER
+                    - INTERNATIONAL_TRANSFER
                   description: The type of the batch - can be one of the listed 3
                 currency:
                   type: string
                   example: EUR
-                  description: GBP or EUR
+                  description: >-
+                    3 digit ISO code for the currency you wish to send - GBP,
+                    EUR, USD, CAD, etc...
                 batchName:
                   type: string
                   example: January 2018 Payroll
@@ -5386,7 +5389,7 @@ paths:
                       A Batch Item UUID for this item. Note* Do not confuse this
                       for BatchUuid when submitting a batch.
     get:
-      summary: List items in a Batch
+      summary: List items in a Batch (Internal Transfers)
       description: Returns a paginated list of items in the specified batch.
       tags:
         - Payment Batches
@@ -5674,7 +5677,7 @@ paths:
                       A Batch Item UUID for this item. Note* Do not confuse this
                       for BatchUuid when submitting a batch.
     get:
-      summary: List items in a Batch
+      summary: List items in a Batch (Bank Transfers)
       description: Returns a paginated list of items in the specified batch.
       tags:
         - Payment Batches
@@ -5899,7 +5902,7 @@ paths:
                       A Batch Item UUID for this item. Note* Do not confuse this
                       for BatchUuid when submitting a batch.
     get:
-      summary: List items in a Batch
+      summary: List items in a Batch (International Transfers)
       description: Returns a paginated list of items in the specified batch.
       tags:
         - Payment Batches
