@@ -4,7 +4,7 @@ get:
   description: Retrieve a list of transactions against an account. Recommended to use the v3 endpoint instead.
   tags:
     - Transactions
-  operationId: getTransactionsByIdv1
+  operationId: getTransactionsByAccountIdv1
   parameters:
     - in: path
       name: ican
