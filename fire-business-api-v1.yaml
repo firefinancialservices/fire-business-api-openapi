@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.0.3
 info:
   title: Fire Financial Services Business API
   description: >
@@ -29,7 +29,7 @@ info:
 
     These provide information about your service configs - applications,
     webhooks, API tokens, etc.
-  version: v1.0
+  version: '1.0'
   contact:
     name: Fire API
     url: 'https://docs.fire.com'
@@ -196,12 +196,8 @@ paths:
                           properties:
                             code:
                               type: string
-                              description: >-
-                                The three letter code for the currency - either
-                                `EUR` or `GBP`.
-                              enum:
-                                - EUR
-                                - GBP
+                              description: The three letter code for the currency.
+                              example: EUR
                             description:
                               type: string
                               description: The name of the currency
@@ -330,12 +326,8 @@ paths:
                     properties:
                       code:
                         type: string
-                        description: >-
-                          The three letter code for the currency - either `EUR`
-                          or `GBP`.
-                        enum:
-                          - EUR
-                          - GBP
+                        description: The three letter code for the currency.
+                        example: EUR
                       description:
                         type: string
                         description: The name of the currency
@@ -439,12 +431,8 @@ paths:
                     properties:
                       code:
                         type: string
-                        description: >-
-                          The three letter code for the currency - either `EUR`
-                          or `GBP`.
-                        enum:
-                          - EUR
-                          - GBP
+                        description: The three letter code for the currency.
+                        example: EUR
                       description:
                         type: string
                         description: The name of the currency
@@ -512,7 +500,7 @@ paths:
         the v3 endpoint instead.
       tags:
         - Transactions
-      operationId: getTransactionsByIdv1
+      operationId: getTransactionsByAccountIdv1
       parameters:
         - in: path
           name: ican
@@ -591,12 +579,8 @@ paths:
                           properties:
                             code:
                               type: string
-                              description: >-
-                                The three letter code for the currency - either
-                                `EUR` or `GBP`.
-                              enum:
-                                - EUR
-                                - GBP
+                              description: The three letter code for the currency.
+                              example: EUR
                             description:
                               type: string
                               description: The name of the currency
@@ -1074,7 +1058,7 @@ paths:
         response to get newer or older pages.
       tags:
         - Transactions
-      operationId: getTransactionsByIdv3
+      operationId: getTransactionsByAccountIdv3
       parameters:
         - in: path
           name: ican
@@ -1173,12 +1157,8 @@ paths:
                           properties:
                             code:
                               type: string
-                              description: >-
-                                The three letter code for the currency - either
-                                `EUR` or `GBP`.
-                              enum:
-                                - EUR
-                                - GBP
+                              description: The three letter code for the currency.
+                              example: EUR
                             description:
                               type: string
                               description: The name of the currency
@@ -1774,12 +1754,8 @@ paths:
                           properties:
                             code:
                               type: string
-                              description: >-
-                                The three letter code for the currency - either
-                                `EUR` or `GBP`.
-                              enum:
-                                - EUR
-                                - GBP
+                              description: The three letter code for the currency.
+                              example: EUR
                             description:
                               type: string
                               description: The name of the currency
@@ -2499,12 +2475,8 @@ paths:
                             properties:
                               code:
                                 type: string
-                                description: >-
-                                  The three letter code for the currency -
-                                  either `EUR` or `GBP`.
-                                enum:
-                                  - EUR
-                                  - GBP
+                                description: The three letter code for the currency.
+                                example: EUR
                               description:
                                 type: string
                                 description: The name of the currency
@@ -3421,12 +3393,8 @@ paths:
                           properties:
                             code:
                               type: string
-                              description: >-
-                                The three letter code for the currency - either
-                                `EUR` or `GBP`.
-                              enum:
-                                - EUR
-                                - GBP
+                              description: The three letter code for the currency.
+                              example: EUR
                             description:
                               type: string
                               description: The name of the currency
@@ -3532,12 +3500,8 @@ paths:
                     properties:
                       code:
                         type: string
-                        description: >-
-                          The three letter code for the currency - either `EUR`
-                          or `GBP`.
-                        enum:
-                          - EUR
-                          - GBP
+                        description: The three letter code for the currency.
+                        example: EUR
                       description:
                         type: string
                         description: The name of the currency
@@ -4029,6 +3993,24 @@ paths:
       tags:
         - Payee Bank Accounts
       operationId: getPayees
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            format: int64
+            description: The number of records to return. Defaults to 10 - max is 200.
+          required: false
+        - in: query
+          name: offset
+          schema:
+            type: integer
+            format: int64
+            description: >-
+              The page offset. Defaults to 0. This is the record number that the
+              returned list will start at. E.g. offset = 40 and limit = 20 will
+              return records 40 to 59.
+          required: false
       responses:
         '200':
           description: An array of Payee Bank Accounts
@@ -4062,12 +4044,8 @@ paths:
                           properties:
                             code:
                               type: string
-                              description: >-
-                                The three letter code for the currency - either
-                                `EUR` or `GBP`.
-                              enum:
-                                - EUR
-                                - GBP
+                              description: The three letter code for the currency.
+                              example: EUR
                             description:
                               type: string
                               description: The name of the currency
@@ -4185,12 +4163,8 @@ paths:
                           properties:
                             code:
                               type: string
-                              description: >-
-                                The three letter code for the currency - either
-                                `EUR` or `GBP`.
-                              enum:
-                                - EUR
-                                - GBP
+                              description: The three letter code for the currency.
+                              example: EUR
                             description:
                               type: string
                               description: The name of the currency
@@ -4377,12 +4351,8 @@ paths:
                     properties:
                       code:
                         type: string
-                        description: >-
-                          The three letter code for the currency - either `EUR`
-                          or `GBP`.
-                        enum:
-                          - EUR
-                          - GBP
+                        description: The three letter code for the currency.
+                        example: EUR
                       description:
                         type: string
                         description: The name of the currency
@@ -4588,12 +4558,8 @@ paths:
                           properties:
                             code:
                               type: string
-                              description: >-
-                                The three letter code for the currency - either
-                                `EUR` or `GBP`.
-                              enum:
-                                - EUR
-                                - GBP
+                              description: The three letter code for the currency.
+                              example: EUR
                             description:
                               type: string
                               description: The name of the currency
@@ -4796,12 +4762,8 @@ paths:
                     properties:
                       code:
                         type: string
-                        description: >-
-                          The three letter code for the currency - either `EUR`
-                          or `GBP`.
-                        enum:
-                          - EUR
-                          - GBP
+                        description: The three letter code for the currency.
+                        example: EUR
                       description:
                         type: string
                         description: The name of the currency
@@ -6365,21 +6327,6 @@ paths:
                           description: >-
                             The datestamp of the last action on this batch - ISO
                             format - e.g. 2018-04-04T10:48:53.540Z
-webhooks:
-  events:
-    post:
-      description: An event has occurred on your account.
-      requestBody:
-        required: true
-        content:
-          application/jwt:
-            schema:
-              type: string
-              example: >-
-                eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
-      responses:
-        '200':
-          description: A 200 response is required from your server.
 components:
   securitySchemes:
     bearerAuth:

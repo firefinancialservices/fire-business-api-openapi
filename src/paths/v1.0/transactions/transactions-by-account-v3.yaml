@@ -4,7 +4,7 @@ get:
     Retrieve a list of transactions against an account. Initially, use the optional `limit`, `dateRangeFrom` and `dateRangeTo` query params to limit your query, then use the embedded `next` or `prev` links in the response to get newer or older pages.
   tags:
     - Transactions
-  operationId: getTransactionsByIdv3
+  operationId: getTransactionsByAccountIdv3
   parameters:
     - in: path
       name: ican

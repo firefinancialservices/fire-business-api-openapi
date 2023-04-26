@@ -6,7 +6,7 @@ slug: authentication
 ---
 Access to the API is by Bearer Tokens. 
 
-You must first log into the [firework online application](https://business.fire.com) and create a new Application in the **Profile > API** page. (You will need your PIN digits and 2-Factor Authentication device).
+You must first log into the [firework online application](https://business.fire.com) and create a new Application in the **Settings > API** page. (You will need your PIN digits and 2-Factor Authentication device).
 
 Give your application a Name and select the scope/permissions you need the application to have (more on Scopes below).
 
