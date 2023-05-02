@@ -6385,11 +6385,10 @@ security:
 tags:
   - name: Authentication
     description: >
-      Access to the API is by Bearer Tokens. The process is somewhat similar to
-      OAuth2.0, but with some changes to improve security.
+      Access to the API is by Bearer Tokens. 
 
       1. You must first log into the firework online application and create a
-      new Application in the Profile > API page. (You will need your PIN digits
+      new Application in the Settings > API page. (You will need your PIN digits
       and 2-Factor Authentication device).
 
       2. Give your application a Name and select the scope/permissions you need
