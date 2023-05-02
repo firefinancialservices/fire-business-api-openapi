@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: readmeio/rdme@8.6.1
+      - uses: readmeio/rdme@8.6.2
         with:
           rdme: openapi ./fire-business-api-v1.yaml --workingDirectory=src --key=${{ secrets.README_API_KEY }} --id=6422b12bda8f98007a573637
 # 6422b12bda8f98007a57366d is the _id for the v1.0-qa version. Got this from the ReadMe https://dash.readme.com/project/fire-business-api/v1.0-qa/reference
