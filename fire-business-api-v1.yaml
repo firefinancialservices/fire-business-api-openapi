@@ -3183,7 +3183,12 @@ paths:
                   example: Gym Fees Oct 2020
                   description: >-
                     A public facing description of the request. This will be
-                    shown to the user when they tap or scan the request.
+                    shown to the user when they tap or scan the request. Fire
+                    will truncate to 18 characters to ensure it is accepted by
+                    all banks. It is safest to use only numbers, letters, spaces
+                    and a fullstop (.) Special characters are not accepted by
+                    most banks and errors will only occur after the customer has
+                    approved the payment.
                 maxNumberPayments:
                   type: integer
                   example: 1
