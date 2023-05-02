@@ -7,7 +7,7 @@ jobs:
   sync-openapi-to-readme-qa:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: readmeio/rdme@8.6.2
         with:
           rdme: openapi ./fire-business-api-v1.yaml --workingDirectory=src --key=${{ secrets.README_API_KEY }} --id=6422b12bda8f98007a573637
