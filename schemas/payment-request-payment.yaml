@@ -71,7 +71,7 @@ properties:
   description:
     type: string
     example: Gym Fees Oct 2020
-    description: A public facing description of the request. This will be shown to the user when they tap or scan the request.
+    description: A public facing description of the request. This will be shown to the user when they tap or scan the request. Fire will truncate to 18 characters to ensure it is accepted by all banks. It is safest to use only numbers, letters, spaces and a fullstop (.) Special characters are not accepted by most banks and errors will only occur after the customer has approved the payment. 
   returnUrl:
     type: string
     example: https://example.com/callback
