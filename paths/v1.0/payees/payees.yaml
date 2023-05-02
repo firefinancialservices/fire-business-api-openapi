@@ -11,6 +11,21 @@ get:
   tags:
     - Payee Bank Accounts
   operationId: getPayees
+  parameters:
+    - in: query
+      name: limit
+      schema:
+        type: integer
+        format: int64
+        description: The number of records to return. Defaults to 10 - max is 200.
+      required: false
+    - in: query
+      name: offset
+      schema:
+        type: integer
+        format: int64
+        description: The page offset. Defaults to 0. This is the record number that the returned list will start at. E.g. offset = 40 and limit = 20 will return records 40 to 59.
+      required: false  
   responses:
     '200':
       description: An array of Payee Bank Accounts

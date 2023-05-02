@@ -22,7 +22,7 @@ post:
 
       Whenever it expires, create a new nonce and get a new access token again.
   tags:
-    - Authentication
+    - API
   operationId: authenticate
   security: []
   requestBody:
