@@ -8,9 +8,9 @@ Access to the API is by Bearer Tokens. You will need to set up set up a Fire App
 
 To do this:
 
-1. Login at https://business.fire.com.
-1. Select the **Settings** Menu.
-1. Select the **API** tab.
+1. Sign In at https://business.fire.com.
+1. Select the **Settings** tab.
+1. Select the **API** section.
 1. Click **Add New Application**.
 
 ![Creating a new Application](https://www.fire.com/wp-content/uploads/2023/05/settings-api.png)
@@ -48,7 +48,7 @@ It will be possible to create a SHA256 hash using your coding language or choice
 echo -n $NONCE$CLIENT_KEY | sha256sum
 ```
 
-To retrieve the Access Token, send a POST request to https://api.fire.com/business/v1/apps/accesstokens containing the following JSON body:
+Now call the [Access Token](/reference/authenticate) endpoint to send send a POST request containing the following JSON:
 
 ```JSON
 { 
@@ -78,4 +78,4 @@ Once you have the access token, pass it as a header for every API call, like so:
 Authorization: Bearer $ACCESS_TOKEN
 ```
 
-Whenever it expires, create a new nonce and get a new access token again.
+Whenever it expires, create a new nonce and get a new access token again. You can have multiple access tokens active at the same time if you have, for instance, multiple servers. 
