@@ -1,6 +1,7 @@
 post:
   summary: Create a new batch of payments
-  description: 
+  description: >
+    Opens a new batch container to hold specific transactions types in a certain currency.
   tags:
     - Payment Batches
   operationId: createBatchPayment
