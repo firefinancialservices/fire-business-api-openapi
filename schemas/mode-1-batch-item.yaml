@@ -24,9 +24,11 @@ properties:
     description: The value of the transaction
   myRef:
     type: string
+    maxLength: 50
     example: Payment to John Smith for Consultancy in device.
     description: The reference on the transaction for your records - not shown to the beneficiary.
   yourRef:
     type: string
+    maxLength: 50
     example: ACME LTD - INV 23434
     description: The reference on the transaction - displayed on the beneficiary bank statement.

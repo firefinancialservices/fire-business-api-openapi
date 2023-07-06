@@ -14,18 +14,22 @@ properties:
     description:  Use ACCOUNT_DETAILS if you are providing account numbers/sort codes/IBANs (Mode 2). Specify the account details in the destIban, destAccountHolderName, destNsc or destAccountNumber fields as appropriate.
   destIban:
     type: string
+    maxLength: 34
     example: IE00AIBK93123412341234
     description: The destination IBAN if a Euro Bank transfer
   destNsc:
     type: string
+    maxLength: 6
     example: "123456"
     description: The destination Nsc if a GBP bank transfer
   destAccountNumber:
     type: string
+    maxLength: 8
     example: "12345678"
     description: The destination Account Number if a GBP bank transfer
   destAccountHolderName:
     type: string
+    maxLength: 70
     example: John Smith
     description: The destination account holder name 
   amount:
@@ -35,9 +39,11 @@ properties:
     description: The value of the transaction
   myRef:
     type: string
+    maxLength: 50
     example: Payment to John Smith for Consultancy in device.
     description: The reference on the transaction for your records - not shown to the beneficiary.
   yourRef:
     type: string
+    maxLength: 50
     example: ACME LTD - INV 23434
     description: The reference on the transaction - displayed on the beneficiary bank statement.    
