@@ -28,6 +28,8 @@ properties:
     enum: 
     - "ADMIN"
     - "FULL_USER"
+    - "PAYMENT_ONLY_USER"
+    - "PAYEE_MANAGEMENT"
     - "READ_ONLY"
     - "CARD_ONLY"
   status:
