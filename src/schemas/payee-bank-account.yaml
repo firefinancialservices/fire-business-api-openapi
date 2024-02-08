@@ -51,10 +51,11 @@ properties:
     enum:
       - CUSTOMER
       - LODGEMENT
-      - DIRECT DEBIT
-      - OPEN BANKING
-      - FIRE OPEN PAYMENT
-      - FIRE DIRECT
+      - DIRECT_DEBIT
+      - OPEN_BANKING
+      - FIRE_OPEN_PAYMENT
+      - FIRE_DIRECT
+      - PAYMENT_ORIGINATING_OVERSEAS
     description: The creation source of the payee. 
     example: CUSTOMER
   dateCreated:
