@@ -17,6 +17,8 @@ get:
 
     * `PENDING` - This is the status that your payment is set to after the customer has authorised the payment with their ASPSP / bank but the bank may want to carry out another check before funding the transaction.
 
+    * `PAYMNET_CONFIRMED` - this status indicates that we have confirmed that the funds have been transferred, but they are not yet applied to your Fire account. It is safe to release goods for payment in this status. 
+
     * `PAID` - Funds were received into your fire.com GBP or EUR account from your customer’s ASPSP / bank.
 
 

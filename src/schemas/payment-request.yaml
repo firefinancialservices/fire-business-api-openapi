@@ -20,14 +20,10 @@ properties:
   status:
     type: string
     enum:
-      - AWAITING_AUTHORISATION
-      - AUTHORISED
-      - AWAITING_MULTI_AUTHORISATION
-      - NOT_AUTHORISED
+      - ACTIVE
       - PAID
-      - REJECTED
-      - ACCEPTED
-      - RECEIVED
+      - REMOVED
+      - EXPIRED
     description: The status of the transaction
   currency:
     $ref: ./currency.yaml

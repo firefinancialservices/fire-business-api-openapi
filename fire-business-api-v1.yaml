@@ -3284,6 +3284,11 @@ paths:
         customer has authorised the payment with their ASPSP / bank but the bank
         may want to carry out another check before funding the transaction.
 
+        * `PAYMNET_CONFIRMED` - this status indicates that we have confirmed
+        that the funds have been transferred, but they are not yet applied to
+        your Fire account. It is safe to release goods for payment in this
+        status. 
+
         * `PAID` - Funds were received into your fire.com GBP or EUR account
         from your customer’s ASPSP / bank.
 
@@ -3332,14 +3337,10 @@ paths:
                   status:
                     type: string
                     enum:
-                      - AWAITING_AUTHORISATION
-                      - AUTHORISED
-                      - AWAITING_MULTI_AUTHORISATION
-                      - NOT_AUTHORISED
+                      - ACTIVE
                       - PAID
-                      - REJECTED
-                      - ACCEPTED
-                      - RECEIVED
+                      - REMOVED
+                      - EXPIRED
                     description: The status of the transaction
                   currency:
                     title: currency
