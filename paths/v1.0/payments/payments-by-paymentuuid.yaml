@@ -9,16 +9,14 @@ get:
 
     * `AWAITING_AUTHORISATION` -This is the initial status of all your payments.
 
-    * `AUTHORISED` - This is the status that your payment is set to after the customer has authorised the payment with their ASPSP / bank.
-
     * `AWAITING_MULTI_AUTHORISATION` - Some business accounts such as charities require dual authorisation.
 
     * `NOT_AUTHORISED` - Either your customer clicked on cancel or the payment was rejected by their ASPSP / bank.
 
     * `PENDING` - This is the status that your payment is set to after the customer has authorised the payment with their ASPSP / bank but the bank may want to carry out another check before funding the transaction.
-
-    * `PAYMNET_CONFIRMED` - this status indicates that we have confirmed that the funds have been transferred, but they are not yet applied to your Fire account. It is safe to release goods for payment in this status. 
-
+    
+    * `AUTHORISED` - This is the status that your payment is set to after the customer has authorised the payment with their ASPSP / bank.
+    
     * `PAID` - Funds were received into your fire.com GBP or EUR account from your customer’s ASPSP / bank.
 
 
