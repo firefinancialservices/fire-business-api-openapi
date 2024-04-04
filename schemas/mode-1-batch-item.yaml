@@ -21,7 +21,7 @@ properties:
     type: integer
     format: int64
     example: 500
-    description: The value of the transaction
+    description: The amount of funds to be transferred. Note the last two digits represent pennies/cents, (e.g., £1.00 = 100).
   myRef:
     type: string
     maxLength: 50
