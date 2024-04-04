@@ -15,7 +15,7 @@ properties:
     type: integer
     format: int64
     example: 10000
-    description: amount of funds to be transfered
+    description: The amount of funds to be transferred. Note the last two digits represent pennies/cents, (e.g., £1.00 = 100).
   ref:
     type: string
     example: Moving funds to Operating Account
