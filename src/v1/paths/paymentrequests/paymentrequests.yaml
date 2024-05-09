@@ -1,0 +1,22 @@
+
+post:
+  summary: Create an Open Banking Payment request
+  description: >
+    This request creates a new Open Banking Payment request. A code is returned that can be shared to your customers as a URL by any channel you wish. See our [Guide to Fire Open Payments](/docs/fire-open-payments) for more details. You will need to enable the `PERM_BUSINESS_POST_PAYMENT_REQUEST` permission to use this endpoint.
+  tags:
+    - Open Banking
+  operationId: newPaymentRequest
+  requestBody:
+    required: true
+    description: Details of the new payment request
+    content:
+      application/json:
+        schema:
+          $ref: ../../schemas/new-payment-request.yaml
+  responses:
+    '200':
+      description: Payment Request created successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/payment-request-response.yaml

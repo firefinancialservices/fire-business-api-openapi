@@ -1,0 +1,39 @@
+get:
+  summary: View List of Cards.
+  description: Returns a list of cards related to your fire.com account.
+  tags:
+    - Cards
+  operationId: getListofCards
+  responses: 
+    '200':  
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/cards.yaml' 
+    '403':
+      $ref: ../../responses/unauthorised-error.yaml
+    '401':
+      $ref: ../../responses/unauthorised-error.yaml
+
+
+post:
+  summary: Create a new debit card.
+  description: You can create multiple debit cards which can be linked to your fire.com accounts.
+  tags:
+    - Cards
+  operationId: createNewCard
+  requestBody:
+    required: true
+    description: Details of the new card
+    content:
+      application/json:
+        schema:
+          $ref: ../../schemas/card-new.yaml
+  responses:
+    '200':
+      description: Card created successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/card-new-response.yaml
