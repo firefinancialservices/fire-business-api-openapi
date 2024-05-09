@@ -872,40 +872,31 @@ paths:
                                       type: integer
                                       format: int64
                                       example: 123
-                                      description: >-
-                                        The ID number of the Withdrawl account
-                                        in reference
+                                      description: The ID of the payee.
                                     alias:
                                       type: string
                                       example: Smyth and Co.
-                                      description: >-
-                                        The Alias name of the Withdrawl account
-                                        in reference
+                                      description: The name of the payee.
                                     nsc:
                                       type: string
                                       example: '991199'
                                       description: >-
-                                        (Conditional) Provide this field if
-                                        using Mode 2 and the payee account is in
-                                        GBP.
+                                        The sort code of the payee (for GBP
+                                        payments)
                                     accountNumber:
                                       type: string
                                       example: '00000000'
                                       description: >-
-                                        The account number of the Withdrawl
-                                        account in reference
+                                        The account number of the payee (for GBP
+                                        payments)
                                     bic:
                                       type: string
                                       example: CPAYIE2D
-                                      description: >-
-                                        The BIC of the Withdrawl account in
-                                        reference
+                                      description: The BIC of the payee (for EUR payments)
                                     iban:
                                       type: string
                                       example: IE76CPAY99119900000000
-                                      description: >-
-                                        The BIC of the Withdrawl account in
-                                        reference
+                                      description: The IBAN of the payee (for EUR payments)
                             - title: relatedPartyCardPayment
                               type: object
                               properties:
@@ -1202,7 +1193,7 @@ paths:
                               format: date-time
                         type:
                           type: string
-                          description: "The type of the transaction:\n* `LODGEMENT` - Bank Transfer received\n* `PIS_LODGEMENT` - Fire Open Payments Lodgement received\n* `MANUAL_TRANSFER` - Manual Transfer to\n* `WITHDRAWAL` - Bank Transfer sent\n* `REVERSAL` - Credit Reversal\n* `DIRECT_DEBIT` - A direct debit.\n* `DIRECT_DEBIT_REPRESENTED` - A Direct Debit that was requested again after initially failing.\n* `DIRECT_DEBIT_REFUND` - A refund of a Direct debit.\n* `INTERNAL_TRANSFER_TO` - Internal Transfer sent (between two of my accounts of the same currency)\n* `INTERNAL_TRANSFER_FROM` - Internal Transfer received (between two of my accounts of the same currency)\n* `WITHDRAWAL_RETURNED` - Bank Transfer sent returned\n* `LODGEMENT_REVERSED` - Bank Transfer received returned\n* `FX_INTERNAL_TRANSFER_FROM` - FX Internal Transfer received (between two of my accounts of different currency)\n* `FX_INTERNAL_TRANSFER_TO` - FX Internal Transfer sent (between two of my accounts of different currency)\n* `CREATE_CARD` - The fee taken when a debit card is issued.\n* `ADD_ACCOUNT` - The fee taken when an account is created.\n* `CREATE_ADDITIONAL_USER` - The fee taken when an additional user is created.       \n* `CARD_POS_CONTACT_DEBIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACT_CREDIT` - Card used in store; read by magnetic stripe or pin\n* `CARD_POS_CONTACTLESS_DEBIT` - Card used in store; read by NFC\n* `CARD_POS_CONTACTLESS_CREDIT` - Card used in store; read by NFC\n* `CARD_ECOMMERCE_DEBIT` - Card used on the internet\n* `CARD_ECOMMERCE_CREDIT` - Card used on the internet\n* `CARD_ATM_DEBIT` - Card used in an ATM\n* `CARD_ATM_CREDIT` - Card used in an ATM\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT` - Card used in store in non-processing currency; read by magnetic stripe or pin\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT` - Card used in store in non-processing currency; read by NFC\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT\t` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT` - Card used on the internet in non-processing currency\n* `CARD_INTERNATIONAL_ATM_DEBIT` - Card used in an ATM in non-processing currency\n* `CARD_INTERNATIONAL_ATM_CREDIT` - Card used in an ATM in non-processing currency\n* `CARD_POS_CONTACT_DEBIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACT_CREDIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed\n* `CARD_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_POS_CONTACTLESS_CREDIT_REVERSAL` - Card used in store; read by NFC - reversed\n* `CARD_ECOMMERCE_DEBIT_REVERSAL\t` - Card used on the internet - reversed\n* `CARD_ECOMMERCE_CREDIT_REVERSAL` - Card used on the internet - reversed\n* `CARD_ATM_DEBIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_ATM_CREDIT_REVERSAL` - Card used in an ATM - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT_REVERSAL` - One or more of the transaction types above. This field can be repeated multiple times to allow for multiple transaction types.\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed\n* `CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n* `CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL` - Card used on the internet in non-processing currency - reversed\n"
+                          description: "The type of the transaction:\n* `LODGEMENT` - Bank Transfer received\n* `PIS_LODGEMENT` - Open Banking Payment received\n* `MANUAL_TRANSFER` - Manual Transfer\n* `WITHDRAWAL` - Bank Transfer from the account\n* `REVERSAL` - Credit Reversal\n* `DIRECT_DEBIT` - A direct debit.\n* `DIRECT_DEBIT_REPRESENTED` - A Direct Debit that was requested again after initially failing.\n* `DIRECT_DEBIT_REFUND` - Refund of a Direct debit.\n* `INTERNAL_TRANSFER_TO` - Internal Transfer sent between Fire accounts\n* `INTERNAL_TRANSFER_FROM` - Internal Transfer received between Fire accounts\n* `WITHDRAWAL_RETURNED` - Bank Transfer returned to your account\n* `LODGEMENT_REVERSED` - Bank Transfer reversed out of your account\n* `FX_INTERNAL_TRANSFER_FROM` - FX Internal Transfer received between Fire accounts\n* `FX_INTERNAL_TRANSFER_TO` - FX Internal Transfer sent between Fire accounts\n* `CREATE_CARD` - The fee taken when a debit card is issued.\n* `ADD_ACCOUNT` - The fee taken when an account is created.\n* `CREATE_ADDITIONAL_USER` - The fee taken when an additional user is created.\n* `CARD_POS_CONTACT_DEBIT` - Debit Card Chip and PIN payment\n* `CARD_POS_CONTACT_CREDIT` - Debit Card Chip and PIN payment refund\n* `CARD_POS_CONTACTLESS_DEBIT` - Debit Card contactless payment\n* `CARD_POS_CONTACTLESS_CREDIT` - Debit Card contactless payment refund\n* `CARD_ECOMMERCE_DEBIT` - Debit Card online payment\n* `CARD_ECOMMERCE_CREDIT` - Debit Card online payment refund\n* `CARD_ATM_DEBIT` - Debit Card ATM withdrawal\n* `CARD_ATM_CREDIT` - Debit Card ATM refund\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT` - Debit Card Chip and PIN payment (non EUR/GBP)\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT` - Debit Card Chip and PIN payment refund (non EUR/GBP)\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT` - Debit Card contactless payment (non EUR/GBP)\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT` - Debit Card contactless payment refund (non EUR/GBP)\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT\t` - Debit Card online payment (non EUR/GBP)\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT` - Debit Card online payment refund (non EUR/GBP)\n* `CARD_INTERNATIONAL_ATM_DEBIT` - Debit Card ATM withdrawal (non EUR/GBP)\n* `CARD_INTERNATIONAL_ATM_CREDIT` - Debit Card ATM refund (non EUR/GBP)\n* `CARD_POS_CONTACT_DEBIT_REVERSAL` - Debit Card Chip and PIN payment (Reversed)\n* `CARD_POS_CONTACT_CREDIT_REVERSAL` - Debit Card Chip and PIN payment refund (Reversed)\n* `CARD_POS_CONTACTLESS_DEBIT_REVERSAL` - Debit Card contactless payment (Reversed)\n* `CARD_POS_CONTACTLESS_CREDIT_REVERSAL` - Debit Card contactless payment refund (Reversed)\n* `CARD_ECOMMERCE_DEBIT_REVERSAL\t` - Debit Card online payment (Reversed)\n* `CARD_ECOMMERCE_CREDIT_REVERSAL` - Debit Card online payment refund (Reversed)\n* `CARD_ATM_DEBIT_REVERSAL` - Debit Card ATM withdrawal (Reversed)\n* `CARD_ATM_CREDIT_REVERSAL` - Debit Card ATM refund (Reversed)\n* `CARD_INTERNATIONAL_POS_CONTACT_DEBIT_REVERSAL` - Debit Card Chip and PIN payment (non EUR/GBP) (Reversed)\n* `CARD_INTERNATIONAL_POS_CONTACT_CREDIT_REVERSAL` - Debit Card Chip and PIN payment refund (non EUR/GBP) (Reversed)\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT_REVERSAL` - Debit Card contactless payment (non EUR/GBP) (Reversed)\n* `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT_REVERSAL` - Debit Card contactless payment refund (non EUR/GBP) (Reversed)\n* `CARD_INTERNATIONAL_ECOMMERCE_DEBIT_REVERSAL` - Debit Card online payment (non EUR/GBP) (Reversed)\n* `CARD_INTERNATIONAL_ECOMMERCE_CREDIT_REVERSAL` - Debit Card online payment refund (non EUR/GBP) (Reversed)\n* `CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL` - Debit Card ATM withdrawal (non EUR/GBP) (Reversed)\n* `CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL` - Debit Card ATM refund (non EUR/GBP) (Reversed)\n"
                           example: WITHDRAWAL
                         dateAcknowledged:
                           type: string
@@ -1450,40 +1441,31 @@ paths:
                                       type: integer
                                       format: int64
                                       example: 123
-                                      description: >-
-                                        The ID number of the Withdrawl account
-                                        in reference
+                                      description: The ID of the payee.
                                     alias:
                                       type: string
                                       example: Smyth and Co.
-                                      description: >-
-                                        The Alias name of the Withdrawl account
-                                        in reference
+                                      description: The name of the payee.
                                     nsc:
                                       type: string
                                       example: '991199'
                                       description: >-
-                                        (Conditional) Provide this field if
-                                        using Mode 2 and the payee account is in
-                                        GBP.
+                                        The sort code of the payee (for GBP
+                                        payments)
                                     accountNumber:
                                       type: string
                                       example: '00000000'
                                       description: >-
-                                        The account number of the Withdrawl
-                                        account in reference
+                                        The account number of the payee (for GBP
+                                        payments)
                                     bic:
                                       type: string
                                       example: CPAYIE2D
-                                      description: >-
-                                        The BIC of the Withdrawl account in
-                                        reference
+                                      description: The BIC of the payee (for EUR payments)
                                     iban:
                                       type: string
                                       example: IE76CPAY99119900000000
-                                      description: >-
-                                        The BIC of the Withdrawl account in
-                                        reference
+                                      description: The IBAN of the payee (for EUR payments)
                             - title: relatedPartyCardPayment
                               type: object
                               properties:
@@ -2049,40 +2031,31 @@ paths:
                                       type: integer
                                       format: int64
                                       example: 123
-                                      description: >-
-                                        The ID number of the Withdrawl account
-                                        in reference
+                                      description: The ID of the payee.
                                     alias:
                                       type: string
                                       example: Smyth and Co.
-                                      description: >-
-                                        The Alias name of the Withdrawl account
-                                        in reference
+                                      description: The name of the payee.
                                     nsc:
                                       type: string
                                       example: '991199'
                                       description: >-
-                                        (Conditional) Provide this field if
-                                        using Mode 2 and the payee account is in
-                                        GBP.
+                                        The sort code of the payee (for GBP
+                                        payments)
                                     accountNumber:
                                       type: string
                                       example: '00000000'
                                       description: >-
-                                        The account number of the Withdrawl
-                                        account in reference
+                                        The account number of the payee (for GBP
+                                        payments)
                                     bic:
                                       type: string
                                       example: CPAYIE2D
-                                      description: >-
-                                        The BIC of the Withdrawl account in
-                                        reference
+                                      description: The BIC of the payee (for EUR payments)
                                     iban:
                                       type: string
                                       example: IE76CPAY99119900000000
-                                      description: >-
-                                        The BIC of the Withdrawl account in
-                                        reference
+                                      description: The IBAN of the payee (for EUR payments)
                             - title: relatedPartyCardPayment
                               type: object
                               properties:
@@ -2772,40 +2745,31 @@ paths:
                                         type: integer
                                         format: int64
                                         example: 123
-                                        description: >-
-                                          The ID number of the Withdrawl account
-                                          in reference
+                                        description: The ID of the payee.
                                       alias:
                                         type: string
                                         example: Smyth and Co.
-                                        description: >-
-                                          The Alias name of the Withdrawl account
-                                          in reference
+                                        description: The name of the payee.
                                       nsc:
                                         type: string
                                         example: '991199'
                                         description: >-
-                                          (Conditional) Provide this field if
-                                          using Mode 2 and the payee account is in
-                                          GBP.
+                                          The sort code of the payee (for GBP
+                                          payments)
                                       accountNumber:
                                         type: string
                                         example: '00000000'
                                         description: >-
-                                          The account number of the Withdrawl
-                                          account in reference
+                                          The account number of the payee (for GBP
+                                          payments)
                                       bic:
                                         type: string
                                         example: CPAYIE2D
-                                        description: >-
-                                          The BIC of the Withdrawl account in
-                                          reference
+                                        description: The BIC of the payee (for EUR payments)
                                       iban:
                                         type: string
                                         example: IE76CPAY99119900000000
-                                        description: >-
-                                          The BIC of the Withdrawl account in
-                                          reference
+                                        description: The IBAN of the payee (for EUR payments)
                               - title: relatedPartyCardPayment
                                 type: object
                                 properties:
