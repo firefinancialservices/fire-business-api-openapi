@@ -5,7 +5,7 @@ get:
     Retrieve the list of payments attempted against an Open Banking Payment request
   tags:
     - Open Banking
-  operationId: getPaymentRequestPayments
+  operationId: getPaymentRequestPaymentsv2
   parameters:
   - in: path
     required: true
