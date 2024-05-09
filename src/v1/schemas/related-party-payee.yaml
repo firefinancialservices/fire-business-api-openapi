@@ -12,24 +12,24 @@ properties:
         type:  integer
         format: int64
         example: 123
-        description: The ID number of the Withdrawl account in reference 
+        description: The ID of the payee.
       alias:
         type: string
         example: Smyth and Co.
-        description: The Alias name of the Withdrawl account in reference 
+        description: The name of the payee.
       nsc:
         type: string
         example: "991199"
-        description: (Conditional) Provide this field if using Mode 2 and the payee account is in GBP.
+        description: The sort code of the payee (for GBP payments)
       accountNumber: 
         type: string
         example: "00000000"
-        description: The account number of the Withdrawl account in reference 
+        description: The account number of the payee (for GBP payments)
       bic:
         type: string
         example: CPAYIE2D
-        description: The BIC of the Withdrawl account in reference
+        description: The BIC of the payee (for EUR payments)
       iban:
         type: string
         example: IE76CPAY99119900000000
-        description: The BIC of the Withdrawl account in reference
+        description: The IBAN of the payee (for EUR payments)

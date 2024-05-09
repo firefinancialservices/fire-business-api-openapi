@@ -69,11 +69,11 @@ properties:
 
       * `LODGEMENT` - Bank Transfer received
 
-      * `PIS_LODGEMENT` - Fire Open Payments Lodgement received
+      * `PIS_LODGEMENT` - Open Banking Payment received
 
-      * `MANUAL_TRANSFER` - Manual Transfer to
+      * `MANUAL_TRANSFER` - Manual Transfer
 
-      * `WITHDRAWAL` - Bank Transfer sent
+      * `WITHDRAWAL` - Bank Transfer from the account
 
       * `REVERSAL` - Credit Reversal
 
@@ -81,89 +81,89 @@ properties:
 
       * `DIRECT_DEBIT_REPRESENTED` - A Direct Debit that was requested again after initially failing.
       
-      * `DIRECT_DEBIT_REFUND` - A refund of a Direct debit.
+      * `DIRECT_DEBIT_REFUND` - Refund of a Direct debit.
       
-      * `INTERNAL_TRANSFER_TO` - Internal Transfer sent (between two of my accounts of the same currency)
+      * `INTERNAL_TRANSFER_TO` - Internal Transfer sent between Fire accounts
 
-      * `INTERNAL_TRANSFER_FROM` - Internal Transfer received (between two of my accounts of the same currency)
+      * `INTERNAL_TRANSFER_FROM` - Internal Transfer received between Fire accounts
 
-      * `WITHDRAWAL_RETURNED` - Bank Transfer sent returned
+      * `WITHDRAWAL_RETURNED` - Bank Transfer returned to your account
 
-      * `LODGEMENT_REVERSED` - Bank Transfer received returned
+      * `LODGEMENT_REVERSED` - Bank Transfer reversed out of your account
 
-      * `FX_INTERNAL_TRANSFER_FROM` - FX Internal Transfer received (between two of my accounts of different currency)
+      * `FX_INTERNAL_TRANSFER_FROM` - FX Internal Transfer received between Fire accounts
 
-      * `FX_INTERNAL_TRANSFER_TO` - FX Internal Transfer sent (between two of my accounts of different currency)
+      * `FX_INTERNAL_TRANSFER_TO` - FX Internal Transfer sent between Fire accounts
 
       * `CREATE_CARD` - The fee taken when a debit card is issued.
 
       * `ADD_ACCOUNT` - The fee taken when an account is created.
 
-      * `CREATE_ADDITIONAL_USER` - The fee taken when an additional user is created.       
+      * `CREATE_ADDITIONAL_USER` - The fee taken when an additional user is created.
 
-      * `CARD_POS_CONTACT_DEBIT` - Card used in store; read by magnetic stripe or pin
+      * `CARD_POS_CONTACT_DEBIT` - Debit Card Chip and PIN payment
 
-      * `CARD_POS_CONTACT_CREDIT` - Card used in store; read by magnetic stripe or pin
+      * `CARD_POS_CONTACT_CREDIT` - Debit Card Chip and PIN payment refund
 
-      * `CARD_POS_CONTACTLESS_DEBIT` - Card used in store; read by NFC
+      * `CARD_POS_CONTACTLESS_DEBIT` - Debit Card contactless payment
 
-      * `CARD_POS_CONTACTLESS_CREDIT` - Card used in store; read by NFC
+      * `CARD_POS_CONTACTLESS_CREDIT` - Debit Card contactless payment refund
 
-      * `CARD_ECOMMERCE_DEBIT` - Card used on the internet
+      * `CARD_ECOMMERCE_DEBIT` - Debit Card online payment
 
-      * `CARD_ECOMMERCE_CREDIT` - Card used on the internet
+      * `CARD_ECOMMERCE_CREDIT` - Debit Card online payment refund
 
-      * `CARD_ATM_DEBIT` - Card used in an ATM
+      * `CARD_ATM_DEBIT` - Debit Card ATM withdrawal
 
-      * `CARD_ATM_CREDIT` - Card used in an ATM
+      * `CARD_ATM_CREDIT` - Debit Card ATM refund
 
-      * `CARD_INTERNATIONAL_POS_CONTACT_DEBIT` - Card used in store in non-processing currency; read by magnetic stripe or pin
+      * `CARD_INTERNATIONAL_POS_CONTACT_DEBIT` - Debit Card Chip and PIN payment (non EUR/GBP)
 
-      * `CARD_INTERNATIONAL_POS_CONTACT_CREDIT` - Card used in store in non-processing currency; read by magnetic stripe or pin
+      * `CARD_INTERNATIONAL_POS_CONTACT_CREDIT` - Debit Card Chip and PIN payment refund (non EUR/GBP)
 
-      * `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT` - Card used in store in non-processing currency; read by NFC
+      * `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT` - Debit Card contactless payment (non EUR/GBP)
 
-      * `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT` - Card used in store in non-processing currency; read by NFC
+      * `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT` - Debit Card contactless payment refund (non EUR/GBP)
 
-      * `CARD_INTERNATIONAL_ECOMMERCE_DEBIT	` - Card used on the internet in non-processing currency
+      * `CARD_INTERNATIONAL_ECOMMERCE_DEBIT	` - Debit Card online payment (non EUR/GBP)
 
-      * `CARD_INTERNATIONAL_ECOMMERCE_CREDIT` - Card used on the internet in non-processing currency
+      * `CARD_INTERNATIONAL_ECOMMERCE_CREDIT` - Debit Card online payment refund (non EUR/GBP)
 
-      * `CARD_INTERNATIONAL_ATM_DEBIT` - Card used in an ATM in non-processing currency
+      * `CARD_INTERNATIONAL_ATM_DEBIT` - Debit Card ATM withdrawal (non EUR/GBP)
 
-      * `CARD_INTERNATIONAL_ATM_CREDIT` - Card used in an ATM in non-processing currency
+      * `CARD_INTERNATIONAL_ATM_CREDIT` - Debit Card ATM refund (non EUR/GBP)
 
-      * `CARD_POS_CONTACT_DEBIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed
+      * `CARD_POS_CONTACT_DEBIT_REVERSAL` - Debit Card Chip and PIN payment (Reversed)
 
-      * `CARD_POS_CONTACT_CREDIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed
+      * `CARD_POS_CONTACT_CREDIT_REVERSAL` - Debit Card Chip and PIN payment refund (Reversed)
 
-      * `CARD_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store; read by NFC - reversed
+      * `CARD_POS_CONTACTLESS_DEBIT_REVERSAL` - Debit Card contactless payment (Reversed)
 
-      * `CARD_POS_CONTACTLESS_CREDIT_REVERSAL` - Card used in store; read by NFC - reversed
+      * `CARD_POS_CONTACTLESS_CREDIT_REVERSAL` - Debit Card contactless payment refund (Reversed)
 
-      * `CARD_ECOMMERCE_DEBIT_REVERSAL	` - Card used on the internet - reversed
+      * `CARD_ECOMMERCE_DEBIT_REVERSAL	` - Debit Card online payment (Reversed)
 
-      * `CARD_ECOMMERCE_CREDIT_REVERSAL` - Card used on the internet - reversed
+      * `CARD_ECOMMERCE_CREDIT_REVERSAL` - Debit Card online payment refund (Reversed)
 
-      * `CARD_ATM_DEBIT_REVERSAL` - Card used in an ATM - reversed
+      * `CARD_ATM_DEBIT_REVERSAL` - Debit Card ATM withdrawal (Reversed)
 
-      * `CARD_ATM_CREDIT_REVERSAL` - Card used in an ATM - reversed
+      * `CARD_ATM_CREDIT_REVERSAL` - Debit Card ATM refund (Reversed)
 
-      * `CARD_INTERNATIONAL_POS_CONTACT_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed
+      * `CARD_INTERNATIONAL_POS_CONTACT_DEBIT_REVERSAL` - Debit Card Chip and PIN payment (non EUR/GBP) (Reversed)
 
-      * `CARD_INTERNATIONAL_POS_CONTACT_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed
+      * `CARD_INTERNATIONAL_POS_CONTACT_CREDIT_REVERSAL` - Debit Card Chip and PIN payment refund (non EUR/GBP) (Reversed)
 
-      * `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed
+      * `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT_REVERSAL` - Debit Card contactless payment (non EUR/GBP) (Reversed)
 
-      * `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT_REVERSAL` - One or more of the transaction types above. This field can be repeated multiple times to allow for multiple transaction types.
+      * `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT_REVERSAL` - Debit Card contactless payment refund (non EUR/GBP) (Reversed)
 
-      * `CARD_INTERNATIONAL_ECOMMERCE_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed
+      * `CARD_INTERNATIONAL_ECOMMERCE_DEBIT_REVERSAL` - Debit Card online payment (non EUR/GBP) (Reversed)
 
-      * `CARD_INTERNATIONAL_ECOMMERCE_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed
+      * `CARD_INTERNATIONAL_ECOMMERCE_CREDIT_REVERSAL` - Debit Card online payment refund (non EUR/GBP) (Reversed)
 
-      * `CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL` - Card used on the internet in non-processing currency - reversed
+      * `CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL` - Debit Card ATM withdrawal (non EUR/GBP) (Reversed)
 
-      * `CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL` - Card used on the internet in non-processing currency - reversed
+      * `CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL` - Debit Card ATM refund (non EUR/GBP) (Reversed)
     example: WITHDRAWAL  
   dateAcknowledged:
     type: string
