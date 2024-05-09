@@ -5107,7 +5107,9 @@ paths:
                   type: integer
                   format: int64
                   example: 10000
-                  description: amount of funds to be transfered
+                  description: >-
+                    The amount of funds to be transferred. Note the last two
+                    digits represent pennies/cents, (e.g., £1.00 = 100).
                 ref:
                   type: string
                   example: Moving funds to Operating Account
@@ -5351,7 +5353,9 @@ paths:
                       type: integer
                       format: int64
                       example: 500
-                      description: The value of the transaction
+                      description: >-
+                        The amount of funds to be transferred. Note the last two
+                        digits represent pennies/cents, (e.g., £1.00 = 100).
                     myRef:
                       type: string
                       maxLength: 50
@@ -5393,7 +5397,9 @@ paths:
                       type: integer
                       format: int64
                       example: 500
-                      description: The value of the transaction
+                      description: >-
+                        The amount of funds to be transferred. Note the last two
+                        digits represent pennies/cents, (e.g., £1.00 = 100).
                     myRef:
                       type: string
                       maxLength: 50
@@ -5613,7 +5619,10 @@ paths:
                   type: integer
                   format: int64
                   example: 500
-                  description: The value of the payment in the beneficiary currency.
+                  description: >-
+                    The value of the payment in the beneficiary currency. Note
+                    the last two digits represent pennies/cents, (e.g., £1.00 =
+                    100).
                 myRef:
                   type: string
                   example: Payment to John Smith for Consultancy in device.
