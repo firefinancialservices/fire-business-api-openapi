@@ -1,0 +1,77 @@
+post:
+  summary: Create a new batch of payments
+  description: >
+    Opens a new batch container to hold specific transaction types in a certain currency.
+  tags:
+    - Payment Batches
+  operationId: createBatchPayment
+  requestBody:
+    required: true
+    description: Details of the batch payment
+    content:
+      application/json:
+        schema:
+          $ref: ../../schemas/new-batch.yaml
+  responses:
+    '200':
+      description: Batch created successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/new-batch-response.yaml
+            
+
+get:
+  summary: List batches
+  description: >
+    Returns the list of batch with the specified types and statuses.
+  tags:
+    - Payment Batches
+  operationId: getBatches
+  parameters:
+    - in: query
+      name: batchStatus
+      schema:
+        type: string
+        enum:
+            - SUBMITTED
+            - REMOVED
+            - SUCCEEDED
+            - FAILED
+        description: The status of the batch if internal transfer.
+        example: SUBMITTED
+    - in: query
+      name: batchTypes
+      schema:
+        type: string
+        enum:
+          - INTERNAL_TRANSFER
+          - BANK_TRANSFER
+          - INTERNATIONAL_TRANSFER
+          - NEW_PAYEE
+        description: The type of the batch. Can be one of the listed enums.
+        example: "INTERNAL_TRANSFER"
+    - in: query
+      name: orderBy
+      schema:
+        type: string
+        enum:
+          - DATE
+        description: You can order the batches by date. No other options at this time
+        example: "DATE"            
+    - in: query
+      name: order
+      schema:
+        type: string
+        enum:
+          - DESC
+          - ASC
+        description: You can order the batches by ascending or descending order.
+        example: "DESC"     
+  responses:
+    '200':
+      description: List all batches.
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/batch-items.yaml
