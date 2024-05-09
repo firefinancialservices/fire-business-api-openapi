@@ -1,0 +1,22 @@
+get:
+  summary: Retrieve the details of an Open Banking Payment request
+  description: >
+    Retrieve the details of an Open Banking Payment request
+  tags:
+    - Open Banking
+  operationId: getPaymentRequestDetails
+  parameters:
+  - in: path
+    required: true
+    name: paymentRequestCode
+    schema:
+      type: string
+      description: The unique 8-character code identifying the payment request.
+      example: "1234abcd"
+  responses:
+    '200':
+      description: The Payment Request details object
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/payment-request.yaml

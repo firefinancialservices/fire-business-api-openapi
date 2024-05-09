@@ -13,107 +13,119 @@ servers:
     description: Production Server
 paths:
   /v1/apps/accesstokens:
-    $ref: ./paths/v1.0/apps/accesstokens.yaml
+    $ref: ./v1/paths/apps/accesstokens.yaml
     
   /v1/accounts:
-    $ref: ./paths/v1.0/accounts/accounts.yaml
+    $ref: ./v1/paths/accounts/accounts.yaml
     
   /v1/accounts/{ican}:
-    $ref: ./paths/v1.0/accounts/accounts-by-ican.yaml
+    $ref: ./v1/paths/accounts/accounts-by-ican.yaml
 
   /v1/accounts/{ican}/transactions:
-    $ref: ./paths/v1.0/accounts/transactions-by-account-v1.yaml 
+    $ref: ./v1/paths/accounts/transactions-by-account.yaml 
 
   /v3/accounts/{ican}/transactions:
-    $ref: ./paths/v1.0/accounts/transactions-by-account-v3.yaml 
+    $ref: ./v3/paths/accounts/transactions-by-account.yaml 
 
   /v1/accounts/{ican}/transactions/filter:
-    $ref: ./paths/v1.0/accounts/transactions-by-account-filtered.yaml 
+    $ref: ./v1/paths/accounts/transactions-by-account-filtered.yaml 
 
   /v1/cards:
-    $ref: ./paths/v1.0/cards/cards.yaml
+    $ref: ./v1/paths/cards/cards.yaml
 
   /v1/cards/{cardId}/transactions:
-    $ref: ./paths/v1.0/cards/card-transactions.yaml
+    $ref: ./v1/paths/cards/card-transactions.yaml
 
   /v1/cards/{cardId}/block:
-    $ref: ./paths/v1.0/cards/card-block.yaml
+    $ref: ./v1/paths/cards/card-block.yaml
 
   /v1/cards/{cardId}/unblock:
-    $ref: ./paths/v1.0/cards/card-unblock.yaml
+    $ref: ./v1/paths/cards/card-unblock.yaml
     
   /v1/paymentrequests:
-    $ref: ./paths/v1.0/paymentrequests/paymentrequests.yaml
+    $ref: ./v1/paths/paymentrequests/paymentrequests.yaml
 
-  /v1/aspsps:
-    $ref: ./paths/v1.0/aspsps/aspsps.yaml
+  /v1/paymentrequests/{paymentRequestCode}:
+    $ref: ./v1/paths/paymentrequests/paymentrequest-by-code.yaml
+
+  /v1/paymentrequests/{paymentRequestCode}/payments:
+    $ref: ./v1/paths/paymentrequests/paymentrequestpayments-by-code.yaml
+
+  /v2/paymentrequests/{paymentRequestCode}/payments:
+    $ref: ./v2/paths/paymentrequests/paymentrequestpayments-by-code.yaml
 
 # This endpoint is for Bankpay only. 
 #  /payments/{paymentUuid}/bankpayrefund:
-#    $ref: ./paths/v1.0/payments/refund-payment-by-paymentuuid.yaml
+#    $ref: ./v1/paths/payments/refund-payment-by-paymentuuid.yaml
 
   /v1/payments/{paymentUuid}:
-    $ref: ./paths/v1.0/payments/payments-by-paymentuuid.yaml
+    $ref: ./v1/paths/payments/payments-by-paymentuuid.yaml
+
+  /v2/payments/{paymentUuid}:
+    $ref: ./v2/paths/payments/payments-by-paymentuuid.yaml
+
+  /v1/aspsps:
+    $ref: ./v1/paths/aspsps/aspsps.yaml
 
   /v1/users:
-    $ref: ./paths/v1.0/users/users.yaml
+    $ref: ./v1/paths/users/users.yaml
 
   /v1/user/{userId}:
-    $ref: ./paths/v1.0/users/user-by-userid.yaml
+    $ref: ./v1/paths/users/user-by-userid.yaml
 
   /v1/apps:
-    $ref: ./paths/v1.0/apps/apps.yaml
+    $ref: ./v1/paths/apps/apps.yaml
 
   /v1/payees:
-    $ref: ./paths/v1.0/payees/payees.yaml
+    $ref: ./v1/paths/payees/payees.yaml
 
   /v1/directdebits:
-    $ref: ./paths/v1.0/directdebits/directdebits.yaml
+    $ref: ./v1/paths/directdebits/directdebits.yaml
 
   /v1/directdebits/{directDebitUuid}:
-    $ref: ./paths/v1.0/directdebits/directdebit-by-directdebituuid.yaml
+    $ref: ./v1/paths/directdebits/directdebit-by-directdebituuid.yaml
 
   /v1/directdebits/{directDebitUuid}/reject:
-    $ref: ./paths/v1.0/directdebits/reject-directdebit-by-uuid.yaml
+    $ref: ./v1/paths/directdebits/reject-directdebit-by-uuid.yaml
 
   /v1/mandates:
-    $ref: ./paths/v1.0/mandates/mandates.yaml
+    $ref: ./v1/paths/mandates/mandates.yaml
 
   /v1/mandates/{mandateUuid}:
-    $ref: ./paths/v1.0/mandates/mandate-by-uuid.yaml
+    $ref: ./v1/paths/mandates/mandate-by-uuid.yaml
 
   /v1/mandates/{mandateUuid}/cancel:
-    $ref: ./paths/v1.0/mandates/cancel-mandate-by-uuid.yaml
+    $ref: ./v1/paths/mandates/cancel-mandate-by-uuid.yaml
 
   /v1/mandates/{mandateUuid}/activate:
-    $ref: ./paths/v1.0/mandates/activate-mandate-by-uuid.yaml
+    $ref: ./v1/paths/mandates/activate-mandate-by-uuid.yaml
 
   /v1/batches:
-    $ref: ./paths/v1.0/batches/batches.yaml
+    $ref: ./v1/paths/batches/batches.yaml
 
   /v1/batches/{batchUuid}/internaltransfers:
-    $ref: ./paths/v1.0/batches/internaltransfers.yaml
+    $ref: ./v1/paths/batches/internaltransfers.yaml
 
   /v1/batches/{batchUuid}/banktransfers:
-    $ref: ./paths/v1.0/batches/banktransfers.yaml
+    $ref: ./v1/paths/batches/banktransfers.yaml
 
   /v2/batches/{batchUuid}/internationaltransfers:
-    $ref: ./paths/v1.0/batches/internationaltransfers.yaml
+    $ref: ./v1/paths/batches/internationaltransfers.yaml
 
   /v1/batches/{batchUuid}/internaltransfers/{itemUuid}:
-    $ref: ./paths/v1.0/batches/internaltransfer-by-itemuuid.yaml
+    $ref: ./v1/paths/batches/internaltransfer-by-itemuuid.yaml
 
   /v1/batches/{batchUuid}/banktransfers/{itemUuid}:
-    $ref: ./paths/v1.0/batches/banktransfer-by-itemuuid.yaml
+    $ref: ./v1/paths/batches/banktransfer-by-itemuuid.yaml
 
   /v2/batches/{batchUuid}/internationaltransfers/{itemUuid}:
-    $ref: ./paths/v1.0/batches/internationaltransfer-by-itemuuid.yaml
+    $ref: ./v1/paths/batches/internationaltransfer-by-itemuuid.yaml
 
   /v1/batches/{batchUuid}:
-    $ref: ./paths/v1.0/batches/batch-by-batchuuid.yaml
+    $ref: ./v1/paths/batches/batch-by-batchuuid.yaml
 
   /v1/batches/{batchUuid}/approvals:
-    $ref: ./paths/v1.0/batches/approvers-for-batch.yaml
+    $ref: ./v1/paths/batches/approvers-for-batch.yaml
 
 # webhooks:
 #   events:

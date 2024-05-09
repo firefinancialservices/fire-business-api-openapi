@@ -1,0 +1,41 @@
+get:
+  summary: List Card Transactions.
+  description: Returns a list of cards transactions related to your fire.com card.
+  tags:
+    - Cards
+  operationId: getListofCardTransactions
+  parameters:
+    - in: path
+      name: cardId
+      schema:
+        type: integer
+        format: int64
+        description: The cardid of the card to retrieve the associated transactions
+      required: true
+    - in: query
+      name: limit
+      schema:
+        type: integer
+        format: int64
+        description: The number of records to return
+      required: false
+    - in: query
+      name: offset
+      schema:
+        type: integer
+        format: int64
+        description: The page of records to return 
+      required: false    
+  responses: 
+    '200':  
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            type: array
+            items:            
+              $ref: '../../schemas/transactions.yaml' 
+    '403':
+      $ref: ../../responses/unauthorised-error.yaml
+    '401':
+      $ref: ../../responses/unauthorised-error.yaml

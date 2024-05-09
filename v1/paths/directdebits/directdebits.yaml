@@ -1,0 +1,25 @@
+get:
+  summary: Get all DD payments associated with a direct debit mandate
+  description: >
+      Retrieve all direct debit payments associated with a direct debit mandate.
+
+      The permision needed to access this endpoint is PERM_BUSINESS_GET_DIRECT_DEBITS
+
+  tags:
+    - Direct Debits
+  operationId: getDirectDebitsForMandateUuid
+  parameters:
+      - in: query
+        name: mandateUuid
+        schema:
+          type: string
+        required: true
+        description: The mandate UUID to retrieve
+        example: 1A07774B-1461-4595-BC4B-423B739712AF
+  responses:
+    '200':
+      description: Retrieve all direct debit payments associated with a direct debit mandate.
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/direct-debits.yaml
