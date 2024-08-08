@@ -13,11 +13,11 @@ To do this:
 1. Select the **API** section.
 1. Click **Add New Application**.
 
-![Creating a new Application](https://www.fire.com/wp-content/uploads/2023/05/settings-api.png)
+![Creating a new Application](https://files.readme.io/b976ce9-Add_new_app_screenshot.png)
 
 Give your API Application a name, and select the required permissions.
 
-![Selecting Permissions](https://www.fire.com/wp-content/uploads/2023/05/settings-api-new.png)
+![Selecting Permissions](https://files.readme.io/37db008-New_API_screenshot.png)
 
 If you have selected permissions relating to batch processing, you can configure how many approvers are need prior to processing a batch. There are 2 types of approvals:
 
