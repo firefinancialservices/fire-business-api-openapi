@@ -451,7 +451,7 @@ paths:
           description: Access Token is Invalid or missing
   '/v1/accounts/{ican}/transactions':
     get:
-      summary: List transactions for an account (v1)
+      summary: List transactions on an account (v1)
       deprecated: true
       description: >-
         Retrieve a list of transactions against an account. Recommended to use
@@ -1570,7 +1570,7 @@ paths:
                           example: 42de0705-e3f1-44fa-8c41-79973eb80eb2
   '/v1/accounts/{ican}/transactions/filter':
     get:
-      summary: Filtered list of transactions for an account (v1)
+      summary: Filter transactions on an account (v1)
       deprecated: true
       description: >
         Retrieve a filtered list of transactions against an account. Recommended
@@ -2922,7 +2922,7 @@ paths:
             successful.
   /v1/paymentrequests:
     post:
-      summary: Create an Open Banking Payment request
+      summary: Create a Payment request
       description: >
         This request creates a new Open Banking Payment request. A code is
         returned that can be shared to your customers as a URL by any channel
@@ -5254,7 +5254,7 @@ paths:
                     example: 4ADFB67A-0F5B-4A9A-9D74-34437250045C
   /v1/payees:
     get:
-      summary: List all Payee Bank Accounts
+      summary: List Payee Accounts
       description: |
         Returns all your payee bank accounts. 
 
