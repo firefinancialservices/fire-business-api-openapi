@@ -2160,7 +2160,7 @@ paths:
                           example: 42de0705-e3f1-44fa-8c41-79973eb80eb2
   /v1/cards:
     get:
-      summary: View List of Cards.
+      summary: List Debit Cards
       description: Returns a list of cards related to your fire.com account.
       tags:
         - Cards
@@ -2262,7 +2262,7 @@ paths:
         '403':
           description: Access Token is Invalid or missing
     post:
-      summary: Create a new debit card.
+      summary: Create a new fire.com debit card.
       description: >-
         You can create multiple debit cards which can be linked to your fire.com
         accounts.
@@ -2330,7 +2330,7 @@ paths:
                     example: CREATED_ACTIVE
   '/v1/cards/{cardId}/transactions':
     get:
-      summary: List Card Transactions.
+      summary: Get a list of Debit Card Transactions.
       description: Returns a list of cards transactions related to your fire.com card.
       tags:
         - Cards
@@ -2878,7 +2878,7 @@ paths:
           description: Access Token is Invalid or missing
   '/v1/cards/{cardId}/block':
     post:
-      summary: Block a card
+      summary: Block a fire.com card
       description: >-
         Updates status of an existing card to block which prevents any
         transactions being carried out with that card.
@@ -2900,7 +2900,7 @@ paths:
             successful.
   '/v1/cards/{cardId}/unblock':
     post:
-      summary: Unblock a card
+      summary: Unblock a fire.com debit card
       description: >-
         Updates status of an existing card to unblock which means that
         transactions can be carried out with that card.
@@ -2922,7 +2922,7 @@ paths:
             successful.
   /v1/paymentrequests:
     post:
-      summary: Create a Payment request
+      summary: Create a Payment Request
       description: >
         This request creates a new Open Banking Payment request. A code is
         returned that can be shared to your customers as a URL by any channel
@@ -3713,7 +3713,7 @@ paths:
                             payer.
   '/v2/paymentrequests/{paymentRequestCode}/payments':
     get:
-      summary: Retrieve the list of payments for an Open Banking Payment request
+      summary: Get list of all Payment Attempts related to a Payment Request
       description: >
         Retrieve the list of payments attempted against an Open Banking Payment
         request
@@ -4925,7 +4925,7 @@ paths:
                           description: The date the ASPSP / bank was last updated.
   /v1/users:
     get:
-      summary: Returns list of all users on your fire.com account
+      summary: List all Users
       description: You can retrieve the details of all fire.com users on your acount.
       tags:
         - Users
@@ -5035,7 +5035,7 @@ paths:
                           example: '14.4'
   '/v1/user/{userId}':
     get:
-      summary: Returns details of a specific fire.com user.
+      summary: Get the details of a User
       description: You can retrieve the details of a specific fire.com user
       tags:
         - Users
@@ -5770,7 +5770,7 @@ paths:
                       epoch (1970).
   '/v1/directdebits/{directDebitUuid}/reject':
     post:
-      summary: Reject a direct debit payment
+      summary: Reject a direct debit
       description: >
         This endpoint allows you to reject a direct debit payment where the
         status is still set to RECEIVED.
@@ -5997,7 +5997,7 @@ paths:
                             since the epoch (1970).
   '/v1/mandates/{mandateUuid}':
     get:
-      summary: Get direct debit mandate details
+      summary: Get the details for a direct debit mandate
       description: >
         Retrieve all details for a direct debit mandate.
 
@@ -6196,7 +6196,7 @@ paths:
                       Date the direct debit was canceled. Milliseconds since the
                       epoch (1970).
     post:
-      summary: Update a direct debit mandate alias
+      summary: Update direct debit mandate alias
       description: >
         Update Direct Debit Mandate Alias
 
@@ -6265,7 +6265,7 @@ paths:
           description: 204 no content
   /v1/batches:
     post:
-      summary: Create a new batch of payments
+      summary: Create a new Batch
       description: >
         Opens a new batch container to hold specific transaction types in a
         certain currency.
@@ -6324,7 +6324,7 @@ paths:
                     example: F2AF3F2B-4406-4199-B249-B354F2CC6019
                     description: A UUID for this item.
     get:
-      summary: List batches
+      summary: List all batches
       description: |
         Returns the list of batch with the specified types and statuses.
       tags:
@@ -6481,7 +6481,7 @@ paths:
                             endpoint.
   '/v1/batches/{batchUuid}/internaltransfers':
     post:
-      summary: Add an internal transfer payment to the batch
+      summary: Add an internal transfer to a batch
       description: >-
         Simply specify the source account, destination account, amount and a
         reference.
@@ -6550,7 +6550,7 @@ paths:
                       A Batch Item UUID for this item. Note* Do not confuse this
                       for BatchUuid when submitting a batch.
     get:
-      summary: List items in a Batch (Internal Transfers)
+      summary: List items for an Internal Transfer Batch
       description: Returns a paginated list of items in the specified batch.
       tags:
         - Payment Batches
@@ -6693,7 +6693,7 @@ paths:
                             endpoint.
   '/v1/batches/{batchUuid}/banktransfers':
     post:
-      summary: Add a bank transfer payment to the batch.
+      summary: Add a bank transfer to a batch.
       description: >
         There are two ways to process bank transfers - by Payee ID (**Mode 1**)
         or by Payee Account Details (**Mode 2**).
@@ -6850,7 +6850,7 @@ paths:
                       A Batch Item UUID for this item. Note* Do not confuse this
                       for BatchUuid when submitting a batch.
     get:
-      summary: List items in a Batch (Bank Transfers)
+      summary: List items for a  Bank Transfer Batch
       description: Returns a paginated list of items in the specified batch.
       tags:
         - Payment Batches
@@ -6993,7 +6993,7 @@ paths:
                             endpoint.
   '/v2/batches/{batchUuid}/internationaltransfers':
     post:
-      summary: Add an international transfer payment to the batch.
+      summary: Add an international transfer to a batch.
       description: >
         International transfers must be added to a batch using the Payee ID
         (**Mode 1**). Payees must be set up using the web application.
@@ -7078,7 +7078,7 @@ paths:
                       A Batch Item UUID for this item. Note* Do not confuse this
                       for BatchUuid when submitting a batch.
     get:
-      summary: List items in a Batch (International Transfers)
+      summary: List items for an International Transfer Batch
       description: Returns a paginated list of items in the specified batch.
       tags:
         - Payment Batches
@@ -7221,7 +7221,7 @@ paths:
                             endpoint.
   '/v1/batches/{batchUuid}/internaltransfers/{itemUuid}':
     delete:
-      summary: Remove a Payment from the Batch (Internal Transfer)
+      summary: Remove an internal transfer from a batch
       description: >-
         Removes a Payment from the Batch (Internal Transfer). You can only
         remove payments before the batch is submitted for approval (while it is
@@ -7249,7 +7249,7 @@ paths:
           description: Batch payment deleted successfully.
   '/v1/batches/{batchUuid}/banktransfers/{itemUuid}':
     delete:
-      summary: Remove a Payment from the Batch (Bank Transfers)
+      summary: Remove a bank transfer from a batch
       description: >-
         Removes a Payment from the Batch (Bank Transfers). You can only remove
         payments before the batch is submitted for approval (while it is in the
@@ -7276,7 +7276,7 @@ paths:
           description: Batch payment deleted successfully.
   '/v2/batches/{batchUuid}/internationaltransfers/{itemUuid}':
     delete:
-      summary: Remove a Payment from the Batch (International Transfers)
+      summary: Remove an international transfer from a batch
       description: >-
         Removes a Payment from the Batch (International Transfers). You can only
         remove payments before the batch is submitted for approval (while it is
@@ -7322,7 +7322,7 @@ paths:
         '200':
           description: Batch payment deleted successfully.
     get:
-      summary: Get details of a single Batch
+      summary: Get the details of a Batch
       description: >-
         Returns the details of the batch specified in the API endpoint -
         {batchUuid}.
@@ -7456,7 +7456,7 @@ paths:
                       The datestamp the batch was created - ISO format - e.g.
                       2018-04-04T00:53:21.910Z
     put:
-      summary: Submit a batch for approval
+      summary: Submit a batch 
       description: >
         Submits the Batch (for approval in the case of a **BANK_TRANSFER** or
         **INTERNATIONAL_TRANSFER**). If this is an **INTERNAL_TRANSFER** batch,
@@ -7485,7 +7485,7 @@ paths:
             call was successful.
   '/v1/batches/{batchUuid}/approvals':
     get:
-      summary: List Approvers for a Batch
+      summary: List approvals for a Batch
       description: Returns a list of approvers for this batch.
       tags:
         - Payment Batches
