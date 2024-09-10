@@ -219,7 +219,7 @@ paths:
         '401':
           description: Access Token is Invalid or missing
     post:
-      summary: Add a new account
+      summary: Create a new fire.com account
       description: >
         Creates a new fire.com account.
 
@@ -7542,7 +7542,7 @@ paths:
                             format - e.g. 2018-04-04T10:48:53.540Z
   '/v2/activities':
   get: 
-    summary: Retrieve the details of a fire.com Account’s activity
+    summary: Get Account Activity
     description: Retrieve the details of activity on your fire.com Account
     tags:
         - Accounts
