@@ -7540,6 +7540,61 @@ paths:
                           description: >-
                             The datestamp of the last action on this batch - ISO
                             format - e.g. 2018-04-04T10:48:53.540Z
+  '/v2/activities':
+  get: 
+    summary: Retrieve the details of a fire.com Account’s activity
+    description: Retrieve the details of activity on your fire.com Account
+    tags:
+        - Accounts
+    operationId: getActivities 
+    responses:
+        '200':
+          description: An array of activity objects.
+          content:
+            application/json:
+              schema:
+                title: Activity
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                    description: identifier for the fire.com account (assigned by fire.com)
+                    example: 7448413
+                  userId:
+                    type: int
+                    format: int64
+                    description: card user id assigned by fire.com
+                    example: 3138
+                  type:
+                    type: string
+                    enum:
+                      - PAYMENT_MADE
+                      - PAYMENT_RECEIVED
+                      - MANUAL_WITHDRAWAL
+                  description:
+                    type: string
+                    enum: 
+                     - "You paid %1"
+                  relatedIp:
+                    type: string
+                    description: IP address related to acivity 
+                    example: “89.101.154.45”
+                  dateCreated:
+                    type: string
+                    description: Date activity was created 
+                    example: “2024-09-10T09:40:54.190Z”
+        '401': 
+          description: Access Token is Invalid or missing
+ 
+
+
+
+                    
+
+
+ 
+
 components:
   securitySchemes:
     bearerAuth:
