@@ -19,7 +19,7 @@ paths:
     $ref: ./v1/paths/accounts/accounts.yaml
 
   /v2/activites:
-    $ref: .v2/paths/activities/activities.yaml
+    $ref: ./v2/paths/activities/activities.yaml
     
   /v1/accounts/{ican}:
     $ref: ./v1/paths/accounts/accounts-by-ican.yaml
