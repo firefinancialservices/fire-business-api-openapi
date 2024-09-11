@@ -1,31 +1,7 @@
-title: getActivities
+title: activities
 type: object
 properties:
-  id:
-      type: integer
-      format: int64
-      description: identifier for the fire.com account (assigned by fire.com)
-      example: 7448413
-  userId:
-      type: int
-      format: int64
-      description: card user id assigned by fire.com
-      example: 3138
-  type:
-      type: string
-      enum:
-           - PAYMENT_MADE
-           - PAYMENT_RECEIVED
-           - MANUAL_WITHDRAWAL
-  description:
-      type: string
-      enum: 
-            - "You paid %1"
-  relatedIp:
-      type: string
-      description: IP address related to acivity 
-      example: “89.101.154.45”
-  dateCreated:
-      type: string
-      description: Date activity was created 
-      example: “2024-09-10T09:40:54.190Z”
+  cards:
+    type: array
+    items:
+      $ref: './activity.yaml'
