@@ -1,0 +1,18 @@
+
+
+ get: 
+    summary: Get Account Activity
+    description: Retrieve the details of activity on your fire.com Account
+    tags:
+        - Accounts
+    operationId: getActivities 
+    responses:
+        '200':
+          description: An array of activity objects.
+          content:
+            application/json:
+              schema:
+                $ref: '../../schemas/activities.yaml'
+
+        '401':
+                $ref: '../../responses/unauthorised-error.yaml'
