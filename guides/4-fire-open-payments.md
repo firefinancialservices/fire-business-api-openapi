@@ -15,6 +15,8 @@ There are two implementation options you can use to display payment pages with F
 1. **Hosted Payment Pages**: fire.com hosts the payment pages - this option allows you to re-direct your customer to the hosted fire.com payment pages displaying the payment details confirmation, bank selection, consent and response pages.
 2. **Integrated Payment Pages**: You host the payments page yourself - this option allows you to have control of the UI and UX for displaying the payment details confirmation, bank selection and response pages. Once the response is received, fire.com can re-direct the payer back to your website.
 
+![FOP Flow](https://files.readme.io/9ea0c42b256ba0eba00d8311107f15086d752278c42c447035c5869e66085f8d-image.png)
+
 ## Hosted Payment Pages Option
 
 The payer is brought through the following stages to complete the payment:
