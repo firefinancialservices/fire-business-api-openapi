@@ -1,0 +1,60 @@
+title: Payee Account Details
+type: object
+properties:
+  status: 
+    type: string
+    description: Payee Status
+    enum: 7448413
+  accountName: 
+    type: string
+    description: Payee Name
+    example: "Jane Doe"
+  accountHolderName:
+    type: string
+    description: Payee Name
+    example: "Jane Doe"
+  nsc:
+    type: integer
+    format: int64
+    description: National sorting code
+    example: "991199"
+  accountNumber:
+    type: integer
+    format: int64
+    description: Payee's account number
+    example: "77900794"
+  bic:
+    type: string
+    description: Payee's Banking Identification Code
+    example: "CPAYIE2D"
+  iban:
+    type: string
+    description: Payee's International Banking Account Number
+    example: "IE44CPAY99119977900794"
+  combinedAccountNumbers:
+    type: string
+    description: Combination of Payee's BIC and IBAN
+    example: "CPAYIE2D / IE44CPAY99119977900794"
+  createdBy: 
+    type: string
+    description: Method payee was added
+    enum: 
+      - "FIRE_OPEN_PAYMENT"
+      - "CUSTOMER"
+      - "LODGEMENT"
+      - "DIRECT DEBIT"
+      - "OPEN_BANKING"
+      - "FIRE_DIRECT"
+      - "PAYMENT_ORIGINATING_OVERSEAS"
+  dateCreated:
+    type: string
+    description: Date payee was added
+    example: "2024-06-21T09:56:47.300Z"
+    
+  
+
+
+
+
+
+
