@@ -1,0 +1,85 @@
+title: PaymentRequestSummary
+type: object
+properties:
+  accountName:
+    type: string
+    description: Name on the Account
+    example: "Euro Account"
+  amount:
+    type: integer
+    format: int64
+    description: Amount of the transaction
+  code:
+    type: string
+    description: The code that was returned when you created the payment request
+    example: "1234abcd"
+    minLength: 8
+    maxLength: 8
+  currency:
+    type: string
+    description: Currency transaction was completed in 
+    example: "EUR"
+  dateCreated:
+    type: string
+    description: This is the date the payment was initiated.
+    example: "2024-09-12T14:55:03.857Z"
+  description:
+    type: string
+    description: A public facing description of the request. This will be shown to the user when they tap or scan the request. Fire will truncate to 18 characters to ensure it is accepted by all banks. It is safest to use only numbers, letters, spaces and a fullstop (.) Special characters are not accepted by most banks and errors will only occur after the customer has approved the payment. 
+    example: "FIRE/John Doe"
+  direction:
+    type: string
+    description: Payment direction
+    example: "SENT"
+  icanTo:
+    type: integer
+    format: int64
+    description: The ican of the account to collect the funds into. Must be one of your fire.com Accounts.
+    example: 66204
+  maxNumberPayments:
+    type: integer
+    format: int64
+    description: The max number of people who can pay this request. Must be set to 1 for the ECOMMERCE_GOODS and ECOMMERCE_SERVICES types.
+    example: 1
+  myRef:
+    type: string
+    description: An internal description of the request.
+    example: "Terminal"
+  orderDetails:
+    type: object
+    $ref: ./order-details.yaml
+  status:
+    type: string
+    description: The status of the transaction
+    enum:
+        - AWAITING_AUTHORISATION
+        - AUTHORISED
+        - AWAITING_MULTI_AUTHORISATION
+        - NOT_AUTHORISED
+        - SETTLED
+        - REJECTED
+        - ACCEPTED
+        - RECEIVED
+  type:
+    type: string
+    description: The type of Fire Open Payment that was created
+    enum:
+      - "OTHER"
+      - "DIRECT"
+      - "SHAREABLE"
+      - "PARTY_TO_PARTY"
+      - "BILL_PAYMENT"
+      - "ECOMMERCE_GOODS"
+      - "ECOMMERCE_SERVICES"
+
+
+
+
+
+
+    
+  
+
+
+            
+

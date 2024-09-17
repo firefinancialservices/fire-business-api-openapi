@@ -1,0 +1,16 @@
+title: PaymentRequestsSent
+type: object
+properties:
+  total:
+   type: integer
+   format: int64
+   description: The total number of payment request payments in the list.
+   example: 3
+  dateRangeTo: 
+    type: integer
+    format: int64
+    descrption: Date Range
+    example: 1726571260003
+  paymentRequests:
+    type: array
+    $ref: ./payment-request-summary.yaml
