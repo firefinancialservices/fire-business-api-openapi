@@ -4,7 +4,13 @@ properties:
   type:
     type: string
     enum:
-      - OTHER
+      - "OTHER"
+      - "DIRECT"
+      - "SHAREABLE"
+      - "PARTY_TO_PARTY"
+      - "BILL_PAYMENT"
+      - "ECOMMERCE_GOODS"
+      - "ECOMMERCE_SERVICES"
     description: The type of Fire Open Payment that was created
   paymentRequestCode:
     type: string
@@ -15,8 +21,9 @@ properties:
   transactionType:
     type: string
     enum:
-      - REFUND_REQUEST
-      - PAYMENT
+      - "REFUND_REQUEST"
+      - "PAYMENT"
+
     description: The type of payment request payment
   endToEndId:
     type: string
