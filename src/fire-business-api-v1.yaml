@@ -58,7 +58,7 @@ paths:
     $ref: ./v2/paths/paymentrequests/paymentrequestpayments-by-code.yaml
   
   /v2/paymentrequests/sent:
-    $ref: ./v2/paths/paymentrequests/paymentrequestssent
+    $ref: ./v2/paths/paymentrequests/paymentrequestsent.yaml
 
   /v2/payees/{fundingSrcId}:
     $ref: ./v2/paths/payees/payee-account-details.yaml
