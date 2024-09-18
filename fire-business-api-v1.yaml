@@ -57,6 +57,9 @@ paths:
   /v2/paymentrequests/{paymentRequestCode}/payments:
     $ref: ./v2/paths/paymentrequests/paymentrequestpayments-by-code.yaml
   
+  /v2/paymentrequests/{paymentRequestCode}/reports:
+    $ref: ./v2/paths/paymentrequests/paymentrequestreport.yaml
+
   /v2/paymentrequests/sent:
     $ref: ./v2/paths/paymentrequests/paymentrequestsent.yaml
 
