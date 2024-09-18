@@ -46,7 +46,6 @@ properties:
     description: An internal description of the request.
     example: "Terminal"
   orderDetails:
-    type: object
     $ref: ./order-details.yaml
   status:
     type: string
