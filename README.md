@@ -1,5 +1,16 @@
 # Fire Business API OpenAPI Spec
+## Set up environment 
 
+In order to run the below commands, you must first (assuming wsl usage):
+
+-Install npm
+
+-Install speccy 
+```bash
+sudo npm install speccy -g
+```
+
+ 
 The API is defined across multiple files using external $refs. To create a single flat YAML file use the following command before commit.
 ```bash
 npm install 
