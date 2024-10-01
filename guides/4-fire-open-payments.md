@@ -1,6 +1,6 @@
 ---
 title: Fire Open Payments
-excerpt: Fire Open Payments is a feature of the fire.com business account that leverages Open Banking to allow your customers to pay you via bank transfer and to reconcile those payments as they are received into your fire.com GBP or EUR account.
+excerpt: Fire Open Payments is a feature of the fire.com business account that leverages Open Banking to allow your customers to pay you via bank transfer and to reconcile those https://dash.readme.com/project/fire-business-api/v1.0/overviewpayments as they are received into your fire.com GBP or EUR account.
 category: 5f6fc3cc6768a5003ca89038
 slug: fire-open-payments
 ---
@@ -15,7 +15,7 @@ There are two implementation options you can use to display payment pages with F
 1. **Hosted Payment Pages**: fire.com hosts the payment pages - this option allows you to re-direct your customer to the hosted fire.com payment pages displaying the payment details confirmation, bank selection, consent and response pages.
 2. **Integrated Payment Pages**: You host the payments page yourself - this option allows you to have control of the UI and UX for displaying the payment details confirmation, bank selection and response pages. Once the response is received, fire.com can re-direct the payer back to your website.
 
-![FOP Flow](https://files.readme.io/9ea0c42b256ba0eba00d8311107f15086d752278c42c447035c5869e66085f8d-image.png)
+![FOP Flow](https://files.readme.io/e52a8ab035b27f091b484bbad79da046f68e3fe052cccfe42f384a879fd8c392-fop-hosted-flow.png)
 
 ## Hosted Payment Pages Option
 
@@ -23,7 +23,6 @@ The payer is brought through the following stages to complete the payment:
 
 1. **View Payment Details / Select Account Provider**: The payer must first be clear on the amount of the payment, who they are paying and the reason for the payment. They then select their bank. This step is offered as part of the fire.com payment UI.
 
-![Fire Open Payments Page](https://files.readme.io/9ea0c42b256ba0eba00d8311107f15086d752278c42c447035c5869e66085f8d-image.png)
 
 1. **Consent page**: The payer must provide consent to the PISP (fire.com) prior to authorising the payment. This is a regulatory requirement, this page must be hosted by fire.com.
 1. **Authenticate and Authorise Payment**: The payer will be redirected to their bank's online site or mobile banking app. After authenticating, the details of the payment will be displayed, and the payer will authorise the payment.
