@@ -1,0 +1,24 @@
+get:
+  summary: List all permissions for an API application
+  description: Get all permissions allowed for an API application on your fire.com account
+  tags:
+    API
+  operationId: GetPermissions 
+  parameters:
+    - in: path
+      name: endpointNumber
+      schema:
+        type: integer
+        format: int64
+        description: The number associated with the app to retrieve the associated permissions
+      required: true
+  responses:
+        '200':
+          description: An array of permission objects.
+          content:
+            application/json:
+              schema:
+                $ref: '../../schemas/permissions.yaml'
+        '401':
+                $ref: '../../responses/unauthorised-error.yaml'
+
