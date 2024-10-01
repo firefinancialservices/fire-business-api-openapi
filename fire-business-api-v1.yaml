@@ -72,6 +72,9 @@ paths:
   /v2/apps/{endpointNumber}/permissions:
     $ref: ./paths/apps/app-permissions.yaml
 
+  /v2/apps/permissions:
+    $ref: ./paths/apps/all-app-permissions.yaml
+
 
 # This endpoint is for Bankpay only. 
 #  /payments/{paymentUuid}/bankpayrefund:
