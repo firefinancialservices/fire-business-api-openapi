@@ -1,0 +1,25 @@
+title: Webhook Tokens 
+type: object
+properties:
+  tokenId:
+    type: integer
+    format: int64
+    description: This is the token ID 
+    example: 271
+  publicToken:
+    type: string
+    description: This is the public token (key) shared with the client 
+    example: "1287bbbd-e8a8-4ffe-94e3-911896cafd61"
+  privateToken:
+    type: string
+    description: This is the private token that Fire keeps
+    example: "d48c6590-dea2-46bf-b8e1-f715de144aca"
+  active:
+    type: string
+    description: This is whether or not the webhook token is active
+    enum:
+    - "TRUE"
+    - "FALSE"
+  dateCreated:
+      type: date-time
+      example: "2017-11-09T15:57:15.710Z"

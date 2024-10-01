@@ -70,10 +70,13 @@ paths:
     $ref: ./v2/paths/payees/payee-transactions.yaml
 
   /v2/apps/{endpointNumber}/permissions:
-    $ref: ./paths/apps/app-permissions.yaml
+    $ref: ./v2/paths/apps/app-permissions.yaml
 
   /v2/apps/permissions:
-    $ref: ./paths/apps/all-app-permissions.yaml
+    $ref: ./v2/paths/apps/all-app-permissions.yaml
+
+  /v2/webhooks/tokens:
+    $ref: ./v2/paths/apps/webhook-tokens.yaml
 
 
 # This endpoint is for Bankpay only. 

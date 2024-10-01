@@ -1,0 +1,6 @@
+title: Webhook Tokens 
+type: array
+properties:
+  WebhookTokens:
+    $ref: ./webhook-token.yaml
+    
