@@ -69,6 +69,10 @@ paths:
   /v2/payees/{fundingSrcId}/transactions:
     $ref: ./v2/paths/payees/payee-transactions.yaml
 
+  /v2/apps/{endpointNumber}/permissions:
+    $ref: ./paths/apps/app-permissions.yaml
+
+
 # This endpoint is for Bankpay only. 
 #  /payments/{paymentUuid}/bankpayrefund:
 #    $ref: ./v1/paths/payments/refund-payment-by-paymentuuid.yaml

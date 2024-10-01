@@ -1,0 +1,7 @@
+title: API App Permissions 
+type: array
+properties:
+  permissions: 
+    $ref: "./permission.yaml"
+
+    
