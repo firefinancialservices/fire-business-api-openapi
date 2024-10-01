@@ -1,0 +1,33 @@
+title: relatedCard
+description: Details of the card used (if applicable)
+type: object
+properties:
+  cardId:
+    type: integer
+    format: int64
+    description: This is the Id of the card used for the transaction
+    example: 216
+  provider:
+    type: string
+    description: This is the provider of the card used for the transaction
+    example: "MASTERCARD"
+  alias:
+    type: string
+    description: This is an alias for the card used
+    example: "Mastercard-6892"
+  maskedPan:
+    type: string
+    description: This is the Account Number
+    example: "537455******6892"
+  embossCardName:
+    type: string
+    description: This is the name on the card
+    example: "Linda Sim 309"
+  embossBusinessName:
+    type: string
+    description: This is the business name on the card
+    example: "Linda Sim LTD"
+  expiryDate:
+    type: string
+    format: date-time
+    example: "2020-05-31T00:00:00.000Z"
