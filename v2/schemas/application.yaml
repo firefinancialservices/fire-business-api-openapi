@@ -1,0 +1,42 @@
+title: API Application
+type: object
+properties:
+  applicationId:
+    type: integer
+    format: int64
+    description: This is the ID number of the API application
+    example: 2404
+  name:
+    type: string
+    description: This is the name given to the API application by the fire.com user
+    example: "Account Information Test"
+  clientID:
+    type: string
+    description: This is the ID of client associated with the application
+    example: "G0919C06D23D-362A-H5D3-E76D8687D6AE"
+  refreshToken:
+    type: string
+    description: This is the refresh token associated with the application
+    example: "9C332CF3-1687-4548-8E0E-55E4F0599800"
+  enabled:
+    type: string
+    description: This is whether or not the application is enabled for usage
+    enum:
+    - "TRUE"
+    - "FALSE"
+  numberOfApprovalsRequired:
+    type: integer
+    format: int64
+    description: This is the number of approvals required for any application actions
+    example: 1
+  numberOfPaymentApprovalsRequired:
+    type: integer
+    format: int64
+    description: This is number of approvals required for any payment batches
+    example: 1
+  numberOfPayeeApprovalsRequired:
+    type: integer
+    format: int64
+    description: This is the number of approvals required for Payees
+    example: 1
+

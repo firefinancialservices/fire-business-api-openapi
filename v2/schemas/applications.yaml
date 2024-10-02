@@ -1,0 +1,6 @@
+title: API application 
+type: array
+properties:
+  application: 
+    $ref: "./application.yaml"
+    

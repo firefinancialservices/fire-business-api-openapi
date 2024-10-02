@@ -1,0 +1,19 @@
+get:
+  summary: List of API Applications
+  description: Returns a list of API applications created under your fire.com account
+  tags:
+    - API
+  operationId: getAPIApplications
+  responses: 
+    '200':  
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            type: array
+            items:            
+              $ref: '../../schemas/applications.yaml' 
+    '403':
+      $ref: ../../responses/unauthorised-error.yaml
+    '401':
+      $ref: ../../responses/unauthorised-error.yaml
