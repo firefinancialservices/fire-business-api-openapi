@@ -1,0 +1,9 @@
+Title: Webhook Event 
+Type: object
+properties:
+  webhook: 
+    $ref: "./webhook.yaml"
+  events:
+    $ref: "./events.yaml"
+
+    

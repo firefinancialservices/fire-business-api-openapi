@@ -1,0 +1,4 @@
+Title: webhookEvents
+Type: array
+items:
+  - $ref: "./webhookEvent.yaml"
