@@ -1,6 +1,7 @@
 title: API application 
-type: array
+type: object
 properties:
-  application: 
-    $ref: "./application.yaml"
-    
+  application:
+    type: array
+    items:
+      $ref: './activity.yaml'
