@@ -1,6 +1,6 @@
 ---
 title: Fire Open Payments
-excerpt: Fire Open Payments is a feature of the fire.com business account that leverages Open Banking to allow your customers to pay you via bank transfer and to reconcile those https://dash.readme.com/project/fire-business-api/v1.0/overviewpayments as they are received into your fire.com GBP or EUR account.
+excerpt: Fire Open Payments is a feature of the fire.com business account that leverages Open Banking to allow your customers to pay you via bank transfer and to reconcile those payments as they are received into your fire.com GBP or EUR account.
 category: 5f6fc3cc6768a5003ca89038
 slug: fire-open-payments
 ---
