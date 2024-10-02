@@ -1,0 +1,23 @@
+title: Webhook
+type: object
+properties:
+  id: 
+    type: integer
+    format: int64
+    description: This is the ID for the webhook created
+    example: 411
+  businessId:
+    type: integer
+    format: int64
+    description: This is the associated ID for the business using the webhook
+    example: 543
+  webhookUrl:
+    type: string
+    description: This is the URL where the webhook is embedded
+    example: "https://webhook.site/756b7f6b-8c05-4067-93cd-d1cbca824e99"
+  failedSendingCounter:
+    type: integer
+    format: int64
+    description: This is the counter of the number of times the webhook has failed, for any reason
+    example: 24
+  
