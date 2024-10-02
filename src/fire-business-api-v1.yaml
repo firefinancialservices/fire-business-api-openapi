@@ -151,6 +151,10 @@ paths:
 
   /v1/batches/{batchUuid}/approvals:
     $ref: ./v1/paths/batches/approvers-for-batch.yaml
+  
+  /v2/apps: 
+    $ref: ./v2/paths/apps/applications.yaml 
+
 
 # webhooks:
 #   events:
