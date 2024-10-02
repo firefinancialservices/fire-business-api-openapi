@@ -12,9 +12,12 @@ properties:
     description: Date Range for transactions
     example: 1727770582873
   transactions:
-    $ref: "./card-transaction.yaml"
+    type: array
+    items:
+      $ref: "./card-transaction.yaml"
 
-    
+
+
 
 
 

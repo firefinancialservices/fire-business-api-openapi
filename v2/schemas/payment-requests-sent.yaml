@@ -12,4 +12,7 @@ properties:
     descrption: Date Range
     example: 1726571260003
   paymentRequests:
-    $ref: ./payment-request-summary.yaml
+    type: array
+    items:
+      $ref: ./payment-request-summary.yaml
+

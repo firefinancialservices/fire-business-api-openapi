@@ -1,6 +1,8 @@
 title: Webhook Tokens 
-type: array
+type: object
 properties:
   WebhookTokens:
-    $ref: ./webhook-token.yaml
+    type: array
+    items: 
+      $ref: ./webhook-token.yaml
     
