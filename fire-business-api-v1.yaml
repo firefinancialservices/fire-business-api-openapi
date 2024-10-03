@@ -75,8 +75,9 @@ paths:
   /v2/apps/permissions:
     $ref: ./v2/paths/apps/all-app-permissions.yaml
 
-  /v2/webhooks/tokens:
-    $ref: ./v2/paths/apps/webhook-tokens.yaml
+#Removing this endpoint 
+ # /v2/webhooks/tokens:
+ #   $ref: ./v2/paths/apps/webhook-tokens.yaml
 
 
 # This endpoint is for Bankpay only. 

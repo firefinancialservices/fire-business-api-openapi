@@ -19,7 +19,6 @@ properties:
   currency:
     $ref: "./currency.yaml"
   amountBeforeCharges:
-    amountBeforeCharges:
     type: integer
     format: int64
     description: Amount of the transaction before the fees and taxes were applied.
