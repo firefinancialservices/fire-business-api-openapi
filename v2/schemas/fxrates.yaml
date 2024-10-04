@@ -1,0 +1,16 @@
+title: Get FX Rates 
+type: object
+properties:
+  fromCurrency: 
+    type: string
+    description: The currency the funds are currently in
+    example: "EUR" 
+  toCurrency:
+    type: string
+    description: The currency the funds will be exchanged to
+    example: GBP 
+  rate4d:
+    type: integer
+    format: int64
+    example: 8381
+    
