@@ -6,12 +6,12 @@ get:
   operationId: GetPermissions 
   parameters:
     - in: path
+      required: True
       name: endpointNumber
       schema:
         type: integer
         format: int64
         description: The number associated with the app to retrieve the associated permissions
-      required: true
   responses:
         '200':
           description: An array of permission objects.
