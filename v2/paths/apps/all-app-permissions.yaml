@@ -2,7 +2,7 @@ get:
   summary: List all permissions avaialble for an API application
   description: Get all permissions available for an API application on your fire.com account
   tags:
-    API
+    - API
   operationId: GetPermissions 
   responses:
         '200':
