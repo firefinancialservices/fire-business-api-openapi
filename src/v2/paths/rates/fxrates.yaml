@@ -24,6 +24,7 @@ get:
           content:
             application/json:
               schema:
+                type: object
                 $ref: '../../schemas/fxrates.yaml'
         '401':
                 $ref: '../../responses/unauthorised-error.yaml'

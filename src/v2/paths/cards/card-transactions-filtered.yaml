@@ -6,12 +6,12 @@ get:
   operationId: getFilteredListofCardTransactions
   parameters:
     - in: path
+      required: True
       name: cardId
       schema:
         type: integer
         format: int64
         description: The cardid of the card to retrieve the associated transactions
-      required: true
     - in: query
       name: limit
       schema:

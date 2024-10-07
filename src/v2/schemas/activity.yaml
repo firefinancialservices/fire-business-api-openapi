@@ -7,7 +7,7 @@ properties:
       description: Identifier for the fire.com account (assigned by fire.com)
       example: 7448413
   userId:
-      type: int
+      type: integer
       format: int64
       description: User id assigned by fire.com
       example: 3138
