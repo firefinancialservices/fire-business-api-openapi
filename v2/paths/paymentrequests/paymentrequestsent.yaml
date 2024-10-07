@@ -5,10 +5,6 @@ get:
   tags:
     - Open Banking
   operationId: getPaymentRequestsSentV2
-  parameters:
-  - in: path
-    required: true
-    name: PaymentRequestsSent
   responses:
     '200':
       description: The list of payment requests sent

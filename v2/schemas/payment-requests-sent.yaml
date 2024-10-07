@@ -9,7 +9,7 @@ properties:
   dateRangeTo: 
     type: integer
     format: int64
-    descrption: Date Range
+    description: Date Range
     example: 1726571260003
   paymentRequests:
     type: array

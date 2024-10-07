@@ -18,6 +18,7 @@ get:
           content:
             application/json:
               schema:
+                type: array
                 $ref: '../../schemas/permissions.yaml'
         '401':
                 $ref: '../../responses/unauthorised-error.yaml'
