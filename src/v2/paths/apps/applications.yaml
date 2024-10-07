@@ -2,7 +2,7 @@ get:
   summary: List of API Applications
   description: Returns a list of API applications created under your fire.com account
   tags:
-    - API
+     - API
   operationId: getAPIApplications
   responses: 
     '200':  
