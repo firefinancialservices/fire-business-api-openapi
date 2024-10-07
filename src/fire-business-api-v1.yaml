@@ -75,7 +75,7 @@ paths:
   /v2/apps/permissions:
     $ref: ./v2/paths/apps/all-app-permissions.yaml
 
-  /v2/rates/{inCurrency}/{outCurrency}: 
+  /v2/rates/{fromCurrency}/{toCurrency}: 
     $ref: ./v2/paths/rates/fxrates.yaml
   
 
