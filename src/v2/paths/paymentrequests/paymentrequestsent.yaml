@@ -1,0 +1,18 @@
+get:
+  summary: List open banking payment requests and their details (V2)
+  description: >
+    Retrieve the list of open banking payment requests made on your account
+  tags:
+    - Open Banking
+  operationId: getPaymentRequestsSentV2
+  parameters:
+  - in: path
+    required: true
+    name: PaymentRequestsSent
+  responses:
+    '200':
+      description: The list of payment requests sent
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/payment-requests-sent.yaml

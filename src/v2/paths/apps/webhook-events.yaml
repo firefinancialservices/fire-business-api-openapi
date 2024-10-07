@@ -1,0 +1,15 @@
+get:
+  summary: List all webhooks
+  description: List all webhooks on your Fire.com account
+  tags:
+    API
+  operationId: GetWebhookEvents
+  responses:
+        '200':
+          description: An array of webhook objects
+          content:
+            application/json:
+              schema:
+                $ref: '../../schemas/webhookEvents.yaml'
+        '401':
+                $ref: '../../responses/unauthorised-error.yaml'

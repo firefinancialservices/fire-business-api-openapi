@@ -1,0 +1,13 @@
+title: API App Permissions 
+type: object
+properties:
+  permissions: 
+    type: array
+    items:
+      $ref: "./permission.yaml"
+
+      
+      
+
+
+    

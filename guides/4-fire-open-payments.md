@@ -15,12 +15,15 @@ There are two implementation options you can use to display payment pages with F
 1. **Hosted Payment Pages**: fire.com hosts the payment pages - this option allows you to re-direct your customer to the hosted fire.com payment pages displaying the payment details confirmation, bank selection, consent and response pages.
 2. **Integrated Payment Pages**: You host the payments page yourself - this option allows you to have control of the UI and UX for displaying the payment details confirmation, bank selection and response pages. Once the response is received, fire.com can re-direct the payer back to your website.
 
+![FOP Flow](https://files.readme.io/e52a8ab035b27f091b484bbad79da046f68e3fe052cccfe42f384a879fd8c392-fop-hosted-flow.png)
+
 ## Hosted Payment Pages Option
-![FOP Flow](https://www.fire.com/wp-content/uploads/2023/10/fop-hosted-flow.png)
 
 The payer is brought through the following stages to complete the payment:
 
 1. **View Payment Details / Select Account Provider**: The payer must first be clear on the amount of the payment, who they are paying and the reason for the payment. They then select their bank. This step is offered as part of the fire.com payment UI.
+
+
 1. **Consent page**: The payer must provide consent to the PISP (fire.com) prior to authorising the payment. This is a regulatory requirement, this page must be hosted by fire.com.
 1. **Authenticate and Authorise Payment**: The payer will be redirected to their bank's online site or mobile banking app. After authenticating, the details of the payment will be displayed, and the payer will authorise the payment.
 1. **Response page**: It is a regulatory requirement that the PISP (fire.com) display the results of the payment and provide the same information that would be provided if the payer had made the payment via their banking application. fire.com must display this page, before optionally redirecting the payer back to your website.

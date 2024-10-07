@@ -342,6 +342,179 @@ paths:
                       Indicates that this account is for collecting Fire Open
                       Payments only. All other payments to this account will be
                       returned.
+  /v2/activites:
+    get:
+      summary: Get Account Activity
+      description: Retrieve the details of activity on your fire.com Account
+      tags:
+        - Accounts
+      operationId: getActivities
+      responses:
+        '200':
+          description: An array of activity objects.
+          content:
+            application/json:
+              schema:
+                title: activities
+                type: object
+                properties:
+                  cards:
+                    type: array
+                    items:
+                      title: Activity
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          format: int64
+                          description: >-
+                            Identifier for the fire.com account (assigned by
+                            fire.com)
+                          example: 7448413
+                        userId:
+                          type: int
+                          format: int64
+                          description: User id assigned by fire.com
+                          example: 3138
+                        type:
+                          type: string
+                          description: Type of the activity
+                          enum:
+                            - PAYMENT_MADE
+                            - PAYMENT_RECEIVED
+                            - MANUAL_WITHDRAWAL
+                            - EDIT_CARAPIN
+                            - EDIT_PASSWORD
+                            - USER_CREATED
+                            - FUNDING_SOURCE_ADDED
+                            - FUNDING_SOURCE_VALIDATED
+                            - LODGEMENT_RECEIVED
+                            - RESET_PASSWORD
+                            - RESET_CARAPIN
+                            - LOGIN_FAILED
+                            - LOGIN_SUCCESS
+                            - ACCOUNT_CREATED
+                            - INTERNAL_TRANSFER_MADE
+                            - PAYMENT_REQUEST_SENT
+                            - PAYMENT_REQUEST_RECEIVED
+                            - EDIT_ACCOUNT_NAME
+                            - SETTING_ENABLED
+                            - SETTING_DISABLED
+                            - PASSWORD_LOCKED
+                            - CARAPIN_LOCKED
+                            - NATIVE_APPLICATION_REGISTRATION_LOCKED
+                            - NATIVE_APPLICATION_USER_STATUS_CHANGED
+                            - PAYMENT_ACKNOWLEDGED
+                            - WITHDRAWAL_RETURNED
+                            - LODGEMENT_REVERSED
+                            - LODGEMENT_SUSPENDED_INCF_MAX_CPL
+                            - VERIFICATION_EVIDENCE_SUBMITTED
+                            - ANONYMOUS_PAYMENT_RECEIVED
+                            - INCREASE_CVL
+                            - PENDING_PAYMENT_RETURNED
+                            - PAYMENT_FAILED_BASIC_USER_CP_LIMIT_EXCEEDED
+                            - >-
+                              ANONYMOUS_PAYMENT_FAILED_BASIC_USER_CP_LIMIT_EXCEEDED
+                            - UPLOAD_PROFILE_PICTURE
+                            - EDIT_USER_EMAIL_ADDRESS
+                            - TOTP_AUTHENTICATOR_TOKEN_LOCKED
+                            - FX_INTERNAL_TRANSFER_MADE
+                            - PAYMENT_REQUEST_SAVED
+                            - CARD_TOP_UP
+                            - ACCOUNT_CREATED_BY_PAYMENT
+                            - PAYMENT_REQUEST_PAYMENT_RECEIVED
+                            - LODGEMENT_SUSPENDED_BASIC_EXPIRY_REACHED
+                            - LODGEMENT_SUSPENDED_USER_SANCTIONED
+                            - PERSONAL_EMAIL_VERIFIED
+                            - ACCOUNT_CREATED_BY_CARD
+                            - CARD_PAYMENT_POS_CONTACT_DEBIT
+                            - CARD_PAYMENT_POS_CONTACTLESS_DEBIT
+                            - CARD_PAYMENT_ECOMMERCE_DEBIT
+                            - CARD_PAYMENT_ATM_DEBIT
+                            - CARD_PAYMENT_DECLINED
+                            - CARD_PAYMENT_CARD_BLOCKED
+                            - CARD_PAYMENT_CARD_NOT_ACTIVATED
+                            - CARD_PAYMENT_REFUND
+                            - CARD_PAYMENT_AUTH_REVERSAL
+                            - CARD_PAYMENT_FINANCIAL_REVERSAL
+                            - CARD_PAYMENT_FINANCIAL_DIFFERENT_AMOUNT
+                            - CARD_MESSAGE_CHANGE_PIN
+                            - CARD_CREATED
+                            - CARD_ACTIVATED
+                            - CARD_BLOCKED
+                            - CARD_UNBLOCKED
+                            - ARCHIVE_FUNDING_SOURCE
+                            - INTERACTION_MESSAGE_RECEIVED
+                            - BUSINESS_API_APPLICATION_CREATED
+                            - BUSINESS_API_APPLICATION_DELETED
+                            - BUSINESS_MOBILE_APPLICATION_CREATED
+                            - BUSINESS_USER_DISABLED
+                            - BUSINESS_MOBILE_APPLICATION_DELETED
+                            - ANONYMOUS_PAYMENT_REQUEST_PAYMENT_RECEIVED
+                            - SCAAA_PING
+                            - BUSINESS_ADDITIONAL_USER_CREATED
+                            - BUSINESS_BATCH_REQUEST_CANCELLED
+                            - BUSINESS_BATCH_REQUEST_SUBMITTED
+                            - BUSINESS_BATCH_REQUEST_COMPLETED
+                            - BUSINESS_BATCH_REQUEST_SCAAA_SENT
+                            - BUSINESS_BATCH_REQUEST_APPROVED
+                            - BUSINESS_BATCH_REQUEST_REJECTED
+                            - CARD_LINKED_ACCOUNTS_UPDATED
+                            - DIRECT_DEBIT_MANDATE_CREATED
+                            - DIRECT_DEBIT_MANDATE_COMPLETE
+                            - DIRECT_DEBIT_MANDATE_DISALLOWED_BY_ACCOUNT
+                            - DIRECT_DEBIT_CREATED
+                            - DIRECT_DEBIT_CREATED_INSUFFICIENT_FUNDS_AT_PRESENT
+                            - DIRECT_DEBIT_COLLECTED
+                            - DIRECT_DEBIT_UNPAID_INSUFFICIENT_FUNDS
+                            - STAFF_DIRECT_DEBIT_MANDATE_CANCELLED
+                            - STAFF_DIRECT_DEBIT_MANDATE_REJECTED
+                            - STAFF_DIRECT_DEBIT_REJECTED
+                            - BUSINESS_CREATED
+                            - ACCOUNT_DIRECT_DEBITS_ENABLED
+                            - ACCOUNT_DIRECT_DEBITS_DISABLED
+                            - DIRECT_DEBIT_MANDATE_CANCELLED
+                            - DIRECT_DEBIT_MANDATE_UPDATED
+                            - DIRECT_DEBIT_REJECTED
+                            - DIRECT_DEBIT_REFUND
+                            - LOGIN_APPROVAL_REQUESTED
+                            - NEW_PAYEE_APPROVAL_REQUESTED
+                            - APPROVAL_REQUEST_REJECTED
+                            - NEW_USER_APPROVAL_REQUESTED
+                            - PAYMENT_REQUEST_PAYMENT_AUTHORISED
+                            - PAYMENT_REQUEST_PAYMENT_PAID
+                            - BUSINESS_API_APPLICATION_UPDATED
+                            - CARD_PAYMENT_OOB_3DS2_AUTHORISATION_REQUEST
+                            - CARD_PAYMENT_OOB_3DS2_DECLINED
+                            - EDIT_USER_ROLE_APPROVAL_REQUESTED
+                            - BUSINESS_USER_ROLE_CHANGED
+                            - EXCHANGE_RATE_MONTHLY_REPORT_AVAILABLE
+                            - DIRECT_DEBIT_CANCELLED
+                            - DIRECT_DEBIT_REVERSED
+                            - DIRECT_DEBIT_DISALLOWED_BY_ACCOUNT
+                            - CARD_REISSUED
+                            - FX_INTERNATIONAL_WITHDRAWAL_CREATED
+                            - FX_INTERNATIONAL_WITHDRAWAL_FAILED
+                            - FUNDING_SOURCE_FAILED
+                            - STAFF_FUNDING_SOURCE_REJECTED
+                            - STAFF_BUSINESS_USER_LIVE
+                            - NEW_BANK_TRANSFER_APPROVAL_REQUESTED
+                            - EDIT_AUTHORISATION_RULE_APPROVAL_REQUESTED
+                            - CREATE_AUTHORISATION_RULE_APPROVAL_REQUESTED
+                        description:
+                          type: string
+                          description: String describing activity
+                          example: You paid John Doe
+                        relatedIp:
+                          type: string
+                          description: IP address related to acivity
+                          example: “89.101.154.45”
+                        dateCreated:
+                          type: string
+                          description: Date activity was created
+                          example: '“2024-09-10T09:40:54.190Z”'
+        '401':
+          description: Access Token is Invalid or missing
   '/v1/accounts/{ican}':
     get:
       summary: Retrieve the details of a fire.com Account
@@ -451,7 +624,7 @@ paths:
           description: Access Token is Invalid or missing
   '/v1/accounts/{ican}/transactions':
     get:
-      summary: List transactions on an account (v1)
+      summary: List transactions for an account (v1)
       deprecated: true
       description: >-
         Retrieve a list of transactions against an account. Recommended to use
@@ -1570,7 +1743,7 @@ paths:
                           example: 42de0705-e3f1-44fa-8c41-79973eb80eb2
   '/v1/accounts/{ican}/transactions/filter':
     get:
-      summary: Filter transactions on an account (v1)
+      summary: Filtered list of transactions for an account (v1)
       deprecated: true
       description: >
         Retrieve a filtered list of transactions against an account. Recommended
@@ -2160,7 +2333,7 @@ paths:
                           example: 42de0705-e3f1-44fa-8c41-79973eb80eb2
   /v1/cards:
     get:
-      summary: List Debit Cards
+      summary: View List of Cards.
       description: Returns a list of cards related to your fire.com account.
       tags:
         - Cards
@@ -2262,7 +2435,7 @@ paths:
         '403':
           description: Access Token is Invalid or missing
     post:
-      summary: Create a new fire.com debit card.
+      summary: Create a new debit card.
       description: >-
         You can create multiple debit cards which can be linked to your fire.com
         accounts.
@@ -2330,7 +2503,7 @@ paths:
                     example: CREATED_ACTIVE
   '/v1/cards/{cardId}/transactions':
     get:
-      summary: Get a list of Debit Card Transactions.
+      summary: List Card Transactions.
       description: Returns a list of cards transactions related to your fire.com card.
       tags:
         - Cards
@@ -2878,7 +3051,7 @@ paths:
           description: Access Token is Invalid or missing
   '/v1/cards/{cardId}/block':
     post:
-      summary: Block a fire.com card
+      summary: Block a card
       description: >-
         Updates status of an existing card to block which prevents any
         transactions being carried out with that card.
@@ -2900,7 +3073,7 @@ paths:
             successful.
   '/v1/cards/{cardId}/unblock':
     post:
-      summary: Unblock a fire.com debit card
+      summary: Unblock a card
       description: >-
         Updates status of an existing card to unblock which means that
         transactions can be carried out with that card.
@@ -2922,7 +3095,7 @@ paths:
             successful.
   /v1/paymentrequests:
     post:
-      summary: Create a Payment Request
+      summary: Create an Open Banking Payment request
       description: >
         This request creates a new Open Banking Payment request. A code is
         returned that can be shared to your customers as a URL by any channel
@@ -3102,7 +3275,7 @@ paths:
                   type: string
                   example: ORDER_ID|PRODUCT_ID|CUSTOMER_ID|CUSTOMER_NUMBER|COMMENT2
                   description: >-
-                    These fields will be dispalyed to the payer when using the
+                    These fields will be displayed to the payer when using the
                     hosted option. You can choose to display any of `ORDER_ID`,
                     `PRODUCT_ID`, `CUSTOMER_ID`, `CUSTOMER_NUMBER` and
                     `COMMENT2` to the payer.
@@ -3350,7 +3523,7 @@ paths:
                       and `COMMENT2` to the payer.
   '/v1/paymentrequests/{paymentRequestCode}/payments':
     get:
-      summary: Retrieve the list of payments for an Open Banking Payment request
+      summary: List payments for an Open Banking Payment request
       deprecated: true
       description: >
         Retrieve the list of payments attempted against an Open Banking Payment
@@ -3713,13 +3886,13 @@ paths:
                             payer.
   '/v2/paymentrequests/{paymentRequestCode}/payments':
     get:
-      summary: Get list of all Payment Attempts related to a Payment Request
+      summary: List payments for an Open Banking Payment request (v2)
       description: >
         Retrieve the list of payments attempted against an Open Banking Payment
         request
       tags:
         - Open Banking
-      operationId: getPaymentRequestPayments
+      operationId: getPaymentRequestPaymentsv2
       parameters:
         - in: path
           required: true
@@ -3752,6 +3925,12 @@ paths:
                           type: string
                           enum:
                             - OTHER
+                            - DIRECT
+                            - SHAREABLE
+                            - PARTY_TO_PARTY
+                            - BILL_PAYMENT
+                            - ECOMMERCE_GOODS
+                            - ECOMMERCE_SERVICES
                           description: The type of Fire Open Payment that was created
                         paymentRequestCode:
                           type: string
@@ -4073,6 +4252,720 @@ paths:
                           description: >-
                             whether or not a receipt option was offered to the
                             payer.
+  '/v2/paymentrequests/{paymentRequestCode}/reports':
+    get:
+      summary: Return the report for an Open Banking Payment request (v2)
+      description: |
+        Retrieve a report for an Open Banking Payment request
+      tags:
+        - Open Banking
+      operationId: getPaymentRequestReportV2
+      parameters:
+        - in: path
+          required: true
+          name: paymentRequestCode
+          schema:
+            type: string
+            description: The unique 8-character code identifying the payment request.
+            example: 1234abcd
+      responses:
+        '200':
+          description: The Payment Request Report
+          content:
+            application/json:
+              schema:
+                title: PaymentRequestReport
+                type: object
+                properties:
+                  currency:
+                    type: string
+                    description: Currency payment request was sent in
+                    example: EUR
+                  amount:
+                    type: integer
+                    format: int64
+                    description: Amount in payment request
+                  numberOfTimes:
+                    type: integer
+                    format: int64
+                    description: Payments made for this amount and currency
+  /v2/paymentrequests/sent:
+    get:
+      summary: List open banking payment requests and their details (V2)
+      description: |
+        Retrieve the list of open banking payment requests made on your account
+      tags:
+        - Open Banking
+      operationId: getPaymentRequestsSentV2
+      parameters:
+        - in: path
+          required: true
+          name: PaymentRequestsSent
+      responses:
+        '200':
+          description: The list of payment requests sent
+          content:
+            application/json:
+              schema:
+                title: PaymentRequestsSent
+                type: object
+                properties:
+                  total:
+                    type: integer
+                    format: int64
+                    description: The total number of payment request payments in the list.
+                    example: 3
+                  dateRangeTo:
+                    type: integer
+                    format: int64
+                    descrption: Date Range
+                    example: 1726571260003
+                  paymentRequests:
+                    type: array
+                    items:
+                      title: PaymentRequestSummary
+                      type: object
+                      properties:
+                        accountName:
+                          type: string
+                          description: Name on the Account
+                          example: Euro Account
+                        amount:
+                          type: integer
+                          format: int64
+                          description: Amount of the transaction
+                        code:
+                          type: string
+                          description: >-
+                            The code that was returned when you created the
+                            payment request
+                          example: 1234abcd
+                          minLength: 8
+                          maxLength: 8
+                        currency:
+                          type: string
+                          description: Currency transaction was completed in
+                          example: EUR
+                        dateCreated:
+                          type: string
+                          description: This is the date the payment was initiated.
+                          example: '2024-09-12T14:55:03.857Z'
+                        description:
+                          type: string
+                          description: >-
+                            A public facing description of the request. This
+                            will be shown to the user when they tap or scan the
+                            request. Fire will truncate to 18 characters to
+                            ensure it is accepted by all banks. It is safest to
+                            use only numbers, letters, spaces and a fullstop (.)
+                            Special characters are not accepted by most banks
+                            and errors will only occur after the customer has
+                            approved the payment.
+                          example: FIRE/John Doe
+                        direction:
+                          type: string
+                          description: Payment direction
+                          example: SENT
+                        icanTo:
+                          type: integer
+                          format: int64
+                          description: >-
+                            The ican of the account to collect the funds into.
+                            Must be one of your fire.com Accounts.
+                          example: 66204
+                        maxNumberPayments:
+                          type: integer
+                          format: int64
+                          description: >-
+                            The max number of people who can pay this request.
+                            Must be set to 1 for the ECOMMERCE_GOODS and
+                            ECOMMERCE_SERVICES types.
+                          example: 1
+                        myRef:
+                          type: string
+                          description: An internal description of the request.
+                          example: Terminal
+                        orderDetails:
+                          title: orderDetails
+                          type: object
+                          properties:
+                            merchantNumber:
+                              type: string
+                              example: '1234567'
+                              description: Your Merchant Number (if applicable).
+                            orderId:
+                              type: string
+                              example: 6c28a47d-4502-4111
+                              description: >-
+                                Use this field to store the order id for the
+                                transaction. The Order Id cannot be set unless
+                                the `maxNumberPayments` is 1.
+                            productId:
+                              type: string
+                              example: ZFDAA-1221
+                              description: >-
+                                Use this field to store a product id for the
+                                transaction (for example).
+                            customerNumber:
+                              type: string
+                              example: '123645'
+                              description: >-
+                                Use this field to store a customer number for
+                                the transaction (for example).
+                            variableReference:
+                              type: string
+                              example: John Doe
+                              description: >-
+                                Use this field to store any other reference for
+                                the transaction (for example, a phone number).
+                            comment1:
+                              type: string
+                              example: Additional comments about the transaction
+                              description: This is your own comment for the transaction.
+                            comment2:
+                              type: string
+                              example: Additional comments about the transaction
+                              description: This is your own comment for the transaction.
+                            merchantCustomerIdentification:
+                              type: string
+                              example: 08303863544
+                              description: >-
+                                This is a reference you use to uniquely identify
+                                each of your customers.
+                            deliveryAddressLine1:
+                              type: string
+                              example: 12 The Street
+                              description: The first line of the delivery address.
+                            deliveryAddressLine2:
+                              type: string
+                              example: The Way
+                              description: The second line of the delivery address.
+                            deliveryCity:
+                              type: string
+                              example: London
+                              description: Delivery address city
+                            deliveryPostCode:
+                              type: string
+                              example: EC15155
+                              description: Delivery address post code
+                            deliveryCountry:
+                              type: string
+                              example: GB
+                              description: 2-digit code for the country
+                        status:
+                          type: string
+                          description: The status of the transaction
+                          enum:
+                            - AWAITING_AUTHORISATION
+                            - AUTHORISED
+                            - AWAITING_MULTI_AUTHORISATION
+                            - NOT_AUTHORISED
+                            - SETTLED
+                            - REJECTED
+                            - ACCEPTED
+                            - RECEIVED
+                        type:
+                          type: string
+                          description: The type of Fire Open Payment that was created
+                          enum:
+                            - OTHER
+                            - DIRECT
+                            - SHAREABLE
+                            - PARTY_TO_PARTY
+                            - BILL_PAYMENT
+                            - ECOMMERCE_GOODS
+                            - ECOMMERCE_SERVICES
+  '/v2/payees/{fundingSrcId}':
+    get:
+      summary: Payee Account Information
+      description: |
+        Retrieve the list of payee account details for a specific payee
+      tags:
+        - Payees
+      operationId: getPayeeAccountInfo
+      parameters:
+        - in: path
+          required: true
+          name: fundingSrcId
+          schema:
+            type: string
+            description: The unique 6-character code identifying the payee.
+            example: '346748'
+      responses:
+        '200':
+          description: An array of payee information
+          content:
+            application/json:
+              schema:
+                title: Payee Account Details
+                type: object
+                properties:
+                  status:
+                    type: string
+                    description: >-
+                      The status of the payee. Only payees in LIVE status can be
+                      selected as a destination account for an outgoing payment.
+                      * 'CREATED' - The payee has been set-up via Bank Transfer
+                      Received, Direct Debit, or Open Banking. This payee must
+                      be converted to LIVE status to select as a destination
+                      account for an outgoing payment. * 'LIVE' - The payee can
+                      be selected as a destination account for an outgoing
+                      payment. * 'CLOSED' * 'ARCHIVED' - The payee has been
+                      deleted and must be added again to be selected as a
+                      destination account for an outgoing payment.
+                    enum:
+                      - CREATED
+                      - LIVE
+                      - CLOSED
+                      - ARCHIVED
+                    example: LIVE
+                  accountName:
+                    type: string
+                    description: >-
+                      The alias attributed to the payee, usually set by the user
+                      when creating the payee.
+                    example: Jane Doe
+                  accountHolderName:
+                    type: string
+                    description: The name on the payee bank account.
+                    example: Jane Doe
+                  nsc:
+                    type: string
+                    description: The Sort Code of the account if currency is GBP.
+                    example: '991199'
+                  accountNumber:
+                    type: string
+                    description: The Account Number of the account if currency is GBP.
+                    example: '12345678'
+                  bic:
+                    type: string
+                    description: The BIC of the account if currency is EUR.
+                    example: BOFIIE2DXXX
+                  iban:
+                    type: string
+                    description: The IBAN of the account if currency is EUR.
+                    example: IE86BOFI90535211111111
+                  combinedAccountNumbers:
+                    type: string
+                    description: Combination of Payee's BIC and IBAN
+                    example: BOFIIE2DXXX / IE86BOFI90535211111111
+                  createdBy:
+                    type: string
+                    description: Creation source of the payee
+                    enum:
+                      - FIRE_OPEN_PAYMENT
+                      - CUSTOMER
+                      - LODGEMENT
+                      - DIRECT DEBIT
+                      - OPEN_BANKING
+                      - FIRE_DIRECT
+                      - PAYMENT_ORIGINATING_OVERSEAS
+                  dateCreated:
+                    type: string
+                    format: date-time
+                    description: The date the payee was created. ISO Date Time.
+                    example: '2024-06-21T09:56:47.300Z'
+  '/v2/payees/{fundingSrcId}/transactions':
+    get:
+      summary: Payee Transaction Information
+      description: >
+        Retrieves the list of transactions and transaction information
+        associated with a payee
+      tags:
+        - Payees
+      operationId: getPayeeTransactionInfo
+      parameters:
+        - in: path
+          required: true
+          name: fundingSrcId
+          schema:
+            type: string
+            description: The unique 6-character code identifying the payee.
+            example: '346748'
+      responses:
+        '200':
+          description: An array of payee transaction information
+          content:
+            application/json:
+              schema:
+                title: Payee Transaction Details
+                type: object
+                properties:
+                  dateRangeTo:
+                    type: integer
+                    format: int64
+                    description: Range of dates for transactions included
+                    example: '1726146402447'
+                  total:
+                    type: integer
+                    format: int64
+                    example: 1
+                    description: The total number of transactions in the list.
+                  transactions:
+                    type: array
+                    items:
+                      title: Payee Transaction Details
+                      type: object
+                      properties:
+                        txnId:
+                          type: integer
+                          format: int64
+                          description: >-
+                            The id of this side of the transaction (each
+                            transaction has two sides - a to and a from). This
+                            is used to get the details of the transaction.
+                          example: 10859123
+                        redId:
+                          type: integer
+                          format: int64
+                          description: The id of the transaction.
+                          example: 9544613
+                        ican:
+                          type: integer
+                          format: int64
+                          description: >-
+                            identifier for the fire.com account (assigned by
+                            fire.com) This field is only used in the condensed
+                            version.
+                          example: 67204
+                        currency:
+                          type: array
+                          items:
+                            title: currency
+                            description: The currency.
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                                description: The three letter code for the currency.
+                                example: EUR
+                              description:
+                                type: string
+                                description: The name of the currency
+                                example: Euro
+  '/v2/apps/{endpointNumber}/permissions':
+    get:
+      summary: List all permissions for an API application
+      description: >-
+        Get all permissions allowed for an API application on your fire.com
+        account
+      tags: API
+      operationId: GetPermissions
+      parameters:
+        - in: path
+          name: endpointNumber
+          schema:
+            type: integer
+            format: int64
+            description: >-
+              The number associated with the app to retrieve the associated
+              permissions
+          required: true
+      responses:
+        '200':
+          description: An array of permission objects.
+          content:
+            application/json:
+              schema:
+                title: API App Permissions
+                type: object
+                properties:
+                  permissions:
+                    type: array
+                    items:
+                      title: API App permission
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: Name of Permission allowed
+                          enum:
+                            - PERM_BUSINESS_GET_ACCOUNT
+                            - PERM_BUSINESS_GET_ACCOUNT_TRANSACTIONS
+                            - PERM_BUSINESS_GET_ACCOUNT_TRANSACTIONS_FILTERED
+                            - PERM_BUSINESS_GET_ACCOUNTS
+                            - PERM_BUSINESS_GET_ACTIVITIES
+                            - PERM_BUSINESS_GET_APP_PERMISSIONS
+                            - PERM_BUSINESS_GET_APPS
+                            - PERM_BUSINESS_GET_CARDS
+                            - PERM_BUSINESS_GET_CONNECTION
+                            - PERM_BUSINESS_GET_CONNECTIONS
+                            - PERM_BUSINESS_GET_FUNDING_SOURCE
+                            - PERM_BUSINESS_GET_FUNDING_SOURCE_TRANSACTIONS
+                            - PERM_BUSINESS_GET_FUNDING_SOURCES
+                            - PERM_BUSINESS_GET_FX_RATE
+                            - PERM_BUSINESS_GET_IDENTITY_DOCUMENTS
+                            - PERM_BUSINESS_GET_LIMITS
+                            - PERM_BUSINESS_GET_ME
+                            - PERM_BUSINESS_GET_MY_AUTHENTICATORSECRET
+                            - PERM_BUSINESS_GET_MY_CARD_PIN
+                            - PERM_BUSINESS_GET_MY_CARD_TRANSACTIONS
+                            - PERM_BUSINESS_GET_MY_CARD_TRANSACTIONS_FILTERED
+                            - PERM_BUSINESS_GET_MY_PINGRID
+                            - PERM_BUSINESS_GET_OPERATING_COUNTRIES
+                            - PERM_BUSINESS_GET_MY_CARDS
+                            - PERM_BUSINESS_GET_PAYMENT_REQUEST_REPORTS
+                            - PERM_BUSINESS_GET_PAYMENT_REQUEST_TRANSACTIONS
+                            - PERM_BUSINESS_GET_PAYMENT_REQUESTS
+                            - PERM_BUSINESS_GET_PAYMENT_REQUEST_PAYMENTS
+                            - PERM_BUSINESS_GET_PUBLIC_PAYMENT_REQUEST
+                            - PERM_BUSINESS_GET_PAYMENT_REQUEST
+                            - PERM_BUSINESS_GET_RATES
+                            - PERM_BUSINESS_GET_SERVICES
+                            - PERM_BUSINESS_GET_USER
+                            - PERM_BUSINESS_GET_USER_ADDRESS
+                            - PERM_BUSINESS_GET_USERS
+                            - PERM_BUSINESS_GET_WEBHOOK_EVENT_TEST
+                            - PERM_BUSINESS_GET_WEBHOOK_TOKENS
+                            - PERM_BUSINESS_GET_WEBHOOKS
+                            - PERM_BUSINESS_GET_MY_NOTIFICATIONS_PUSH
+                            - PERM_BUSINESS_GET_MY_SCAAA
+                            - PERM_BUSINESS_GET_MY_SCAAAS
+                            - PERM_BUSINESS_GET_BATCHES
+                            - PERM_BUSINESS_GET_BATCH
+                            - PERM_BUSINESS_GET_BATCH_INTERNALTRANSFERS
+                            - PERM_BUSINESS_GET_BATCH_BANKTRANSFERS
+                            - PERM_BUSINESS_GET_BATCH_NEWPAYEES
+                            - PERM_BUSINESS_GET_BATCH_APPROVALS
+                            - PERM_BUSINESS_GET_MANDATE
+                            - PERM_BUSINESS_GET_MANDATES
+                            - PERM_BUSINESS_GET_DIRECT_DEBIT
+                            - PERM_BUSINESS_GET_DIRECT_DEBITS
+                            - PERM_BUSINESS_POST_ACCOUNT_WITHDRAWAL
+                            - PERM_BUSINESS_POST_ACCOUNTS
+                            - PERM_BUSINESS_POST_ACCOUNTS_TRANSFER
+                            - PERM_BUSINESS_POST_APPS
+                            - PERM_BUSINESS_POST_CARDS
+                            - PERM_BUSINESS_POST_CONNECTION_EXTERNAL_ACCOUNT_PAY
+                            - PERM_BUSINESS_POST_CONNECTION_PAY
+                            - PERM_BUSINESS_POST_CONNECTION_PAYMENT_REQUESTS
+                            - PERM_BUSINESS_POST_CONNECTIONS
+                            - PERM_BUSINESS_POST_FUNDING_SOURCES
+                            - PERM_BUSINESS_POST_FX_TRANSFER
+                            - PERM_BUSINESS_POST_IDENTITY_DOCUMENTS_POLICY
+                            - PERM_BUSINESS_POST_MY_CARD_ACTIVATE
+                            - PERM_BUSINESS_POST_MY_CARD_BLOCK
+                            - PERM_BUSINESS_POST_MY_CARD_UNBLOCK
+                            - PERM_BUSINESS_POST_MY_PIN_RESET
+                            - PERM_BUSINESS_POST_MY_PIN_RESET_INITIATE
+                            - PERM_BUSINESS_POST_PAYMENT_REQUEST
+                            - PERM_BUSINESS_POST_PIN
+                            - PERM_BUSINESS_POST_USERS
+                            - PERM_BUSINESS_POST_WEBHOOKS
+                            - PERM_BUSINESS_POST_BATCHES
+                            - PERM_BUSINESS_POST_BATCH_INTERNALTRANSFERS
+                            - PERM_BUSINESS_POST_BATCH_BANKTRANSFERS
+                            - PERM_BUSINESS_PUT_ACCOUNT
+                            - PERM_BUSINESS_PUT_APP
+                            - PERM_BUSINESS_PUT_CONNECTION
+                            - PERM_BUSINESS_PUT_FUNDING_SOURCE_ARCHIVE
+                            - PERM_BUSINESS_PUT_IDENTITY
+                            - PERM_BUSINESS_PUT_MY_AUTHENTICATORSECRET
+                            - PERM_BUSINESS_PUT_PAYMENT_REQUEST_STATUS
+                            - PERM_BUSINESS_PUT_REGISTRATION_DETAILS
+                            - PERM_BUSINESS_PUT_USER_DISABLE
+                            - PERM_BUSINESS_PUT_USER_RESEND_EMAIL
+                            - PERM_BUSINESS_PUT_MY_NOTIFICATION_PUSH
+                            - PERM_BUSINESS_PUT_OTHERS_NOTIFICATION_PUSH
+                            - PERM_BUSINESS_PUT_MY_SCAAA
+                            - PERM_BUSINESS_PUT_BATCH
+                            - PERM_BUSINESS_DELETE_CONNECTION
+                            - PERM_BUSINESS_DELETE_IDENTITY_DOCUMENT
+                            - PERM_BUSINESS_DELETE_WEBHOOK
+                            - PERM_BUSINESS_DELETE_BATCH
+                            - PERM_BUSINESS_DELETE_BATCH_INTERNALTRANSFERS
+                            - PERM_BUSINESS_DELETE_BATCH_BANKTRANSFERS
+                            - PERM_BUSINESS_GET_TERMINAL_PAYMENT_REQUEST
+                            - >-
+                              PERM_BUSINESS_GET_TERMINAL_PAYMENT_REQUEST_PAYMENTS
+                            - PERM_BUSINESS_GET_TERMINAL_ACCOUNTS
+                        requiresElevatedPrivilege:
+                          type: string
+                          enum:
+                            - 'TRUE'
+                            - 'FALSE'
+        '401':
+          description: Access Token is Invalid or missing
+  /v2/apps/permissions:
+    get:
+      summary: List all permissions avaialble for an API application
+      description: >-
+        Get all permissions available for an API application on your fire.com
+        account
+      tags: API
+      operationId: GetPermissions
+      responses:
+        '200':
+          description: An array of permission objects.
+          content:
+            application/json:
+              schema:
+                title: API App Permissions
+                type: object
+                properties:
+                  permissions:
+                    type: array
+                    items:
+                      title: API App permission
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: Name of Permission allowed
+                          enum:
+                            - PERM_BUSINESS_GET_ACCOUNT
+                            - PERM_BUSINESS_GET_ACCOUNT_TRANSACTIONS
+                            - PERM_BUSINESS_GET_ACCOUNT_TRANSACTIONS_FILTERED
+                            - PERM_BUSINESS_GET_ACCOUNTS
+                            - PERM_BUSINESS_GET_ACTIVITIES
+                            - PERM_BUSINESS_GET_APP_PERMISSIONS
+                            - PERM_BUSINESS_GET_APPS
+                            - PERM_BUSINESS_GET_CARDS
+                            - PERM_BUSINESS_GET_CONNECTION
+                            - PERM_BUSINESS_GET_CONNECTIONS
+                            - PERM_BUSINESS_GET_FUNDING_SOURCE
+                            - PERM_BUSINESS_GET_FUNDING_SOURCE_TRANSACTIONS
+                            - PERM_BUSINESS_GET_FUNDING_SOURCES
+                            - PERM_BUSINESS_GET_FX_RATE
+                            - PERM_BUSINESS_GET_IDENTITY_DOCUMENTS
+                            - PERM_BUSINESS_GET_LIMITS
+                            - PERM_BUSINESS_GET_ME
+                            - PERM_BUSINESS_GET_MY_AUTHENTICATORSECRET
+                            - PERM_BUSINESS_GET_MY_CARD_PIN
+                            - PERM_BUSINESS_GET_MY_CARD_TRANSACTIONS
+                            - PERM_BUSINESS_GET_MY_CARD_TRANSACTIONS_FILTERED
+                            - PERM_BUSINESS_GET_MY_PINGRID
+                            - PERM_BUSINESS_GET_OPERATING_COUNTRIES
+                            - PERM_BUSINESS_GET_MY_CARDS
+                            - PERM_BUSINESS_GET_PAYMENT_REQUEST_REPORTS
+                            - PERM_BUSINESS_GET_PAYMENT_REQUEST_TRANSACTIONS
+                            - PERM_BUSINESS_GET_PAYMENT_REQUESTS
+                            - PERM_BUSINESS_GET_PAYMENT_REQUEST_PAYMENTS
+                            - PERM_BUSINESS_GET_PUBLIC_PAYMENT_REQUEST
+                            - PERM_BUSINESS_GET_PAYMENT_REQUEST
+                            - PERM_BUSINESS_GET_RATES
+                            - PERM_BUSINESS_GET_SERVICES
+                            - PERM_BUSINESS_GET_USER
+                            - PERM_BUSINESS_GET_USER_ADDRESS
+                            - PERM_BUSINESS_GET_USERS
+                            - PERM_BUSINESS_GET_WEBHOOK_EVENT_TEST
+                            - PERM_BUSINESS_GET_WEBHOOK_TOKENS
+                            - PERM_BUSINESS_GET_WEBHOOKS
+                            - PERM_BUSINESS_GET_MY_NOTIFICATIONS_PUSH
+                            - PERM_BUSINESS_GET_MY_SCAAA
+                            - PERM_BUSINESS_GET_MY_SCAAAS
+                            - PERM_BUSINESS_GET_BATCHES
+                            - PERM_BUSINESS_GET_BATCH
+                            - PERM_BUSINESS_GET_BATCH_INTERNALTRANSFERS
+                            - PERM_BUSINESS_GET_BATCH_BANKTRANSFERS
+                            - PERM_BUSINESS_GET_BATCH_NEWPAYEES
+                            - PERM_BUSINESS_GET_BATCH_APPROVALS
+                            - PERM_BUSINESS_GET_MANDATE
+                            - PERM_BUSINESS_GET_MANDATES
+                            - PERM_BUSINESS_GET_DIRECT_DEBIT
+                            - PERM_BUSINESS_GET_DIRECT_DEBITS
+                            - PERM_BUSINESS_POST_ACCOUNT_WITHDRAWAL
+                            - PERM_BUSINESS_POST_ACCOUNTS
+                            - PERM_BUSINESS_POST_ACCOUNTS_TRANSFER
+                            - PERM_BUSINESS_POST_APPS
+                            - PERM_BUSINESS_POST_CARDS
+                            - PERM_BUSINESS_POST_CONNECTION_EXTERNAL_ACCOUNT_PAY
+                            - PERM_BUSINESS_POST_CONNECTION_PAY
+                            - PERM_BUSINESS_POST_CONNECTION_PAYMENT_REQUESTS
+                            - PERM_BUSINESS_POST_CONNECTIONS
+                            - PERM_BUSINESS_POST_FUNDING_SOURCES
+                            - PERM_BUSINESS_POST_FX_TRANSFER
+                            - PERM_BUSINESS_POST_IDENTITY_DOCUMENTS_POLICY
+                            - PERM_BUSINESS_POST_MY_CARD_ACTIVATE
+                            - PERM_BUSINESS_POST_MY_CARD_BLOCK
+                            - PERM_BUSINESS_POST_MY_CARD_UNBLOCK
+                            - PERM_BUSINESS_POST_MY_PIN_RESET
+                            - PERM_BUSINESS_POST_MY_PIN_RESET_INITIATE
+                            - PERM_BUSINESS_POST_PAYMENT_REQUEST
+                            - PERM_BUSINESS_POST_PIN
+                            - PERM_BUSINESS_POST_USERS
+                            - PERM_BUSINESS_POST_WEBHOOKS
+                            - PERM_BUSINESS_POST_BATCHES
+                            - PERM_BUSINESS_POST_BATCH_INTERNALTRANSFERS
+                            - PERM_BUSINESS_POST_BATCH_BANKTRANSFERS
+                            - PERM_BUSINESS_PUT_ACCOUNT
+                            - PERM_BUSINESS_PUT_APP
+                            - PERM_BUSINESS_PUT_CONNECTION
+                            - PERM_BUSINESS_PUT_FUNDING_SOURCE_ARCHIVE
+                            - PERM_BUSINESS_PUT_IDENTITY
+                            - PERM_BUSINESS_PUT_MY_AUTHENTICATORSECRET
+                            - PERM_BUSINESS_PUT_PAYMENT_REQUEST_STATUS
+                            - PERM_BUSINESS_PUT_REGISTRATION_DETAILS
+                            - PERM_BUSINESS_PUT_USER_DISABLE
+                            - PERM_BUSINESS_PUT_USER_RESEND_EMAIL
+                            - PERM_BUSINESS_PUT_MY_NOTIFICATION_PUSH
+                            - PERM_BUSINESS_PUT_OTHERS_NOTIFICATION_PUSH
+                            - PERM_BUSINESS_PUT_MY_SCAAA
+                            - PERM_BUSINESS_PUT_BATCH
+                            - PERM_BUSINESS_DELETE_CONNECTION
+                            - PERM_BUSINESS_DELETE_IDENTITY_DOCUMENT
+                            - PERM_BUSINESS_DELETE_WEBHOOK
+                            - PERM_BUSINESS_DELETE_BATCH
+                            - PERM_BUSINESS_DELETE_BATCH_INTERNALTRANSFERS
+                            - PERM_BUSINESS_DELETE_BATCH_BANKTRANSFERS
+                            - PERM_BUSINESS_GET_TERMINAL_PAYMENT_REQUEST
+                            - >-
+                              PERM_BUSINESS_GET_TERMINAL_PAYMENT_REQUEST_PAYMENTS
+                            - PERM_BUSINESS_GET_TERMINAL_ACCOUNTS
+                        requiresElevatedPrivilege:
+                          type: string
+                          enum:
+                            - 'TRUE'
+                            - 'FALSE'
+        '401':
+          description: Access Token is Invalid or missing
+  /v2/webhooks/tokens:
+    get:
+      summary: List all webhook tokens
+      description: List all webhook tokens on your fire.com account#
+      tags: API
+      operationId: GetWebhookTokens
+      responses:
+        '200':
+          description: An array of webhook token objects.
+          content:
+            application/json:
+              schema:
+                title: Webhook Tokens
+                type: object
+                properties:
+                  WebhookTokens:
+                    type: array
+                    items:
+                      title: Webhook Tokens
+                      type: object
+                      properties:
+                        tokenId:
+                          type: integer
+                          format: int64
+                          description: This is the token ID
+                          example: 271
+                        publicToken:
+                          type: string
+                          description: >-
+                            This is the public token (key) shared with the
+                            client
+                          example: 1287bbbd-e8a8-4ffe-94e3-911896cafd61
+                        privateToken:
+                          type: string
+                          description: This is the private token that Fire keeps
+                          example: d48c6590-dea2-46bf-b8e1-f715de144aca
+                        active:
+                          type: string
+                          description: This is whether or not the webhook token is active
+                          enum:
+                            - 'TRUE'
+                            - 'FALSE'
+                        dateCreated:
+                          type: date-time
+                          example: '2017-11-09T15:57:15.710Z'
+        '401':
+          description: Access Token is Invalid or missing
   '/v1/payments/{paymentUuid}':
     get:
       summary: Get Payment Details
@@ -4517,6 +5410,12 @@ paths:
                     type: string
                     enum:
                       - OTHER
+                      - DIRECT
+                      - SHAREABLE
+                      - PARTY_TO_PARTY
+                      - BILL_PAYMENT
+                      - ECOMMERCE_GOODS
+                      - ECOMMERCE_SERVICES
                     description: The type of Fire Open Payment that was created
                   paymentRequestCode:
                     type: string
@@ -4925,7 +5824,7 @@ paths:
                           description: The date the ASPSP / bank was last updated.
   /v1/users:
     get:
-      summary: List all Users
+      summary: Returns list of all users on your fire.com account
       description: You can retrieve the details of all fire.com users on your acount.
       tags:
         - Users
@@ -5035,7 +5934,7 @@ paths:
                           example: '14.4'
   '/v1/user/{userId}':
     get:
-      summary: Get the details of a User
+      summary: Returns details of a specific fire.com user.
       description: You can retrieve the details of a specific fire.com user
       tags:
         - Users
@@ -5254,7 +6153,7 @@ paths:
                     example: 4ADFB67A-0F5B-4A9A-9D74-34437250045C
   /v1/payees:
     get:
-      summary: List Payee Accounts
+      summary: List all Payee Bank Accounts
       description: |
         Returns all your payee bank accounts. 
 
@@ -5770,7 +6669,7 @@ paths:
                       epoch (1970).
   '/v1/directdebits/{directDebitUuid}/reject':
     post:
-      summary: Reject a direct debit
+      summary: Reject a direct debit payment
       description: >
         This endpoint allows you to reject a direct debit payment where the
         status is still set to RECEIVED.
@@ -5997,7 +6896,7 @@ paths:
                             since the epoch (1970).
   '/v1/mandates/{mandateUuid}':
     get:
-      summary: Get the details for a direct debit mandate
+      summary: Get direct debit mandate details
       description: >
         Retrieve all details for a direct debit mandate.
 
@@ -6196,7 +7095,7 @@ paths:
                       Date the direct debit was canceled. Milliseconds since the
                       epoch (1970).
     post:
-      summary: Update direct debit mandate alias
+      summary: Update a direct debit mandate alias
       description: >
         Update Direct Debit Mandate Alias
 
@@ -6265,7 +7164,7 @@ paths:
           description: 204 no content
   /v1/batches:
     post:
-      summary: Create a new Batch
+      summary: Create a new batch of payments
       description: >
         Opens a new batch container to hold specific transaction types in a
         certain currency.
@@ -6324,7 +7223,7 @@ paths:
                     example: F2AF3F2B-4406-4199-B249-B354F2CC6019
                     description: A UUID for this item.
     get:
-      summary: List all batches
+      summary: List batches
       description: |
         Returns the list of batch with the specified types and statuses.
       tags:
@@ -6481,7 +7380,7 @@ paths:
                             endpoint.
   '/v1/batches/{batchUuid}/internaltransfers':
     post:
-      summary: Add an internal transfer to a batch
+      summary: Add an internal transfer payment to the batch
       description: >-
         Simply specify the source account, destination account, amount and a
         reference.
@@ -6550,7 +7449,7 @@ paths:
                       A Batch Item UUID for this item. Note* Do not confuse this
                       for BatchUuid when submitting a batch.
     get:
-      summary: List items for an Internal Transfer Batch
+      summary: List items in a Batch (Internal Transfers)
       description: Returns a paginated list of items in the specified batch.
       tags:
         - Payment Batches
@@ -6693,7 +7592,7 @@ paths:
                             endpoint.
   '/v1/batches/{batchUuid}/banktransfers':
     post:
-      summary: Add a bank transfer to a batch.
+      summary: Add a bank transfer payment to the batch.
       description: >
         There are two ways to process bank transfers - by Payee ID (**Mode 1**)
         or by Payee Account Details (**Mode 2**).
@@ -6850,7 +7749,7 @@ paths:
                       A Batch Item UUID for this item. Note* Do not confuse this
                       for BatchUuid when submitting a batch.
     get:
-      summary: List items for a  Bank Transfer Batch
+      summary: List items in a Batch (Bank Transfers)
       description: Returns a paginated list of items in the specified batch.
       tags:
         - Payment Batches
@@ -6993,7 +7892,7 @@ paths:
                             endpoint.
   '/v2/batches/{batchUuid}/internationaltransfers':
     post:
-      summary: Add an international transfer to a batch.
+      summary: Add an international transfer payment to the batch.
       description: >
         International transfers must be added to a batch using the Payee ID
         (**Mode 1**). Payees must be set up using the web application.
@@ -7078,7 +7977,7 @@ paths:
                       A Batch Item UUID for this item. Note* Do not confuse this
                       for BatchUuid when submitting a batch.
     get:
-      summary: List items for an International Transfer Batch
+      summary: List items in a Batch (International Transfers)
       description: Returns a paginated list of items in the specified batch.
       tags:
         - Payment Batches
@@ -7221,7 +8120,7 @@ paths:
                             endpoint.
   '/v1/batches/{batchUuid}/internaltransfers/{itemUuid}':
     delete:
-      summary: Remove an internal transfer from a batch
+      summary: Remove a Payment from the Batch (Internal Transfer)
       description: >-
         Removes a Payment from the Batch (Internal Transfer). You can only
         remove payments before the batch is submitted for approval (while it is
@@ -7249,7 +8148,7 @@ paths:
           description: Batch payment deleted successfully.
   '/v1/batches/{batchUuid}/banktransfers/{itemUuid}':
     delete:
-      summary: Remove a bank transfer from a batch
+      summary: Remove a Payment from the Batch (Bank Transfers)
       description: >-
         Removes a Payment from the Batch (Bank Transfers). You can only remove
         payments before the batch is submitted for approval (while it is in the
@@ -7276,7 +8175,7 @@ paths:
           description: Batch payment deleted successfully.
   '/v2/batches/{batchUuid}/internationaltransfers/{itemUuid}':
     delete:
-      summary: Remove an international transfer from a batch
+      summary: Remove a Payment from the Batch (International Transfers)
       description: >-
         Removes a Payment from the Batch (International Transfers). You can only
         remove payments before the batch is submitted for approval (while it is
@@ -7322,7 +8221,7 @@ paths:
         '200':
           description: Batch payment deleted successfully.
     get:
-      summary: Get the details of a Batch
+      summary: Get details of a single Batch
       description: >-
         Returns the details of the batch specified in the API endpoint -
         {batchUuid}.
@@ -7456,7 +8355,7 @@ paths:
                       The datestamp the batch was created - ISO format - e.g.
                       2018-04-04T00:53:21.910Z
     put:
-      summary: Submit a batch 
+      summary: Submit a batch for approval
       description: >
         Submits the Batch (for approval in the case of a **BANK_TRANSFER** or
         **INTERNATIONAL_TRANSFER**). If this is an **INTERNAL_TRANSFER** batch,
@@ -7485,7 +8384,7 @@ paths:
             call was successful.
   '/v1/batches/{batchUuid}/approvals':
     get:
-      summary: List approvals for a Batch
+      summary: List Approvers for a Batch
       description: Returns a list of approvers for this batch.
       tags:
         - Payment Batches
@@ -7540,6 +8439,184 @@ paths:
                           description: >-
                             The datestamp of the last action on this batch - ISO
                             format - e.g. 2018-04-04T10:48:53.540Z
+  /v2/apps:
+    get:
+      summary: List of API Applications
+      description: Returns a list of API applications created under your fire.com account
+      tags:
+        - API
+      operationId: getAPIApplications
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  title: API application
+                  type: object
+                  properties:
+                    application:
+                      type: array
+                      items:
+                        title: Activity
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            format: int64
+                            description: >-
+                              Identifier for the fire.com account (assigned by
+                              fire.com)
+                            example: 7448413
+                          userId:
+                            type: int
+                            format: int64
+                            description: User id assigned by fire.com
+                            example: 3138
+                          type:
+                            type: string
+                            description: Type of the activity
+                            enum:
+                              - PAYMENT_MADE
+                              - PAYMENT_RECEIVED
+                              - MANUAL_WITHDRAWAL
+                              - EDIT_CARAPIN
+                              - EDIT_PASSWORD
+                              - USER_CREATED
+                              - FUNDING_SOURCE_ADDED
+                              - FUNDING_SOURCE_VALIDATED
+                              - LODGEMENT_RECEIVED
+                              - RESET_PASSWORD
+                              - RESET_CARAPIN
+                              - LOGIN_FAILED
+                              - LOGIN_SUCCESS
+                              - ACCOUNT_CREATED
+                              - INTERNAL_TRANSFER_MADE
+                              - PAYMENT_REQUEST_SENT
+                              - PAYMENT_REQUEST_RECEIVED
+                              - EDIT_ACCOUNT_NAME
+                              - SETTING_ENABLED
+                              - SETTING_DISABLED
+                              - PASSWORD_LOCKED
+                              - CARAPIN_LOCKED
+                              - NATIVE_APPLICATION_REGISTRATION_LOCKED
+                              - NATIVE_APPLICATION_USER_STATUS_CHANGED
+                              - PAYMENT_ACKNOWLEDGED
+                              - WITHDRAWAL_RETURNED
+                              - LODGEMENT_REVERSED
+                              - LODGEMENT_SUSPENDED_INCF_MAX_CPL
+                              - VERIFICATION_EVIDENCE_SUBMITTED
+                              - ANONYMOUS_PAYMENT_RECEIVED
+                              - INCREASE_CVL
+                              - PENDING_PAYMENT_RETURNED
+                              - PAYMENT_FAILED_BASIC_USER_CP_LIMIT_EXCEEDED
+                              - >-
+                                ANONYMOUS_PAYMENT_FAILED_BASIC_USER_CP_LIMIT_EXCEEDED
+                              - UPLOAD_PROFILE_PICTURE
+                              - EDIT_USER_EMAIL_ADDRESS
+                              - TOTP_AUTHENTICATOR_TOKEN_LOCKED
+                              - FX_INTERNAL_TRANSFER_MADE
+                              - PAYMENT_REQUEST_SAVED
+                              - CARD_TOP_UP
+                              - ACCOUNT_CREATED_BY_PAYMENT
+                              - PAYMENT_REQUEST_PAYMENT_RECEIVED
+                              - LODGEMENT_SUSPENDED_BASIC_EXPIRY_REACHED
+                              - LODGEMENT_SUSPENDED_USER_SANCTIONED
+                              - PERSONAL_EMAIL_VERIFIED
+                              - ACCOUNT_CREATED_BY_CARD
+                              - CARD_PAYMENT_POS_CONTACT_DEBIT
+                              - CARD_PAYMENT_POS_CONTACTLESS_DEBIT
+                              - CARD_PAYMENT_ECOMMERCE_DEBIT
+                              - CARD_PAYMENT_ATM_DEBIT
+                              - CARD_PAYMENT_DECLINED
+                              - CARD_PAYMENT_CARD_BLOCKED
+                              - CARD_PAYMENT_CARD_NOT_ACTIVATED
+                              - CARD_PAYMENT_REFUND
+                              - CARD_PAYMENT_AUTH_REVERSAL
+                              - CARD_PAYMENT_FINANCIAL_REVERSAL
+                              - CARD_PAYMENT_FINANCIAL_DIFFERENT_AMOUNT
+                              - CARD_MESSAGE_CHANGE_PIN
+                              - CARD_CREATED
+                              - CARD_ACTIVATED
+                              - CARD_BLOCKED
+                              - CARD_UNBLOCKED
+                              - ARCHIVE_FUNDING_SOURCE
+                              - INTERACTION_MESSAGE_RECEIVED
+                              - BUSINESS_API_APPLICATION_CREATED
+                              - BUSINESS_API_APPLICATION_DELETED
+                              - BUSINESS_MOBILE_APPLICATION_CREATED
+                              - BUSINESS_USER_DISABLED
+                              - BUSINESS_MOBILE_APPLICATION_DELETED
+                              - ANONYMOUS_PAYMENT_REQUEST_PAYMENT_RECEIVED
+                              - SCAAA_PING
+                              - BUSINESS_ADDITIONAL_USER_CREATED
+                              - BUSINESS_BATCH_REQUEST_CANCELLED
+                              - BUSINESS_BATCH_REQUEST_SUBMITTED
+                              - BUSINESS_BATCH_REQUEST_COMPLETED
+                              - BUSINESS_BATCH_REQUEST_SCAAA_SENT
+                              - BUSINESS_BATCH_REQUEST_APPROVED
+                              - BUSINESS_BATCH_REQUEST_REJECTED
+                              - CARD_LINKED_ACCOUNTS_UPDATED
+                              - DIRECT_DEBIT_MANDATE_CREATED
+                              - DIRECT_DEBIT_MANDATE_COMPLETE
+                              - DIRECT_DEBIT_MANDATE_DISALLOWED_BY_ACCOUNT
+                              - DIRECT_DEBIT_CREATED
+                              - >-
+                                DIRECT_DEBIT_CREATED_INSUFFICIENT_FUNDS_AT_PRESENT
+                              - DIRECT_DEBIT_COLLECTED
+                              - DIRECT_DEBIT_UNPAID_INSUFFICIENT_FUNDS
+                              - STAFF_DIRECT_DEBIT_MANDATE_CANCELLED
+                              - STAFF_DIRECT_DEBIT_MANDATE_REJECTED
+                              - STAFF_DIRECT_DEBIT_REJECTED
+                              - BUSINESS_CREATED
+                              - ACCOUNT_DIRECT_DEBITS_ENABLED
+                              - ACCOUNT_DIRECT_DEBITS_DISABLED
+                              - DIRECT_DEBIT_MANDATE_CANCELLED
+                              - DIRECT_DEBIT_MANDATE_UPDATED
+                              - DIRECT_DEBIT_REJECTED
+                              - DIRECT_DEBIT_REFUND
+                              - LOGIN_APPROVAL_REQUESTED
+                              - NEW_PAYEE_APPROVAL_REQUESTED
+                              - APPROVAL_REQUEST_REJECTED
+                              - NEW_USER_APPROVAL_REQUESTED
+                              - PAYMENT_REQUEST_PAYMENT_AUTHORISED
+                              - PAYMENT_REQUEST_PAYMENT_PAID
+                              - BUSINESS_API_APPLICATION_UPDATED
+                              - CARD_PAYMENT_OOB_3DS2_AUTHORISATION_REQUEST
+                              - CARD_PAYMENT_OOB_3DS2_DECLINED
+                              - EDIT_USER_ROLE_APPROVAL_REQUESTED
+                              - BUSINESS_USER_ROLE_CHANGED
+                              - EXCHANGE_RATE_MONTHLY_REPORT_AVAILABLE
+                              - DIRECT_DEBIT_CANCELLED
+                              - DIRECT_DEBIT_REVERSED
+                              - DIRECT_DEBIT_DISALLOWED_BY_ACCOUNT
+                              - CARD_REISSUED
+                              - FX_INTERNATIONAL_WITHDRAWAL_CREATED
+                              - FX_INTERNATIONAL_WITHDRAWAL_FAILED
+                              - FUNDING_SOURCE_FAILED
+                              - STAFF_FUNDING_SOURCE_REJECTED
+                              - STAFF_BUSINESS_USER_LIVE
+                              - NEW_BANK_TRANSFER_APPROVAL_REQUESTED
+                              - EDIT_AUTHORISATION_RULE_APPROVAL_REQUESTED
+                              - CREATE_AUTHORISATION_RULE_APPROVAL_REQUESTED
+                          description:
+                            type: string
+                            description: String describing activity
+                            example: You paid John Doe
+                          relatedIp:
+                            type: string
+                            description: IP address related to acivity
+                            example: “89.101.154.45”
+                          dateCreated:
+                            type: string
+                            description: Date activity was created
+                            example: '“2024-09-10T09:40:54.190Z”'
+        '401':
+          description: Access Token is Invalid or missing
+        '403':
+          description: Access Token is Invalid or missing
 components:
   securitySchemes:
     bearerAuth:

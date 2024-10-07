@@ -1,0 +1,159 @@
+title: Card transaction
+type: object
+properties:
+  txnId:
+    type: integer
+    format: int64
+    description: This is the transaction Id 
+    example: 113537
+  refId:
+    type: integer
+    format: int64
+    description: This is the reference Id for the card transaction
+    example: 71217
+  ican:
+    type: integer
+    format: int64
+    description: This is the ican for the card used 
+    example: 1674
+  currency:
+    $ref: "./currency.yaml"
+  amountBeforeCharges:
+    type: integer
+    format: int64
+    description: Amount of the transaction before the fees and taxes were applied.
+    example: 5000
+  feeAmount:
+    type: integer
+    format: int64
+    description: The amount of the fee, if any.
+    example: 0
+  taxAmount:
+    type: integer
+    format: int64
+    description: The amount of the tax, if any (e.g. Stamp duty for ATM transactions)
+    example: 0 
+  amountAfterCharges:
+    type: integer
+    format: int64
+    description: Net amount lodged or taken from the account after fees and charges were applied.
+    example: 5000
+  balance:
+    type: integer
+    format: int64
+    description: the balance of the account (in minor currency units - pence, cent etc. 434050 == 4,340.50 GBP for a GBP account).
+    example: 8500
+  myRef:
+    type: string
+    description: The comment/reference on the transaction
+    example: Transfer to main account
+  date:
+    type: date-time
+    example: "2018-06-27T10:22:39.493Z"
+  card:
+    $ref: "./related-card.yaml"
+  type:
+    type: string
+    description: >   
+      The type of the transaction:
+
+      * `LODGEMENT` - Bank Transfer received
+
+      * `PIS_LODGEMENT` - Fire Open Payments Lodgement received
+
+      * `MANUAL_TRANSFER` - Manual Transfer to
+
+      * `WITHDRAWAL` - Bank Transfer sent
+
+      * `REVERSAL` - Credit Reversal
+
+      * `DIRECT_DEBIT` - A direct debit.
+
+      * `DIRECT_DEBIT_REPRESENTED` - A Direct Debit that was requested again after initially failing.
+      
+      * `DIRECT_DEBIT_REFUND` - A refund of a Direct debit.
+      
+      * `INTERNAL_TRANSFER_TO` - Internal Transfer sent (between two of my accounts of the same currency)
+
+      * `INTERNAL_TRANSFER_FROM` - Internal Transfer received (between two of my accounts of the same currency)
+
+      * `WITHDRAWAL_RETURNED` - Bank Transfer sent returned
+
+      * `LODGEMENT_REVERSED` - Bank Transfer received returned
+
+      * `FX_INTERNAL_TRANSFER_FROM` - FX Internal Transfer received (between two of my accounts of different currency)
+
+      * `FX_INTERNAL_TRANSFER_TO` - FX Internal Transfer sent (between two of my accounts of different currency)
+
+      * `CREATE_CARD` - The fee taken when a debit card is issued.
+
+      * `ADD_ACCOUNT` - The fee taken when an account is created.
+
+      * `CREATE_ADDITIONAL_USER` - The fee taken when an additional user is created.       
+
+      * `CARD_POS_CONTACT_DEBIT` - Card used in store; read by magnetic stripe or pin
+
+      * `CARD_POS_CONTACT_CREDIT` - Card used in store; read by magnetic stripe or pin
+
+      * `CARD_POS_CONTACTLESS_DEBIT` - Card used in store; read by NFC
+
+      * `CARD_POS_CONTACTLESS_CREDIT` - Card used in store; read by NFC
+
+      * `CARD_ECOMMERCE_DEBIT` - Card used on the internet
+
+      * `CARD_ECOMMERCE_CREDIT` - Card used on the internet
+
+      * `CARD_ATM_DEBIT` - Card used in an ATM
+
+      * `CARD_ATM_CREDIT` - Card used in an ATM
+
+      * `CARD_INTERNATIONAL_POS_CONTACT_DEBIT` - Card used in store in non-processing currency; read by magnetic stripe or pin
+
+      * `CARD_INTERNATIONAL_POS_CONTACT_CREDIT` - Card used in store in non-processing currency; read by magnetic stripe or pin
+
+      * `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT` - Card used in store in non-processing currency; read by NFC
+
+      * `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT` - Card used in store in non-processing currency; read by NFC
+
+      * `CARD_INTERNATIONAL_ECOMMERCE_DEBIT	` - Card used on the internet in non-processing currency
+
+      * `CARD_INTERNATIONAL_ECOMMERCE_CREDIT` - Card used on the internet in non-processing currency
+
+      * `CARD_INTERNATIONAL_ATM_DEBIT` - Card used in an ATM in non-processing currency
+
+      * `CARD_INTERNATIONAL_ATM_CREDIT` - Card used in an ATM in non-processing currency
+
+      * `CARD_POS_CONTACT_DEBIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed
+
+      * `CARD_POS_CONTACT_CREDIT_REVERSAL` - Card used in store; read by magnetic stripe or pin - reversed
+
+      * `CARD_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store; read by NFC - reversed
+
+      * `CARD_POS_CONTACTLESS_CREDIT_REVERSAL` - Card used in store; read by NFC - reversed
+
+      * `CARD_ECOMMERCE_DEBIT_REVERSAL	` - Card used on the internet - reversed
+
+      * `CARD_ECOMMERCE_CREDIT_REVERSAL` - Card used on the internet - reversed
+
+      * `CARD_ATM_DEBIT_REVERSAL` - Card used in an ATM - reversed
+
+      * `CARD_ATM_CREDIT_REVERSAL` - Card used in an ATM - reversed
+
+      * `CARD_INTERNATIONAL_POS_CONTACT_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed
+
+      * `CARD_INTERNATIONAL_POS_CONTACT_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by magnetic stripe or pin - reversed
+
+      * `CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed
+
+      * `CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT_REVERSAL` - One or more of the transaction types above. This field can be repeated multiple times to allow for multiple transaction types.
+
+      * `CARD_INTERNATIONAL_ECOMMERCE_DEBIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed
+
+      * `CARD_INTERNATIONAL_ECOMMERCE_CREDIT_REVERSAL` - Card used in store in non-processing currency; read by NFC - reversed
+
+      * `CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL` - Card used on the internet in non-processing currency - reversed
+
+      * `CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL` - Card used on the internet in non-processing currency - reversed
+    example: WITHDRAWAL  
+  relatedParty:
+    $ref: "./related-party.yaml"
