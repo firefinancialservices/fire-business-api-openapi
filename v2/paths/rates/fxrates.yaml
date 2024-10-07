@@ -3,7 +3,7 @@ get:
   summary: Return FX exchange rate
   description: Return exchange rate between two currencies 
   tags:
-    FX
+    - FX
   operationId: GetFXRates
   parameters:
     - in: path
