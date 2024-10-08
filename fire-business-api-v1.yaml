@@ -372,7 +372,7 @@ paths:
                             fire.com)
                           example: 7448413
                         userId:
-                          type: int
+                          type: integer
                           format: int64
                           description: User id assigned by fire.com
                           example: 3138
@@ -4297,10 +4297,6 @@ paths:
       tags:
         - Open Banking
       operationId: getPaymentRequestsSentV2
-      parameters:
-        - in: path
-          required: true
-          name: PaymentRequestsSent
       responses:
         '200':
           description: The list of payment requests sent
@@ -4318,7 +4314,7 @@ paths:
                   dateRangeTo:
                     type: integer
                     format: int64
-                    descrption: Date Range
+                    description: Date Range
                     example: 1726571260003
                   paymentRequests:
                     type: array
@@ -4643,24 +4639,25 @@ paths:
                                 type: string
                                 description: The name of the currency
                                 example: Euro
-  '/v2/apps/{endpointNumber}/permissions':
+  '/v2/apps/{applicationId}/permissions':
     get:
       summary: List all permissions for an API application
       description: >-
         Get all permissions allowed for an API application on your fire.com
         account
-      tags: API
+      tags:
+        - API
       operationId: GetPermissions
       parameters:
         - in: path
-          name: endpointNumber
+          required: true
+          name: applicationId
           schema:
             type: integer
             format: int64
             description: >-
               The number associated with the app to retrieve the associated
               permissions
-          required: true
       responses:
         '200':
           description: An array of permission objects.
@@ -4792,8 +4789,9 @@ paths:
       description: >-
         Get all permissions available for an API application on your fire.com
         account
-      tags: API
-      operationId: GetPermissions
+      tags:
+        - API
+      operationId: GetAllPermissions
       responses:
         '200':
           description: An array of permission objects.
@@ -4919,51 +4917,47 @@ paths:
                             - 'FALSE'
         '401':
           description: Access Token is Invalid or missing
-  /v2/webhooks/tokens:
+  '/v2/rates/{fromCurrency}/{toCurrency}':
     get:
-      summary: List all webhook tokens
-      description: List all webhook tokens on your fire.com account#
-      tags: API
-      operationId: GetWebhookTokens
+      summary: Return FX exchange rate
+      description: Return exchange rate between two currencies
+      tags:
+        - FX
+      operationId: GetFXRates
+      parameters:
+        - in: path
+          required: true
+          name: fromCurrency
+          schema:
+            type: string
+            description: The currency the money is currently in
+        - in: path
+          required: true
+          name: toCurrency
+          schema:
+            type: string
+            description: The currency the money is being converted to
       responses:
         '200':
-          description: An array of webhook token objects.
+          description: An object of FX information
           content:
             application/json:
               schema:
-                title: Webhook Tokens
+                title: Get FX Rates
                 type: object
                 properties:
-                  WebhookTokens:
-                    type: array
-                    items:
-                      title: Webhook Tokens
-                      type: object
-                      properties:
-                        tokenId:
-                          type: integer
-                          format: int64
-                          description: This is the token ID
-                          example: 271
-                        publicToken:
-                          type: string
-                          description: >-
-                            This is the public token (key) shared with the
-                            client
-                          example: 1287bbbd-e8a8-4ffe-94e3-911896cafd61
-                        privateToken:
-                          type: string
-                          description: This is the private token that Fire keeps
-                          example: d48c6590-dea2-46bf-b8e1-f715de144aca
-                        active:
-                          type: string
-                          description: This is whether or not the webhook token is active
-                          enum:
-                            - 'TRUE'
-                            - 'FALSE'
-                        dateCreated:
-                          type: date-time
-                          example: '2017-11-09T15:57:15.710Z'
+                  fromCurrency:
+                    type: string
+                    description: The currency the funds are currently in
+                    example: EUR
+                  toCurrency:
+                    type: string
+                    description: The currency the funds will be exchanged to
+                    example: GBP
+                  rate4d:
+                    type: integer
+                    format: int64
+                    example: 8381
         '401':
           description: Access Token is Invalid or missing
   '/v1/payments/{paymentUuid}':
@@ -8471,7 +8465,7 @@ paths:
                               fire.com)
                             example: 7448413
                           userId:
-                            type: int
+                            type: integer
                             format: int64
                             description: User id assigned by fire.com
                             example: 3138

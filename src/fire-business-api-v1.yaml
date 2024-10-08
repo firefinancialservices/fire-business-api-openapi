@@ -69,7 +69,7 @@ paths:
   /v2/payees/{fundingSrcId}/transactions:
     $ref: ./v2/paths/payees/payee-transactions.yaml
 
-  /v2/apps/{endpointNumber}/permissions:
+  /v2/apps/{applicationId}/permissions:
     $ref: ./v2/paths/apps/app-permissions.yaml
 
   /v2/apps/permissions:
