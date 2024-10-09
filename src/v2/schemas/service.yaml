@@ -1,0 +1,12 @@
+title: Service
+description: Utilisation Level Type
+type: object
+properties:
+  type: 
+    type: string
+    description: Level Type (always "SERVICE")
+    example: "SERVICE"
+  service: 
+    type: string
+    description: The service type for the limit 
+    example: "CREATE_CARD"

@@ -1,0 +1,6 @@
+title: level
+description: Details of the level used for the limit
+oneOf:
+ - $ref: "./service.yaml"
+ - $ref: "./serviceGroupObject.yaml"
+ 
