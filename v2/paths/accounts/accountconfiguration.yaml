@@ -1,0 +1,21 @@
+put:
+  summary: Change the configuration of an account
+  description: Changes the name associated with an account
+  tags:
+    - accounts
+  operationId: changeAccountConig
+  parameters:
+    - in: path
+      required: true
+      name: ican
+      schema:
+        type: string
+        description: The unique id for the account
+        example: "12345"
+  requestBody:
+    required: true
+    description: The name the account name should be changed to
+    content:
+      application/json:
+        schema:
+          $ref: ../../schemas/accountconfiguration.yaml
