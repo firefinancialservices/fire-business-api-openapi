@@ -1,0 +1,29 @@
+title: limitInfo
+type: object
+properties:
+  limitType:
+    type: string
+    description: This is type of the limit itself
+    enum:
+    - "STATIC_MONETARY"
+    - "STATIC_COUNT"
+    - "DAILY_MONETARY"
+    - "DAILY_COUNT"
+    - "TOTAL_MONETARY"
+    - "TOTAL_COUNT"
+  level:
+    $ref: "./level.yaml"
+  country:
+    $ref: "./country.yaml"
+  currency:
+    $ref: "./currency.yaml"
+  value:
+    type: integer
+    format: int64
+    description: This the total availability based on the limit type defined 
+  remainingValue:
+    type: integer
+    format: int64
+    description: This is the remaining availability based on the limit type defined
+    optional: True
+

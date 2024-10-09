@@ -1,0 +1,9 @@
+title: Service Group Level
+type: object
+properties:
+  type:
+    type: string
+    description: Level type (always "SERVICE_GROUP")
+    example: "SERVICE_GROUP"
+  serviceGroup:
+    $ref: "./serviceGroup.yaml"

@@ -1,0 +1,6 @@
+title: limits
+type: array
+items:
+  $ref: "./limitInfo.yaml"
+
+  
