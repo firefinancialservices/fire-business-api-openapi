@@ -63,6 +63,9 @@ paths:
   /v2/paymentrequests/sent:
     $ref: ./v2/paths/paymentrequests/paymentrequestsent.yaml
 
+  /v2/paymentrequests/{paymentRequestCode}/public:
+    $ref: ./v2/paths/paymentrequests/paymentrequest-public.yaml
+
   /v2/payees/{fundingSrcId}:
     $ref: ./v2/paths/payees/payee-account-details.yaml
 
@@ -77,6 +80,12 @@ paths:
 
   /v2/rates/{fromCurrency}/{toCurrency}: 
     $ref: ./v2/paths/rates/fxrates.yaml
+
+  /v2/limits:
+    $ref: ./v2/paths/user-managment/limits.yaml
+
+  
+
   
 
 #Removing this endpoint 

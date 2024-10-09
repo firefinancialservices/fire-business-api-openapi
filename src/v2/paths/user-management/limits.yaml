@@ -1,0 +1,17 @@
+get:
+  summary: Get Limits associated with an account
+  description: Returns an array of limit information
+  tags:
+   - users
+  operationId: GetLimits 
+  responses:
+    '200':
+          description: An object of limit information
+          content:
+            application/json:
+              schema:
+                $ref: '../../schemas/limitInfo.yaml'
+    '401':
+          $ref: '../../responses/unauthorised-error.yaml'
+
+
