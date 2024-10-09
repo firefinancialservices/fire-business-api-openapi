@@ -1,0 +1,38 @@
+title: Public Payment request
+type: object
+properties:
+  code:
+    type: string
+    description: This is the payment request code
+    example: "abcdefgh"
+  pisp:
+    type: string
+    description: Payment Initiation Service Provider
+    example: "FIRE"
+  status:
+    type: string
+    description: This is the status of the payment request
+    example: "ACTIVE"
+  currency:
+    $ref: "./currency.yaml"
+  amount:
+    type: integer
+    format: int64
+    description: The amount sent in the payment request
+  description:
+    type: string
+    description: This is the reference description that was added to the payment request
+    example: "test"
+  dateCreated:
+    type: string
+    description: This is the date the payment was initiated.
+    example: "2024-09-12T14:55:03.857Z"
+  mandatoryFields:
+    type: string
+    description: For the hosted option, these fields will be madatory for the payer to fill in on the hosted payment page. You can choose to collect any the payer's `ADDRESS`, `REFERENCE` and/or
+     `COMMENT1`. If you choose to collect these fields from the payer, you cannot set 'delivery’, 'variableReference’ or  'comment1’ fields respectively.
+    example: "REFERNCE"
+  sender:
+    $ref: "./sender.yaml"
+    
+
