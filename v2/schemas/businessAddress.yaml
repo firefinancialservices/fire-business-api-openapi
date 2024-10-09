@@ -1,0 +1,18 @@
+title: businessAddress
+type: object
+properties:
+  type:
+    type: string
+    description: This is the type of account the sender holds
+    example: "BUSINESS"
+  address1:
+    type: string
+    description: This is the address of the sender
+    example: "1, 1 street, Dublin"
+  city:
+    type: string
+    description: This is the city the sender lives in
+    example: "Dublin 1" 
+  country:
+    $ref: "./country.yaml"
+    
