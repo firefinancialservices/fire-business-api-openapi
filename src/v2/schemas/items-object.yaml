@@ -1,0 +1,40 @@
+title: items
+type: object
+properties:
+  batchItemUuid:
+    type: string
+    description: A UUID for this item
+    example: "F2AF3F2B-4406-4199-B249-B354F2CC6019"
+  status:
+    type: string
+    enum:
+    - SUBMITTED
+    - REMOVED
+    - SUCCEEDED
+    - FAILED
+    example: SUCCEEDED
+    description: status of the batch 
+  result:
+    $ref: "./result.yaml"
+  dateCreated:
+    type: string
+    format: date-time
+    example: "2021-04-04T10:48:53.540Z"
+    description: The datestamp the batch was created - ISO format - e.g. 2018-04-04T00:53:21.910Z              
+  lastUpdated:
+    type: string
+    format: date-time
+    example: "2021-04-04T10:48:53.540Z"
+    description: The datestamp of the last action on this batch - ISO format - e.g. 2018-04-04T10:48:53.540Z
+  iban:
+    type: string
+    description: International Banking Account number belonging to the new Payees
+    example: "IE81AIBK96735642764123"
+  accountName:
+    type: string
+    description: The name on the account of the new payee 
+    example: "John Doe" 
+  accountHolderName:
+    type: string
+    description: The name of the new payee 
+    example: "John Doe"

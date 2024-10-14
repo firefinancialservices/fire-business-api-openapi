@@ -1,0 +1,4 @@
+title: items 
+type: array 
+items:
+  - $ref: "./items-object.yaml"
