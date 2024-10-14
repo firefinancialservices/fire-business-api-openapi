@@ -1,0 +1,22 @@
+get:
+  summary: Returns the address of a specific business user
+  description: You can retrieve the address of a specific fire.com user
+  tags:
+    - Users
+  operationId: getUser
+  parameters:
+    - in: path
+      required: true
+      name: userId
+      schema:
+        type: integer
+        format: int64
+        description: Lists a specific User
+        example: 14059
+  responses:
+    '200':
+      description: A user's address
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/address.yaml
