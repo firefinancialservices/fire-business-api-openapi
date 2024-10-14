@@ -1,0 +1,12 @@
+title: result 
+type: object
+properties:
+  code:
+    type: integer
+    format: int64
+    description: This is the code returned indicating response type
+    example: 510001
+  message: 
+    type: string
+    description: This is the message indicating whether the call was a success
+    example: "SUCCESS"

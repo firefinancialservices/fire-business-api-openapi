@@ -1,0 +1,10 @@
+title: New Payee Batch
+type: object
+properties:
+  total:
+    type: integer
+    format: int64
+    description: The total number of new Payees
+    example: 1
+  items:
+    $ref: "./items-array.yaml"
