@@ -4,7 +4,7 @@ get:
   description: >
     Retrieve a list of details of batch items with new payees
   tags:
-    - Batches
+    - Payment Batches
   operationId: getNewPayeeBatch
   parameters:
   - in: path
