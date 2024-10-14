@@ -1,0 +1,23 @@
+title: Get User Address
+type: object
+properties:
+  type:
+    type: string
+    description: The type of address this is for the user
+    enum:
+      -"HOME"
+      -"BUSINESS"
+  address1: 
+    type: string
+    description: This is the 1st line of the address
+    example: "1, Road 1"
+  city:
+    type: string
+    description: "This is the city listed for the address"
+    example: "Dublin"
+  country:
+    $ref: "./country.yaml"
+  postcode:
+    type: string
+    description: This is the postcode listed for the address
+    example: "D01 E100"
