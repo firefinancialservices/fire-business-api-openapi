@@ -1,5 +1,5 @@
 get:
-  summary: List all Payee Bank Accounts
+  summary: List Payee Bank Accounts
   description: >
     Returns all your payee bank accounts. 
     

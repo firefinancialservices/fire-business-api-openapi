@@ -1,6 +1,6 @@
 
 get:
-  summary: List payments for an Open Banking Payment request (v2)
+  summary: Get list of all Payment Attemprts related to a Payment Request
   description: >
     Retrieve the list of payments attempted against an Open Banking Payment request
   tags:

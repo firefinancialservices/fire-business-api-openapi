@@ -1,5 +1,5 @@
 get:
-  summary: View List of Cards.
+  summary: List Debit Cards
   description: Returns a list of cards related to your fire.com account.
   tags:
     - Cards
@@ -18,7 +18,7 @@ get:
 
 
 post:
-  summary: Create a new debit card.
+  summary: Create a new fire.com debit card.
   description: You can create multiple debit cards which can be linked to your fire.com accounts.
   tags:
     - Cards

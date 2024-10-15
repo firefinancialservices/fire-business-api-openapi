@@ -1,5 +1,5 @@
 get:
-  summary: Filtered list of transactions for an account (v1)
+  summary: Filtered list of transactions on an account (v1)
   deprecated: true
   description: >
     Retrieve a filtered list of transactions against an account. Recommended to use the v3 endpoint instead.
