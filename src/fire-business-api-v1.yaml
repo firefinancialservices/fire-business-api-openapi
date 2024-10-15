@@ -178,8 +178,10 @@ paths:
     $ref: ./v2/paths/user-management/user-address.yaml
   
   /v2/services:
-    $ref: .v2/paths/user-management/servicefees.yaml
+    $ref: ./v2/paths/user-management/servicefees.yaml
 
+  /v2/paymentrequests/{paymentRequestCode}/status:
+    $ref: ./v2/paths/paymentrequests/update-paymentrequest.yaml
 
 # webhooks:
 #   events:
