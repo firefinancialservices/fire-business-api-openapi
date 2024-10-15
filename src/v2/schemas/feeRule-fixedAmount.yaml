@@ -1,0 +1,14 @@
+Title: feeRule
+type: object
+properties:
+  feeRuleId:
+    type: integer
+    format: int64
+    description: The ID of the rule 
+    example: 25816
+  fixedAmount:
+    type: integer
+    format: int64
+    description: This is the fixed amount for the fee for each event
+    example: 29
+    
