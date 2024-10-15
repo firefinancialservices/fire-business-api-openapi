@@ -2,7 +2,7 @@ get:
   summary: Get Limits associated with an account
   description: Returns an array of limit information
   tags:
-   - users
+   - Users
   operationId: GetLimits 
   responses:
     '200':

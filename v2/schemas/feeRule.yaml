@@ -1,0 +1,5 @@
+title: feeRule
+description: The rules around the fee being applied
+oneOf:
+  - $ref: "./feeRule-fixedAmount.yaml"
+  - $ref: "./feeRule-MaxMin.yaml"

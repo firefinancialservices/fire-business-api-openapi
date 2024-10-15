@@ -1,0 +1,7 @@
+get:
+  summary: Send test webhooks
+  description: Sends a test webhook response for a selected event to the chosen URL
+  tags:
+   - API
+  operationId: SendTestWebhook
+  responses: null

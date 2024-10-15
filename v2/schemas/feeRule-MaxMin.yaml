@@ -1,0 +1,23 @@
+title: feeRule
+type: object
+properties:
+  feeRuleId:
+    type: integer
+    format: int64
+    description: The ID of the rule 
+    example: 25816
+  minimumAmount: 
+    type: integer
+    format: int64
+    description: This is the minimum fee amount that can be charged for an event
+    example: 10
+  maximumAmount: 
+    type: integer
+    format: int64
+    description: This is the maximum fee amount that can be charged for an event
+    example: 29
+  fixedPercentage4d:
+    type: integer
+    format: int64
+    description: This is the fixed % amount of a transaction the fee can be
+    exampple: 1000
