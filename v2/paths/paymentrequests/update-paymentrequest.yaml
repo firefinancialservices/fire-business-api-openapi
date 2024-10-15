@@ -1,0 +1,18 @@
+put:
+  summary: Update the status of a payment request
+  description: >
+    Update the status of a payment request. The payment request should be active or removed.
+  tags:
+    - Payment Requests
+  operationId: updatePaymentRequests
+  parameters:
+    - in: path
+      required: true
+      name: paymentRequestCode
+      schema:
+        type: string
+        description: The code of the payment request to update
+        example: "xyzabcde"
+  responses:
+    '204':
+      description: 204 no content
