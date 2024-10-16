@@ -1,5 +1,5 @@
 post:
-  summary: Add an internal transfer payment to the batch
+  summary: Add an internal transfer to a Batch
   description: Simply specify the source account, destination account, amount and a reference.
   tags:
     - Payment Batches
@@ -29,7 +29,7 @@ post:
 
 
 get:
-  summary: List items in a Batch (Internal Transfers)
+  summary: List items for an Internal Transfer Batch
   description: Returns a paginated list of items in the specified batch.
   tags:
     - Payment Batches

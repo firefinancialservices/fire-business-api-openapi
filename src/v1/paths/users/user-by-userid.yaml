@@ -1,5 +1,5 @@
 get:
-  summary: Returns details of a specific fire.com user.
+  summary: Get the details of a User
   description: You can retrieve the details of a specific fire.com user
   tags:
     - Users
