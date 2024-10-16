@@ -1,8 +1,8 @@
 get:
-  summary: Returns the address of a specific business user
+  summary: Get the address of a User
   description: You can retrieve the address of a specific fire.com user
   tags:
-    - Users
+    - User Management
   operationId: getUser
   parameters:
     - in: path

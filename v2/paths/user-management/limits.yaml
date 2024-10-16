@@ -1,8 +1,8 @@
 get:
-  summary: Get Limits associated with an account
+  summary: List all Limits
   description: Returns an array of limit information
   tags:
-   - Users
+   - User Management
   operationId: GetLimits 
   responses:
     '200':
