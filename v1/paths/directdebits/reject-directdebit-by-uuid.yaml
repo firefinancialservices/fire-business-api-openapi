@@ -1,5 +1,5 @@
 post:
-  summary: Reject a direct debit payment
+  summary: Reject a direct debit 
   description: >
       This endpoint allows you to reject a direct debit payment where the status is still set to RECEIVED.
 
