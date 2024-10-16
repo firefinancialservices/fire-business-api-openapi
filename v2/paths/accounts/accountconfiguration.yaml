@@ -1,8 +1,8 @@
 put:
-  summary: Change the configuration of an account
+  summary: Update Account Configuration
   description: Changes the name associated with an account
   tags:
-    - accounts
+    - Accounts
   operationId: changeAccountConig
   parameters:
     - in: path
