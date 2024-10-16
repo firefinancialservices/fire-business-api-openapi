@@ -1,5 +1,5 @@
 get:
-  summary: Payee Account Information
+  summary: Get details of a Payee Account
   description: >
     Retrieve the list of payee account details for a specific payee
   tags:

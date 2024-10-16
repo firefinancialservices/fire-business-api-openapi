@@ -1,10 +1,10 @@
 
 get:
-  summary: Return the report for an Open Banking Payment request (v2)
+  summary: Get a report from a Payment Request
   description: >
     Retrieve a report for an Open Banking Payment request
   tags:
-    - Open Banking
+    - Payment Requests
   operationId: getPaymentRequestReportV2
   parameters:
   - in: path

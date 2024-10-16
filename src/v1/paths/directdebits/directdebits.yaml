@@ -1,5 +1,5 @@
 get:
-  summary: Get all DD payments associated with a direct debit mandate
+  summary: List all Direct Debits
   description: >
       Retrieve all direct debit payments associated with a direct debit mandate.
 

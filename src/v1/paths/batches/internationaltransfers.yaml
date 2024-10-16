@@ -1,5 +1,5 @@
 post:
-  summary: Add an international transfer payment to a Batch
+  summary: Add an international transfer to a Batch
   description: > 
     International transfers must be added to a batch using the Payee ID (**Mode 1**). Payees must be set up using the web application.
 
