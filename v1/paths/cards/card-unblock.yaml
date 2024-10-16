@@ -2,7 +2,7 @@ post:
   summary: Unblock a fire.com debit card
   description: Updates status of an existing card to unblock which means that transactions can be carried out with that card.
   tags:
-    - Cards
+    - Debit Cards
   operationId: unblockCard
   parameters:
     - in: path

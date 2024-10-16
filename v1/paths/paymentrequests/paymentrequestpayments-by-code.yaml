@@ -1,5 +1,5 @@
 get:
-  summary: List payments for an Open Banking Payment request
+  summary: Get list of all Payment Attempts related to a Payment Request
   deprecated: true
   description: >
     Retrieve the list of payments attempted against an Open Banking Payment request

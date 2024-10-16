@@ -1,5 +1,5 @@
 get:
-  summary: List all fire.com Accounts
+  summary: List Accounts
   description: Returns all your fire.com Accounts. Ordered by Alias ascending. Can be paginated.
   tags:
       - Accounts
@@ -15,7 +15,7 @@ get:
       $ref: '../../responses/unauthorised-error.yaml'
 
 post:
-  summary: Add a new account
+  summary: Create a new fire.com Account
   description: >
     Creates a new fire.com account.
 

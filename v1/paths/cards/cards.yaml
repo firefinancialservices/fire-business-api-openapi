@@ -2,7 +2,7 @@ get:
   summary: List Debit Cards
   description: Returns a list of cards related to your fire.com account.
   tags:
-    - Cards
+    - Debit Cards
   operationId: getListofCards
   responses: 
     '200':  

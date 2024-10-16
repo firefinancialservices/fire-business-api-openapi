@@ -1,5 +1,5 @@
 get:
-  summary: Get the details for a direct debit mandate 
+  summary: Get the details of a direct debit mandate 
   description: >
     Retrieve all details for a direct debit mandate.
 
