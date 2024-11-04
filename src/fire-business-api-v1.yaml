@@ -82,7 +82,7 @@ paths:
     $ref: ./v2/paths/rates/fxrates.yaml
 
   /v2/limits:
-    $ref: ./v2/paths/user-management/limits.yaml
+    $ref: ./v2/paths/usermanagement/limits.yaml
   
   /v2/accounts/{ican}: 
     $ref: ./v2/paths/accounts/accountconfiguration.yaml
@@ -175,10 +175,10 @@ paths:
     $ref: ./v2/paths/apps/applications.yaml 
   
   /v2/users/{userId}/address:
-    $ref: ./v2/paths/user-management/user-address.yaml
+    $ref: ./v2/paths/usermanagement/user-address.yaml
   
   /v2/services:
-    $ref: ./v2/paths/user-management/servicefees.yaml
+    $ref: ./v2/paths/usermanagement/servicefees.yaml
 
   /v2/paymentrequests/{paymentRequestCode}/status:
     $ref: ./v2/paths/paymentrequests/update-paymentrequest.yaml
