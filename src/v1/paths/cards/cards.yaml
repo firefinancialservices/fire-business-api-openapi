@@ -18,7 +18,7 @@ get:
 
 
 post:
-  summary: Create a new fire.com debit card
+  summary: Create a new Fire debit card
   description: You can create multiple debit cards which can be linked to your fire.com accounts.
   tags:
     - Cards
