@@ -1,0 +1,12 @@
+title: Update a Payment Request status
+type: object
+properties:
+  PaymentRequestStatus:
+    type:  string
+    description: The status the payment request should be updated to
+    enum:
+    - "ACTIVE"
+    - "INACTIVE"
+    - "PAID"
+    - "EXPIRED"
+    - "REMOVED"

@@ -67,7 +67,21 @@ get:
           - DESC
           - ASC
         description: You can order the batches by ascending or descending order.
-        example: "DESC"     
+        example: "DESC"  
+    - in: query
+      name: offset
+      schema:
+        type: integer
+        format: int64
+        description: The page offset. Defaults to 0. This is the record number that the returned list will start at. E.g. offset = 40 and limit = 20 will return records 40 to 59.
+        example: "0"  
+    - in: query
+      name: limit
+      schema:
+        type: integer
+        format: int64
+        description: The number of records to return. Defaults to 10 - max is 200.
+        example: "10"            
   responses:
     '200':
       description: List all batches.

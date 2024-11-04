@@ -1,0 +1,23 @@
+
+get:
+  summary: List new payees in a batch
+  description: >
+    Retrieve a list of details of batch items with new payees
+  tags:
+    - Payment Batches
+  operationId: getNewPayeeBatch
+  parameters:
+  - in: path
+    required: true
+    name: batchUuid
+    schema:
+      type: string
+      description: The UUID for the batch
+      example: "2DF456A-1234-5ABC-BAC0-C0CED23544F1"
+  responses:
+    '200':
+      description: New Payee Object
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/newpayees-batch.yaml

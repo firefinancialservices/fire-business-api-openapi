@@ -1,0 +1,13 @@
+title: sender 
+type: object
+properties:
+  type:
+    type: string
+    description: This is the type of account the sender holds
+    example: "BUSINESS"
+  name:
+    type: string
+    description: This is the name of the sender
+    example: "johndoe"
+  businessAddress: 
+    $ref: "./businessAddress.yaml"
