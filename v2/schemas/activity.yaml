@@ -138,7 +138,6 @@ properties:
            - BUSINESS_SERVICE_FEE
            - BUSINESS_UNCOLLECTED_SERVICE_FEE
 
-
   description:
       type: string
       description: String describing activity

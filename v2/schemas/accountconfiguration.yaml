@@ -1,0 +1,8 @@
+title: Account Configuration
+type: object
+properties:
+  accountName: 
+    type: string
+    description: This is the name the account will be updated to.
+    example: "John Doe"
+  
