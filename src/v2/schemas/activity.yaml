@@ -135,10 +135,8 @@ properties:
            - NEW_BANK_TRANSFER_APPROVAL_REQUESTED
            - EDIT_AUTHORISATION_RULE_APPROVAL_REQUESTED
            - CREATE_AUTHORISATION_RULE_APPROVAL_REQUESTED
-
-        
-
-
+           - BUSINESS_SERVICE_FEE
+           - BUSINESS_UNCOLLECTED_SERVICE_FEE
 
   description:
       type: string
