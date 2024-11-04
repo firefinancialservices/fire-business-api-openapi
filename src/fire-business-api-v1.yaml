@@ -83,7 +83,7 @@ paths:
 
   /v2/limits:
     $ref: ./v2/paths/usermanagement/limits.yaml
-  
+
   /v2/accounts/{ican}: 
     $ref: ./v2/paths/accounts/accountconfiguration.yaml
   
