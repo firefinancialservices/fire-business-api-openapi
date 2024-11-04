@@ -1,5 +1,5 @@
 get:
-  summary: Retrieve the details of an Open Banking Payment request
+  summary: Get Payment Details
   description: >
     Retrieve the details of an Open Banking Payment request
   tags:

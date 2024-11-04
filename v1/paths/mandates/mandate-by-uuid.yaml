@@ -1,5 +1,5 @@
 get:
-  summary: Get direct debit mandate details
+  summary: Get the details of a direct debit mandate 
   description: >
     Retrieve all details for a direct debit mandate.
 
@@ -24,7 +24,7 @@ get:
             $ref: ../../schemas/mandate.yaml
 
 post:
-  summary: Update a direct debit mandate alias
+  summary: Update direct debit mandate alias
   description: >
     Update Direct Debit Mandate Alias
 

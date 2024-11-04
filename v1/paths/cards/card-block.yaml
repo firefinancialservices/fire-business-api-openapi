@@ -1,8 +1,8 @@
 post:
-  summary: Block a card
+  summary: Block a Fire Debit card
   description: Updates status of an existing card to block which prevents any transactions being carried out with that card.
   tags:
-    - Cards
+    - Debit Cards
   operationId: blockCard
   parameters:
     - in: path

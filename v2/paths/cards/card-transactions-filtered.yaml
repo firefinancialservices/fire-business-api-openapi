@@ -1,8 +1,8 @@
 get:
-  summary: Filtered List of Card Transactions.
+  summary: Get a filtered list of Debit Card Transactions
   description: Returns a filtered list of cards transactions related to your fire.com card.
   tags:
-    - Cards
+    - Debit Cards
   operationId: getFilteredListofCardTransactions
   parameters:
     - in: path

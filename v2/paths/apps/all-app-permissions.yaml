@@ -1,8 +1,8 @@
 get:
-  summary: List all permissions avaialble for an API application
-  description: Get all permissions available for an API application on your fire.com account
+  summary: List all permissions for API applications
+  description: Get all permissions available for any API application on your fire.com account
   tags:
-    - API
+    - API & Webhooks
   operationId: GetAllPermissions 
   responses:
         '200':
