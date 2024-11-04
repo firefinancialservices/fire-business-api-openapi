@@ -90,7 +90,7 @@ paths:
   /v2/webhooks/{webhookId}/events/{event}/test: 
     $ref: ./v2/paths/apps/send-webhook-test.yaml
 
-  /v2/batches/{UUID}/newpayees:
+  /v2/batches/{batchUuid}/newpayees:
     $ref: ./v2/paths/batches/newpayees-batch.yaml  
 
 #Removing this endpoint 

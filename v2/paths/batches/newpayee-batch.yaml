@@ -9,7 +9,7 @@ get:
   parameters:
   - in: path
     required: true
-    name: UUID
+    name: batchUuid
     schema:
       type: string
       description: The UUID for the batch
