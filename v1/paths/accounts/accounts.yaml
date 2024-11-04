@@ -15,7 +15,7 @@ get:
       $ref: '../../responses/unauthorised-error.yaml'
 
 post:
-  summary: Create a new fire.com Account
+  summary: Create a new Fire Account
   description: >
     Creates a new fire.com account.
 
