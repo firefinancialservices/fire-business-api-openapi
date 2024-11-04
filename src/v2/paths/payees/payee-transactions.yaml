@@ -1,5 +1,5 @@
 get:
-  summary: Payee Transaction Information
+  summary: List transaction to a Payee Account
   description: >
     Retrieves the list of transactions and transaction information associated with a payee
   tags:
