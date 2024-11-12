@@ -235,6 +235,8 @@ components:
       $ref: 'v1/schemas/transaction.yaml'
     Application:
       $ref: 'v1/schemas/application.yaml'
+    ASPSP:
+      $ref: 'v1/schemas/aspsp.yaml'
 
 
 
