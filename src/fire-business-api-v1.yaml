@@ -235,6 +235,10 @@ components:
       $ref: 'v1/schemas/transaction.yaml'
     AccessToken: 
       $ref: 'v1/schemas/access-token.yaml'
+    Application:
+      $ref: 'v1/schemas/application.yaml'
+    Aspsp:
+      $ref: 'v1/schemas/aspsp.yaml'
 
 security:
   - bearerAuth: []
