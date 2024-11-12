@@ -4,5 +4,5 @@ properties:
   accounts:
     type: array
     items:
-      $ref: './account.yaml'
+      $ref: '../../fire-business-api-v1.yaml#/components/schemas/Account'
 

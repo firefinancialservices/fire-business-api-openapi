@@ -1,7 +1,7 @@
 get:
-  summary: List Payee Bank Accounts
+  summary: List Payees
   description: >
-    Returns all your payee bank accounts. 
+    Returns all your payees. 
     
     
     Ordered by payee name ascending. 
@@ -28,8 +28,8 @@ get:
       required: false  
   responses:
     '200':
-      description: An array of Payee Bank Accounts
+      description: An array of Payees
       content:
         application/json:
           schema:
-            $ref: ../../schemas/payee-bank-accounts.yaml
+            $ref: ../../schemas/payees.yaml

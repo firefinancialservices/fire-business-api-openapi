@@ -1,4 +1,4 @@
-title: Public Payment request
+title: publicPaymentRequest
 type: object
 properties:
   code:

@@ -1,4 +1,4 @@
 title: businessServices
 type: array
 items:
-  - $ref: "./businessServices-object.yaml"
+  $ref: "./businessServices-object.yaml"

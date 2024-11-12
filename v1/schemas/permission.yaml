@@ -104,9 +104,6 @@ properties:
       - "PERM_BUSINESS_GET_TERMINAL_PAYMENT_REQUEST_PAYMENTS"
       - "PERM_BUSINESS_GET_TERMINAL_ACCOUNTS"
   requiresElevatedPrivilege:
-    type: string
-    enum:
-      - "TRUE"
-      - "FALSE"
-
+    type: boolean
+    
 

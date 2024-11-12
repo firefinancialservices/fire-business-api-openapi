@@ -2,6 +2,34 @@ get:
   summary: Send test webhooks
   description: Sends a test webhook response for a selected event to the chosen URL
   tags:
-   - API
+   - API & Webhooks
   operationId: SendTestWebhook
-  responses: null
+  parameters:
+  - in: path
+    required: true
+    name: webhookId
+    schema:
+      type: integer
+      format: int64
+      description: The ID of the webhook to test
+      example: 32
+  - in: path
+    required: true
+    name: event
+    schema:
+      type: string
+      enum: 
+        - LODGEMENT_RECEIVED
+        - PAYMENT_RECEIVED
+        - PAYMENT_REQUEST_PAYMENT_RECEIVED
+        - ACCOUNT_CREATED
+        - CARD_CREATED
+        - CARD_AUTHORISATION
+        - CARD_SETTLEMENT
+        - PAYMENT_REQUEST_PAYMENT_AUTHORISED
+        - PIS_LODGEMENT_RECEIVED
+      description: The type of event to send. Currently only one event type is associated with each webhook, however this may change in future. 
+      example: "CARD_AUTHORISATION"
+  responses:
+    '200':
+      description: Webhook test sent.

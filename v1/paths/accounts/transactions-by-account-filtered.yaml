@@ -13,6 +13,8 @@ get:
     * `transactionTypes` - One or more of the transaction types above. This field can be repeated multiple times to allow for multiple transaction types.
 
     * `offset` - The page offset. Defaults to 0. This is the record number that the returned list will start at. E.g. offset = 40 and limit = 20 will return records 40 to 59.
+
+    * `limit` - the number of items to return. 
   tags:
     - Transactions
   operationId: getTransactionsByAccountIdFiltered
@@ -58,7 +60,14 @@ get:
         type: integer
         format: int64
         description: The page offset. Defaults to 0. This is the record number that the returned list will start at. E.g. offset = 40 and limit = 20 will return records 40 to 59.
-      required: true              
+      required: true  
+    - in: query
+      name: limit
+      schema:
+        type: integer
+        format: int64
+        description: The number of records to return. Defaults to 10 - max is 200.
+      required: true            
   responses:
     '200':
       description: An array of transaction objects for the account with a count (`total`) filtered by the specified query parameter.

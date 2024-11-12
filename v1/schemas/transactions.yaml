@@ -14,5 +14,5 @@ properties:
   transactions:
     type: array
     items:
-      $ref: ./transaction.yaml
+      $ref: '../../fire-business-api-v1.yaml#/components/schemas/Transaction'
   

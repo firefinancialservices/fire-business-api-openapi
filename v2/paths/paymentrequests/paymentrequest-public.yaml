@@ -6,17 +6,17 @@ get:
     - Open Banking
   operationId: GetPublicPaymentRequestV2
   parameters:
-    in: path
-    required: true
-    name: paymentRequestCode
-    schema:
-      type: string
-      description: The unique 8-character code identifying the payment request.
-      example: "1234abcd"
-    responses:
-      '200':
-         description: The Payment Request Information
-         content:
-          application/json:
-            schema:
-              $ref: ../../schemas/payment-request-public.yaml
+    - in: path
+      required: true
+      name: paymentRequestCode
+      schema:
+        type: string
+        description: The unique 8-character code identifying the payment request.
+        example: "1234abcd"
+  responses:
+    '200':
+      description: The Payment Request Information
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/paymentrequest-public.yaml

@@ -1,22 +1,25 @@
 get:
-  summary: List transaction to a Payee Account
+  summary: List transaction for a Payee Account
   description: >
     Retrieves the list of transactions and transaction information associated with a payee
   tags:
     - Payees
-  operationId: getPayeeTransactionInfo
+  operationId: getPayeeTransactions
   parameters:
   - in: path
     required: true
-    name: fundingSrcId
+    name: payeeId
     schema:
-      type: string
-      description: The unique 6-character code identifying the payee.
-      example: "346748"
+      type: integer
+      format: int64
+      description: The unique ID of the payee.
+      example: 346748
   responses:
     '200':
       description: An array of payee transaction information
       content:
         application/json:
           schema:
-            $ref: ../../schemas/payee-transactions.yaml
+            $ref: ../../schemas/transactions.yaml
+    '403':
+      $ref: ../../responses/unauthorised-error.yaml

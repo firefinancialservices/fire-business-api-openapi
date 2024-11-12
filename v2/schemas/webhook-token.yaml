@@ -15,11 +15,8 @@ properties:
     description: This is the private token that Fire keeps
     example: "d48c6590-dea2-46bf-b8e1-f715de144aca"
   active:
-    type: string
+    type: boolean
     description: This is whether or not the webhook token is active
-    enum:
-    - "TRUE"
-    - "FALSE"
   dateCreated:
       type: date-time
       example: "2017-11-09T15:57:15.710Z"
