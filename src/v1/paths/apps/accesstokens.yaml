@@ -11,7 +11,7 @@ post:
     content:
         application/json:
           schema:
-            $ref: ../../schemas/authentication-data.yaml
+            $ref: '../../../fire-business-api-v1.yaml#/components/schemas/AuthenticationData'
   responses:
     '200':
       description: Successfully authenticated
