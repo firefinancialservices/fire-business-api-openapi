@@ -4,4 +4,4 @@ properties:
     errors:
       type: array
       items:
-        $ref: ./api-error.yaml
+        $ref: ../../fire-business-api-v1.yaml#/components/schemas/ApiError

@@ -30,7 +30,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../../schemas/account-new.yaml'
+          $ref: '../../../fire-business-api-v1.yaml#/components/schemas/NewAccount'
   responses:
     '201':
       description: The details of the new account
