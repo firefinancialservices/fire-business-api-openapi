@@ -231,6 +231,8 @@ components:
   schemas:
     Account:
       $ref: 'v1/schemas/account.yaml'
+    NewAccount:
+      $ref: 'v1/schemas/account-new.yaml'
     Transaction: 
       $ref: 'v1/schemas/transaction.yaml'
     AccessToken: 
@@ -239,6 +241,11 @@ components:
       $ref: 'v1/schemas/application.yaml'
     Aspsp:
       $ref: 'v1/schemas/aspsp.yaml'
+    NewBatchItemResponse:
+      $ref: 'v1/schemas/add-batch-item-response.yaml'
+    ApiError:
+      $ref: 'v1/schemas/api-error.yaml'
+    
 
 security:
   - bearerAuth: []
