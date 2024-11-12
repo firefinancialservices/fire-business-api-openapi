@@ -245,6 +245,15 @@ components:
       $ref: 'v1/schemas/add-batch-item-response.yaml'
     ApiError:
       $ref: 'v1/schemas/api-error.yaml'
+    BatchApprover:
+      $ref: 'v1/schemas/approvers-for-batch.yaml'
+    AuthenticationData:
+      $ref: 'v1/schemas/authentication-data.yaml'
+    BatchItemDetails:
+      $ref: 'v1/schemas/batch-item-details.yaml'
+    
+
+
     
 
 security:

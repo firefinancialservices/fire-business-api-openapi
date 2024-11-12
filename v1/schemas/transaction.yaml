@@ -172,7 +172,7 @@ properties:
   fxTradeDetails: 
     $ref: "./fx-trade-details.yaml"
   batchItemDetails: 
-    $ref: "./batch-item-details.yaml"
+    $ref: '../../fire-business-api-v1.yaml#/components/schemas/BatchItemDetails'
   directDebitDetails: 
     $ref: "./direct-debit-details.yaml"
   proprietarySchemeDetails: 
