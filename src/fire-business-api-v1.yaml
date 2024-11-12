@@ -66,18 +66,6 @@ paths:
   /v2/paymentrequests/{paymentRequestCode}/public:
     $ref: ./v2/paths/paymentrequests/paymentrequest-public.yaml
 
-  /v2/payees/{fundingSrcId}:
-    $ref: ./v2/paths/payees/payee-account-details.yaml
-
-  /v2/payees/{fundingSrcId}/transactions:
-    $ref: ./v2/paths/payees/payee-transactions.yaml
-
-  /v2/apps/{applicationId}/permissions:
-    $ref: ./v2/paths/apps/app-permissions.yaml
-
-  /v2/apps/permissions:
-    $ref: ./v2/paths/apps/all-app-permissions.yaml
-
   /v2/rates/{fromCurrency}/{toCurrency}: 
     $ref: ./v2/paths/rates/fxrates.yaml
 
@@ -120,8 +108,20 @@ paths:
   /v1/apps:
     $ref: ./v1/paths/apps/apps.yaml
 
+  /v1/apps/{applicationId}/permissions:
+    $ref: ./v1/paths/apps/app-permissions.yaml
+
+  /v1/apps/permissions:
+    $ref: ./v1/paths/apps/all-app-permissions.yaml
+
   /v1/payees:
     $ref: ./v1/paths/payees/payees.yaml
+
+  /v1/payees/{payeeId}:
+    $ref: ./v1/paths/payees/payee-details.yaml
+
+  /v1/payees/{payeeId}/transactions:
+    $ref: ./v1/paths/payees/payee-transactions.yaml
 
   /v1/directdebits:
     $ref: ./v1/paths/directdebits/directdebits.yaml
@@ -170,9 +170,6 @@ paths:
 
   /v1/batches/{batchUuid}/approvals:
     $ref: ./v1/paths/batches/approvers-for-batch.yaml
-  
-  /v2/apps: 
-    $ref: ./v2/paths/apps/applications.yaml 
   
   /v2/users/{userId}/address:
     $ref: ./v2/paths/usermanagement/user-address.yaml
@@ -231,6 +228,13 @@ components:
       schema:
         type: integer
         default: 0
+  schemas:
+    Account:
+      $ref: 'v1/schemas/account.yaml'
+    Transaction: 
+      $ref: 'v1/schemas/transaction.yaml'
+
+
 security:
   - bearerAuth: []
 tags:
@@ -254,4 +258,3 @@ tags:
     description: View and manage the cards linked to your accounts. 
   - name: Users
     description: View the users of your fire.com account. 
-   

@@ -1,4 +1,4 @@
-Title: feeRule
+title: feeRule
 type: object
 properties:
   feeRuleId:

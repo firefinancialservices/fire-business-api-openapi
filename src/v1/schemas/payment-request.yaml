@@ -26,7 +26,10 @@ properties:
       - EXPIRED
     description: The status of the transaction
   currency:
-    $ref: ./currency.yaml
+    type: string
+    enum:
+      - GBP
+      - EUR
   type:
     type: string
     enum:

@@ -17,6 +17,9 @@ npm install
 npm run publish
 npm run test 
 ``` 
+
+The publish step runs the resolve refs process twice as some $refs remain after the first run. Not sure why.... 
+
 That tests the OpenAPI and creates the flat file in the dist folder. 
 
 Once you commit to github, the automatic workflows push the change to Readme. 

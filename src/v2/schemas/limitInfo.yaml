@@ -25,5 +25,4 @@ properties:
     type: integer
     format: int64
     description: This is the remaining availability based on the limit type defined
-    optional: True
 

@@ -4,7 +4,7 @@
   "description": "The Fire Business API",
   "scripts": {
     "test": "speccy lint --skip openapi-tags-alphabetical --skip  parameter-description ./fire-business-api-v1.yaml",
-    "publish": "json-refs resolve --yaml -w ./src/fire-business-api-v1.yaml > ./fire-business-api-v1.yaml"
+    "publish": "json-refs resolve --yaml -w ./src/fire-business-api-v1.yaml > ./src/fire-business-api-v1-res.yaml && json-refs resolve --yaml -w ./src/fire-business-api-v1-res.yaml > ./fire-business-api-v1.yaml"
   },
   "devDependencies": {
     "json-refs": "*"
