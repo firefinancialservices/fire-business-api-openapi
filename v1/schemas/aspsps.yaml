@@ -8,5 +8,5 @@ properties:
   aspsps:
     type: array
     items:
-      $ref: ./aspsp.yaml
+      $ref: '../../fire-business-api-v1.yaml#/components/schemas/Aspsp'
 
