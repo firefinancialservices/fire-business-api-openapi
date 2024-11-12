@@ -233,6 +233,9 @@ components:
       $ref: 'v1/schemas/account.yaml'
     Transaction: 
       $ref: 'v1/schemas/transaction.yaml'
+    Application:
+      $ref: 'v1/schemas/application.yaml'
+
 
 
 security:
