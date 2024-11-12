@@ -233,7 +233,8 @@ components:
       $ref: 'v1/schemas/account.yaml'
     Transaction: 
       $ref: 'v1/schemas/transaction.yaml'
-
+    AccessToken: 
+      $ref: 'v1/schemas/access-token.yaml'
 
 security:
   - bearerAuth: []
