@@ -10434,6 +10434,145 @@ components:
           type: string
           description: An internal Fire reference for the transaction (UUID)
           example: 42de0705-e3f1-44fa-8c41-79973eb80eb2
+    AccessToken:
+      title: accessToken
+      type: object
+      properties:
+        businessId:
+          type: integer
+          format: int64
+          description: The business ID for the business.
+          example: 248
+        apiApplicationId:
+          type: integer
+          format: int64
+          description: The ID of the application you are using.
+          example: 433
+        expiry:
+          type: string
+          format: date-time
+          description: The expiry date and time for this token (ISO-8601).
+          example: '2020-10-22T07:48:56.460Z'
+        permissions:
+          type: array
+          items:
+            type: string
+          description: >-
+            The permissions assigned to the Access Token as an array of strings.
+            This provides information on what API access it is allowed. See the
+            section on Scope below.
+          example:
+            - PERM_BUSINESSES_GET_ACCOUNTS
+            - PERM_BUSINESSES_GET_ACCOUNT_TRANSACTIONS
+        accessToken:
+          type: string
+          description: The App Bearer Access Token you can use in further API calls.
+          example: 4ADFB67A-0F5B-4A9A-9D74-34437250045C
+    Application:
+      title: apiApplication
+      type: object
+      properties:
+        applicationId:
+          type: integer
+          format: int64
+          description: This is the ID number of the API application
+          example: 2404
+        name:
+          type: string
+          description: This is the name given to the API application by the fire.com user
+          example: Account Information Test
+        ican:
+          type: integer
+          format: int64
+          description: >-
+            The ICAN of one of your Fire accounts. Restrict this API Application
+            to a certan account.
+        clientId:
+          type: string
+          description: This is the ID of client associated with the application
+          example: G0919C06D23D-362A-H5D3-E76D8687D6AE
+        refreshToken:
+          type: string
+          description: This is the refresh token associated with the application
+          example: 9C332CF3-1687-4548-8E0E-55E4F0599800
+        clientKey:
+          type: string
+          description: The Client Key of the new API Application
+          example: 4ADFB67A-0F5B-4A9A-9D74-34437250045C
+        enabled:
+          type: boolean
+          description: This is whether or not the application is enabled for usage
+        numberOfApprovalsRequired:
+          type: integer
+          format: int64
+          description: This is the number of approvals required for any application actions
+          example: 1
+        numberOfPaymentApprovalsRequired:
+          type: integer
+          format: int64
+          description: This is number of approvals required for any payment batches
+          example: 1
+        numberOfPayeeApprovalsRequired:
+          type: integer
+          format: int64
+          description: This is the number of approvals required for Payees
+          example: 1
+        expiry:
+          type: string
+          format: date-time
+          example: '2019-08-22T07:48:56.460Z'
+          description: The date that this API Application can no longer be used.
+    Aspsp:
+      title: aspsp
+      type: object
+      properties:
+        aspspUuid:
+          type: string
+          description: The UUID associated with the ASPSP / bank.
+          example: 4ADFB67A-0F5B-4A9A-9D74-34437250045C
+        alias:
+          type: string
+          example: Demo Bank
+          description: The name of the ASPSP / bank.
+        logoUrl:
+          type: string
+          example: 'https://assets.fire.com/pisp/demo.svg'
+          description: A link to the ASPSP / bank's logo in SVG format.
+        country:
+          title: country
+          type: object
+          properties:
+            code:
+              type: string
+              description: 'The 2-letter code for the country - e.g. `IE`, `GP`...'
+              example: GB
+            description:
+              type: string
+              description: The name of the country
+              example: United Kingdom
+        currency:
+          title: currency
+          description: The currency.
+          type: object
+          properties:
+            code:
+              type: string
+              description: The three letter code for the currency.
+              example: EUR
+            description:
+              type: string
+              description: The name of the currency
+              example: Euro
+        dateCreated:
+          type: string
+          format: date-time
+          example: '2019-08-22T07:48:56.460Z'
+          description: The date the ASPSP / bank was created.
+        lastUpdated:
+          type: string
+          format: date-time
+          example: '2019-08-22T07:48:56.460Z'
+          description: The date the ASPSP / bank was last updated.
 security:
   - bearerAuth: []
 tags:
