@@ -9,4 +9,4 @@ properties:
   items:
     type: array
     items:
-      $ref: ./batch-item.yaml
+      $ref: ../../fire-business-api-v1.yaml#/components/schemas/BatchItem

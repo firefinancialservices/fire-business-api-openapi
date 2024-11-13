@@ -9,5 +9,5 @@ properties:
   pisPaymentRequestPayments:
     type: array
     items:
-      $ref: ./payment-request-payment.yaml
+      $ref: '../../fire-business-api-v1.yaml#/components/schemas/PaymentRequestPayment'
   

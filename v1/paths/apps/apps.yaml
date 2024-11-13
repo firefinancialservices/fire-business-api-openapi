@@ -29,7 +29,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../../schemas/new-api-application.yaml
+          $ref: '../../../fire-business-api-v1.yaml#/components/schemas/NewAPIApplication'
   responses:
     '200':
       description: API Application created successfully

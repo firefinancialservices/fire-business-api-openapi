@@ -6,7 +6,7 @@ properties:
     description: The UUID for the direct debit payment
     example: 42de0705-e3f1-44fa-8c41-79973eb80eb2
   currency:
-    $ref: ./currency.yaml
+    $ref: '../../fire-business-api-v1.yaml#/components/schemas/Currency'
   status:
     type: string
     enum:

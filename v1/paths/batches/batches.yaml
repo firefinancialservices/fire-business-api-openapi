@@ -11,14 +11,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../../schemas/new-batch.yaml
+          $ref: '../../../fire-business-api-v1.yaml#/components/schemas/NewBatch'
   responses:
     '200':
       description: Batch created successfully
       content:
         application/json:
           schema:
-            $ref: ../../schemas/new-batch-response.yaml
+            $ref: '../../../fire-business-api-v1.yaml#/components/schemas/NewBatchResponse'
             
 
 get:

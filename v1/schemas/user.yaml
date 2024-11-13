@@ -50,4 +50,4 @@ properties:
     description: Users Cvl type ID (shows up when status is LIVE)
     example: "FULL"
   mobileApplicationDetails: 
-    $ref: ./mobile-application.yaml
+    $ref: '../../fire-business-api-v1.yaml#/components/schemas/MobileApplication'
