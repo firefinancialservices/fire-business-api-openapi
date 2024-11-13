@@ -270,7 +270,7 @@ components:
     DirectDebit: 
       $ref: 'v1/schemas/direct-debit.yaml'
     DirectDebitByMandateUUID:
-      $ref: 'v1/schemas/direct-debit-by-mandateuuid.yaml'
+      $ref: 'v1/schemas/direct-debits-by-mandateuuid.yaml'
     FxTrade:
       $ref: 'v1/schemas/fx-trade-details.yaml'
     InternalTransferBatchItem:
@@ -288,7 +288,7 @@ components:
     NewBatch: 
       $ref: 'v1/schemas/new-batch.yaml'
     NewPaymentRequest:
-      $ref: 'v1/schema/new-payment-request.yaml'
+      $ref: 'v1/schemas/new-payment-request.yaml'
     OrderDetails:
       $ref: 'v1/schemas/order-details.yaml'
     Payee: 
@@ -320,7 +320,7 @@ components:
     User: 
       $ref: 'v1/schemas/user.yaml'#
     NewWebhook: 
-      $ref: 'v1/schema/webhook-new.yaml'
+      $ref: 'v1/schemas/webhook-new.yaml'
 
 
 
