@@ -318,7 +318,7 @@ components:
     To: 
       $ref: 'v1/schemas/to.yaml'
     User: 
-      $ref: 'v1/schemas/user.yaml'#
+      $ref: 'v1/schemas/user.yaml'
     NewWebhook: 
       $ref: 'v1/schemas/webhook-new.yaml'
 
