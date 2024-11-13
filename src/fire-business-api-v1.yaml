@@ -251,7 +251,79 @@ components:
       $ref: 'v1/schemas/authentication-data.yaml'
     BatchItemDetails:
       $ref: 'v1/schemas/batch-item-details.yaml'
-    
+    BatchItem: 
+      $ref: 'v1/schemas/batch-item.yaml'
+    Batch: 
+      $ref: 'v1/schemas/batch.yaml'
+    NewCardResponse:
+      $ref: 'v1/schemas/card-new-response.yaml'
+    NewCard: 
+      $ref: 'v1/schemas/card-new.yaml'
+    Card: 
+      $ref: 'v1/schemas/card.yaml'
+    Country:
+      $ref: 'v1/schemas/country.yaml'
+    Currency:
+      $ref: 'v1/schemas/currency.yaml'
+    DirectDebitDetails: 
+      $ref: 'v1/schemas/direct-debit-details.yaml'
+    DirectDebit: 
+      $ref: 'v1/schemas/direct-debit.yaml'
+    DirectDebitByMandateUUID:
+      $ref: 'v1/schemas/direct-debit-by-mandateuuid.yaml'
+    FxTrade:
+      $ref: 'v1/schemas/fx-trade-details.yaml'
+    InternalTransferBatchItem:
+      $ref: 'v1/schemas/internal-transfer-batch-item.yaml'
+    InternationalTransferBatchItem:
+      $ref: 'v1/schemas/international-transfer-batch-item.yaml'
+    Mandate: 
+      $ref: 'v1/schemas/mandate.yaml'
+    MobileApplication: 
+      $ref: 'v1/schemas/mobile-application.yaml'
+    NewAPIApplication:
+      $ref: 'v1/schemas/new-api-application.yaml'
+    NewBatchResponse: 
+      $ref: 'v1/schemas/new-batch-response.yaml'
+    NewBatch: 
+      $ref: 'v1/schemas/new-batch.yaml'
+    NewPaymentRequest:
+      $ref: 'v1/schema/new-payment-request.yaml'
+    OrderDetails:
+      $ref: 'v1/schemas/order-details.yaml'
+    Payee: 
+      $ref: 'v1/schemas/payee.yaml'
+    PaymentRequestPayment: 
+      $ref: 'v1/schemas/payment-request-payment.yaml'
+    PaymentRequestResponse: 
+      $ref: 'v1/schemas/payment-request-response.yaml'
+    PaymentRequest: 
+      $ref: 'v1/schemas/payment-request.yaml'
+    Permission:
+      $ref: 'v1/schemas/permission.yaml'
+    ProprietarySchemeDetails:
+      $ref: 'v1/schemas/proprietary-scheme-details.yaml'
+    RelatedCard: 
+      $ref: 'v1/schemas/related-card.yaml'
+    RelatedPartyCardPayment: 
+      $ref: 'v1/schemas/related-party-card-payment.yaml'
+    RelatedPartyExternalAccount: 
+      $ref: 'v1/schemas/related-party-external-account.yaml'
+    RelatedPartyFireAccount:
+      $ref: 'v1/schemas/related-party-fire-account.yaml'
+    RelatedPartyPayee: 
+      $ref: 'v1/schemas/related-party-payee.yaml'
+    RelatedParty:
+      $ref: 'v1/schemas/related-party.yaml'
+    To: 
+      $ref: 'v1/schemas/to.yaml'
+    User: 
+      $ref: 'v1/schemas/user.yaml'#
+    NewWebhook: 
+      $ref: 'v1/schema/webhook-new.yaml'
+
+
+
 
 
     

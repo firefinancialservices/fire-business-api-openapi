@@ -4,4 +4,4 @@ properties:
   cards:
     type: array
     items:
-      $ref: './card.yaml'
+      $ref: '../../fire-business-api-v1.yaml#/components/schemas/Card'
