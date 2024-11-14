@@ -333,9 +333,9 @@ components:
       $ref: 'v2/schemas/businessServices-object.yaml'
     Events: 
       $ref: 'v2/schemas/events.yaml'
-    FeeRule-FixedAmount:
+    FeeRuleFixedAmount:
       $ref: 'v2/schemas/feeRule-fixedAmount.yaml'
-    FeeRule-MaxMin: 
+    FeeRuleMaxMin: 
       $ref: 'v2/schemas/feeRule-MaxMin.yaml'
     FeeRule: 
       $ref: 'v2/schemas/feeRule.yaml'
@@ -347,10 +347,10 @@ components:
       $ref: 'v2/schemas/level.yaml'
     Service: 
       $ref: 'v2/schemas/service.yaml' 
-    ServiceGroup: 
+    ServiceGroup:
       $ref: 'v2/schemas/serviceGroup.yaml'
     Limit: 
-      $ref: '/v2/schemas/limitInfo.yaml'
+      $ref: 'v2/schemas/limit.yaml'
 
 
 
