@@ -4,5 +4,5 @@ properties:
   WebhookTokens:
     type: array
     items: 
-      $ref: ./webhook-token.yaml
+      $ref: '../../fire-business-api-v1.yaml#/components/schemas/WebhookToken'
     

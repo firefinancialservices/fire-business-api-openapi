@@ -16,3 +16,4 @@ put:
   responses:
     '204':
       description: 204 no content
+
