@@ -5,12 +5,12 @@ properties:
     type: string
     description: This is type of the limit itself
     enum:
-    - "STATIC_MONETARY"
-    - "STATIC_COUNT"
-    - "DAILY_MONETARY"
-    - "DAILY_COUNT"
-    - "TOTAL_MONETARY"
-    - "TOTAL_COUNT"
+        - STATIC_MONETARY
+        - STATIC_COUNT
+        - DAILY_MONETARY
+        - DAILY_COUNT
+        - TOTAL_MONETARY
+        - TOTAL_COUNT
   level:
     $ref: '../../fire-business-api-v1.yaml#/components/schemas/Level'
   country:
