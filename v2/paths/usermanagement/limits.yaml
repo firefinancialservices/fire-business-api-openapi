@@ -10,7 +10,7 @@ get:
           content:
             application/json:
               schema:
-                $ref: '../../schemas/limitInfo.yaml'
+                $ref: '../../../fire-business-api-v1.yaml#/components/schemas/Limit'
     '401':
           $ref: '../../responses/unauthorised-error.yaml'
 
