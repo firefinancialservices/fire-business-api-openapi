@@ -33,6 +33,6 @@ properties:
      `COMMENT1`. If you choose to collect these fields from the payer, you cannot set 'delivery’, 'variableReference’ or  'comment1’ fields respectively.
     example: "REFERNCE"
   sender:
-    $ref: "./sender.yaml"
+    $ref: '../../fire-business-api-v1.yaml#/components/schemas/Sender'
     
 

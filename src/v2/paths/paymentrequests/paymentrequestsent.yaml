@@ -11,4 +11,4 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../schemas/payment-requests-sent.yaml
+            $ref: '../../../fire-business-api-v1.yaml#/components/schemas/PaymentRequestsSent'

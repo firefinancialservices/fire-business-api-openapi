@@ -351,6 +351,27 @@ components:
       $ref: 'v2/schemas/serviceGroup.yaml'
     Limit: 
       $ref: 'v2/schemas/limit.yaml'
+    NewPayeesBatch: 
+      $ref: 'v2/schemas/newpayees-batch.yaml'
+    PaymentRequestReport:
+      $ref: 'v2/schemas/payment-request-report.yaml'
+    PaymentRequestSummary:
+      $ref: 'v2/schemas/payment-request-summary.yaml'
+    PaymentRequestsSent: 
+      $ref: 'v2/schemas/payment-requests-sent.yaml'
+    Sender: 
+      $ref: 'v2/schemas/sender.yaml'
+    PublicPaymentRequest:
+      $ref: '/v2/schemas/paymentrequest-public.yaml'
+    Result:
+      $ref: 'v2/schemas/result.yaml'
+    WebhookToken: 
+      $ref: 'v2/schemas/webhook-token.yaml'
+    Webhook: 
+      $ref: 'v2/schemas/webhook.yaml'
+    WebhookEvent: 
+      $ref: 'v2/schemas/webhookEvent.yaml'
+
 
 
 
