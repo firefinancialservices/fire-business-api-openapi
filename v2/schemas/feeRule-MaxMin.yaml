@@ -1,4 +1,4 @@
-title: feeRule
+title: feeRuleMaxMin
 type: object
 properties:
   feeRuleId:
