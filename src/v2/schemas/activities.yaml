@@ -4,4 +4,4 @@ properties:
   cards:
     type: array
     items:
-      $ref: './activity.yaml'
+      $ref: '../../fire-business-api-v1.yaml#/components/schemas/Activity'

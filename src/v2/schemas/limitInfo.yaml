@@ -12,7 +12,7 @@ properties:
     - "TOTAL_MONETARY"
     - "TOTAL_COUNT"
   level:
-    $ref: "./level.yaml"
+    $ref: '../../fire-business-api-v1.yaml#/components/schemas/Level'
   country:
     $ref: "./country.yaml"
   currency:
