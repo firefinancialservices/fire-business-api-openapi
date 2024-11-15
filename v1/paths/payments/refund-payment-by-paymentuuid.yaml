@@ -18,14 +18,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../../schemas/bank-pay-refund-request.yaml
+          $ref: ../../../fire-business-api-v1.yaml#/components/schemas/BankPayRefundRequest
   responses:
     '200':
       description: Refund Request successful
       content:
         application/json:
           schema:
-            $ref: ../../schemas/bank-pay-refund-response.yaml
+            $ref: ../../../fire-business-api-v1.yaml#/components/schemas/BankPayRefundResponse
     '405':
       description: Error Method not Allowed
       content:

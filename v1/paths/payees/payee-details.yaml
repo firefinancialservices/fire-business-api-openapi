@@ -20,4 +20,5 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../schemas/payee.yaml
+            $ref: ../../../fire-business-api-v1.yaml#/components/schemas/Payee
+            
