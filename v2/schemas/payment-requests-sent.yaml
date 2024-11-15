@@ -14,5 +14,5 @@ properties:
   paymentRequests:
     type: array
     items:
-      $ref: ./payment-request-summary.yaml
+      $ref: ../../fire-business-api-v1.yaml#/components/schemas/PaymentRequestSummary
 

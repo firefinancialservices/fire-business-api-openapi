@@ -14,7 +14,7 @@ properties:
     description: This is the status of the payment request
     example: "ACTIVE"
   currency:
-    $ref: "./currency.yaml"
+    $ref: ../../fire-business-api-v1.yaml#/components/schemas/Currency
   amount:
     type: integer
     format: int64

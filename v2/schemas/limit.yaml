@@ -14,9 +14,9 @@ properties:
   level:
     $ref: '../../fire-business-api-v1.yaml#/components/schemas/Level'
   country:
-    $ref: "./country.yaml"
+    $ref: ../../fire-business-api-v1.yaml#/components/schemas/Country
   currency:
-    $ref: "./currency.yaml"
+    $ref: ../../fire-business-api-v1.yaml#/components/schemas/Currency
   value:
     type: integer
     format: int64
