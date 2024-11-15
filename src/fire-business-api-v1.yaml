@@ -371,13 +371,14 @@ components:
       $ref: 'v2/schemas/webhook.yaml'
     WebhookEvent: 
       $ref: 'v2/schemas/webhookEvent.yaml'
-
-
-
-
-
-
-    
+    BatchItemBankTransferMode1: 
+      $ref: 'v1/schemas/mode-1-batch-item.yaml'
+    BatchItemBankTransferMode2: 
+      $ref: 'v1/schemas/mode-2-batch-item.yaml'    
+    BankPayRefundRequest:
+      $ref: 'v1/schemas/bank-pay-refund-request.yaml'
+    BankPayRefundResponse: 
+      $ref: 'v1/schemas/bank-pay-refund-response.yaml'
 
 security:
   - bearerAuth: []

@@ -4036,351 +4036,326 @@ paths:
           content:
             application/json:
               schema:
-                title: paymentrequestpayments
+                title: paymentRequestPayment
                 type: object
                 properties:
-                  total:
+                  type:
+                    type: string
+                    enum:
+                      - OTHER
+                    description: The type of Fire Open Payment that was created
+                  paymentRequestCode:
+                    type: string
+                    description: >-
+                      The code that was returned when you created the payment
+                      request.
+                    example: 1234abcd
+                    maxLength: 8
+                    minLength: 8
+                  transactionType:
+                    type: string
+                    enum:
+                      - REFUND_REQUEST
+                      - PAYMENT
+                    description: The type of payment request payment
+                  endToEndId:
+                    type: string
+                    example: FIRE1234567890
+                    description: >-
+                      The unique Open Banking payment ID assigned to this
+                      payment.
+                  paymentUuid:
+                    type: string
+                    description: A unique id for the transaction.
+                    example: 4ADFB67A-0F5B-4A9A-9D74-34437250045C
+                  relatedPaymentUuid:
+                    type: string
+                    description: The original payment that this payment is linked to
+                    example: 4ADFB67A-0F5B-4A9A-9D74-34437250045C
+                  status:
+                    type: string
+                    enum:
+                      - AWAITING_AUTHORISATION
+                      - AUTHORISED
+                      - AWAITING_MULTI_AUTHORISATION
+                      - NOT_AUTHORISED
+                      - PAID
+                      - REJECTED
+                      - ACCEPTED
+                      - RECEIVED
+                    description: The status of the transaction
+                  reason:
+                    type: string
+                    example: Gym Closed for repairs.
+                    description: The reason for the refund.
+                  amountBeforeCharges:
                     type: integer
                     format: int64
-                    example: 1
-                    description: The total number of payment request payments in the list.
-                  pisPaymentRequestPayments:
-                    type: array
-                    items:
-                      title: paymentRequestPayment
-                      type: object
-                      properties:
-                        type:
-                          type: string
-                          enum:
-                            - OTHER
-                            - DIRECT
-                            - SHAREABLE
-                            - PARTY_TO_PARTY
-                            - BILL_PAYMENT
-                            - ECOMMERCE_GOODS
-                            - ECOMMERCE_SERVICES
-                          description: The type of Fire Open Payment that was created
-                        paymentRequestCode:
-                          type: string
-                          description: >-
-                            The code that was returned when you created the
-                            payment request.
-                          example: 1234abcd
-                          maxLength: 8
-                          minLength: 8
-                        transactionType:
-                          type: string
-                          enum:
-                            - REFUND_REQUEST
-                            - PAYMENT
-                          description: The type of payment request payment
-                        endToEndId:
-                          type: string
-                          example: FIRE1234567890
-                          description: >-
-                            The unique Open Banking payment ID assigned to this
-                            payment.
-                        paymentUuid:
-                          type: string
-                          description: A unique id for the transaction.
-                          example: 4ADFB67A-0F5B-4A9A-9D74-34437250045C
-                        relatedPaymentUuid:
-                          type: string
-                          description: The original payment that this payment is linked to
-                          example: 4ADFB67A-0F5B-4A9A-9D74-34437250045C
-                        status:
-                          type: string
-                          enum:
-                            - AWAITING_AUTHORISATION
-                            - AUTHORISED
-                            - AWAITING_MULTI_AUTHORISATION
-                            - NOT_AUTHORISED
-                            - SETTLED
-                            - REJECTED
-                            - ACCEPTED
-                            - RECEIVED
-                          description: The status of the transaction
-                        reason:
-                          type: string
-                          example: Gym Closed for repairs.
-                          description: The reason for the refund.
-                        amountBeforeCharges:
-                          type: integer
-                          format: int64
-                          example: 1000
-                          description: >-
-                            The requested amount (before Fire fees and taxes).
-                            Note the last two digits represent pennies/cents,
-                            (e.g., £1.00 = 100).
-                        feeAmount:
-                          type: integer
-                          format: int64
-                          example: 1000
-                          description: The fee for the payment
-                        amountAfterCharges:
-                          type: integer
-                          format: int64
-                          example: 1000
-                          description: >-
-                            The amount after Fire fees and taxes. Note the last
-                            two digits represent pennies/cents, (e.g., £1.00 =
-                            100).
-                        currency:
-                          title: currency
-                          description: The currency.
-                          type: object
-                          properties:
-                            code:
-                              type: string
-                              description: The three letter code for the currency.
-                              example: EUR
-                            description:
-                              type: string
-                              description: The name of the currency
-                              example: Euro
-                        myRef:
-                          type: string
-                          example: Fees
-                          description: An internal description of the request.
-                        description:
-                          type: string
-                          example: Gym Fees Oct 2020
-                          description: >-
-                            A public facing description of the request. This
-                            will be shown to the user when they tap or scan the
-                            request. Fire will truncate to 18 characters to
-                            ensure it is accepted by all banks. It is safest to
-                            use only numbers, letters, spaces and a fullstop (.)
-                            Special characters are not accepted by most banks
-                            and errors will only occur after the customer has
-                            approved the payment.
-                        returnUrl:
-                          type: string
-                          example: 'https://example.com/callback'
-                          description: >-
-                            The merchant return URL where the customer will be
-                            re-directed to with the result of the transaction.
-                        webhookUrl:
-                          type: string
-                          example: 'https://example.com/webhook'
-                          description: >-
-                            A URL to be called in the background with the
-                            details of the payment after the payment is complete
-                        relatedAccountTxnId:
-                          type: integer
-                          format: int64
-                          example: 41234
-                          description: >-
-                            The ID of the related transaction in your fire
-                            account.
-                        relatedPayeeId:
-                          type: integer
-                          format: int64
-                          example: 41234
-                          description: The ID of the payee making the payment.
-                        dateFundsReceived:
-                          type: string
-                          format: date-time
-                          example: '2020-10-22T07:48:56.460Z'
-                          description: >-
-                            The date the funds were received into your fire
-                            account.
-                        dateCreated:
-                          type: string
-                          format: date-time
-                          example: '2020-10-22T07:48:56.460Z'
-                          description: This is the date the payment was initiated.
-                        lastUpdated:
-                          type: string
-                          format: date-time
-                          example: '2019-08-22T07:48:56.460Z'
-                          description: The date payment was last updated.
-                        orderDetails:
-                          title: orderDetails
-                          type: object
-                          properties:
-                            merchantNumber:
-                              type: string
-                              example: '1234567'
-                              description: Your Merchant Number (if applicable).
-                            orderId:
-                              type: string
-                              example: 6c28a47d-4502-4111
-                              description: >-
-                                Use this field to store the order id for the
-                                transaction. The Order Id cannot be set unless
-                                the `maxNumberPayments` is 1.
-                            productId:
-                              type: string
-                              example: ZFDAA-1221
-                              description: >-
-                                Use this field to store a product id for the
-                                transaction (for example).
-                            customerNumber:
-                              type: string
-                              example: '123645'
-                              description: >-
-                                Use this field to store a customer number for
-                                the transaction (for example).
-                            variableReference:
-                              type: string
-                              example: John Doe
-                              description: >-
-                                Use this field to store any other reference for
-                                the transaction (for example, a phone number).
-                            comment1:
-                              type: string
-                              example: Additional comments about the transaction
-                              description: This is your own comment for the transaction.
-                            comment2:
-                              type: string
-                              example: Additional comments about the transaction
-                              description: This is your own comment for the transaction.
-                            merchantCustomerIdentification:
-                              type: string
-                              example: 08303863544
-                              description: >-
-                                This is a reference you use to uniquely identify
-                                each of your customers.
-                            deliveryAddressLine1:
-                              type: string
-                              example: 12 The Street
-                              description: The first line of the delivery address.
-                            deliveryAddressLine2:
-                              type: string
-                              example: The Way
-                              description: The second line of the delivery address.
-                            deliveryCity:
-                              type: string
-                              example: London
-                              description: Delivery address city
-                            deliveryPostCode:
-                              type: string
-                              example: EC15155
-                              description: Delivery address post code
-                            deliveryCountry:
-                              type: string
-                              example: GB
-                              description: 2-digit code for the country
-                        to:
-                          title: to
-                          type: object
-                          properties:
-                            type:
-                              type: string
-                              enum:
-                                - FIRE_ACCOUNT
-                                - WITHDRAWAL_ACCOUNT
-                              example: FIRE_ACCOUNT
-                              description: the type of destination account.
-                            account:
-                              title: relatedPartyFireAccount
-                              type: object
-                              properties:
-                                type:
-                                  type: string
-                                  enum:
-                                    - FIRE_ACCOUNT
-                                account:
-                                  type: object
-                                  properties:
-                                    id:
-                                      type: integer
-                                      format: int64
-                                      description: >-
-                                        identifier for the fire.com account
-                                        (assigned by fire.com)
-                                      example: 42
-                                    alias:
-                                      type: string
-                                      description: >-
-                                        the name the user gives to the account
-                                        to help them identify it.
-                                      example: Main Account
-                                    bic:
-                                      type: string
-                                      example: CPAYIE2D
-                                      description: >-
-                                        the BIC of the account (provided if
-                                        currency is EUR).
-                                    iban:
-                                      type: string
-                                      example: IE54CPAY99119911111111
-                                      description: >-
-                                        the IBAN of the account (provided if
-                                        currency is EUR).
-                                    nsc:
-                                      type: string
-                                      example: '232221'
-                                      description: the Sort Code of the account.
-                                    accountNumber:
-                                      type: string
-                                      example: '11111111'
-                                      description: the Account Number of the account.
-                        bank:
-                          title: aspsp
-                          type: object
-                          properties:
-                            aspspUuid:
-                              type: string
-                              description: The UUID associated with the ASPSP / bank.
-                              example: 4ADFB67A-0F5B-4A9A-9D74-34437250045C
-                            alias:
-                              type: string
-                              example: Demo Bank
-                              description: The name of the ASPSP / bank.
-                            logoUrl:
-                              type: string
-                              example: 'https://assets.fire.com/pisp/demo.svg'
-                              description: A link to the ASPSP / bank's logo in SVG format.
-                            country:
-                              title: country
-                              type: object
-                              properties:
-                                code:
-                                  type: string
-                                  description: >-
-                                    The 2-letter code for the country - e.g.
-                                    `IE`, `GP`...
-                                  example: GB
-                                description:
-                                  type: string
-                                  description: The name of the country
-                                  example: United Kingdom
-                            currency:
-                              title: currency
-                              description: The currency.
-                              type: object
-                              properties:
-                                code:
-                                  type: string
-                                  description: The three letter code for the currency.
-                                  example: EUR
-                                description:
-                                  type: string
-                                  description: The name of the currency
-                                  example: Euro
-                            dateCreated:
-                              type: string
-                              format: date-time
-                              example: '2019-08-22T07:48:56.460Z'
-                              description: The date the ASPSP / bank was created.
-                            lastUpdated:
-                              type: string
-                              format: date-time
-                              example: '2019-08-22T07:48:56.460Z'
-                              description: The date the ASPSP / bank was last updated.
-                        domesticPaymentId:
-                          type: string
-                          description: The ID assigned by the ASPSP to this payment.
-                          example: sdp-1-66ebd30c-c0e1-4a54-9865-f2a7bfedabcf
-                        allowFopReceipt:
-                          type: boolean
-                          example: true
-                          description: >-
-                            whether or not a receipt option was offered to the
-                            payer.
+                    example: 1000
+                    description: >-
+                      The requested amount (before Fire fees and taxes). Note
+                      the last two digits represent pennies/cents, (e.g., £1.00
+                      = 100).
+                  feeAmount:
+                    type: integer
+                    format: int64
+                    example: 1000
+                    description: The fee for the payment
+                  amountAfterCharges:
+                    type: integer
+                    format: int64
+                    example: 1000
+                    description: >-
+                      The amount after Fire fees and taxes. Note the last two
+                      digits represent pennies/cents, (e.g., £1.00 = 100).
+                  currency:
+                    title: currency
+                    description: The currency.
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        description: The three letter code for the currency.
+                        example: EUR
+                      description:
+                        type: string
+                        description: The name of the currency
+                        example: Euro
+                  myRef:
+                    type: string
+                    example: Fees
+                    description: An internal description of the request.
+                  description:
+                    type: string
+                    example: Gym Fees Oct 2020
+                    description: >-
+                      A public facing description of the request. This will be
+                      shown to the user when they tap or scan the request. Fire
+                      will truncate to 18 characters to ensure it is accepted by
+                      all banks. It is safest to use only numbers, letters,
+                      spaces and a fullstop (.) Special characters are not
+                      accepted by most banks and errors will only occur after
+                      the customer has approved the payment.
+                  returnUrl:
+                    type: string
+                    example: 'https://example.com/callback'
+                    description: >-
+                      The merchant return URL where the customer will be
+                      re-directed to with the result of the transaction.
+                  webhookUrl:
+                    type: string
+                    example: 'https://example.com/webhook'
+                    description: >-
+                      A URL to be called in the background with the details of
+                      the payment after the payment is complete
+                  relatedAccountTxnId:
+                    type: integer
+                    format: int64
+                    example: 41234
+                    description: The ID of the related transaction in your fire account.
+                  relatedPayeeId:
+                    type: integer
+                    format: int64
+                    example: 41234
+                    description: The ID of the payee making the payment.
+                  dateFundsReceived:
+                    type: string
+                    format: date-time
+                    example: '2020-10-22T07:48:56.460Z'
+                    description: The date the funds were received into your fire account.
+                  dateCreated:
+                    type: string
+                    format: date-time
+                    example: '2020-10-22T07:48:56.460Z'
+                    description: This is the date the payment was initiated.
+                  lastUpdated:
+                    type: string
+                    format: date-time
+                    example: '2019-08-22T07:48:56.460Z'
+                    description: The date payment was last updated.
+                  orderDetails:
+                    title: orderDetails
+                    type: object
+                    properties:
+                      merchantNumber:
+                        type: string
+                        example: '1234567'
+                        description: Your Merchant Number (if applicable).
+                      orderId:
+                        type: string
+                        example: 6c28a47d-4502-4111
+                        description: >-
+                          Use this field to store the order id for the
+                          transaction. The Order Id cannot be set unless the
+                          `maxNumberPayments` is 1.
+                      productId:
+                        type: string
+                        example: ZFDAA-1221
+                        description: >-
+                          Use this field to store a product id for the
+                          transaction (for example).
+                      customerNumber:
+                        type: string
+                        example: '123645'
+                        description: >-
+                          Use this field to store a customer number for the
+                          transaction (for example).
+                      variableReference:
+                        type: string
+                        example: John Doe
+                        description: >-
+                          Use this field to store any other reference for the
+                          transaction (for example, a phone number).
+                      comment1:
+                        type: string
+                        example: Additional comments about the transaction
+                        description: This is your own comment for the transaction.
+                      comment2:
+                        type: string
+                        example: Additional comments about the transaction
+                        description: This is your own comment for the transaction.
+                      merchantCustomerIdentification:
+                        type: string
+                        example: 08303863544
+                        description: >-
+                          This is a reference you use to uniquely identify each
+                          of your customers.
+                      deliveryAddressLine1:
+                        type: string
+                        example: 12 The Street
+                        description: The first line of the delivery address.
+                      deliveryAddressLine2:
+                        type: string
+                        example: The Way
+                        description: The second line of the delivery address.
+                      deliveryCity:
+                        type: string
+                        example: London
+                        description: Delivery address city
+                      deliveryPostCode:
+                        type: string
+                        example: EC15155
+                        description: Delivery address post code
+                      deliveryCountry:
+                        type: string
+                        example: GB
+                        description: 2-digit code for the country
+                  to:
+                    title: to
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                          - FIRE_ACCOUNT
+                          - WITHDRAWAL_ACCOUNT
+                        example: FIRE_ACCOUNT
+                        description: the type of destination account.
+                      account:
+                        title: relatedPartyFireAccount
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            enum:
+                              - FIRE_ACCOUNT
+                          account:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                format: int64
+                                description: >-
+                                  identifier for the fire.com account (assigned
+                                  by fire.com)
+                                example: 42
+                              alias:
+                                type: string
+                                description: >-
+                                  the name the user gives to the account to help
+                                  them identify it.
+                                example: Main Account
+                              bic:
+                                type: string
+                                example: CPAYIE2D
+                                description: >-
+                                  the BIC of the account (provided if currency
+                                  is EUR).
+                              iban:
+                                type: string
+                                example: IE54CPAY99119911111111
+                                description: >-
+                                  the IBAN of the account (provided if currency
+                                  is EUR).
+                              nsc:
+                                type: string
+                                example: '232221'
+                                description: the Sort Code of the account.
+                              accountNumber:
+                                type: string
+                                example: '11111111'
+                                description: the Account Number of the account.
+                  bank:
+                    title: aspsp
+                    type: object
+                    properties:
+                      aspspUuid:
+                        type: string
+                        description: The UUID associated with the ASPSP / bank.
+                        example: 4ADFB67A-0F5B-4A9A-9D74-34437250045C
+                      alias:
+                        type: string
+                        example: Demo Bank
+                        description: The name of the ASPSP / bank.
+                      logoUrl:
+                        type: string
+                        example: 'https://assets.fire.com/pisp/demo.svg'
+                        description: A link to the ASPSP / bank's logo in SVG format.
+                      country:
+                        title: country
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            description: >-
+                              The 2-letter code for the country - e.g. `IE`,
+                              `GP`...
+                            example: GB
+                          description:
+                            type: string
+                            description: The name of the country
+                            example: United Kingdom
+                      currency:
+                        title: currency
+                        description: The currency.
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            description: The three letter code for the currency.
+                            example: EUR
+                          description:
+                            type: string
+                            description: The name of the currency
+                            example: Euro
+                      dateCreated:
+                        type: string
+                        format: date-time
+                        example: '2019-08-22T07:48:56.460Z'
+                        description: The date the ASPSP / bank was created.
+                      lastUpdated:
+                        type: string
+                        format: date-time
+                        example: '2019-08-22T07:48:56.460Z'
+                        description: The date the ASPSP / bank was last updated.
+                  domesticPaymentId:
+                    type: string
+                    description: The ID assigned by the ASPSP to this payment.
+                    example: sdp-1-66ebd30c-c0e1-4a54-9865-f2a7bfedabcf
+                  allowFopReceipt:
+                    type: boolean
+                    example: true
+                    description: whether or not a receipt option was offered to the payer.
   '/v2/paymentrequests/{paymentRequestCode}/reports':
     get:
       summary: Get a report from a Payment Request
@@ -14057,6 +14032,643 @@ components:
           type: integer
           format: int64
           description: This is the remaining availability based on the limit type defined
+    NewPayeesBatch:
+      title: New Payee Batch
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+          description: The total number of new Payees
+          example: 1
+        items:
+          title: items
+          type: array
+          items:
+            title: items
+            type: object
+            properties:
+              batchItemUuid:
+                type: string
+                description: A UUID for this item
+                example: F2AF3F2B-4406-4199-B249-B354F2CC6019
+              status:
+                type: string
+                enum:
+                  - SUBMITTED
+                  - REMOVED
+                  - SUCCEEDED
+                  - FAILED
+                example: SUCCEEDED
+                description: status of the batch
+              result:
+                title: result
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    format: int64
+                    description: This is the code returned indicating response type
+                    example: 510001
+                  message:
+                    type: string
+                    description: >-
+                      This is the message indicating whether the call was a
+                      success
+                    example: SUCCESS
+              dateCreated:
+                type: string
+                format: date-time
+                example: '2021-04-04T10:48:53.540Z'
+                description: >-
+                  The datestamp the batch was created - ISO format - e.g.
+                  2018-04-04T00:53:21.910Z
+              lastUpdated:
+                type: string
+                format: date-time
+                example: '2021-04-04T10:48:53.540Z'
+                description: >-
+                  The datestamp of the last action on this batch - ISO format -
+                  e.g. 2018-04-04T10:48:53.540Z
+              iban:
+                type: string
+                description: >-
+                  International Banking Account number belonging to the new
+                  Payees
+                example: IE81AIBK96735642764123
+              accountName:
+                type: string
+                description: The name on the account of the new payee
+                example: John Doe
+              accountHolderName:
+                type: string
+                description: The name of the new payee
+                example: John Doe
+    PaymentRequestReport:
+      title: PaymentRequestReport
+      type: object
+      properties:
+        currency:
+          type: string
+          description: Currency payment request was sent in
+          example: EUR
+        amount:
+          type: integer
+          format: int64
+          description: Amount in payment request
+        numberOfTimes:
+          type: integer
+          format: int64
+          description: Payments made for this amount and currency
+    PaymentRequestSummary:
+      title: PaymentRequestSummary
+      type: object
+      properties:
+        accountName:
+          type: string
+          description: Name on the Account
+          example: Euro Account
+        amount:
+          type: integer
+          format: int64
+          description: Amount of the transaction
+        code:
+          type: string
+          description: The code that was returned when you created the payment request
+          example: 1234abcd
+          minLength: 8
+          maxLength: 8
+        currency:
+          type: string
+          description: Currency transaction was completed in
+          example: EUR
+        dateCreated:
+          type: string
+          description: This is the date the payment was initiated.
+          example: '2024-09-12T14:55:03.857Z'
+        description:
+          type: string
+          description: >-
+            A public facing description of the request. This will be shown to
+            the user when they tap or scan the request. Fire will truncate to 18
+            characters to ensure it is accepted by all banks. It is safest to
+            use only numbers, letters, spaces and a fullstop (.) Special
+            characters are not accepted by most banks and errors will only occur
+            after the customer has approved the payment.
+          example: FIRE/John Doe
+        direction:
+          type: string
+          description: Payment direction
+          example: SENT
+        icanTo:
+          type: integer
+          format: int64
+          description: >-
+            The ican of the account to collect the funds into. Must be one of
+            your fire.com Accounts.
+          example: 66204
+        maxNumberPayments:
+          type: integer
+          format: int64
+          description: >-
+            The max number of people who can pay this request. Must be set to 1
+            for the ECOMMERCE_GOODS and ECOMMERCE_SERVICES types.
+          example: 1
+        myRef:
+          type: string
+          description: An internal description of the request.
+          example: Terminal
+        orderDetails:
+          title: orderDetails
+          type: object
+          properties:
+            merchantNumber:
+              type: string
+              example: '1234567'
+              description: Your Merchant Number (if applicable).
+            orderId:
+              type: string
+              example: 6c28a47d-4502-4111
+              description: >-
+                Use this field to store the order id for the transaction. The
+                Order Id cannot be set unless the `maxNumberPayments` is 1.
+            productId:
+              type: string
+              example: ZFDAA-1221
+              description: >-
+                Use this field to store a product id for the transaction (for
+                example).
+            customerNumber:
+              type: string
+              example: '123645'
+              description: >-
+                Use this field to store a customer number for the transaction
+                (for example).
+            variableReference:
+              type: string
+              example: John Doe
+              description: >-
+                Use this field to store any other reference for the transaction
+                (for example, a phone number).
+            comment1:
+              type: string
+              example: Additional comments about the transaction
+              description: This is your own comment for the transaction.
+            comment2:
+              type: string
+              example: Additional comments about the transaction
+              description: This is your own comment for the transaction.
+            merchantCustomerIdentification:
+              type: string
+              example: 08303863544
+              description: >-
+                This is a reference you use to uniquely identify each of your
+                customers.
+            deliveryAddressLine1:
+              type: string
+              example: 12 The Street
+              description: The first line of the delivery address.
+            deliveryAddressLine2:
+              type: string
+              example: The Way
+              description: The second line of the delivery address.
+            deliveryCity:
+              type: string
+              example: London
+              description: Delivery address city
+            deliveryPostCode:
+              type: string
+              example: EC15155
+              description: Delivery address post code
+            deliveryCountry:
+              type: string
+              example: GB
+              description: 2-digit code for the country
+        status:
+          type: string
+          description: The status of the transaction
+          enum:
+            - AWAITING_AUTHORISATION
+            - AUTHORISED
+            - AWAITING_MULTI_AUTHORISATION
+            - NOT_AUTHORISED
+            - SETTLED
+            - REJECTED
+            - ACCEPTED
+            - RECEIVED
+        type:
+          type: string
+          description: The type of Fire Open Payment that was created
+          enum:
+            - OTHER
+            - DIRECT
+            - SHAREABLE
+            - PARTY_TO_PARTY
+            - BILL_PAYMENT
+            - ECOMMERCE_GOODS
+            - ECOMMERCE_SERVICES
+    PaymentRequestsSent:
+      title: PaymentRequestsSent
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+          description: The total number of payment request payments in the list.
+          example: 3
+        dateRangeTo:
+          type: integer
+          format: int64
+          description: Date Range
+          example: 1726571260003
+        paymentRequests:
+          type: array
+          items:
+            title: PaymentRequestSummary
+            type: object
+            properties:
+              accountName:
+                type: string
+                description: Name on the Account
+                example: Euro Account
+              amount:
+                type: integer
+                format: int64
+                description: Amount of the transaction
+              code:
+                type: string
+                description: >-
+                  The code that was returned when you created the payment
+                  request
+                example: 1234abcd
+                minLength: 8
+                maxLength: 8
+              currency:
+                type: string
+                description: Currency transaction was completed in
+                example: EUR
+              dateCreated:
+                type: string
+                description: This is the date the payment was initiated.
+                example: '2024-09-12T14:55:03.857Z'
+              description:
+                type: string
+                description: >-
+                  A public facing description of the request. This will be shown
+                  to the user when they tap or scan the request. Fire will
+                  truncate to 18 characters to ensure it is accepted by all
+                  banks. It is safest to use only numbers, letters, spaces and a
+                  fullstop (.) Special characters are not accepted by most banks
+                  and errors will only occur after the customer has approved the
+                  payment.
+                example: FIRE/John Doe
+              direction:
+                type: string
+                description: Payment direction
+                example: SENT
+              icanTo:
+                type: integer
+                format: int64
+                description: >-
+                  The ican of the account to collect the funds into. Must be one
+                  of your fire.com Accounts.
+                example: 66204
+              maxNumberPayments:
+                type: integer
+                format: int64
+                description: >-
+                  The max number of people who can pay this request. Must be set
+                  to 1 for the ECOMMERCE_GOODS and ECOMMERCE_SERVICES types.
+                example: 1
+              myRef:
+                type: string
+                description: An internal description of the request.
+                example: Terminal
+              orderDetails:
+                title: orderDetails
+                type: object
+                properties:
+                  merchantNumber:
+                    type: string
+                    example: '1234567'
+                    description: Your Merchant Number (if applicable).
+                  orderId:
+                    type: string
+                    example: 6c28a47d-4502-4111
+                    description: >-
+                      Use this field to store the order id for the transaction.
+                      The Order Id cannot be set unless the `maxNumberPayments`
+                      is 1.
+                  productId:
+                    type: string
+                    example: ZFDAA-1221
+                    description: >-
+                      Use this field to store a product id for the transaction
+                      (for example).
+                  customerNumber:
+                    type: string
+                    example: '123645'
+                    description: >-
+                      Use this field to store a customer number for the
+                      transaction (for example).
+                  variableReference:
+                    type: string
+                    example: John Doe
+                    description: >-
+                      Use this field to store any other reference for the
+                      transaction (for example, a phone number).
+                  comment1:
+                    type: string
+                    example: Additional comments about the transaction
+                    description: This is your own comment for the transaction.
+                  comment2:
+                    type: string
+                    example: Additional comments about the transaction
+                    description: This is your own comment for the transaction.
+                  merchantCustomerIdentification:
+                    type: string
+                    example: 08303863544
+                    description: >-
+                      This is a reference you use to uniquely identify each of
+                      your customers.
+                  deliveryAddressLine1:
+                    type: string
+                    example: 12 The Street
+                    description: The first line of the delivery address.
+                  deliveryAddressLine2:
+                    type: string
+                    example: The Way
+                    description: The second line of the delivery address.
+                  deliveryCity:
+                    type: string
+                    example: London
+                    description: Delivery address city
+                  deliveryPostCode:
+                    type: string
+                    example: EC15155
+                    description: Delivery address post code
+                  deliveryCountry:
+                    type: string
+                    example: GB
+                    description: 2-digit code for the country
+              status:
+                type: string
+                description: The status of the transaction
+                enum:
+                  - AWAITING_AUTHORISATION
+                  - AUTHORISED
+                  - AWAITING_MULTI_AUTHORISATION
+                  - NOT_AUTHORISED
+                  - SETTLED
+                  - REJECTED
+                  - ACCEPTED
+                  - RECEIVED
+              type:
+                type: string
+                description: The type of Fire Open Payment that was created
+                enum:
+                  - OTHER
+                  - DIRECT
+                  - SHAREABLE
+                  - PARTY_TO_PARTY
+                  - BILL_PAYMENT
+                  - ECOMMERCE_GOODS
+                  - ECOMMERCE_SERVICES
+    Sender:
+      title: sender
+      type: object
+      properties:
+        type:
+          type: string
+          description: This is the type of account the sender holds
+          example: BUSINESS
+        name:
+          type: string
+          description: This is the name of the sender
+          example: johndoe
+        businessAddress:
+          title: businessAddress
+          type: object
+          properties:
+            type:
+              type: string
+              description: This is the type of account the sender holds
+              example: BUSINESS
+            address1:
+              type: string
+              description: This is the address of the sender
+              example: '1, 1 street, Dublin'
+            city:
+              type: string
+              description: This is the city the sender lives in
+              example: Dublin 1
+            country:
+              title: country
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: 'The 2-letter code for the country - e.g. `IE`, `GP`...'
+                  example: GB
+                description:
+                  type: string
+                  description: The name of the country
+                  example: United Kingdom
+    PublicPaymentRequest:
+      title: publicPaymentRequest
+      type: object
+      properties:
+        code:
+          type: string
+          description: This is the payment request code
+          example: abcdefgh
+        pisp:
+          type: string
+          description: Payment Initiation Service Provider
+          example: FIRE
+        status:
+          type: string
+          description: This is the status of the payment request
+          example: ACTIVE
+        currency:
+          title: currency
+          description: The currency.
+          type: object
+          properties:
+            code:
+              type: string
+              description: The three letter code for the currency.
+              example: EUR
+            description:
+              type: string
+              description: The name of the currency
+              example: Euro
+        amount:
+          type: integer
+          format: int64
+          description: The amount sent in the payment request
+        description:
+          type: string
+          description: >-
+            This is the reference description that was added to the payment
+            request
+          example: test
+        dateCreated:
+          type: string
+          description: This is the date the payment was initiated.
+          example: '2024-09-12T14:55:03.857Z'
+        mandatoryFields:
+          type: string
+          description: >-
+            For the hosted option, these fields will be madatory for the payer
+            to fill in on the hosted payment page. You can choose to collect any
+            the payer's `ADDRESS`, `REFERENCE` and/or `COMMENT1`. If you choose
+            to collect these fields from the payer, you cannot set 'delivery’,
+            'variableReference’ or  'comment1’ fields respectively.
+          example: REFERNCE
+        sender:
+          title: sender
+          type: object
+          properties:
+            type:
+              type: string
+              description: This is the type of account the sender holds
+              example: BUSINESS
+            name:
+              type: string
+              description: This is the name of the sender
+              example: johndoe
+            businessAddress:
+              title: businessAddress
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: This is the type of account the sender holds
+                  example: BUSINESS
+                address1:
+                  type: string
+                  description: This is the address of the sender
+                  example: '1, 1 street, Dublin'
+                city:
+                  type: string
+                  description: This is the city the sender lives in
+                  example: Dublin 1
+                country:
+                  title: country
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                      description: 'The 2-letter code for the country - e.g. `IE`, `GP`...'
+                      example: GB
+                    description:
+                      type: string
+                      description: The name of the country
+                      example: United Kingdom
+    Result:
+      title: result
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+          description: This is the code returned indicating response type
+          example: 510001
+        message:
+          type: string
+          description: This is the message indicating whether the call was a success
+          example: SUCCESS
+    WebhookToken:
+      title: Webhook Tokens
+      type: object
+      properties:
+        tokenId:
+          type: integer
+          format: int64
+          description: This is the token ID
+          example: 271
+        publicToken:
+          type: string
+          description: This is the public token (key) shared with the client
+          example: 1287bbbd-e8a8-4ffe-94e3-911896cafd61
+        privateToken:
+          type: string
+          description: This is the private token that Fire keeps
+          example: d48c6590-dea2-46bf-b8e1-f715de144aca
+        active:
+          type: boolean
+          description: This is whether or not the webhook token is active
+        dateCreated:
+          type: date-time
+          example: '2017-11-09T15:57:15.710Z'
+    Webhook:
+      title: Webhook
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: This is the ID for the webhook created
+          example: 411
+        businessId:
+          type: integer
+          format: int64
+          description: This is the associated ID for the business using the webhook
+          example: 543
+        webhookUrl:
+          type: string
+          description: This is the URL where the webhook is embedded
+          example: 'https://webhook.site/756b7f6b-8c05-4067-93cd-d1cbca824e99'
+        failedSendingCounter:
+          type: integer
+          format: int64
+          description: >-
+            This is the counter of the number of times the webhook has failed,
+            for any reason
+          example: 24
+    WebhookEvent:
+      Title: Webhook Event
+      Type: object
+      properties:
+        webhook:
+          title: Webhook
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+              description: This is the ID for the webhook created
+              example: 411
+            businessId:
+              type: integer
+              format: int64
+              description: This is the associated ID for the business using the webhook
+              example: 543
+            webhookUrl:
+              type: string
+              description: This is the URL where the webhook is embedded
+              example: 'https://webhook.site/756b7f6b-8c05-4067-93cd-d1cbca824e99'
+            failedSendingCounter:
+              type: integer
+              format: int64
+              description: >-
+                This is the counter of the number of times the webhook has
+                failed, for any reason
+              example: 24
+        events:
+          title: events
+          type: array
+          items:
+            - LODGEMENT RECIEVED
+            - PAYMENT_RECIEVED
+            - PAYMENT_REQUEST_RECIEVED
+            - ACCOUNT_CREATED
+            - CARD_CREATED
+            - CARD_AUTHORISATION
+            - CARD_SETTLEMENT
+            - PAYMENT_REQUEST_PAYMENT_AUTHORISED
+            - PIS_LODGEMENT_RECIEVE
 security:
   - bearerAuth: []
 tags:
