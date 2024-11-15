@@ -46,7 +46,7 @@ properties:
     description: An internal description of the request.
     example: "Terminal"
   orderDetails:
-    $ref: ./order-details.yaml
+    $ref: ../../fire-business-api-v1.yaml#/components/schemas/OrderDetails
   status:
     type: string
     description: The status of the transaction
