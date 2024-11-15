@@ -24,7 +24,8 @@ get:
           content:
             application/json:
               schema:
-                $ref: '../../schemas/fxrates.yaml'
+                $ref: '../../../fire-business-api-v1.yaml#/components/schemas/FxRate'
+
         '401':
           $ref: '../../responses/unauthorised-error.yaml'
 

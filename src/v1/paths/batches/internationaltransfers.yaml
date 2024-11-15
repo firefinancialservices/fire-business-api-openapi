@@ -30,7 +30,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: ../../schemas/add-batch-item-response.yaml
+            $ref: ../../../fire-business-api-v1.yaml#/components/schemas/NewBatchItemResponse
 
 
 get:

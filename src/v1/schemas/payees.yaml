@@ -8,5 +8,5 @@ properties:
   fundingSources:
     type: array
     items:
-      $ref: ./payee.yaml
+      $ref: '../../fire-business-api-v1.yaml#/components/schemas/Payee'
   

@@ -1,5 +1,5 @@
 title: feeRule
 description: The rules around the fee being applied
 oneOf:
-  - $ref: "./feeRule-fixedAmount.yaml"
-  - $ref: "./feeRule-MaxMin.yaml"
+  - $ref: '../../fire-business-api-v1.yaml#/components/schemas/FeeRuleFixedAmount'
+  - $ref: '../../fire-business-api-v1.yaml#/components/schemas/FeeRuleMaxMin'

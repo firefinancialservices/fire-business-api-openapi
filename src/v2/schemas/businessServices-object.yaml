@@ -54,6 +54,6 @@ properties:
       - CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL
       - CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL
   currency:
-    $ref: "./currency.yaml"
+    $ref: ../../fire-business-api-v1.yaml#/components/schemas/Currency
   feeRule: 
-    $ref: "./feeRule.yaml"
+    $ref: ../../fire-business-api-v1.yaml#/components/schemas/FeeRule
