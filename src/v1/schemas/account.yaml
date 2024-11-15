@@ -16,7 +16,7 @@ properties:
     deprecated: true
     example: ORANGE
   currency:
-    $ref: ../../fire-business-api-v1.yaml#/components/schemas/Currency
+    $ref: '#/components/schemas/Currency'
   balance:
     type: integer
     format: int64

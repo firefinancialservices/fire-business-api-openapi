@@ -1,6 +1,6 @@
 title: limits
 type: array
 items:
-  $ref: '../../fire-business-api-v1.yaml#/components/schemas/Limit'
+  $ref: '#/components/schemas/Limit'
 
   

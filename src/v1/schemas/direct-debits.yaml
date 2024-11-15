@@ -9,4 +9,4 @@ properties:
   directdebits:
     type: array
     items: 
-      $ref: '../../fire-business-api-v1.yaml#/components/schemas/DirectDebit'
+      $ref: '#/components/schemas/DirectDebit'

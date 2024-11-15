@@ -29,11 +29,11 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../../../fire-business-api-v1.yaml#/components/schemas/NewCard'
+          $ref: '#/components/schemas/NewCard'
   responses:
     '200':
       description: Card created successfully
       content:
         application/json:
           schema:
-            $ref: '../../../fire-business-api-v1.yaml#/components/schemas/NewCardResponse'
+            $ref: '#/components/schemas/NewCardResponse'

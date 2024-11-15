@@ -18,6 +18,6 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../../../fire-business-api-v1.yaml#/components/schemas/Account'
+            $ref: '#/components/schemas/Account'
     '401':
       $ref: ../../responses/unauthorised-error.yaml

@@ -1,4 +1,4 @@
 Title: webhookEvents
 Type: array
 items:
-  - $ref: '../../fire-business-api-v1.yaml#/components/schemas/WebhookEvent'
+  - $ref: '#/components/schemas/WebhookEvent'

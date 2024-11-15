@@ -1,9 +1,13 @@
-Title: Webhook Event 
-Type: object
+title: Webhook Event 
+type: object
 properties:
   webhook: 
-    $ref: '../../fire-business-api-v1.yaml#/components/schemas/Webhook'
+    $ref: '#/components/schemas/Webhook'
   events:
-    $ref: '../../fire-business-api-v1.yaml#/components/schemas/Events'
+    type: array
+    items:
+      type: string
+      example: [ "LODGEMENT_RECIEVED" ]
+
 
     
