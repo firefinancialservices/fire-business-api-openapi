@@ -360,7 +360,7 @@ components:
     Sender: 
       $ref: 'v2/schemas/sender.yaml'
     PublicPaymentRequest:
-      $ref: '/v2/schemas/paymentrequest-public.yaml'
+      $ref: 'v2/schemas/paymentrequest-public.yaml'
     Result:
       $ref: 'v2/schemas/result.yaml'
     WebhookToken: 
