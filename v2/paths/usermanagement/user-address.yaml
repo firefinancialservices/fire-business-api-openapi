@@ -19,4 +19,4 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../../fire-business-api-v1.yaml#/components/schemas/Address
+            $ref: '#/components/schemas/Address'

@@ -14,7 +14,7 @@ properties:
     description: This is the status of the payment request
     example: "ACTIVE"
   currency:
-    $ref: ../../fire-business-api-v1.yaml#/components/schemas/Currency
+    $ref: '#/components/schemas/Currency'
   amount:
     type: integer
     format: int64
@@ -33,6 +33,6 @@ properties:
      `COMMENT1`. If you choose to collect these fields from the payer, you cannot set 'delivery’, 'variableReference’ or  'comment1’ fields respectively.
     example: "REFERNCE"
   sender:
-    $ref: '../../fire-business-api-v1.yaml#/components/schemas/Sender'
+    $ref: '#/components/schemas/Sender'
     
 

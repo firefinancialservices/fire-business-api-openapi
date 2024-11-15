@@ -17,7 +17,7 @@ properties:
     description: identifier for the fire.com account (assigned by fire.com) This field is only used in the condensed version.
     example: 1951
   currency:
-    $ref: '../../fire-business-api-v1.yaml#/components/schemas/Currency'
+    $ref: '#/components/schemas/Currency'
   amountBeforeCharges:
     type: integer
     format: int64
@@ -61,7 +61,7 @@ properties:
     description: (FOP payments only) The FOP Payment Code that was used to make this payment.
     example: 1abcdefg
   card:
-    $ref: '../../fire-business-api-v1.yaml#/components/schemas/RelatedCard'
+    $ref: '#/components/schemas/RelatedCard'
   type:
     type: string
     description: >   
@@ -170,15 +170,15 @@ properties:
     format: date-time
     example: 2021-04-13T11:06:32.437Z
   fxTradeDetails: 
-    $ref: '../../fire-business-api-v1.yaml#/components/schemas/FxTrade'
+    $ref: '#/components/schemas/FxTrade'
   batchItemDetails: 
-    $ref: '../../fire-business-api-v1.yaml#/components/schemas/BatchItemDetails'
+    $ref: '#/components/schemas/BatchItemDetails'
   directDebitDetails: 
-    $ref: '../../fire-business-api-v1.yaml#/components/schemas/DirectDebitDetails'
+    $ref: '#/components/schemas/DirectDebitDetails'
   proprietarySchemeDetails: 
-    $ref: '../../fire-business-api-v1.yaml#/components/schemas/ProprietarySchemeDetails'
+    $ref: '#/components/schemas/ProprietarySchemeDetails'
   relatedParty:
-    $ref: '../../fire-business-api-v1.yaml#/components/schemas/RelatedParty'
+    $ref: '#/components/schemas/RelatedParty'
   eventUuid:
     type: string
     description: An internal Fire reference for the transaction (UUID)

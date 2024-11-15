@@ -18,7 +18,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: '../../../fire-business-api-v1.yaml#/components/schemas/AccountConfiguration'
+          $ref: '#/components/schemas/AccountConfiguration'
 
   responses:
     "204":

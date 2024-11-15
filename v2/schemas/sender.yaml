@@ -10,4 +10,4 @@ properties:
     description: This is the name of the sender
     example: "johndoe"
   businessAddress: 
-    $ref: '../../fire-business-api-v1.yaml#/components/schemas/BusinessAddress'
+    $ref: '#/components/schemas/BusinessAddress'

@@ -12,11 +12,11 @@ properties:
       - TOTAL_MONETARY
       - TOTAL_COUNT
   level:
-    $ref: '../../fire-business-api-v1.yaml#/components/schemas/Level'
+    $ref: '#/components/schemas/Level'
   country:
-    $ref: ../../fire-business-api-v1.yaml#/components/schemas/Country
+    $ref: '#/components/schemas/Country'
   currency:
-    $ref: ../../fire-business-api-v1.yaml#/components/schemas/Currency
+    $ref: '#/components/schemas/Currency'
   value:
     type: integer
     format: int64

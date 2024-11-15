@@ -20,4 +20,4 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../../../fire-business-api-v1.yaml#/components/schemas/NewPayeesBatch'
+            $ref: '#/components/schemas/NewPayeesBatch'

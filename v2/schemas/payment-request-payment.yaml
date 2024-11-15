@@ -69,7 +69,7 @@ properties:
     example: 1000
     description: The amount after Fire fees and taxes. Note the last two digits represent pennies/cents, (e.g., £1.00 = 100).
   currency:
-    $ref: ../../fire-business-api-v1.yaml#/components/schemas/Currency
+    $ref: '#/components/schemas/Currency'
   myRef:
     type: string
     example: Fees
@@ -112,11 +112,11 @@ properties:
     example: "2019-08-22T07:48:56.460Z"
     description: The date payment was last updated.
   orderDetails:
-    $ref: ../../fire-business-api-v1.yaml#/components/schemas/OrderDetails
+    $ref: '#/components/schemas/OrderDetails'
   to:
-    $ref: ../../fire-business-api-v1.yaml#/components/schemas/To
+    $ref: '#/components/schemas/To'
   bank:
-    $ref: ../../fire-business-api-v1.yaml#/components/schemas/Aspsp
+    $ref: '#/components/schemas/Aspsp'
   domesticPaymentId:
     type: string
     description: The ID assigned by the ASPSP to this payment.

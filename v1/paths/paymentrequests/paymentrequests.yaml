@@ -12,12 +12,12 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../../../fire-business-api-v1.yaml#/components/schemas/NewPaymentRequest'
+          $ref: '#/components/schemas/NewPaymentRequest'
   responses:
     '200':
       description: Payment Request created successfully
       content:
         application/json:
           schema:
-            $ref: '../../../fire-business-api-v1.yaml#/components/schemas/PaymentRequestResponse'
+            $ref: '#/components/schemas/PaymentRequestResponse'
   

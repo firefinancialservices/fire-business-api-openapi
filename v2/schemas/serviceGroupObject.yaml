@@ -6,4 +6,4 @@ properties:
     description: Level type (always "SERVICE_GROUP")
     example: "SERVICE_GROUP"
   serviceGroup:
-    $ref: ../../fire-business-api-v1.yaml#/components/schemas/ServiceGroup
+    $ref: '#/components/schemas/ServiceGroup'

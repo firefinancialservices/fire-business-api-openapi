@@ -18,14 +18,14 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../../schemas/internal-transfer-batch-item.yaml
+          $ref: '../../schemas/internal-transfer-batch-item.yaml'
   responses:
     '200':
       description: Batch payment added successfully. Note* Please use batchUuid when submitting a batch, not batchItemUuid.
       content:
         application/json:
           schema:
-            $ref: ../../../fire-business-api-v1.yaml#/components/schemas/NewBatchItemResponse
+            $ref: '#/components/schemas/NewBatchItemResponse'
 
 
 get:

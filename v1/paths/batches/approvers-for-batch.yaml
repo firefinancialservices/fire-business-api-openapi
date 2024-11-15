@@ -18,4 +18,4 @@ get:
       content:
         application/json:
           schema:
-              $ref:  ../../../fire-business-api-v1.yaml#/components/schemas/BatchApprover 
+              $ref: '#/components/schemas/BatchApprover'

@@ -7,7 +7,7 @@ properties:
     description: Identifier for the fire.com payee bank account (assigned by fire.com).
     example: 742
   currency:
-    $ref: '../../fire-business-api-v1.yaml#/components/schemas/Currency'
+    $ref: '#/components/schemas/Currency'
   status:
     type: string
     enum: 

@@ -18,5 +18,6 @@ properties:
     type: boolean
     description: This is whether or not the webhook token is active
   dateCreated:
-      type: date-time
-      example: "2017-11-09T15:57:15.710Z"
+    type: string
+    format: date-time
+    example: "2017-11-09T15:57:15.710Z"

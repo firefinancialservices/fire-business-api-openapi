@@ -50,7 +50,7 @@ properties:
     example: https://example.com/callback
     description: The merchant return URL where the customer will be re-directed to with the result of the transaction.
   orderDetails:
-    $ref: '../../fire-business-api-v1.yaml#/components/schemas/OrderDetails'
+    $ref: '#/components/schemas/OrderDetails'
   collectFields:
     type: string
     example: "ADDRESS|REFERENCE|COMMENT1"

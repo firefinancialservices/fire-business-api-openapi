@@ -37,7 +37,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../../../fire-business-api-v1.yaml#/components/schemas/Batch'
+            $ref: '#/components/schemas/Batch'
 
 put:
   summary: Submit a Batch
