@@ -7,11 +7,15 @@ on:
 jobs:
   sync-openapi-to-readme-prod:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
-      - uses: whitlockjc/json-refs@3.0.15
-        with: 
-          json-refs: resolve --yaml -f --filter relative ./src/fire-business-api-v1.yaml > ./fire-business-api-v1.yaml
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '21.x'
+      - run: npm install -g json-refs
+      - run: json-refs resolve --yaml -f --filter relative ./src/fire-business-api-v1.yaml > ./fire-business-api-v1.yaml
       - uses: readmeio/rdme@8.6.6
         with:
           rdme: openapi ./fire-business-api-v1.yaml --key=${{ secrets.README_API_KEY }} --id=6136360239a7a64894f1c269
