@@ -2,8 +2,8 @@ Title: Webhook Event
 Type: object
 properties:
   webhook: 
-    $ref: "./webhook.yaml"
+    $ref: '../../fire-business-api-v1.yaml#/components/schemas/Webhook'
   events:
-    $ref: "./events.yaml"
+    $ref: '../../fire-business-api-v1.yaml#/components/schemas/Events'
 
     

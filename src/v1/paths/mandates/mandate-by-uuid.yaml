@@ -21,7 +21,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../schemas/mandate.yaml
+            $ref: '../../../fire-business-api-v1.yaml#/components/schemas/Mandate'
 
 post:
   summary: Update direct debit mandate alias

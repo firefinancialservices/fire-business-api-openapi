@@ -1,4 +1,4 @@
 title: businessServices
 type: array
 items:
-  - $ref: "./businessServices-object.yaml"
+  $ref: '../../fire-business-api-v1.yaml#/components/schemas/BusinessService'

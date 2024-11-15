@@ -1,1 +1,4 @@
 node_modules
+.vscode/settings.json
+src/fire-business-api-v1-res.yaml
+src/fire-business-api-v1-res1.yaml

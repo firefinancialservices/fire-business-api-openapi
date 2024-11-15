@@ -1,4 +1,4 @@
-title: payeeBankAccounts
+title: payees
 type: object
 properties:
   total:
@@ -8,5 +8,5 @@ properties:
   fundingSources:
     type: array
     items:
-      $ref: ./payee-bank-account.yaml
+      $ref: '../../fire-business-api-v1.yaml#/components/schemas/Payee'
   

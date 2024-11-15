@@ -5,8 +5,8 @@ properties:
     type: string
     description: The type of address this is for the user
     enum:
-      -"HOME"
-      -"BUSINESS"
+      - HOME
+      - BUSINESS
   address1: 
     type: string
     description: This is the 1st line of the address

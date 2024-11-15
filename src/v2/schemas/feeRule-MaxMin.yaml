@@ -1,4 +1,4 @@
-title: feeRule
+title: feeRuleMaxMin
 type: object
 properties:
   feeRuleId:
@@ -20,4 +20,4 @@ properties:
     type: integer
     format: int64
     description: This is the fixed % amount of a transaction the fee can be
-    exampple: 1000
+    example: 1000

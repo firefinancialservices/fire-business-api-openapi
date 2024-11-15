@@ -1,35 +1,35 @@
-title: Payee Account Details
+title: payee
 type: object
 properties:
-  status: 
+  id:
+    type: integer
+    format: int64
+    description: Identifier for the fire.com payee bank account (assigned by fire.com).
+    example: 742
+  currency:
+    $ref: '../../fire-business-api-v1.yaml#/components/schemas/Currency'
+  status:
     type: string
-    description: The status of the payee. Only payees in LIVE status can be selected as a destination account for an outgoing payment.
+    enum: 
+    - CREATED 
+    - LIVE 
+    - CLOSED 
+    - ARCHIVED
+    description: >
+      The status of the payee. Only payees in LIVE status can be selected as a destination account for an outgoing payment.
         * 'CREATED' - The payee has been set-up via Bank Transfer Received, Direct Debit, or Open Banking. This payee must be converted to LIVE status to select as a destination account for an outgoing payment.
         * 'LIVE' - The payee can be selected as a destination account for an outgoing payment.
         * 'CLOSED'
         * 'ARCHIVED' - The payee has been deleted and must be added again to be selected as a destination account for an outgoing payment.
-    enum: 
-    - CREATED
-    - LIVE
-    - CLOSED
-    - ARCHIVED
     example: LIVE
-  accountName: 
+  accountName:
     type: string
     description: The alias attributed to the payee, usually set by the user when creating the payee.
-    example: Jane Doe
+    example: Joe
   accountHolderName:
     type: string
     description: The name on the payee bank account.
-    example: Jane Doe
-  nsc:
-    type: string
-    description: The Sort Code of the account if currency is GBP.
-    example: "991199"
-  accountNumber:
-    type: string
-    description: The Account Number of the account if currency is GBP.
-    example: "12345678"
+    example: Joe Bloggs
   bic:
     type: string
     description: The BIC of the account if currency is EUR.
@@ -38,31 +38,28 @@ properties:
     type: string
     description: The IBAN of the account if currency is EUR.
     example: IE86BOFI90535211111111
-  combinedAccountNumbers:
+  nsc: 
     type: string
-    description: Combination of Payee's BIC and IBAN
-    example: "BOFIIE2DXXX / IE86BOFI90535211111111"
-  createdBy: 
+    description: The Sort Code of the account if currency is GBP.
+    example: "998822"
+  accountNumber:
     type: string
-    description: Creation source of the payee
-    enum: 
-      - "FIRE_OPEN_PAYMENT"
-      - "CUSTOMER"
-      - "LODGEMENT"
-      - "DIRECT DEBIT"
-      - "OPEN_BANKING"
-      - "FIRE_DIRECT"
-      - "PAYMENT_ORIGINATING_OVERSEAS"
+    description: The Account Number of the account if currency is GBP.
+    example: "12345678"
+  createdBy:
+    type: string
+    enum:
+      - CUSTOMER
+      - LODGEMENT
+      - DIRECT_DEBIT
+      - OPEN_BANKING
+      - FIRE_OPEN_PAYMENT
+      - FIRE_DIRECT
+      - PAYMENT_ORIGINATING_OVERSEAS
+    description: The creation source of the payee. 
+    example: CUSTOMER
   dateCreated:
     type: string
     format: date-time
+    example: "2019-08-22T07:48:56.460Z"
     description: The date the payee was created. ISO Date Time.
-    example: "2024-06-21T09:56:47.300Z"
-    
-  
-
-
-
-
-
-

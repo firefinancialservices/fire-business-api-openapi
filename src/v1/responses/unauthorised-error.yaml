@@ -1,1 +1,5 @@
 description: Access Token is Invalid or missing
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/api-errors.yaml

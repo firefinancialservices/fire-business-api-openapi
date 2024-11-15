@@ -26,15 +26,15 @@ post:
       application/json:
         schema:
           oneOf:
-            - $ref: ../../schemas/mode-2-batch-item.yaml
-            - $ref: ../../schemas/mode-1-batch-item.yaml
+            - $ref: ../../../fire-business-api-v1.yaml#/components/schemas/BatchItemBankTransferMode1 
+            - $ref: ../../../fire-business-api-v1.yaml#/components/schemas/BatchItemBankTransferMode2
   responses:
     '200':
       description: Batch payment added successfully. **Note*** Please use batchUuid when submitting a batch, not batchItemUuid.
       content:
         application/json:
           schema:
-            $ref: ../../schemas/add-batch-item-response.yaml
+            $ref: ../../../fire-business-api-v1.yaml#/components/schemas/NewBatchItemResponse
 
 
 get:

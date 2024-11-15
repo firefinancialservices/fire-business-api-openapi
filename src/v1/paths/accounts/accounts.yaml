@@ -28,13 +28,13 @@ post:
     required: true
     description: Details of the new account
     content:
-        application/json:
-          schema:
-            $ref: '../../schemas/account-new.yaml'
+      application/json:
+        schema:
+          $ref: '../../../fire-business-api-v1.yaml#/components/schemas/NewAccount'
   responses:
     '201':
       description: The details of the new account
       content:
-          application/json:
-            schema:
-              $ref: '../../schemas/account.yaml'
+        application/json:
+          schema:
+            $ref: '../../../fire-business-api-v1.yaml#/components/schemas/Account'

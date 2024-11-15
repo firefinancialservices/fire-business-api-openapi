@@ -3,7 +3,7 @@ get:
   description: You can retrieve the address of a specific fire.com user
   tags:
     - User Management
-  operationId: getUser
+  operationId: getUserAddress
   parameters:
     - in: path
       required: true
@@ -19,4 +19,4 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../schemas/address.yaml
+            $ref: ../../../fire-business-api-v1.yaml#/components/schemas/Address

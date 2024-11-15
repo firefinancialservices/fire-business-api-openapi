@@ -12,4 +12,4 @@ get:
               schema:
                 $ref: '../../schemas/webhook-tokens.yaml'
         '401':
-                $ref: '../../responses/unauthorised-error.yaml'
+          $ref: '../../responses/unauthorised-error.yaml'

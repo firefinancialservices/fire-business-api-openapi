@@ -18,4 +18,8 @@ put:
     content:
       application/json:
         schema:
-          $ref: ../../schemas/accountconfiguration.yaml
+          $ref: '../../../fire-business-api-v1.yaml#/components/schemas/AccountConfiguration'
+
+  responses:
+    "204":
+      description: The account was updated.

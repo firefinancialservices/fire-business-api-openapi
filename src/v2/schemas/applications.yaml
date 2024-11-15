@@ -1,7 +1,0 @@
-title: API application 
-type: object
-properties:
-  application:
-    type: array
-    items:
-      $ref: './activity.yaml'

@@ -1,3 +1,22 @@
+get:
+  summary: List all API Applications
+  description: Returns a list of API applications created under your fire.com account
+  tags:
+     - API & Webhooks
+  operationId: getApiApplications
+  responses: 
+    '200':  
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            type: array
+            items:            
+              $ref: '../../schemas/applications.yaml' 
+    '403':
+      $ref: ../../responses/unauthorised-error.yaml
+    '401':
+      $ref: ../../responses/unauthorised-error.yaml
 post:
   summary: Create an API Application
   description: Create a new API Application with specified permissions
@@ -10,11 +29,12 @@ post:
     content:
       application/json:
         schema:
-          $ref: ../../schemas/new-api-application.yaml
+          $ref: '../../../fire-business-api-v1.yaml#/components/schemas/NewAPIApplication'
   responses:
     '200':
       description: API Application created successfully
       content:
         application/json:
           schema:
-            $ref: ../../schemas/api-application.yaml
+            $ref: '../../../fire-business-api-v1.yaml#/components/schemas/Application'
+            

@@ -1,0 +1,24 @@
+get:
+  summary: Get details of a Payee
+  description: >
+    Retrieve the details of a specific payee
+  tags:
+    - Payees
+  operationId: getPayeeDetails
+  parameters:
+  - in: path
+    required: true
+    name: payeeId
+    schema:
+      type: integer
+      format: int64
+      description: The unique ID of the payee.
+      example: 346748
+  responses:
+    '200':
+      description: An array of payee information
+      content:
+        application/json:
+          schema:
+            $ref: ../../../fire-business-api-v1.yaml#/components/schemas/Payee
+            
