@@ -9,4 +9,4 @@ properties:
     example: "FIRE_ACCOUNT"
     description: the type of destination account.
   account:
-    $ref: '../../fire-business-api-v1.yaml#/components/schemas/RelatedPartyFireAccount'
+    $ref: '#/components/schemas/RelatedPartyFireAccount'

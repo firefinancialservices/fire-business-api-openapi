@@ -14,5 +14,5 @@ properties:
     description: This is the city the sender lives in
     example: "Dublin 1" 
   country:
-    $ref: ../../fire-business-api-v1.yaml#/components/schemas/Country
+    $ref: '#/components/schemas/Country'
     

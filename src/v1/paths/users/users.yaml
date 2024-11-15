@@ -12,4 +12,4 @@ get:
             schema:
               type: array
               items: 
-                $ref: '../../../fire-business-api-v1.yaml#/components/schemas/User'
+                $ref: '#/components/schemas/User'

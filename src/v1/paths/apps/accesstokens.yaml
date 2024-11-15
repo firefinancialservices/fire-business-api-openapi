@@ -11,11 +11,11 @@ post:
     content:
         application/json:
           schema:
-            $ref: '../../../fire-business-api-v1.yaml#/components/schemas/AuthenticationData'
+            $ref: '#/components/schemas/AuthenticationData'
   responses:
     '200':
       description: Successfully authenticated
       content:
         application/json:
           schema:
-            $ref: '../../../fire-business-api-v1.yaml#/components/schemas/AccessToken'
+            $ref: '#/components/schemas/AccessToken'

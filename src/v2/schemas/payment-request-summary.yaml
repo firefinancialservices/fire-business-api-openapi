@@ -1,4 +1,4 @@
-title: PaymentRequestSummary
+title: paymentRequestSummary
 type: object
 properties:
   accountName:
@@ -46,7 +46,7 @@ properties:
     description: An internal description of the request.
     example: "Terminal"
   orderDetails:
-    $ref: ../../fire-business-api-v1.yaml#/components/schemas/OrderDetails
+    $ref: '#/components/schemas/OrderDetails'
   status:
     type: string
     description: The status of the transaction

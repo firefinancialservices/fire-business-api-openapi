@@ -1,6 +1,6 @@
 title: level
 description: Details of the level used for the limit
 oneOf:
- - $ref: '../../fire-business-api-v1.yaml#/components/schemas/Service'
- - $ref: '../../fire-business-api-v1.yaml#/components/schemas/ServiceGroup'
+ - $ref: '#/components/schemas/Service'
+ - $ref: '#/components/schemas/ServiceGroup'
  

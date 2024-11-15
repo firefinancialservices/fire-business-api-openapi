@@ -281,7 +281,7 @@ components:
       $ref: 'v1/schemas/mandate.yaml'
     MobileApplication: 
       $ref: 'v1/schemas/mobile-application.yaml'
-    NewAPIApplication:
+    NewApiApplication:
       $ref: 'v1/schemas/new-api-application.yaml'
     NewBatchResponse: 
       $ref: 'v1/schemas/new-batch-response.yaml'
@@ -331,8 +331,6 @@ components:
       $ref: 'v2/schemas/businessAddress.yaml'
     BusinessService:
       $ref: 'v2/schemas/businessServices-object.yaml'
-    Events: 
-      $ref: 'v2/schemas/events.yaml'
     FeeRuleFixedAmount:
       $ref: 'v2/schemas/feeRule-fixedAmount.yaml'
     FeeRuleMaxMin: 

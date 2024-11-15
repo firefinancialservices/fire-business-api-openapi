@@ -4,7 +4,7 @@ properties:
   permissions: 
     type: array
     items:
-      $ref: '../../fire-business-api-v1.yaml#/components/schemas/Permission'
+      $ref: '#/components/schemas/Permission'
 
       
       
