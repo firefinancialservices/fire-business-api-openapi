@@ -9,9 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: whitlockjc/json-refs@3.0.15
+        with: 
+          json-refs: resolve --yaml -f --filter relative ./src/fire-business-api-v1.yaml > ./fire-business-api-v1.yaml
       - uses: readmeio/rdme@8.6.6
         with:
-          rdme: openapi ./fire-business-api-v1.yaml --workingDirectory=src --key=${{ secrets.README_API_KEY }} --id=6136360239a7a64894f1c269
+          rdme: openapi ./fire-business-api-v1.yaml --key=${{ secrets.README_API_KEY }} --id=6136360239a7a64894f1c269
 # 6136360239a7a64894f1c269 is the _id for the v1.0 version. Got this from the ReadMe https://dash.readme.com/project/fire-business-api/v1.0/reference
 
   sync-guide-docs-to-readme-prod:
