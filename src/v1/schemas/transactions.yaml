@@ -1,4 +1,4 @@
-title: transactionsv1
+title: transactionsV1
 type: object
 properties:
   total:

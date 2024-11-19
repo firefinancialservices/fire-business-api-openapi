@@ -21,7 +21,7 @@ post:
   summary: Create an API Application
   description: Create a new API Application with specified permissions
   tags:
-    - API & Webhooks
+    - Getting Started
   operationId: createApiApplication
   requestBody:
     required: true

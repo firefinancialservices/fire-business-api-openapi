@@ -2,7 +2,7 @@ get:
   summary: Get a list of debit card transactions
   description: Returns a list of cards transactions related to your Fire card.
   tags:
-    - Debit Cards
+    - Debit cards
   operationId: getListofCardTransactions
   parameters:
     - in: path

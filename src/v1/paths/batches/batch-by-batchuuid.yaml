@@ -1,8 +1,14 @@
 delete:
   summary: Cancel a batch
+<<<<<<< HEAD
   description: Cancels the vatch. You can only cancel a batch before it is submitted for approval (while it is in the OPEN state).
   tags:
     - Batches
+=======
+  description: Cancels the batch. You can only cancel a batch before it is submitted for approval (while it is in the OPEN state).
+  tags:
+    - Payments and accounts
+>>>>>>> 9574b72d77fc78ec5a41ba3349b9df38a588d780
   operationId: cancelBatchPayment 
   parameters:
     - in: path
