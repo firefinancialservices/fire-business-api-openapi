@@ -1,6 +1,6 @@
 get:
   summary: List Debit Cards
-  description: Returns a list of cards related to your fire.com account.
+  description: Returns a list of cards related to your Fire account.
   tags:
     - Debit Cards
   operationId: getListofCards
@@ -19,7 +19,7 @@ get:
 
 post:
   summary: Create a new Fire debit card
-  description: You can create multiple debit cards which can be linked to your fire.com accounts.
+  description: You can create multiple debit cards which can be linked to your Fire accounts.
   tags:
     - Debit Cards
   operationId: createNewCard

@@ -1,8 +1,8 @@
 post:
   summary: Authenticate with the API.
-  description: Access to the API is by Bearer Access Tokens. These are valid for 15 minutes. You can have multiple Access Tokens active at the same time if needed. See the [Guide to Authentication](/docs/authentication) for full details. 
+  description: Access to the API is by bearer access tokens. These are valid for 15 minutes. You can have multiple Access Tokens active at the same time if needed. See the [Guide to Authentication](/docs/authentication) for full details. 
   tags:
-    - Get Started
+    - Getting Started
   operationId: authenticate
   security: []
   requestBody:

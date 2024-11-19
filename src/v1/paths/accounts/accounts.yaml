@@ -1,8 +1,8 @@
 get:
-  summary: List Accounts
-  description: Returns all your fire.com Accounts. Ordered by Alias ascending. Can be paginated.
+  summary: List accounts
+  description: Returns all your Fire accounts. Ordered by Alias ascending. Can be paginated.
   tags:
-      - Accounts
+      - Account details and users
   operationId: getAccounts
   responses:
     '200':
@@ -15,14 +15,14 @@ get:
       $ref: '../../responses/unauthorised-error.yaml'
 
 post:
-  summary: Create a new Fire Account
+  summary: Create a new Fire account
   description: >
-    Creates a new fire.com account.
+    Creates a new Fire account.
 
 
     **Please note there is a charge associated with creating a new account.**
   tags:
-      - Accounts
+      - Account details and users
   operationId: addAccount
   requestBody:
     required: true

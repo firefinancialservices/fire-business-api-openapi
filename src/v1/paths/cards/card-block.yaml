@@ -1,5 +1,5 @@
 post:
-  summary: Block a Fire Debit card
+  summary: Block a Fire debit card
   description: Updates status of an existing card to block which prevents any transactions being carried out with that card.
   tags:
     - Debit Cards
