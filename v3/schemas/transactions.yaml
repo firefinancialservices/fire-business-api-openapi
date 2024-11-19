@@ -1,4 +1,4 @@
-title: transactionsv3
+title: transactionsV3
 type: object
 properties:
   links:
