@@ -4,7 +4,7 @@ get:
   description: >
     Retrieve a report for an Open Banking Payment request
   tags:
-    - Payment Requests
+    - Open banking payments
   operationId: getPaymentRequestReportV2
   parameters:
   - in: path

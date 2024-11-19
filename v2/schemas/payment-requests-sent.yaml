@@ -1,4 +1,4 @@
-title: PaymentRequestsSent
+title: paymentRequestsSent
 type: object
 properties:
   total:

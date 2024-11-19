@@ -1,4 +1,4 @@
-title: Account Configuration
+title: accountConfiguration
 type: object
 properties:
   accountName: 

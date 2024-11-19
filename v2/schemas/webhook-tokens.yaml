@@ -1,4 +1,4 @@
-title: Webhook Tokens 
+title: webhookTokens
 type: object
 properties:
   WebhookTokens:

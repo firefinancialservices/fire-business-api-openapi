@@ -3,8 +3,8 @@ put:
   description: >
     Update the status of a payment request. The payment request should be active or removed.
   tags:
-    - Payment Requests
-  operationId: updatePaymentRequests
+    - Open banking payments
+  operationId: updatePaymentRequest
   parameters:
     - in: path
       required: true

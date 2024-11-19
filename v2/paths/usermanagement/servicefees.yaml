@@ -2,8 +2,8 @@ get:
   summary: Get Service Fees and Info
   description: Returns an array of the services and fees associated with them
   tags:
-   - User Management
-  operationId: getServices
+   - Account details and users
+  operationId: getServiceFees
   responses:
     '200':
           description: An object of services information

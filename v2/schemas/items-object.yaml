@@ -1,4 +1,4 @@
-title: items
+title: item
 type: object
 properties:
   batchItemUuid:

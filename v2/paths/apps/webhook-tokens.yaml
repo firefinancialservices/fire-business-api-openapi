@@ -2,8 +2,8 @@ get:
   summary: List Webhook tokens 
   description: List all webhook tokens on your fire.com account#
   tags:
-    - API & Webhooks
-  operationId: GetWebhookTokens 
+    - API and webhooks
+  operationId: getWebhookTokens 
   responses:
         '200':
           description: An array of webhook token objects.

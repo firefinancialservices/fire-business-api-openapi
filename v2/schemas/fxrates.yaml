@@ -1,4 +1,4 @@
-title: Get FX Rates 
+title: getFXRates
 type: object
 properties:
   fromCurrency: 

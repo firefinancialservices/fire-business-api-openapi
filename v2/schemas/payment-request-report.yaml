@@ -1,4 +1,4 @@
-title: PaymentRequestReport
+title: paymentRequestReport
 type: object
 properties:
   currency:

@@ -3,8 +3,8 @@ get:
   description:
     Returns an object of payment request information
   tags:
-    - Open Banking
-  operationId: GetPublicPaymentRequestV2
+    - Open banking payments
+  operationId: getPublicPaymentRequestV2
   parameters:
     - in: path
       required: true

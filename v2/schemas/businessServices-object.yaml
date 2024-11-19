@@ -1,4 +1,4 @@
-title: businessServices
+title: businessService
 type: object
 properties:
   service:

@@ -2,8 +2,8 @@ get:
   summary: List all Limits
   description: Returns an array of limit information
   tags:
-   - User Management
-  operationId: GetLimits 
+   - Account details and users
+  operationId: getLimits 
   responses:
     '200':
           description: An object of limit information
