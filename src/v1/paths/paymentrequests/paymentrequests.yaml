@@ -3,7 +3,6 @@ post:
   summary: Create a Payment request
   description: >
     This request creates a new Open Banking Payment request. A code is returned that can be shared to your customers as a URL by any channel you wish. See our [Guide to Fire Open Payments](/docs/fire-open-payments) for more details. You will need to enable the `PERM_BUSINESS_POST_PAYMENT_REQUEST` permission to use this endpoint. 
-    The returnUrl variable should handle two scenarios, success and failure. Failure URLs are identified with a /return. 
   tags:
     - Open banking payments
   operationId: newPaymentRequest
