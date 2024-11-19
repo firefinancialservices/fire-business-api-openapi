@@ -2,7 +2,7 @@ post:
   summary: Add an internal transfer to a Batch
   description: Simply specify the source account, destination account, amount and a reference.
   tags:
-    - Payment Batches
+    - Batches
   operationId: addInternalTransferBatchPayment
   parameters:
     - in: path

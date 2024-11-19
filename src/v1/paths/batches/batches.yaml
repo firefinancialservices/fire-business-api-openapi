@@ -3,7 +3,7 @@ post:
   description: >
     Opens a new batch container to hold specific transaction types in a certain currency.
   tags:
-    - Payment Batches
+    - Batches
   operationId: createBatchPayment
   requestBody:
     required: true
