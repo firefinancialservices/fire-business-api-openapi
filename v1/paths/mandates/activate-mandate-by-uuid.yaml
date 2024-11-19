@@ -5,7 +5,7 @@ post:
 
     The permision needed to access this endpoint is PERM_BUSINESS_POST_MANDATE_ACTIVATE
   tags:
-    - Direct Debits
+    - Direct debits
   operationId: activateMandate
   parameters:
     - in: path

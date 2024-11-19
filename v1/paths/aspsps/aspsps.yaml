@@ -6,7 +6,7 @@ get:
 
     ***This endpoint is only required if you intend to host the “Select ASPSP / bank” page yourself.***
   tags:
-    - Open Banking
+    - Open banking payments
   operationId: getListOfAspsps
   parameters:
       - in: query

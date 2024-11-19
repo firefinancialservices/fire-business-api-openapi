@@ -1,4 +1,4 @@
-title: paymentrequestpayments
+title: paymentRequestPayments
 type: object
 properties:
   total:

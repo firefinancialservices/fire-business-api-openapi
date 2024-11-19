@@ -5,7 +5,7 @@ post:
 
     The permision needed to access this endpoint is PERM_BUSINESS_POST_MANDATE_CANCEL
   tags:
-    - Direct Debits
+    - Direct debits
   operationId: cancelMandateByUuid
   parameters:
     - in: path

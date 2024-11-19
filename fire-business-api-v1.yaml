@@ -393,7 +393,7 @@ tags:
     description: List the beneficiaries associated with the account. 
   - name: Batches
     description: The Fire API allows businesses to automate payments between their accounts or to third parties across the UK and Europe.
-  - name: Direct Debits
+  - name: Direct debits
     description: The fire.com api allows businesses to automate direct debit payment actions on their fire.com business accounts.
   - name: FX and international transfers
     description: View your FX rates

@@ -2,7 +2,7 @@ get:
   summary: List Approvals for a Batch
   description: Returns a list of approvers for this batch.
   tags:
-    - Payment Batches
+    - Batches
   operationId: getListofApproversForBatch
   parameters:
     - in: path
