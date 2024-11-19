@@ -381,23 +381,24 @@ components:
 security:
   - bearerAuth: []
 tags:
-  - name: Authentication
-    description: Access to the API is by Bearer Access Tokens. 
-  - name: Accounts
-    description: fire.com Accounts are the equivalent of a bank account from bank.
-  - name: Open Banking
-    description: Fire Open Payments is a feature of the fire.com business account that leverages Open Banking to allow your customers to pay you via bank transfer and to reconcile those payments as they are received into your fire.com GBP or EUR account.
-  - name: API
-    description: Manage your API Applications and Webhooks
+  - name: Getting started
+    description: Access to the API is by bearer access tokens. 
+  - name: API and webhooks
+    description: Manage your API applications and webhooks
+  - name: Account details and users
+    description: Fire accounts are the equivalent of a bank account from bank.
   - name: Transactions
     description: There are many types of transactions. They are all represented by the same JSON object with a different txnType.
-  - name: Direct Debits
-    description: The fire.com api allows businesses to automate direct debit payment actions on their fire.com business accounts.
-  - name: Payment Batches
-    description: The fire.com API allows businesses to automate payments between their accounts or to third parties across the UK and Europe.
   - name: Payees
     description: List the beneficiaries associated with the account. 
-  - name: Cards
+  - name: Batches
+    description: The Fire API allows businesses to automate payments between their accounts or to third parties across the UK and Europe.
+  - name: Direct Debits
+    description: The Fire API allows businesses to automate direct debit payment actions on their fire.com business accounts.
+  - name: FX and international transfers
+    description: View your FX rates
+  - name: Debit cards
     description: View and manage the cards linked to your accounts. 
-  - name: Users
-    description: View the users of your fire.com account. 
+  - name: Open banking payments
+    description: Fire open payments is a feature of the Fire business account that leverages Open Banking to allow your customers to pay you via bank transfer and to reconcile those payments as they are received into your fire.com GBP or EUR account.
+
