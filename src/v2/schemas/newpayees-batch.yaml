@@ -1,4 +1,4 @@
-title: New Payee Batch
+title: newPayeeBatch
 type: object
 properties:
   total:

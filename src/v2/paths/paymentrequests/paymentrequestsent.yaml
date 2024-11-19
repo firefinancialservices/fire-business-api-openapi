@@ -3,7 +3,7 @@ get:
   description: >
     Retrieve the list of open banking payment requests made on your account
   tags:
-    - Payment Requests
+    - Open banking payments
   operationId: getPaymentRequestsSentV2
   responses:
     '200':

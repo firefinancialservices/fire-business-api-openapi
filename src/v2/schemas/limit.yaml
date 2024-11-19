@@ -1,4 +1,4 @@
-title: limitInfo
+title: limit
 type: object
 properties:
   limitType:

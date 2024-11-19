@@ -2,7 +2,7 @@ get:
   summary: Get the address of a User
   description: You can retrieve the address of a specific fire.com user
   tags:
-    - User Management
+    - Account details and users
   operationId: getUserAddress
   parameters:
     - in: path

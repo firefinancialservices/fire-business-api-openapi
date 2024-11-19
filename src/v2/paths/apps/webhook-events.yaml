@@ -2,8 +2,8 @@ get:
   summary: List all Webhooks
   description: List all webhooks on your Fire.com account
   tags:
-    - API & Webhooks
-  operationId: GetWebhookEvents
+    - API and webhooks
+  operationId: getWebhookEvents
   responses:
         '200':
           description: An array of webhook objects
