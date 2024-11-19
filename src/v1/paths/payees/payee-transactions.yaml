@@ -1,9 +1,9 @@
 get:
-  summary: List transaction for a Payee Account
+  summary: List transaction for payee account
   description: >
     Retrieves the list of transactions and transaction information associated with a payee
   tags:
-    - Payees
+    - Payments and accounts
   operationId: getPayeeTransactions
   parameters:
   - in: path

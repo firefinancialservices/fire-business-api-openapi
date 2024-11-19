@@ -6,7 +6,7 @@ get:
     The permision needed to access this endpoint is **PERM_BUSINESS_GET_DIRECT_DEBIT**
 
   tags:
-    - Direct Debits
+    - Payments and accounts
   operationId: getDirectDebitByUuid
   parameters:
     - in: path

@@ -1,8 +1,8 @@
 delete:
   summary: Cancel a batch
-  description: Cancels the Batch. You can only cancel a batch before it is submitted for approval (while it is in the OPEN state).
+  description: Cancels the batch. You can only cancel a batch before it is submitted for approval (while it is in the OPEN state).
   tags:
-    - Payment Batches
+    - Payments and accounts
   operationId: cancelBatchPayment 
   parameters:
     - in: path
@@ -18,7 +18,7 @@ delete:
 
       
 get:
-  summary: Get the details of a Batch
+  summary: Get the details of a batch
   description: Returns the details of the batch specified in the API endpoint - {batchUuid}.
   tags:
     - Payment Batches
@@ -40,14 +40,14 @@ get:
             $ref: '#/components/schemas/Batch'
 
 put:
-  summary: Submit a Batch
+  summary: Submit a batch
   description: >
     Submits the Batch (for approval in the case of a **BANK_TRANSFER** or **INTERNATIONAL_TRANSFER**). If this is an **INTERNAL_TRANSFER** batch, the transfers are immediately queued for processing. If this is a **BANK_TRANSFER** or **INTERNATIONAL_TRANSFER** batch, this will trigger requests for approval to the firework mobile apps of authorised users. Once those users approve the batch, it is queued for processing.
 
 
     You can only submit a batch while it is in the OPEN state.
   tags:
-    - Payment Batches
+    - Payments and accounts
   operationId: submitBatch
   parameters:
   - in: path

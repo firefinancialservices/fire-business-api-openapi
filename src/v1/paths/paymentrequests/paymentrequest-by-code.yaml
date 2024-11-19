@@ -1,9 +1,9 @@
 get:
   summary: Get Payment Details
   description: >
-    Retrieve the details of an Open Banking Payment request
+    Retrieve the details of an open banking payment request
   tags:
-    - Open Banking
+    - Open banking payments
   operationId: getPaymentRequestDetails
   parameters:
   - in: path

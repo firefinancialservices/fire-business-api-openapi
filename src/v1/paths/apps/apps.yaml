@@ -1,8 +1,8 @@
 get:
   summary: List all API Applications
-  description: Returns a list of API applications created under your fire.com account
+  description: Returns a list of API applications created under your Fire account
   tags:
-     - API & Webhooks
+     - Getting Started
   operationId: getApiApplications
   responses: 
     '200':  
@@ -21,7 +21,7 @@ post:
   summary: Create an API Application
   description: Create a new API Application with specified permissions
   tags:
-    - API & Webhooks
+    - Getting Started
   operationId: createApiApplication
   requestBody:
     required: true

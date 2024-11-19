@@ -1,8 +1,8 @@
 get:
-  summary: Get the details of a User
+  summary: Get the details of a user
   description: You can retrieve the details of a specific fire.com user
   tags:
-    - User Management
+    - Payments and accounts
   operationId: getUser
   parameters:
     - in: path
