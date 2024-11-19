@@ -5,7 +5,7 @@ get:
 
     The permision needed to access this endpoint is PERM_BUSINESS_GET_MANDATE
   tags:
-    - Direct Debits
+    - Payments and accounts
   operationId: getMandate
   parameters:
     - in: path
@@ -30,7 +30,7 @@ post:
 
     The permision needed to access this endpoint is PERM_BUSINESS_PUT_MANDATE
   tags:
-    - Direct Debits
+    - Payments and accounts
   operationId: updateMandateAlias
   parameters:
     - in: path

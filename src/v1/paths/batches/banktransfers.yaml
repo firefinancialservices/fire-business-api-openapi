@@ -1,5 +1,5 @@
 post:
-  summary: Add a Bank Transfer to a Batch
+  summary: Add a bank transfer to a batch
   description: > 
     There are two ways to process bank transfers - by Payee ID (**Mode 1**) or by Payee Account Details (**Mode 2**).
 
@@ -9,7 +9,7 @@ post:
 
     **Mode 2:** Use the account details of the payee. In the event that these details correspond to an existing approved payee, the batch can be approved as normal. If the account details are new, a batch of New Payees will automatically be created. This batch will need to be approved before the Payment batch can be approved. These payees will then exist as approved payees for future batches.
   tags:
-    - Payment Batches
+    - Payments and accounts
   operationId: addBankTransferBatchPayment 
   parameters:
     - in: path
@@ -38,10 +38,10 @@ post:
 
 
 get:
-  summary: List items for a Bank Transfer Batch
+  summary: List items for a bank transfer batch
   description: Returns a paginated list of items in the specified batch.
   tags:
-    - Payment Batches
+    - Payments and accounts
   operationId: getItemsBatchBankTransfer
   parameters:
     - in: path

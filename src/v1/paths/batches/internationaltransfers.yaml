@@ -1,5 +1,5 @@
 post:
-  summary: Add an international transfer to a Batch
+  summary: Add an international transfer to a batch
   description: > 
     International transfers must be added to a batch using the Payee ID (**Mode 1**). Payees must be set up using the web application.
 
@@ -7,7 +7,7 @@ post:
     **Mode 1:** Use the payee IDs of existing approved payees set up against your account. These batches can be approved in the normal manner.
 
   tags:
-    - Payment Batches
+    - Payments and accounts
   operationId: addInternationalTransferBatchPayment 
   parameters:
     - in: path
@@ -34,10 +34,10 @@ post:
 
 
 get:
-  summary: List items for an International Transfer Batch
+  summary: List items for an international transfer batch
   description: Returns a paginated list of items in the specified batch.
   tags:
-    - Payment Batches
+    - Payments and accounts
   operationId: getItemsBatchInternationalTransfer
   parameters:
     - in: path

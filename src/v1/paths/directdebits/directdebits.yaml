@@ -1,12 +1,12 @@
 get:
-  summary: List all Direct Debits
+  summary: List all direct debits
   description: >
       Retrieve all direct debit payments associated with a direct debit mandate.
 
       The permision needed to access this endpoint is PERM_BUSINESS_GET_DIRECT_DEBITS
 
   tags:
-    - Direct Debits
+    - Payments and accounts
   operationId: getDirectDebitsForMandateUuid
   parameters:
       - in: query
