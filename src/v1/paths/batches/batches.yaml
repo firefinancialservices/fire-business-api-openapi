@@ -1,9 +1,9 @@
 post:
-  summary: Create a new Batch
+  summary: Create a new batch
   description: >
     Opens a new batch container to hold specific transaction types in a certain currency.
   tags:
-    - Payment Batches
+    - Payments and accounts
   operationId: createBatchPayment
   requestBody:
     required: true
@@ -26,7 +26,7 @@ get:
   description: >
     Returns the list of batch with the specified types and statuses.
   tags:
-    - Payment Batches
+    - Payments and accounts
   operationId: getBatches
   parameters:
     - in: query

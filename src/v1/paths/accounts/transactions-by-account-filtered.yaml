@@ -16,7 +16,7 @@ get:
 
     * `limit` - the number of items to return. 
   tags:
-    - Transactions
+    - Payments and accounts
   operationId: getTransactionsByAccountIdFiltered
   parameters:
     - in: path

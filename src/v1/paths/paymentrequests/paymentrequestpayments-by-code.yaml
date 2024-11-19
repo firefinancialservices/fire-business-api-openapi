@@ -1,10 +1,10 @@
 get:
-  summary: Get list of all Payment Attempts related to a Payment Request
+  summary: Get list of all Payment Attempts related to a payment request
   deprecated: true
   description: >
-    Retrieve the list of payments attempted against an Open Banking Payment request
+    Retrieve the list of payments attempted against an open banking payment request
   tags:
-    - Open Banking
+    - Open banking payments
   operationId: getPaymentRequestPayments
   parameters:
   - in: path

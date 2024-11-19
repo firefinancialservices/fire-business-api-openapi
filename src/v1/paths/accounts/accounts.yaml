@@ -1,8 +1,8 @@
 get:
   summary: List Accounts
-  description: Returns all your fire.com Accounts. Ordered by Alias ascending. Can be paginated.
+  description: Returns all your Fire Accounts. Ordered by Alias ascending. Can be paginated.
   tags:
-      - Accounts
+      - Payments and accounts
   operationId: getAccounts
   responses:
     '200':
@@ -17,12 +17,12 @@ get:
 post:
   summary: Create a new Fire Account
   description: >
-    Creates a new fire.com account.
+    Creates a new Fire account.
 
 
     **Please note there is a charge associated with creating a new account.**
   tags:
-      - Accounts
+      - Payments and accounts
   operationId: addAccount
   requestBody:
     required: true

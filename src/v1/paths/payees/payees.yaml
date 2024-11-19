@@ -9,7 +9,7 @@ get:
     
     Can be paginated.
   tags:
-    - Payees
+    - Payments and accounts
   operationId: getPayees
   parameters:
     - in: query

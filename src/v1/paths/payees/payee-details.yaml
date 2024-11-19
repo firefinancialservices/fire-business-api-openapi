@@ -3,7 +3,7 @@ get:
   description: >
     Retrieve the details of a specific payee
   tags:
-    - Payees
+    - Paymens and accounts
   operationId: getPayeeDetails
   parameters:
   - in: path
