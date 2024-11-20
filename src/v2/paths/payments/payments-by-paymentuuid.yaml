@@ -29,7 +29,7 @@ get:
     * `SETTLED` - This is a final status, indicating that funds have been applied to your Fire GBP or EUR account.
 
   tags:
-    - Open banking payments
+    - Open Banking
   operationId: getPaymentDetailsv2
   parameters:
   - in: path

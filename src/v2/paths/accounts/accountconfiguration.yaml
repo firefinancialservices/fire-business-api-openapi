@@ -2,7 +2,7 @@ put:
   summary: Update Account Configuration
   description: Changes the name associated with an account
   tags:
-    - Account details and users
+    - Accounts
   operationId: updateAccountConfig
   parameters:
     - in: path

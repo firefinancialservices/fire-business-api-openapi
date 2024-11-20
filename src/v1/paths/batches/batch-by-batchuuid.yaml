@@ -2,7 +2,7 @@ delete:
   summary: Cancel a batch
   description: Cancels the Batch. You can only cancel a batch before it is submitted for approval (while it is in the OPEN state).
   tags:
-    - Batches
+    - Batch Payments
   operationId: cancelBatchPayment 
   parameters:
     - in: path
@@ -21,7 +21,7 @@ get:
   summary: Get the details of a Batch
   description: Returns the details of the batch specified in the API endpoint - {batchUuid}.
   tags:
-    - Payment Batches
+    - Batch Payments
   operationId: getDetailsSingleBatch
   parameters:
     - in: path
@@ -47,7 +47,7 @@ put:
 
     You can only submit a batch while it is in the OPEN state.
   tags:
-    - Payment Batches
+    - Batch Payments
   operationId: submitBatch
   parameters:
   - in: path

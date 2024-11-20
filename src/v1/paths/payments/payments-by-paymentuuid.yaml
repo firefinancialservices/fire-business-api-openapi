@@ -24,7 +24,7 @@ get:
 
     You will need to enable the `PERM_BUSINESS_GET_PAYMENT` permission to use this endpoint.
   tags:
-    - Open banking payments
+    - Open Banking
   operationId: getPaymentDetails
   parameters:
   - in: path
