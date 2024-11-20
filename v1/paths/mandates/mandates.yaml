@@ -3,7 +3,7 @@ get:
   description: >
     The permision needed to access this endpoint is PERM_BUSINESS_GET_MANDATES
   tags:
-    - Direct debits
+    - Direct Debits
   operationId: getDirectDebitMandates
   responses:
     '200':

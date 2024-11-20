@@ -4,7 +4,7 @@
     summary: Get Account Activity
     description: Retrieve the details of activity on your fire.com Account
     tags:
-        - Account details and users
+        - Accounts
     operationId: getActivities 
     responses:
         '200':

@@ -2,7 +2,7 @@ get:
   summary: Get the details of a User
   description: You can retrieve the details of a specific fire.com user
   tags:
-    - Account details and users
+    - Profile Management
   operationId: getUser
   parameters:
     - in: path

@@ -2,7 +2,7 @@ get:
   summary: List all Limits
   description: Returns an array of limit information
   tags:
-   - Account details and users
+   - Profile Management
   operationId: getLimits 
   responses:
     '200':

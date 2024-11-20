@@ -2,7 +2,7 @@ get:
   summary: Get Service Fees and Info
   description: Returns an array of the services and fees associated with them
   tags:
-   - Account details and users
+   - Profile Management
   operationId: getServiceFees
   responses:
     '200':
