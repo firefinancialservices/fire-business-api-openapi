@@ -1,5 +1,5 @@
 get:
-  summary: List Debit Cards
+  summary: List debit cards
   description: Returns a list of cards related to your Fire account.
   tags:
     - Debit Cards

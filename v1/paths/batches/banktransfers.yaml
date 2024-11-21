@@ -1,5 +1,5 @@
 post:
-  summary: Add a Bank Transfer to a Batch
+  summary: Add a bank transfer to a batch
   description: > 
     There are two ways to process bank transfers - by Payee ID (**Mode 1**) or by Payee Account Details (**Mode 2**).
 
@@ -38,7 +38,7 @@ post:
 
 
 get:
-  summary: List items for a Bank Transfer Batch
+  summary: List items for a bank transfer batch
   description: Returns a paginated list of items in the specified batch.
   tags:
     - Batch Payments

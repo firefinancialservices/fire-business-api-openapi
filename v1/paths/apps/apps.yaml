@@ -1,5 +1,5 @@
 get:
-  summary: List all API Applications
+  summary: List all API applications
   description: Returns a list of API applications created under your Fire account
   tags:
      - API and Webhooks

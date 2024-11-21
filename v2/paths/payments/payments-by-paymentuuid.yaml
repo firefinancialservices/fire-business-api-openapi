@@ -1,5 +1,5 @@
 get:
-  summary: Get Payment Details (v2)
+  summary: Get payment details (v2)
   description: >
     Returns the details of a specific payment.
 

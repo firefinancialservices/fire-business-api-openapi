@@ -1,6 +1,6 @@
 
 get:
-  summary: Get a report from a Payment Request
+  summary: Get a report from a payment request
   description: >
     Retrieve a report for an Open Banking Payment request
   tags:

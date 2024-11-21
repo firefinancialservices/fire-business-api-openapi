@@ -1,5 +1,5 @@
 get:
-  summary: Get details of an Account
+  summary: Get details of an account
   description: You can retrieve the details of a Fire  Account by its `ican`.
   tags:
       - Accounts

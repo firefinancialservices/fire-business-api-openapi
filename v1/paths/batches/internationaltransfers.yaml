@@ -34,7 +34,7 @@ post:
 
 
 get:
-  summary: List items for an International Transfer Batch
+  summary: List items for an international transfer batch
   description: Returns a paginated list of items in the specified batch.
   tags:
     - Batch Payments

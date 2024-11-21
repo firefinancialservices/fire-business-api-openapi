@@ -1,5 +1,5 @@
 get:
-  summary: List Payees
+  summary: List payees
   description: >
     Returns all your payees. 
     

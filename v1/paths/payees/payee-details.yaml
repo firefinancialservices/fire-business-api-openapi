@@ -1,5 +1,5 @@
 get:
-  summary: Get details of a Payee
+  summary: Get details of a payee
   description: >
     Retrieve the details of a specific payee
   tags:

@@ -1,5 +1,5 @@
 get:
-  summary: List all Limits
+  summary: List all limits
   description: Returns an array of limit information
   tags:
    - Profile Management

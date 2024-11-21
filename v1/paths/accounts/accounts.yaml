@@ -1,5 +1,5 @@
 get:
-  summary: List Accounts
+  summary: List accounts
   description: Returns all your Fire Accounts. Ordered by Alias ascending. Can be paginated.
   tags:
       - Accounts

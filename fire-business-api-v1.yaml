@@ -385,6 +385,8 @@ tags:
     description: Access to the API is by Bearer Access Tokens.
   - name: API and Webhooks
     description: Manage your API Applications and Webhooks 
+  - name: Profile Management 
+    description: Manage and view your users and fees.
   - name: Accounts
     description: Fire accounts are the equivalent of a bank account from bank.
   - name: Transactions
@@ -401,5 +403,4 @@ tags:
     description: View and manage the cards linked to your accounts. 
   - name: Open Banking
     description: Fire Open Payments is a feature of the fire.com business account that leverages Open Banking to allow your customers to pay you via bank transfer and to reconcile those payments as they are received into your fire.com GBP or EUR account.
-  - name: Profile Management 
-    description: Manage and view your users and fees.
+ 

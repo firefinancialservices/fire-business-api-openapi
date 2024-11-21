@@ -1,5 +1,5 @@
 post:
-  summary: Request a Refund for a Payment Request Payment
+  summary: Request a refund for a payment request payment
   description: Process a request to refund a payment. The original payment must be in the `PAID` state.
   tags:
     - Open Banking
