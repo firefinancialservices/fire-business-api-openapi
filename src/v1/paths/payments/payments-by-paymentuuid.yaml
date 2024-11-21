@@ -1,5 +1,5 @@
 get:
-  summary: Get Payment Details
+  summary: Get payment details
   deprecated: true
   description: >
     Returns the details of a specific payment.

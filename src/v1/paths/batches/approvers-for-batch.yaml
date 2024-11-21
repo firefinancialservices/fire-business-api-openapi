@@ -1,5 +1,5 @@
 get:
-  summary: List Approvals for a Batch
+  summary: List approvals for a batch
   description: Returns a list of approvers for this batch.
   tags:
     - Batch Payments

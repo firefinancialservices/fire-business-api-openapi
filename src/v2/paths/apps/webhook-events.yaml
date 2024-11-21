@@ -1,5 +1,5 @@
 get:
-  summary: List all Webhooks
+  summary: List all webhooks
   description: List all webhooks on your Fire.com account
   tags:
     - API and Webhooks

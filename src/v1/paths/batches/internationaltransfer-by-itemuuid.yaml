@@ -1,5 +1,5 @@
 delete:
-  summary: Remove an international transfer from a Batch
+  summary: Remove an international transfer from a batch
   description: Removes a Payment from the Batch (International Transfers). You can only remove payments before the batch is submitted for approval (while it is in the OPEN state).
   tags:
     - Batch Payments
