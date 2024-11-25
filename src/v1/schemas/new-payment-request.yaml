@@ -48,7 +48,7 @@ properties:
   returnUrl:
     type: string
     example: https://example.com/callback
-    description: The merchant return URL where the customer will be re-directed to with the result of the transaction. The returnUrl variable should handle two scenarios. If the user cancels the payment before reaching their banking app, URLs are identified with a /return?status=cancelled. If the user proceeds to their banking app, URLs are identified with /return?paymentUUID={paymentUUID}
+    description: The merchant return URL where the customer will be re-directed to with the result of the transaction. The returnUrl variable should handle two scenarios. If the user cancels the payment before reaching their banking app, URLs are identified with a /return?status=cancelled. If the user proceeds to their banking app, URLs are identified with /paymentUUID={paymentUUID}
   orderDetails:
     $ref: '#/components/schemas/OrderDetails'
   collectFields:
