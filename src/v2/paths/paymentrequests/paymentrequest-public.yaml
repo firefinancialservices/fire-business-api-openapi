@@ -4,7 +4,7 @@ get:
     Returns an object of payment request information
   tags:
     - Open Banking
-  operationId: getPublicPaymentRequestV2
+  operationId: getPublicPaymentRequest
   parameters:
     - in: path
       required: true
