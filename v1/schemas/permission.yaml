@@ -1,4 +1,4 @@
-title: APIAppPermission
+title: apiAppPermission
 type: object
 properties:
   name:

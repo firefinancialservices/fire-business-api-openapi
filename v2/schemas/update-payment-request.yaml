@@ -1,4 +1,4 @@
-title: updatePaymentRequestStatus
+title: paymentRequestStatus
 type: object
 properties:
   PaymentRequestStatus:

@@ -24,9 +24,6 @@ paths:
   /v1/accounts/{ican}:
     $ref: ./v1/paths/accounts/accounts-by-ican.yaml
 
-  /v1/accounts/{ican}/transactions:
-    $ref: ./v1/paths/accounts/transactions-by-account.yaml 
-
   /v3/accounts/{ican}/transactions:
     $ref: ./v3/paths/accounts/transactions-by-account.yaml 
 
@@ -89,9 +86,6 @@ paths:
 # This endpoint is for Bankpay only. 
 #  /payments/{paymentUuid}/bankpayrefund:
 #    $ref: ./v1/paths/payments/refund-payment-by-paymentuuid.yaml
-
-  /v1/payments/{paymentUuid}:
-    $ref: ./v1/paths/payments/payments-by-paymentuuid.yaml
 
   /v2/payments/{paymentUuid}:
     $ref: ./v2/paths/payments/payments-by-paymentuuid.yaml

@@ -1,4 +1,4 @@
-title: getUserAddress
+title: userAddress
 type: object
 properties:
   type:
