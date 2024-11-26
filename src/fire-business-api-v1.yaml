@@ -385,7 +385,7 @@ tags:
     description: The Fire API allows businesses to automate payments between their accounts or to third parties across the UK and Europe.
   - name: Open Banking
     description: Fire Open Payments is a feature of the fire.com business account that leverages Open Banking to allow your customers to pay you via bank transfer and to reconcile those payments as they are received into your fire.com GBP or EUR account.
-  - name: Debit cards
+  - name: Debit Cards
     description: View and manage the cards linked to your accounts. 
   - name: FX 
     description: View your FX rates
