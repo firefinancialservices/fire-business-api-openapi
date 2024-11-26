@@ -74,9 +74,16 @@ paths:
   
   /v2/webhooks/{webhookId}/events/{event}/test: 
     $ref: ./v2/paths/apps/send-webhook-test.yaml
+  
+  /v2/webhooks/tokens:
+    $ref: ./v2/paths/apps/webhook-tokens.yaml
+  
+  /v2/webhooks: 
+    $ref: ./v2/paths/apps/webhook-events.yaml
 
   /v2/batches/{batchUuid}/newpayees:
     $ref: ./v2/paths/batches/newpayees-batch.yaml  
+  
 
 #Removing this endpoint 
  # /v2/webhooks/tokens:
