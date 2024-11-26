@@ -1,6 +1,6 @@
 get:
-  summary: Get details of an Account
-  description: You can retrieve the details of a fire.com Account by its `ican`.
+  summary: Get details of an account
+  description: You can retrieve the details of a Fire  Account by its `ican`.
   tags:
       - Accounts
   operationId: getAccountById

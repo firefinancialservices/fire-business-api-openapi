@@ -1,10 +1,10 @@
 
 get:
-  summary: Get FX Rates
+  summary: Get FX rates
   description: Return exchange rate between two currencies 
   tags:
-    - Fees & Limits
-  operationId: GetFXRates
+    - FX 
+  operationId: getFXRates
   parameters:
     - in: path
       required: True

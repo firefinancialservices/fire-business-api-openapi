@@ -1,7 +1,7 @@
 
 
  get: 
-    summary: Get Account Activity
+    summary: Get account activity
     description: Retrieve the details of activity on your fire.com Account
     tags:
         - Accounts

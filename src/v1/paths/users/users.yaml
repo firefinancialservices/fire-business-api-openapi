@@ -1,8 +1,8 @@
 get:
-  summary: List all Users
+  summary: List all users
   description: You can retrieve the details of all fire.com users on your acount.
   tags:
-    - User Management
+    - Profile Management
   operationId: getUsers
   responses:
       '200':

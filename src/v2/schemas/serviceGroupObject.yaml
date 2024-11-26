@@ -1,4 +1,4 @@
-title: Service Group Level
+title: serviceGroupLevel
 type: object
 properties:
   type:

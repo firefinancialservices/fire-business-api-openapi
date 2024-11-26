@@ -1,8 +1,8 @@
 delete:
-  summary: Remove a Bank Transfer from a Batch
+  summary: Remove a bank transfer from a batch
   description: Removes a Payment from the Batch (Bank Transfers). You can only remove payments before the batch is submitted for approval (while it is in the OPEN state).
   tags:
-    - Payment Batches
+    - Batch Payments
   operationId: deleteBankTransferBatchPayment
   parameters:
     - in: path

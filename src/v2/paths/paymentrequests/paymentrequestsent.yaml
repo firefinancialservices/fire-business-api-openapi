@@ -1,9 +1,9 @@
 get:
-  summary: Get a list of Payment Request transactions
+  summary: Get a list of payment request transactions
   description: >
     Retrieve the list of open banking payment requests made on your account
   tags:
-    - Payment Requests
+    - Open Banking
   operationId: getPaymentRequestsSentV2
   responses:
     '200':

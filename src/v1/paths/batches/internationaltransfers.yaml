@@ -7,7 +7,7 @@ post:
     **Mode 1:** Use the payee IDs of existing approved payees set up against your account. These batches can be approved in the normal manner.
 
   tags:
-    - Payment Batches
+    - Batch Payments
   operationId: addInternationalTransferBatchPayment 
   parameters:
     - in: path
@@ -34,10 +34,10 @@ post:
 
 
 get:
-  summary: List items for an International Transfer Batch
+  summary: List items for an international transfer batch
   description: Returns a paginated list of items in the specified batch.
   tags:
-    - Payment Batches
+    - Batch Payments
   operationId: getItemsBatchInternationalTransfer
   parameters:
     - in: path

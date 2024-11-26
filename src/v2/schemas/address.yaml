@@ -1,4 +1,4 @@
-title: Get User Address
+title: userAddress
 type: object
 properties:
   type:
@@ -16,7 +16,7 @@ properties:
     description: "This is the city listed for the address"
     example: "Dublin"
   country:
-    $ref: "./country.yaml"
+    $ref: '#/components/schemas/Country'
   postcode:
     type: string
     description: This is the postcode listed for the address

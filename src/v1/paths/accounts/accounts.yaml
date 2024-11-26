@@ -1,6 +1,6 @@
 get:
-  summary: List Accounts
-  description: Returns all your fire.com Accounts. Ordered by Alias ascending. Can be paginated.
+  summary: List accounts
+  description: Returns all your Fire Accounts. Ordered by Alias ascending. Can be paginated.
   tags:
       - Accounts
   operationId: getAccounts

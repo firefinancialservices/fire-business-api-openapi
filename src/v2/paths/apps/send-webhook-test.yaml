@@ -2,8 +2,8 @@ get:
   summary: Send test webhooks
   description: Sends a test webhook response for a selected event to the chosen URL
   tags:
-   - API & Webhooks
-  operationId: SendTestWebhook
+   - API and Webhooks
+  operationId: sendTestWebhook
   parameters:
   - in: path
     required: true
