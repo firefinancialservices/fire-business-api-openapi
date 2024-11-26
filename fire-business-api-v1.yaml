@@ -381,18 +381,18 @@ tags:
     description: Fire accounts are the equivalent of a bank account from bank.
   - name: Transactions
     description: There are many types of transactions. They are all represented by the same JSON object with a different txnType.
-  - name: Payees
-    description: List the beneficiaries associated with the account. 
   - name: Batch Payments
     description: The Fire API allows businesses to automate payments between their accounts or to third parties across the UK and Europe.
-  - name: Direct Debits
-    description: The fire.com api allows businesses to automate direct debit payment actions on their fire.com business accounts.
-  - name: FX 
-    description: View your FX rates
-  - name: Debit cards
-    description: View and manage the cards linked to your accounts. 
   - name: Open Banking
     description: Fire Open Payments is a feature of the fire.com business account that leverages Open Banking to allow your customers to pay you via bank transfer and to reconcile those payments as they are received into your fire.com GBP or EUR account.
+  - name: Debit cards
+    description: View and manage the cards linked to your accounts. 
+  - name: FX 
+    description: View your FX rates
+  - name: Payees
+    description: List the beneficiaries associated with the account. 
+  - name: Direct Debits
+    description: The fire.com api allows businesses to automate direct debit payment actions on their fire.com business accounts.
   - name: API and Webhooks
     description: Manage your API Applications and Webhooks 
   - name: Profile Management 
