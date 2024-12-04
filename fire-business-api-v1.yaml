@@ -27,9 +27,6 @@ paths:
   /v3/accounts/{ican}/transactions:
     $ref: ./v3/paths/accounts/transactions-by-account.yaml 
 
-  /v1/accounts/{ican}/transactions/filter:
-    $ref: ./v1/paths/accounts/transactions-by-account-filtered.yaml 
-
   /v1/cards:
     $ref: ./v1/paths/cards/cards.yaml
 
@@ -47,9 +44,6 @@ paths:
 
   /v1/paymentrequests/{paymentRequestCode}:
     $ref: ./v1/paths/paymentrequests/paymentrequest-by-code.yaml
-
-  /v1/paymentrequests/{paymentRequestCode}/payments:
-    $ref: ./v1/paths/paymentrequests/paymentrequestpayments-by-code.yaml
 
   /v2/paymentrequests/{paymentRequestCode}/payments:
     $ref: ./v2/paths/paymentrequests/paymentrequestpayments-by-code.yaml
