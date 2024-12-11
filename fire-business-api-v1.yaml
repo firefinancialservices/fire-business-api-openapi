@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.1.0
 info:
   title: Fire Financial Services Business API
   description: >
@@ -22,7 +22,7 @@ paths:
         needed. See the [Guide to Authentication](/docs/authentication) for full
         details.
       tags:
-        - Get Started
+        - Authentication
       operationId: authenticate
       security: []
       requestBody:
@@ -41,9 +41,9 @@ paths:
                 $ref: '#/components/schemas/AccessToken'
   /v1/accounts:
     get:
-      summary: List Accounts
+      summary: List accounts
       description: >-
-        Returns all your fire.com Accounts. Ordered by Alias ascending. Can be
+        Returns all your Fire Accounts. Ordered by Alias ascending. Can be
         paginated.
       tags:
         - Accounts
@@ -100,7 +100,7 @@ paths:
                 $ref: '#/components/schemas/Account'
   /v2/activites:
     get:
-      summary: Get Account Activity
+      summary: Get account activity
       description: Retrieve the details of activity on your fire.com Account
       tags:
         - Accounts
@@ -122,8 +122,8 @@ paths:
           description: Access Token is Invalid or missing
   '/v1/accounts/{ican}':
     get:
-      summary: Get details of an Account
-      description: You can retrieve the details of a fire.com Account by its `ican`.
+      summary: Get details of an account
+      description: You can retrieve the details of a Fire  Account by its `ican`.
       tags:
         - Accounts
       operationId: getAccountById
@@ -154,69 +154,9 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/ApiError'
-  '/v1/accounts/{ican}/transactions':
-    get:
-      summary: List transactions on an account (v1)
-      deprecated: true
-      description: >-
-        Retrieve a list of transactions against an account. Recommended to use
-        the v3 endpoint instead.
-      tags:
-        - Transactions
-      operationId: getTransactionsByAccountIdv1
-      parameters:
-        - in: path
-          name: ican
-          schema:
-            type: integer
-            format: int64
-            description: The ican of the account to retrieve
-          required: true
-        - in: query
-          name: limit
-          schema:
-            type: integer
-            format: int64
-            description: The number of records to return. Defaults to 10 - max is 200.
-          required: true
-        - in: query
-          name: offset
-          schema:
-            type: integer
-            format: int64
-            description: >-
-              The page offset. Defaults to 0. This is the record number that the
-              returned list will start at. E.g. offset = 40 and limit = 20 will
-              return records 40 to 59.
-          required: true
-      responses:
-        '200':
-          description: >-
-            An array of transaction objects for the account with a count
-            (`total`).
-          content:
-            application/json:
-              schema:
-                title: transactionsv1
-                type: object
-                properties:
-                  total:
-                    type: integer
-                    format: int64
-                    example: 1
-                    description: The total number of card transactions in the list.
-                  dateRangeTo:
-                    type: integer
-                    format: int64
-                    example: 1547744156603
-                    description: milisecond timestamp of date range to value.
-                  transactions:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Transaction'
   '/v3/accounts/{ican}/transactions':
     get:
-      summary: List transactions for an account (v3)
+      summary: List transactions for an account
       description: >
         Retrieve a list of transactions against an account. Initially, use the
         optional `limit`, `dateRangeFrom` and `dateRangeTo` query params to
@@ -270,7 +210,7 @@ paths:
           content:
             application/json:
               schema:
-                title: transactionsv3
+                title: transactions
                 type: object
                 properties:
                   links:
@@ -293,119 +233,10 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Transaction'
-  '/v1/accounts/{ican}/transactions/filter':
-    get:
-      summary: Filter transactions on an account (v1)
-      deprecated: true
-      description: >
-        Retrieve a filtered list of transactions against an account. Recommended
-        to use the v3 endpoint instead.
-
-        * `dateRangeFrom` - A millisecond epoch time specifying the date range
-        start date.
-
-        * `dateRangeTo` - A millisecond epoch time specifying the date range end
-        date.
-
-        * `searchKeyword` - Search term to filter by from the reference field
-        (`myRef`).
-
-        * `transactionTypes` - One or more of the transaction types above. This
-        field can be repeated multiple times to allow for multiple transaction
-        types.
-
-        * `offset` - The page offset. Defaults to 0. This is the record number
-        that the returned list will start at. E.g. offset = 40 and limit = 20
-        will return records 40 to 59.
-
-        * `limit` - the number of items to return. 
-      tags:
-        - Transactions
-      operationId: getTransactionsByAccountIdFiltered
-      parameters:
-        - in: path
-          name: ican
-          schema:
-            type: integer
-            format: int64
-            description: The ican of the account to retrieve
-          required: true
-        - in: query
-          name: dateRangeFrom
-          schema:
-            type: integer
-            format: int64
-            description: A millisecond epoch time specifying the date range start date.
-          required: true
-        - in: query
-          name: dateRangeTo
-          schema:
-            type: integer
-            format: int64
-            description: A millisecond epoch time specifying the date range end date.
-          required: true
-        - in: query
-          name: searchKeyword
-          schema:
-            type: string
-            description: Search term to filter by from the reference field (`myRef`).
-          required: true
-        - in: query
-          name: transactionTypes
-          schema:
-            type: array
-            items:
-              type: string
-            description: >-
-              One or more of the transaction types above. This field can be
-              repeated multiple times to allow for multiple transaction types.
-          required: true
-        - in: query
-          name: offset
-          schema:
-            type: integer
-            format: int64
-            description: >-
-              The page offset. Defaults to 0. This is the record number that the
-              returned list will start at. E.g. offset = 40 and limit = 20 will
-              return records 40 to 59.
-          required: true
-        - in: query
-          name: limit
-          schema:
-            type: integer
-            format: int64
-            description: The number of records to return. Defaults to 10 - max is 200.
-          required: true
-      responses:
-        '200':
-          description: >-
-            An array of transaction objects for the account with a count
-            (`total`) filtered by the specified query parameter.
-          content:
-            application/json:
-              schema:
-                title: transactionsv1
-                type: object
-                properties:
-                  total:
-                    type: integer
-                    format: int64
-                    example: 1
-                    description: The total number of card transactions in the list.
-                  dateRangeTo:
-                    type: integer
-                    format: int64
-                    example: 1547744156603
-                    description: milisecond timestamp of date range to value.
-                  transactions:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Transaction'
   /v1/cards:
     get:
-      summary: List Debit Cards
-      description: Returns a list of cards related to your fire.com account.
+      summary: List debit cards
+      description: Returns a list of cards related to your Fire account.
       tags:
         - Debit Cards
       operationId: getListofCards
@@ -470,8 +301,8 @@ paths:
                 $ref: '#/components/schemas/NewCardResponse'
   '/v1/cards/{cardId}/transactions':
     get:
-      summary: Get a list of Debit Card Transactions
-      description: Returns a list of cards transactions related to your fire.com card.
+      summary: Get a list of debit card transactions
+      description: Returns a list of cards transactions related to your Fire card.
       tags:
         - Debit Cards
       operationId: getListofCardTransactions
@@ -505,23 +336,7 @@ paths:
               schema:
                 type: array
                 items:
-                  title: transactionsv1
-                  type: object
-                  properties:
-                    total:
-                      type: integer
-                      format: int64
-                      example: 1
-                      description: The total number of card transactions in the list.
-                    dateRangeTo:
-                      type: integer
-                      format: int64
-                      example: 1547744156603
-                      description: milisecond timestamp of date range to value.
-                    transactions:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Transaction'
+                  $ref: ../../schemas/transactions.yaml
         '401':
           description: Access Token is Invalid or missing
           content:
@@ -548,7 +363,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
   '/v1/cards/{cardId}/block':
     post:
-      summary: Block a Fire Debit card
+      summary: Block a Fire debit card
       description: >-
         Updates status of an existing card to block which prevents any
         transactions being carried out with that card.
@@ -592,14 +407,14 @@ paths:
             successful.
   /v1/paymentrequests:
     post:
-      summary: Create a Payment request
+      summary: Create a payment request
       description: >
         This request creates a new Open Banking Payment request. A code is
         returned that can be shared to your customers as a URL by any channel
         you wish. See our [Guide to Fire Open
         Payments](/docs/fire-open-payments) for more details. You will need to
         enable the `PERM_BUSINESS_POST_PAYMENT_REQUEST` permission to use this
-        endpoint.
+        endpoint. 
       tags:
         - Open Banking
       operationId: newPaymentRequest
@@ -619,7 +434,7 @@ paths:
                 $ref: '#/components/schemas/PaymentRequestResponse'
   '/v1/paymentrequests/{paymentRequestCode}':
     get:
-      summary: Get Payment Details
+      summary: Get payment details
       description: |
         Retrieve the details of an Open Banking Payment request
       tags:
@@ -640,45 +455,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaymentRequest'
-  '/v1/paymentrequests/{paymentRequestCode}/payments':
-    get:
-      summary: Get list of all Payment Attempts related to a Payment Request
-      deprecated: true
-      description: >
-        Retrieve the list of payments attempted against an Open Banking Payment
-        request
-      tags:
-        - Open Banking
-      operationId: getPaymentRequestPayments
-      parameters:
-        - in: path
-          required: true
-          name: paymentRequestCode
-          schema:
-            type: string
-            description: The unique 8-character code identifying the payment request.
-            example: 1234abcd
-      responses:
-        '200':
-          description: The Payment Request Payments
-          content:
-            application/json:
-              schema:
-                title: paymentrequestpayments
-                type: object
-                properties:
-                  total:
-                    type: integer
-                    format: int64
-                    example: 1
-                    description: The total number of payment request payments in the list.
-                  pisPaymentRequestPayments:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/PaymentRequestPayment'
   '/v2/paymentrequests/{paymentRequestCode}/payments':
     get:
-      summary: Get list of all Payment Attempts related to a Payment Request
+      summary: Get list of all payment attempts related to a payment request
       description: >
         Retrieve the list of payments attempted against an Open Banking Payment
         request
@@ -702,11 +481,11 @@ paths:
                 $ref: '#/components/schemas/PaymentRequestPayment'
   '/v2/paymentrequests/{paymentRequestCode}/reports':
     get:
-      summary: Get a report from a Payment Request
+      summary: Get a report from a payment request
       description: |
         Retrieve a report for an Open Banking Payment request
       tags:
-        - Payment Requests
+        - Open Banking
       operationId: getPaymentRequestReportV2
       parameters:
         - in: path
@@ -725,11 +504,11 @@ paths:
                 $ref: '#/components/schemas/PaymentRequestReport'
   /v2/paymentrequests/sent:
     get:
-      summary: Get a list of Payment Request transactions
+      summary: Get a list of payment request transactions
       description: |
         Retrieve the list of open banking payment requests made on your account
       tags:
-        - Payment Requests
+        - Open Banking
       operationId: getPaymentRequestsSentV2
       responses:
         '200':
@@ -744,7 +523,7 @@ paths:
       description: Returns an object of payment request information
       tags:
         - Open Banking
-      operationId: GetPublicPaymentRequestV2
+      operationId: getPublicPaymentRequest
       parameters:
         - in: path
           required: true
@@ -762,11 +541,11 @@ paths:
                 $ref: '#/components/schemas/PublicPaymentRequest'
   '/v2/rates/{fromCurrency}/{toCurrency}':
     get:
-      summary: Get FX Rates
+      summary: Get FX rates
       description: Return exchange rate between two currencies
       tags:
-        - Fees & Limits
-      operationId: GetFXRates
+        - FX
+      operationId: getFXRates
       parameters:
         - in: path
           required: true
@@ -791,11 +570,11 @@ paths:
           description: Access Token is Invalid or missing
   /v2/limits:
     get:
-      summary: List all Limits
+      summary: List all limits
       description: Returns an array of limit information
       tags:
-        - User Management
-      operationId: GetLimits
+        - Profile Management
+      operationId: getLimits
       responses:
         '200':
           description: An object of limit information
@@ -807,11 +586,11 @@ paths:
           description: Access Token is Invalid or missing
   '/v2/accounts/{ican}':
     put:
-      summary: Update Account Configuration
+      summary: Update account configuration
       description: Changes the name associated with an account
       tags:
         - Accounts
-      operationId: changeAccountConfig
+      operationId: updateAccountConfig
       parameters:
         - in: path
           required: true
@@ -835,8 +614,8 @@ paths:
       summary: Send test webhooks
       description: Sends a test webhook response for a selected event to the chosen URL
       tags:
-        - API & Webhooks
-      operationId: SendTestWebhook
+        - API and Webhooks
+      operationId: sendTestWebhook
       parameters:
         - in: path
           required: true
@@ -868,13 +647,54 @@ paths:
       responses:
         '200':
           description: Webhook test sent.
+  /v2/webhooks/tokens:
+    get:
+      summary: List webhook tokens
+      description: List all webhook tokens on your fire.com account#
+      tags:
+        - API and Webhooks
+      operationId: getWebhookTokens
+      responses:
+        '200':
+          description: An array of webhook token objects.
+          content:
+            application/json:
+              schema:
+                title: webhookTokens
+                type: object
+                properties:
+                  WebhookTokens:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/WebhookToken'
+        '401':
+          description: Access Token is Invalid or missing
+  /v2/webhooks:
+    get:
+      summary: List all webhooks
+      description: List all webhooks on your Fire.com account
+      tags:
+        - API and Webhooks
+      operationId: getWebhookEvents
+      responses:
+        '200':
+          description: An array of webhook objects
+          content:
+            application/json:
+              schema:
+                Title: webhookEvents
+                Type: array
+                items:
+                  - $ref: '#/components/schemas/WebhookEvent'
+        '401':
+          description: Access Token is Invalid or missing
   '/v2/batches/{batchUuid}/newpayees':
     get:
       summary: List new payees in a batch
       description: |
         Retrieve a list of details of batch items with new payees
       tags:
-        - Payment Batches
+        - Batch Payments
       operationId: getNewPayeeBatch
       parameters:
         - in: path
@@ -891,62 +711,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/NewPayeesBatch'
-  '/v1/payments/{paymentUuid}':
-    get:
-      summary: Get Payment Details
-      deprecated: true
-      description: >
-        Returns the details of a specific payment.
-
-
-        As the customer goes through the process of making the payment the
-        status of the payment will change.
-
-
-        * `AWAITING_AUTHORISATION` -This is the initial status of all your
-        payments.
-
-        * `AWAITING_MULTI_AUTHORISATION` - Some business accounts such as
-        charities require dual authorisation.
-
-        * `NOT_AUTHORISED` - Either your customer clicked on cancel or the
-        payment was rejected by their ASPSP / bank.
-
-        * `PENDING` - This is the status that your payment is set to after the
-        customer has authorised the payment with their ASPSP / bank but the bank
-        may want to carry out another check before funding the transaction.
-
-        * `AUTHORISED` - This is the status that your payment is set to after
-        the customer has authorised the payment with their ASPSP / bank.
-
-        * `PAID` - Funds were received into your fire.com GBP or EUR account
-        from your customer’s ASPSP / bank.
-
-
-
-        You will need to enable the `PERM_BUSINESS_GET_PAYMENT` permission to
-        use this endpoint.
-      tags:
-        - Open Banking
-      operationId: getPaymentDetails
-      parameters:
-        - in: path
-          required: true
-          name: paymentUuid
-          schema:
-            type: string
-            description: The unique id for the transaction.
-            example: 4ADFB67A-0F5B-4A9A-9D74-34437250045C
-      responses:
-        '200':
-          description: The Payment Request details object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PaymentRequestPayment'
   '/v2/payments/{paymentUuid}':
     get:
-      summary: Get Payment Details (v2)
+      summary: Get payment details
       description: >
         Returns the details of a specific payment.
 
@@ -1054,10 +821,10 @@ paths:
                       $ref: '#/components/schemas/Aspsp'
   /v1/users:
     get:
-      summary: List all Users
+      summary: List all users
       description: You can retrieve the details of all fire.com users on your acount.
       tags:
-        - User Management
+        - Profile Management
       operationId: getUsers
       responses:
         '200':
@@ -1070,10 +837,10 @@ paths:
                   $ref: '#/components/schemas/User'
   '/v1/user/{userId}':
     get:
-      summary: Get the details of a User
+      summary: Get the details of a user
       description: You can retrieve the details of a specific fire.com user
       tags:
-        - User Management
+        - Profile Management
       operationId: getUser
       parameters:
         - in: path
@@ -1093,10 +860,10 @@ paths:
                 $ref: '#/components/schemas/User'
   /v1/apps:
     get:
-      summary: List all API Applications
-      description: Returns a list of API applications created under your fire.com account
+      summary: List all API applications
+      description: Returns a list of API applications created under your Fire account
       tags:
-        - API & Webhooks
+        - API and Webhooks
       operationId: getApiApplications
       responses:
         '200':
@@ -1141,7 +908,7 @@ paths:
       summary: Create an API Application
       description: Create a new API Application with specified permissions
       tags:
-        - API & Webhooks
+        - API and Webhooks
       operationId: createApiApplication
       requestBody:
         required: true
@@ -1161,11 +928,11 @@ paths:
     get:
       summary: List all permissions for an API application
       description: >-
-        Get all permissions allowed for a specific API application on your
-        fire.com account
+        Get all permissions allowed for a specific API application on your Fire
+        account
       tags:
-        - API & Webhooks
-      operationId: GetPermissions
+        - API and Webhooks
+      operationId: getPermissions
       parameters:
         - in: path
           required: true
@@ -1182,7 +949,7 @@ paths:
           content:
             application/json:
               schema:
-                title: API App Permissions
+                title: apiAppPermissions
                 type: object
                 properties:
                   permissions:
@@ -1208,15 +975,15 @@ paths:
         Get all permissions available for any API application on your fire.com
         account
       tags:
-        - API & Webhooks
-      operationId: GetAllPermissions
+        - API and Webhooks
+      operationId: getAllPermissions
       responses:
         '200':
           description: An array of permission objects.
           content:
             application/json:
               schema:
-                title: API App Permissions
+                title: apiAppPermissions
                 type: object
                 properties:
                   permissions:
@@ -1237,7 +1004,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
   /v1/payees:
     get:
-      summary: List Payees
+      summary: List payees
       description: |
         Returns all your payees. 
 
@@ -1284,7 +1051,7 @@ paths:
                       $ref: '#/components/schemas/Payee'
   '/v1/payees/{payeeId}':
     get:
-      summary: Get details of a Payee
+      summary: Get details of a payee
       description: |
         Retrieve the details of a specific payee
       tags:
@@ -1308,7 +1075,7 @@ paths:
                 $ref: '#/components/schemas/Payee'
   '/v1/payees/{payeeId}/transactions':
     get:
-      summary: List transaction for a Payee Account
+      summary: List transaction for a payee account
       description: >
         Retrieves the list of transactions and transaction information
         associated with a payee
@@ -1330,23 +1097,7 @@ paths:
           content:
             application/json:
               schema:
-                title: transactionsv1
-                type: object
-                properties:
-                  total:
-                    type: integer
-                    format: int64
-                    example: 1
-                    description: The total number of card transactions in the list.
-                  dateRangeTo:
-                    type: integer
-                    format: int64
-                    example: 1547744156603
-                    description: milisecond timestamp of date range to value.
-                  transactions:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Transaction'
+                $ref: ../../schemas/transactions.yaml
         '403':
           description: Access Token is Invalid or missing
           content:
@@ -1361,7 +1112,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
   /v1/directdebits:
     get:
-      summary: List all Direct Debits
+      summary: List all direct debits
       description: >
         Retrieve all direct debit payments associated with a direct debit
         mandate.
@@ -1571,12 +1322,12 @@ paths:
           description: 204 no content
   /v1/batches:
     post:
-      summary: Create a new Batch
+      summary: Create a new batch
       description: >
         Opens a new batch container to hold specific transaction types in a
         certain currency.
       tags:
-        - Payment Batches
+        - Batch Payments
       operationId: createBatchPayment
       requestBody:
         required: true
@@ -1593,11 +1344,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/NewBatchResponse'
     get:
-      summary: List all Batches
+      summary: List all batches
       description: |
         Returns the list of batch with the specified types and statuses.
       tags:
-        - Payment Batches
+        - Batch Payments
       operationId: getBatches
       parameters:
         - in: query
@@ -1681,7 +1432,7 @@ paths:
         Simply specify the source account, destination account, amount and a
         reference.
       tags:
-        - Payment Batches
+        - Batch Payments
       operationId: addInternalTransferBatchPayment
       parameters:
         - in: path
@@ -1737,10 +1488,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/NewBatchItemResponse'
     get:
-      summary: List items for an Internal Transfer Batch
+      summary: List items for an internal transfer batch
       description: Returns a paginated list of items in the specified batch.
       tags:
-        - Payment Batches
+        - Batch Payments
       operationId: getItemsBatchInternalTrasnfer
       parameters:
         - in: path
@@ -1789,7 +1540,7 @@ paths:
                       $ref: '#/components/schemas/BatchItem'
   '/v1/batches/{batchUuid}/banktransfers':
     post:
-      summary: Add a Bank Transfer to a Batch
+      summary: Add a bank transfer to a batch
       description: >
         There are two ways to process bank transfers - by Payee ID (**Mode 1**)
         or by Payee Account Details (**Mode 2**).
@@ -1806,7 +1557,7 @@ paths:
         approved before the Payment batch can be approved. These payees will
         then exist as approved payees for future batches.
       tags:
-        - Payment Batches
+        - Batch Payments
       operationId: addBankTransferBatchPayment
       parameters:
         - in: path
@@ -1835,10 +1586,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/NewBatchItemResponse'
     get:
-      summary: List items for a Bank Transfer Batch
+      summary: List items for a bank transfer batch
       description: Returns a paginated list of items in the specified batch.
       tags:
-        - Payment Batches
+        - Batch Payments
       operationId: getItemsBatchBankTransfer
       parameters:
         - in: path
@@ -1896,7 +1647,7 @@ paths:
         **Mode 1:** Use the payee IDs of existing approved payees set up against
         your account. These batches can be approved in the normal manner.
       tags:
-        - Payment Batches
+        - Batch Payments
       operationId: addInternationalTransferBatchPayment
       parameters:
         - in: path
@@ -1964,10 +1715,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/NewBatchItemResponse'
     get:
-      summary: List items for an International Transfer Batch
+      summary: List items for an international transfer batch
       description: Returns a paginated list of items in the specified batch.
       tags:
-        - Payment Batches
+        - Batch Payments
       operationId: getItemsBatchInternationalTransfer
       parameters:
         - in: path
@@ -2016,13 +1767,13 @@ paths:
                       $ref: '#/components/schemas/BatchItem'
   '/v1/batches/{batchUuid}/internaltransfers/{itemUuid}':
     delete:
-      summary: Remove an internal transfer from a Batch
+      summary: Remove an internal transfer from a batch
       description: >-
         Removes a Payment from the Batch (Internal Transfer). You can only
         remove payments before the batch is submitted for approval (while it is
         in the OPEN state).
       tags:
-        - Payment Batches
+        - Batch Payments
       operationId: deleteInternalTransferBatchPayment
       parameters:
         - in: path
@@ -2044,13 +1795,13 @@ paths:
           description: Batch payment deleted successfully.
   '/v1/batches/{batchUuid}/banktransfers/{itemUuid}':
     delete:
-      summary: Remove a Bank Transfer from a Batch
+      summary: Remove a bank transfer from a batch
       description: >-
         Removes a Payment from the Batch (Bank Transfers). You can only remove
         payments before the batch is submitted for approval (while it is in the
         OPEN state).
       tags:
-        - Payment Batches
+        - Batch Payments
       operationId: deleteBankTransferBatchPayment
       parameters:
         - in: path
@@ -2071,13 +1822,13 @@ paths:
           description: Batch payment deleted successfully.
   '/v2/batches/{batchUuid}/internationaltransfers/{itemUuid}':
     delete:
-      summary: Remove an international transfer from a Batch
+      summary: Remove an international transfer from a batch
       description: >-
         Removes a Payment from the Batch (International Transfers). You can only
         remove payments before the batch is submitted for approval (while it is
         in the OPEN state).
       tags:
-        - Payment Batches
+        - Batch Payments
       operationId: deleteInternationalTransferBatchPayment
       parameters:
         - in: path
@@ -2103,7 +1854,7 @@ paths:
         Cancels the Batch. You can only cancel a batch before it is submitted
         for approval (while it is in the OPEN state).
       tags:
-        - Payment Batches
+        - Batch Payments
       operationId: cancelBatchPayment
       parameters:
         - in: path
@@ -2117,12 +1868,12 @@ paths:
         '200':
           description: Batch payment deleted successfully.
     get:
-      summary: Get the details of a Batch
+      summary: Get the details of a batch
       description: >-
         Returns the details of the batch specified in the API endpoint -
         {batchUuid}.
       tags:
-        - Payment Batches
+        - Batch Payments
       operationId: getDetailsSingleBatch
       parameters:
         - in: path
@@ -2142,7 +1893,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Batch'
     put:
-      summary: Submit a Batch
+      summary: Submit a batch
       description: >
         Submits the Batch (for approval in the case of a **BANK_TRANSFER** or
         **INTERNATIONAL_TRANSFER**). If this is an **INTERNAL_TRANSFER** batch,
@@ -2154,7 +1905,7 @@ paths:
 
         You can only submit a batch while it is in the OPEN state.
       tags:
-        - Payment Batches
+        - Batch Payments
       operationId: submitBatch
       parameters:
         - in: path
@@ -2171,10 +1922,10 @@ paths:
             call was successful.
   '/v1/batches/{batchUuid}/approvals':
     get:
-      summary: List Approvals for a Batch
+      summary: List approvals for a batch
       description: Returns a list of approvers for this batch.
       tags:
-        - Payment Batches
+        - Batch Payments
       operationId: getListofApproversForBatch
       parameters:
         - in: path
@@ -2193,10 +1944,10 @@ paths:
                 $ref: '#/components/schemas/BatchApprover'
   '/v2/users/{userId}/address':
     get:
-      summary: Get the address of a User
+      summary: Get the address of a user
       description: You can retrieve the address of a specific fire.com user
       tags:
-        - User Management
+        - Profile Management
       operationId: getUserAddress
       parameters:
         - in: path
@@ -2216,11 +1967,11 @@ paths:
                 $ref: '#/components/schemas/Address'
   /v2/services:
     get:
-      summary: Get Service Fees and Info
+      summary: Get service Fees and info
       description: Returns an array of the services and fees associated with them
       tags:
-        - User Management
-      operationId: getServices
+        - Profile Management
+      operationId: getServiceFees
       responses:
         '200':
           description: An object of services information
@@ -2240,8 +1991,8 @@ paths:
         Update the status of a payment request. The payment request should be
         active or removed.
       tags:
-        - Payment Requests
-      operationId: updatePaymentRequests
+        - Open Banking
+      operationId: updatePaymentRequest
       parameters:
         - in: path
           required: true
@@ -2253,6 +2004,21 @@ paths:
       responses:
         '204':
           description: 204 no content
+  webhooks:
+    events:
+      post:
+        description: An event has occurred on your account.
+        requestBody:
+          required: true
+          content:
+            application/jwt:
+              schema:
+                type: string
+                example: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
+        responses:
+          '200':
+            description: A 200 response is required from your server.
 components:
   securitySchemes:
     bearerAuth:
@@ -3286,6 +3052,7 @@ components:
             Date the direct debit was created. Milliseconds since the epoch
             (1970).
     DirectDebitByMandateUUID:
+      title: directDebitByMandateUUID
       type: object
       properties:
         mandateUuid:
@@ -3969,7 +3736,11 @@ components:
           example: 'https://example.com/callback'
           description: >-
             The merchant return URL where the customer will be re-directed to
-            with the result of the transaction.
+            with the result of the transaction. The returnUrl variable should
+            handle two scenarios. If the user cancels the payment before
+            reaching their banking app, URLs are identified with a
+            /return?status=cancelled. If the user proceeds to their banking app,
+            URLs are identified with /paymentUUID={paymentUUID}
         orderDetails:
           $ref: '#/components/schemas/OrderDetails'
         collectFields:
@@ -4469,7 +4240,7 @@ components:
             option. You can choose to display any of `ORDER_ID`, `PRODUCT_ID`,
             `CUSTOMER_ID`, `CUSTOMER_NUMBER` and `COMMENT2` to the payer.
     Permission:
-      title: API App permission
+      title: apiAppPermission
       type: object
       properties:
         name:
@@ -4921,7 +4692,7 @@ components:
               - PIS_LODGEMENT_RECEIVE
             example: CARD_AUTHORISATION
     AccountConfiguration:
-      title: Account Configuration
+      title: accountConfiguration
       type: object
       properties:
         accountName:
@@ -4929,7 +4700,7 @@ components:
           description: This is the name the account will be updated to.
           example: John Doe
     Activity:
-      title: Activity
+      title: activity
       type: object
       properties:
         id:
@@ -5081,7 +4852,7 @@ components:
           description: Date activity was created
           example: '“2024-09-10T09:40:54.190Z”'
     Address:
-      title: Get User Address
+      title: userAddress
       type: object
       properties:
         type:
@@ -5099,17 +4870,7 @@ components:
           description: This is the city listed for the address
           example: Dublin
         country:
-          title: country
-          type: object
-          properties:
-            code:
-              type: string
-              description: 'The 2-letter code for the country - e.g. `IE`, `GP`...'
-              example: GB
-            description:
-              type: string
-              description: The name of the country
-              example: United Kingdom
+          $ref: '#/components/schemas/Country'
         postcode:
           type: string
           description: This is the postcode listed for the address
@@ -5133,7 +4894,7 @@ components:
         country:
           $ref: '#/components/schemas/Country'
     BusinessService:
-      title: businessServices
+      title: businessService
       type: object
       properties:
         service:
@@ -5237,7 +4998,7 @@ components:
         - $ref: '#/components/schemas/FeeRuleFixedAmount'
         - $ref: '#/components/schemas/FeeRuleMaxMin'
     FxRate:
-      title: Get FX Rates
+      title: getFXRates
       type: object
       properties:
         fromCurrency:
@@ -5253,7 +5014,7 @@ components:
           format: int64
           example: 8381
     Item:
-      title: items
+      title: item
       type: object
       properties:
         batchItemUuid:
@@ -5315,7 +5076,7 @@ components:
         - $ref: '#/components/schemas/Service'
         - $ref: '#/components/schemas/ServiceGroup'
     Service:
-      title: Service
+      title: service
       description: Utilisation Level Type
       type: object
       properties:
@@ -5340,7 +5101,7 @@ components:
           description: This is a description of the service group type
           example: BUSINESS_WITHDRAWAL
     Limit:
-      title: limitInfo
+      title: limit
       type: object
       properties:
         limitType:
@@ -5368,7 +5129,7 @@ components:
           format: int64
           description: This is the remaining availability based on the limit type defined
     NewPayeesBatch:
-      title: New Payee Batch
+      title: newPayeeBatch
       type: object
       properties:
         total:
@@ -5382,7 +5143,7 @@ components:
           items:
             $ref: '#/components/schemas/Item'
     PaymentRequestReport:
-      title: PaymentRequestReport
+      title: paymentRequestReport
       type: object
       properties:
         currency:
@@ -5481,7 +5242,7 @@ components:
             - ECOMMERCE_GOODS
             - ECOMMERCE_SERVICES
     PaymentRequestsSent:
-      title: PaymentRequestsSent
+      title: paymentRequestsSent
       type: object
       properties:
         total:
@@ -5569,7 +5330,7 @@ components:
           description: This is the message indicating whether the call was a success
           example: SUCCESS
     WebhookToken:
-      title: Webhook Tokens
+      title: webhookToken
       type: object
       properties:
         tokenId:
@@ -5593,7 +5354,7 @@ components:
           format: date-time
           example: '2017-11-09T15:57:15.710Z'
     Webhook:
-      title: Webhook
+      title: webhook
       type: object
       properties:
         id:
@@ -5618,7 +5379,7 @@ components:
             for any reason
           example: 24
     WebhookEvent:
-      title: Webhook Event
+      title: webhookEvent
       type: object
       properties:
         webhook:
@@ -5797,31 +5558,33 @@ tags:
   - name: Authentication
     description: Access to the API is by Bearer Access Tokens.
   - name: Accounts
-    description: fire.com Accounts are the equivalent of a bank account from bank.
+    description: Fire accounts are the equivalent of a bank account from bank.
+  - name: Transactions
+    description: >-
+      There are many types of transactions. They are all represented by the same
+      JSON object with a different txnType.
+  - name: Payees
+    description: List the beneficiaries associated with the account.
+  - name: Batch Payments
+    description: >-
+      The Fire API allows businesses to automate payments between their accounts
+      or to third parties across the UK and Europe.
+  - name: Direct Debits
+    description: >-
+      The fire.com api allows businesses to automate direct debit payment
+      actions on their fire.com business accounts.
+  - name: FX
+    description: View your FX rates
+  - name: Debit cards
+    description: View and manage the cards linked to your accounts.
   - name: Open Banking
     description: >-
       Fire Open Payments is a feature of the fire.com business account that
       leverages Open Banking to allow your customers to pay you via bank
       transfer and to reconcile those payments as they are received into your
       fire.com GBP or EUR account.
-  - name: API
+  - name: API and Webhooks
     description: Manage your API Applications and Webhooks
-  - name: Transactions
-    description: >-
-      There are many types of transactions. They are all represented by the same
-      JSON object with a different txnType.
-  - name: Direct Debits
-    description: >-
-      The fire.com api allows businesses to automate direct debit payment
-      actions on their fire.com business accounts.
-  - name: Payment Batches
-    description: >-
-      The fire.com API allows businesses to automate payments between their
-      accounts or to third parties across the UK and Europe.
-  - name: Payees
-    description: List the beneficiaries associated with the account.
-  - name: Cards
-    description: View and manage the cards linked to your accounts.
-  - name: Users
-    description: View the users of your fire.com account.
+  - name: Profile Management
+    description: Manage and view your users and fees.
 
