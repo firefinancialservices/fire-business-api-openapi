@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.1.0
 info:
   title: Fire Financial Services Business API
   description: >
@@ -27,9 +27,6 @@ paths:
   /v3/accounts/{ican}/transactions:
     $ref: ./v3/paths/accounts/transactions-by-account.yaml 
 
-  /v1/accounts/{ican}/transactions/filter:
-    $ref: ./v1/paths/accounts/transactions-by-account-filtered.yaml 
-
   /v1/cards:
     $ref: ./v1/paths/cards/cards.yaml
 
@@ -47,9 +44,6 @@ paths:
 
   /v1/paymentrequests/{paymentRequestCode}:
     $ref: ./v1/paths/paymentrequests/paymentrequest-by-code.yaml
-
-  /v1/paymentrequests/{paymentRequestCode}/payments:
-    $ref: ./v1/paths/paymentrequests/paymentrequestpayments-by-code.yaml
 
   /v2/paymentrequests/{paymentRequestCode}/payments:
     $ref: ./v2/paths/paymentrequests/paymentrequestpayments-by-code.yaml
@@ -74,9 +68,16 @@ paths:
   
   /v2/webhooks/{webhookId}/events/{event}/test: 
     $ref: ./v2/paths/apps/send-webhook-test.yaml
+  
+  /v2/webhooks/tokens:
+    $ref: ./v2/paths/apps/webhook-tokens.yaml
+  
+  /v2/webhooks: 
+    $ref: ./v2/paths/apps/webhook-events.yaml
 
   /v2/batches/{batchUuid}/newpayees:
     $ref: ./v2/paths/batches/newpayees-batch.yaml  
+  
 
 #Removing this endpoint 
  # /v2/webhooks/tokens:
@@ -174,9 +175,9 @@ paths:
   /v2/paymentrequests/{paymentRequestCode}/status:
     $ref: ./v2/paths/paymentrequests/update-paymentrequest.yaml
 
-# webhooks:
-#   events:
-#     $ref: ./webhooks/events.yaml
+  webhooks:
+    events:
+      $ref: ./webhooks/events.yaml
 
 components:
   securitySchemes:

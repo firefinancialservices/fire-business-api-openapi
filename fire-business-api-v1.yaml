@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.1.0
 info:
   title: Fire Financial Services Business API
   description: >
@@ -233,115 +233,6 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Transaction'
-  '/v1/accounts/{ican}/transactions/filter':
-    get:
-      summary: Filter transactions on an account (v1)
-      deprecated: true
-      description: >
-        Retrieve a filtered list of transactions against an account. Recommended
-        to use the v3 endpoint instead.
-
-        * `dateRangeFrom` - A millisecond epoch time specifying the date range
-        start date.
-
-        * `dateRangeTo` - A millisecond epoch time specifying the date range end
-        date.
-
-        * `searchKeyword` - Search term to filter by from the reference field
-        (`myRef`).
-
-        * `transactionTypes` - One or more of the transaction types above. This
-        field can be repeated multiple times to allow for multiple transaction
-        types.
-
-        * `offset` - The page offset. Defaults to 0. This is the record number
-        that the returned list will start at. E.g. offset = 40 and limit = 20
-        will return records 40 to 59.
-
-        * `limit` - the number of items to return. 
-      tags:
-        - Transactions
-      operationId: getTransactionsByAccountIdFiltered
-      parameters:
-        - in: path
-          name: ican
-          schema:
-            type: integer
-            format: int64
-            description: The ican of the account to retrieve
-          required: true
-        - in: query
-          name: dateRangeFrom
-          schema:
-            type: integer
-            format: int64
-            description: A millisecond epoch time specifying the date range start date.
-          required: true
-        - in: query
-          name: dateRangeTo
-          schema:
-            type: integer
-            format: int64
-            description: A millisecond epoch time specifying the date range end date.
-          required: true
-        - in: query
-          name: searchKeyword
-          schema:
-            type: string
-            description: Search term to filter by from the reference field (`myRef`).
-          required: true
-        - in: query
-          name: transactionTypes
-          schema:
-            type: array
-            items:
-              type: string
-            description: >-
-              One or more of the transaction types above. This field can be
-              repeated multiple times to allow for multiple transaction types.
-          required: true
-        - in: query
-          name: offset
-          schema:
-            type: integer
-            format: int64
-            description: >-
-              The page offset. Defaults to 0. This is the record number that the
-              returned list will start at. E.g. offset = 40 and limit = 20 will
-              return records 40 to 59.
-          required: true
-        - in: query
-          name: limit
-          schema:
-            type: integer
-            format: int64
-            description: The number of records to return. Defaults to 10 - max is 200.
-          required: true
-      responses:
-        '200':
-          description: >-
-            An array of transaction objects for the account with a count
-            (`total`) filtered by the specified query parameter.
-          content:
-            application/json:
-              schema:
-                title: transactionsv1
-                type: object
-                properties:
-                  total:
-                    type: integer
-                    format: int64
-                    example: 1
-                    description: The total number of card transactions in the list.
-                  dateRangeTo:
-                    type: integer
-                    format: int64
-                    example: 1547744156603
-                    description: milisecond timestamp of date range to value.
-                  transactions:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Transaction'
   /v1/cards:
     get:
       summary: List debit cards
@@ -445,23 +336,7 @@ paths:
               schema:
                 type: array
                 items:
-                  title: transactionsv1
-                  type: object
-                  properties:
-                    total:
-                      type: integer
-                      format: int64
-                      example: 1
-                      description: The total number of card transactions in the list.
-                    dateRangeTo:
-                      type: integer
-                      format: int64
-                      example: 1547744156603
-                      description: milisecond timestamp of date range to value.
-                    transactions:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Transaction'
+                  $ref: ../../schemas/transactions.yaml
         '401':
           description: Access Token is Invalid or missing
           content:
@@ -580,42 +455,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PaymentRequest'
-  '/v1/paymentrequests/{paymentRequestCode}/payments':
-    get:
-      summary: Get list of all payment attempts related to a payment request
-      deprecated: true
-      description: >
-        Retrieve the list of payments attempted against an Open Banking Payment
-        request
-      tags:
-        - Open Banking
-      operationId: getPaymentRequestPayments
-      parameters:
-        - in: path
-          required: true
-          name: paymentRequestCode
-          schema:
-            type: string
-            description: The unique 8-character code identifying the payment request.
-            example: 1234abcd
-      responses:
-        '200':
-          description: The Payment Request Payments
-          content:
-            application/json:
-              schema:
-                title: paymentRequestPayments
-                type: object
-                properties:
-                  total:
-                    type: integer
-                    format: int64
-                    example: 1
-                    description: The total number of payment request payments in the list.
-                  pisPaymentRequestPayments:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/PaymentRequestPayment'
   '/v2/paymentrequests/{paymentRequestCode}/payments':
     get:
       summary: Get list of all payment attempts related to a payment request
@@ -808,6 +647,47 @@ paths:
       responses:
         '200':
           description: Webhook test sent.
+  /v2/webhooks/tokens:
+    get:
+      summary: List webhook tokens
+      description: List all webhook tokens on your fire.com account#
+      tags:
+        - API and Webhooks
+      operationId: getWebhookTokens
+      responses:
+        '200':
+          description: An array of webhook token objects.
+          content:
+            application/json:
+              schema:
+                title: webhookTokens
+                type: object
+                properties:
+                  WebhookTokens:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/WebhookToken'
+        '401':
+          description: Access Token is Invalid or missing
+  /v2/webhooks:
+    get:
+      summary: List all webhooks
+      description: List all webhooks on your Fire.com account
+      tags:
+        - API and Webhooks
+      operationId: getWebhookEvents
+      responses:
+        '200':
+          description: An array of webhook objects
+          content:
+            application/json:
+              schema:
+                Title: webhookEvents
+                Type: array
+                items:
+                  - $ref: '#/components/schemas/WebhookEvent'
+        '401':
+          description: Access Token is Invalid or missing
   '/v2/batches/{batchUuid}/newpayees':
     get:
       summary: List new payees in a batch
@@ -1217,23 +1097,7 @@ paths:
           content:
             application/json:
               schema:
-                title: transactionsv1
-                type: object
-                properties:
-                  total:
-                    type: integer
-                    format: int64
-                    example: 1
-                    description: The total number of card transactions in the list.
-                  dateRangeTo:
-                    type: integer
-                    format: int64
-                    example: 1547744156603
-                    description: milisecond timestamp of date range to value.
-                  transactions:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Transaction'
+                $ref: ../../schemas/transactions.yaml
         '403':
           description: Access Token is Invalid or missing
           content:
@@ -2140,6 +2004,21 @@ paths:
       responses:
         '204':
           description: 204 no content
+  webhooks:
+    events:
+      post:
+        description: An event has occurred on your account.
+        requestBody:
+          required: true
+          content:
+            application/jwt:
+              schema:
+                type: string
+                example: >-
+                  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
+        responses:
+          '200':
+            description: A 200 response is required from your server.
 components:
   securitySchemes:
     bearerAuth:
@@ -5684,26 +5563,26 @@ tags:
     description: >-
       There are many types of transactions. They are all represented by the same
       JSON object with a different txnType.
+  - name: Payees
+    description: List the beneficiaries associated with the account.
   - name: Batch Payments
     description: >-
       The Fire API allows businesses to automate payments between their accounts
       or to third parties across the UK and Europe.
+  - name: Direct Debits
+    description: >-
+      The fire.com api allows businesses to automate direct debit payment
+      actions on their fire.com business accounts.
+  - name: FX
+    description: View your FX rates
+  - name: Debit cards
+    description: View and manage the cards linked to your accounts.
   - name: Open Banking
     description: >-
       Fire Open Payments is a feature of the fire.com business account that
       leverages Open Banking to allow your customers to pay you via bank
       transfer and to reconcile those payments as they are received into your
       fire.com GBP or EUR account.
-  - name: Debit Cards
-    description: View and manage the cards linked to your accounts.
-  - name: FX
-    description: View your FX rates
-  - name: Payees
-    description: List the beneficiaries associated with the account.
-  - name: Direct Debits
-    description: >-
-      The fire.com api allows businesses to automate direct debit payment
-      actions on their fire.com business accounts.
   - name: API and Webhooks
     description: Manage your API Applications and Webhooks
   - name: Profile Management
