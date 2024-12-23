@@ -1,10 +1,8 @@
 get:
   summary: Get the details of a direct debit
   description: >
-    Retrieve all details of a single direct debit collection/payment, whether successful or not.
+    This endpoint will retrieve all details of a single direct debit collection/payment, whether successful or not.
     
-    The permision needed to access this endpoint is **PERM_BUSINESS_GET_DIRECT_DEBIT**
-
   tags:
     - Direct Debits
   operationId: getDirectDebitByUuid

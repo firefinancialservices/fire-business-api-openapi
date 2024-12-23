@@ -1,6 +1,6 @@
 get:
   summary: List accounts
-  description: Returns all your Fire Accounts. Ordered by Alias ascending. Can be paginated.
+  description: This endpoint returns all the accounts on your Fire profile. Ordered by Alias ascending. Can be paginated.
   tags:
       - Accounts
   operationId: getAccounts
@@ -17,7 +17,7 @@ get:
 post:
   summary: Create a new Fire Account
   description: >
-    Creates a new fire.com account.
+    This endpoint will create a new Fire account on your profile
 
 
     **Please note there is a charge associated with creating a new account.**

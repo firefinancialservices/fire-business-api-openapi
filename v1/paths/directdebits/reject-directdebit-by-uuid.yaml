@@ -3,8 +3,6 @@ post:
   description: >
       This endpoint allows you to reject a direct debit payment where the status is still set to RECEIVED.
 
-      Permission name PERM_BUSINESS_POST_DIRECT_DEBIT_REJECT
-
   tags:
     - Direct Debits
   operationId: rejectDirectDebit

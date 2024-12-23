@@ -1,8 +1,7 @@
 get:
   summary: Get list of ASPSPs / Banks
   description: >
-    Returns all ASPSPs (Account Servicing Payment Service Provider) / banks. The list can be filtered by currency.
-    You will need to enable the `PERM_BUSINESS_GET_ASPSPS` permission to use this endpoint.
+    This endpoint will return all ASPSPs (Account Servicing Payment Service Provider) / banks available to you for open banking payments. The list can be filtered by currency.
 
     ***This endpoint is only required if you intend to host the “Select ASPSP / bank” page yourself.***
   tags:

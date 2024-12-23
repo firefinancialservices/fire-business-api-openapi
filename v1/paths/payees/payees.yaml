@@ -1,13 +1,7 @@
 get:
   summary: List payees
   description: >
-    Returns all your payees. 
-    
-    
-    Ordered by payee name ascending. 
-    
-    
-    Can be paginated.
+    This endpoint will return all payees on your account.
   tags:
     - Payees
   operationId: getPayees

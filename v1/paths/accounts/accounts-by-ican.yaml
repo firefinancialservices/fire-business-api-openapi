@@ -1,6 +1,6 @@
 get:
   summary: Get details of an account
-  description: You can retrieve the details of a Fire  Account by its `ican`.
+  description: This endpoint will return an array of information about the account. You can retrieve the details of a Fire  Account by its `ican`.
   tags:
       - Accounts
   operationId: getAccountById
