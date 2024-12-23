@@ -1,9 +1,8 @@
 get:
   summary: Get the details of a direct debit mandate 
   description: >
-    Retrieve all details for a direct debit mandate.
+    This endpoint will allow you to retrieve all details for a direct debit mandate.
 
-    The permision needed to access this endpoint is PERM_BUSINESS_GET_MANDATE
   tags:
     - Direct Debits
   operationId: getMandate
@@ -26,9 +25,8 @@ get:
 post:
   summary: Update direct debit mandate alias
   description: >
-    Update Direct Debit Mandate Alias
+    This endpoint allows you to update Direct Debit Mandate Alias
 
-    The permision needed to access this endpoint is PERM_BUSINESS_PUT_MANDATE
   tags:
     - Direct Debits
   operationId: updateMandateAlias
