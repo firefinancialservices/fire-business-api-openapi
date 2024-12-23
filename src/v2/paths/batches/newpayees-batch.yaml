@@ -2,7 +2,7 @@
 get:
   summary: List new payees in a batch
   description: >
-    Retrieve a list of details of batch items with new payees
+    This endpoint will retrieve a list of details of batch items with new payees
   tags:
     - Batch Payments
   operationId: getNewPayeeBatch

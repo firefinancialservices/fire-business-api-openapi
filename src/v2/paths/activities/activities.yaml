@@ -2,7 +2,7 @@
 
  get: 
     summary: Get account activity
-    description: Retrieve the details of activity on your fire.com Account
+    description: This endpoint will retrieve the details of activity on your Fire Account
     tags:
         - Accounts
     operationId: getActivities 

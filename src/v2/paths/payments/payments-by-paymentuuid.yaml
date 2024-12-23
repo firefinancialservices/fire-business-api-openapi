@@ -1,10 +1,7 @@
 get:
   summary: Get payment details 
   description: >
-    Returns the details of a specific payment.
-
-
-    You will need to enable the `PERM_BUSINESS_GET_PAYMENT` permission to use this endpoint.
+    This endpoint will return the details of a specific open banking payment.
 
 
     As your customer goes through the payment submission journey, the payment status will change. The endpoint will return one of the following statuses:

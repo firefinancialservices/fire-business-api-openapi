@@ -1,6 +1,6 @@
 put:
   summary: Update account configuration
-  description: Changes the name associated with an account
+  description: This endpoint changes the name associated with an account
   tags:
     - Accounts
   operationId: updateAccountConfig
