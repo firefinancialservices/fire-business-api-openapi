@@ -1,6 +1,6 @@
 get:
   summary: List all users
-  description: You can retrieve the details of all fire.com users on your acount.
+  description: This endpoint will retrieve the details of all Fire users on your acount.
   tags:
     - Profile Management
   operationId: getUsers

@@ -1,6 +1,6 @@
 get:
   summary: Get the address of a user
-  description: You can retrieve the address of a specific fire.com user
+  description: This endpoint will return the address of a specific Fire user
   tags:
     - Profile Management
   operationId: getUserAddress

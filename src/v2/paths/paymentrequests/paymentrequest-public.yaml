@@ -1,7 +1,7 @@
 get:
   summary: List details of a public payment request
   description:
-    Returns an object of payment request information
+    This endpoint returns an object of payment request information
   tags:
     - Open Banking
   operationId: getPublicPaymentRequest
