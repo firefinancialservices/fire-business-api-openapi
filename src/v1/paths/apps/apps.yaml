@@ -1,6 +1,6 @@
 get:
   summary: List all API applications
-  description: Returns a list of API applications created under your Fire account
+  description: This endpoint returns a list of API applications created under your Fire account
   tags:
      - API and Webhooks
   operationId: getApiApplications
@@ -19,7 +19,7 @@ get:
       $ref: ../../responses/unauthorised-error.yaml
 post:
   summary: Create an API Application
-  description: Create a new API Application with specified permissions
+  description: This endpoint will create a new API Application on your Fire account with your chosen specified permissions
   tags:
     - API and Webhooks
   operationId: createApiApplication

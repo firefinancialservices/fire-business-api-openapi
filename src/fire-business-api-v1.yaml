@@ -175,9 +175,9 @@ paths:
   /v2/paymentrequests/{paymentRequestCode}/status:
     $ref: ./v2/paths/paymentrequests/update-paymentrequest.yaml
 
-  webhooks:
-    events:
-      $ref: ./webhooks/events.yaml
+webhooks:
+  events:
+    $ref: ./webhooks/events.yaml
 
 components:
   securitySchemes:

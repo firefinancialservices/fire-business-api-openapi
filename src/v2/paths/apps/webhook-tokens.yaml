@@ -1,6 +1,6 @@
 get:
   summary: List webhook tokens 
-  description: List all webhook tokens on your fire.com account#
+  description: This endpoint will list all webhook tokens on your Fire account
   tags:
     - API and Webhooks
   operationId: getWebhookTokens 

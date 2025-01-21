@@ -1,6 +1,6 @@
 get:
   summary: Get service Fees and info
-  description: Returns an array of the services and fees associated with them
+  description: This endpoint returns an array of the services and fees associated with them
   tags:
    - Profile Management
   operationId: getServiceFees
