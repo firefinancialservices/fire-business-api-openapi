@@ -1,4 +1,4 @@
 Title: webhookEvents
 Type: array
 items:
-  - $ref: '#/components/schemas/WebhookEvent'
+  $ref: '#/components/schemas/WebhookEvent'
