@@ -75,6 +75,7 @@ paths:
   /v2/webhooks: 
     $ref: ./v2/paths/apps/webhook-events.yaml
 
+
   /v2/batches/{batchUuid}/newpayees:
     $ref: ./v2/paths/batches/newpayees-batch.yaml  
   
@@ -372,6 +373,10 @@ components:
       $ref: 'v1/schemas/bank-pay-refund-request.yaml'
     BankPayRefundResponse: 
       $ref: 'v1/schemas/bank-pay-refund-response.yaml'
+    Events: 
+      $ref: 'v2/schemas/events.yaml'
+    WebhookEvents:
+      $ref: 'v2/schemas/webhookEvents.yaml'
 
 security:
   - bearerAuth: []

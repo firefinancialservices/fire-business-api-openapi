@@ -4,10 +4,7 @@ properties:
   webhook: 
     $ref: '#/components/schemas/Webhook'
   events:
-    type: array
-    items:
-      type: string
-      example: "LODGEMENT_RECIEVED"
+    $ref: '#/components/schemas/Events'
 
 
     
