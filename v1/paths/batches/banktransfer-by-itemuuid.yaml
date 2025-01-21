@@ -1,6 +1,6 @@
 delete:
   summary: Remove a bank transfer from a batch
-  description: Removes a Payment from the Batch (Bank Transfers). You can only remove payments before the batch is submitted for approval (while it is in the OPEN state).
+  description: This endpoint will remove a payment from the Batch (Bank Transfers). You can only remove payments before the batch is submitted for approval (while it is in the OPEN state).
   tags:
     - Batch Payments
   operationId: deleteBankTransferBatchPayment

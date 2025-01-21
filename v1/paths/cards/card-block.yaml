@@ -1,6 +1,6 @@
 post:
   summary: Block a Fire debit card
-  description: Updates status of an existing card to block which prevents any transactions being carried out with that card.
+  description: This endpoint allows you to block a card on your Fire account. This updates the status of an existing card to block which prevents any transactions being carried out with that card.
   tags:
     - Debit Cards
   operationId: blockCard

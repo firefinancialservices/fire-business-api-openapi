@@ -2,7 +2,7 @@ get:
   summary: Get list of all payment attempts related to a payment request
   deprecated: true
   description: >
-    Retrieve the list of payments attempted against an Open Banking Payment request
+    This endpoint will retrieve the list of payments attempted against an Open Banking Payment request
   tags:
     - Open Banking
   operationId: getPaymentRequestPayments

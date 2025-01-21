@@ -3,7 +3,6 @@ post:
   description: >
     This endpoint can only be used to activate a direct debit mandate when it is in the status REJECT_REQUESTED (even if the account has direct debits disabled). This action will also enable the account for direct debits if it was previously set to be disabled.
 
-    The permision needed to access this endpoint is PERM_BUSINESS_POST_MANDATE_ACTIVATE
   tags:
     - Direct Debits
   operationId: activateMandate

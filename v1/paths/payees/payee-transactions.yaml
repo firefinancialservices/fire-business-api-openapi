@@ -1,7 +1,7 @@
 get:
   summary: List transaction for a payee account
   description: >
-    Retrieves the list of transactions and transaction information associated with a payee
+    This endpoint retrieves the list of transactions and transaction information associated with a payee
   tags:
     - Payees
   operationId: getPayeeTransactions

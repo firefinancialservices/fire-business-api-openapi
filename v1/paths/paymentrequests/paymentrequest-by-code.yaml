@@ -1,7 +1,7 @@
 get:
   summary: Get payment details
   description: >
-    Retrieve the details of an Open Banking Payment request
+    This endpoint will retrieve the details of an Open Banking Payment request
   tags:
     - Open Banking
   operationId: getPaymentRequestDetails

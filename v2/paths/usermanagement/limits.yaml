@@ -1,6 +1,6 @@
 get:
   summary: List all limits
-  description: Returns an array of limit information
+  description: This endpoint returns an array of limit information
   tags:
    - Profile Management
   operationId: getLimits 

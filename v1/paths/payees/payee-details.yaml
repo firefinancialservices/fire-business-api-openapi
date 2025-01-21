@@ -1,7 +1,7 @@
 get:
   summary: Get details of a payee
   description: >
-    Retrieve the details of a specific payee
+    This endpoint will retrieve the details of a specific payee
   tags:
     - Payees
   operationId: getPayeeDetails

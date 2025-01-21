@@ -2,8 +2,6 @@ post:
   summary: Cancel a direct debit mandate
   description: >
     This endpoint allows you to cancel a direct debit mandate.
-
-    The permision needed to access this endpoint is PERM_BUSINESS_POST_MANDATE_CANCEL
   tags:
     - Direct Debits
   operationId: cancelMandateByUuid
