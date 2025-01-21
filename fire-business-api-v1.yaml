@@ -18,7 +18,7 @@ paths:
   /v1/accounts:
     $ref: ./v1/paths/accounts/accounts.yaml
 
-  /v2/activities:
+  /v2/activites:
     $ref: ./v2/paths/activities/activities.yaml
     
   /v1/accounts/{ican}:
@@ -69,8 +69,8 @@ paths:
   /v2/webhooks/{webhookId}/events/{event}/test: 
     $ref: ./v2/paths/apps/send-webhook-test.yaml
   
-  /v2/webhooks/tokens:
-    $ref: ./v2/paths/apps/webhook-tokens.yaml
+ # /v2/webhooks/tokens:
+    #$ref: ./v2/paths/apps/webhook-tokens.yaml
   
   /v2/webhooks: 
     $ref: ./v2/paths/apps/webhook-events.yaml
@@ -177,8 +177,8 @@ paths:
     $ref: ./v2/paths/paymentrequests/update-paymentrequest.yaml
 
 webhooks:
-  Webhooks:
-    $ref: ./webhooks/Webhooks.yaml
+  events:
+    $ref: ./webhooks/events.yaml
 
 components:
   securitySchemes:
