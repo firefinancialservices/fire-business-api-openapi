@@ -7,7 +7,7 @@ properties:
     type: array
     items:
       type: string
-      example: [ "LODGEMENT_RECIEVED" ]
+      example: "LODGEMENT_RECIEVED"
 
 
     
