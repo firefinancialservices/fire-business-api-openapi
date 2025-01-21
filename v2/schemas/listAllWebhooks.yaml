@@ -1,0 +1,5 @@
+title: listAllWebhooks
+type: object
+properties:
+  webhookEvents: 
+    $ref: '#/components/schemas/WebhookEvents'
