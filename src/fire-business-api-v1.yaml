@@ -372,6 +372,8 @@ components:
       $ref: 'v1/schemas/bank-pay-refund-request.yaml'
     BankPayRefundResponse: 
       $ref: 'v1/schemas/bank-pay-refund-response.yaml'
+    AppCreated:
+      $ref: 'v1/schemas/app-created.yaml'
 
 security:
   - bearerAuth: []
