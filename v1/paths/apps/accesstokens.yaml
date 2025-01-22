@@ -13,9 +13,11 @@ post:
           schema:
             $ref: '#/components/schemas/AuthenticationData'
   responses:
-    '200':
-      description: Successfully authenticated
+    '201':
+      description: Access token created
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/AccessToken'
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
