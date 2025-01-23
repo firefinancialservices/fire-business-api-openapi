@@ -21,6 +21,12 @@ get:
         application/json:
           schema:
             $ref: '#/components/schemas/Mandate'
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'
 
 post:
   summary: Update direct debit mandate alias
@@ -41,3 +47,9 @@ post:
   responses:
     '204':
       description: 204 no content
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'

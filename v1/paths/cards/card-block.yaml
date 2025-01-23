@@ -15,3 +15,9 @@ post:
   responses:
     '204':
       description: No body is returned - “Status 204 No Content” signifies the call was successful.
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'

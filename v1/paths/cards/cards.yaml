@@ -11,11 +11,12 @@ get:
         application/json:
           schema:
             $ref: '../../schemas/cards.yaml' 
-    '403':
-      $ref: ../../responses/unauthorised-error.yaml
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
     '401':
-      $ref: ../../responses/unauthorised-error.yaml
-
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'
 
 post:
   summary: Create a new Fire debit card
@@ -37,3 +38,9 @@ post:
         application/json:
           schema:
             $ref: '#/components/schemas/NewCardResponse'
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'
