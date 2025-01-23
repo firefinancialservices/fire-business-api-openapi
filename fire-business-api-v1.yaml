@@ -187,7 +187,7 @@ components:
       bearerFormat: API Access Token
   responses:
     UnauthorisedError:
-      description: Access Token is Invalid or missing
+      description: An error has occured
   parameters:
     orderParam:
       name: order
@@ -374,6 +374,10 @@ components:
       $ref: 'v1/schemas/bank-pay-refund-response.yaml'
     AppCreated:
       $ref: 'v1/schemas/app-created.yaml'
+    ApiErrorV2:
+      $ref: 'v2/schemas/api-error.yaml'
+    ApiErrorV3:
+      $ref: 'v3/schemas/api-error.yaml'
 
 security:
   - bearerAuth: []
