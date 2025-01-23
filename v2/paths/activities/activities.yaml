@@ -13,6 +13,11 @@
             application/json:
               schema:
                 $ref: '../../schemas/activities.yaml'
-
+        '400':
+          $ref: '../../responses/unauthorised-error.yaml'
         '401':
-                $ref: '../../responses/unauthorised-error.yaml'
+          $ref: '../../responses/unauthorised-error.yaml'
+        '403':
+          $ref: '../../responses/unauthorised-error.yaml'
+
+

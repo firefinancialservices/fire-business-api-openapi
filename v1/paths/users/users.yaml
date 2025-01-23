@@ -14,7 +14,7 @@ get:
               items: 
                 $ref: '#/components/schemas/User'
       '400':
-      $ref: '../../responses/unauthorised-error.yaml'
+        $ref: '../../responses/unauthorised-error.yaml'
       '401':
         $ref: '../../responses/unauthorised-error.yaml'
       '403':

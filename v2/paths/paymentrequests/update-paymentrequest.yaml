@@ -16,4 +16,12 @@ put:
   responses:
     '204':
       description: 204 no content
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'
+
+
 
