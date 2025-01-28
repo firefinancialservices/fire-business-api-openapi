@@ -1,14 +1,15 @@
-sampleResponse:
-  post:
-    description: Webhooks allow you to be notified of events as they happen on your Fire accounts. The below sample response shows how a webhook from Fire will arrive at your server. See our 'API and webhooks' guide for more detailed information.
-    requestBody:
-      required: true
-      content: 
-        application/jwt:
-          schema:
-            type: string
-            example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
-    responses:
-      '200':
-        description: A 200 response is required from your server. 
+post:
+  summary: Test webhook response
+  description: Webhooks allow you to be notified of events as they happen on your Fire accounts. The below sample response shows how a webhook from Fire will arrive at your server. See our 'API and webhooks' guide for more detailed information.
+  tags: API and Webhooks
+  requestBody:
+    required: true
+    content: 
+      application/jwt:
+        schema:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
+  responses:
+    '200':
+      description: A 200 response is required from your server. Returns a 200 response to indicate that the data was received successfully.
         

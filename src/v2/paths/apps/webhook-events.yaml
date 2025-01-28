@@ -10,6 +10,12 @@ get:
           content:
             application/json:
               schema:
-                $ref: '../../schemas/listAllWebhooks.yaml'
+                $ref: '../../schemas/webhookEvents.yaml'
+        '400':
+          $ref: '../../responses/unauthorised-error.yaml'
         '401':
           $ref: '../../responses/unauthorised-error.yaml'
+        '403':
+          $ref: '../../responses/unauthorised-error.yaml'
+
+

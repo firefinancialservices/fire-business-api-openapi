@@ -1,1 +1,5 @@
-description: Access Token is Invalid or missing
+description: An error has occured. Any 403 errors usually mean your access token is invalid or missing. For other errors, check the validity of your input, and if you are permitted to access this endpoint.
+content:
+  application/json:
+    schema:
+      $ref: ../schemas/api-errors.yaml

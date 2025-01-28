@@ -11,7 +11,11 @@ get:
         application/json:
           schema:
             $ref: '../../schemas/accounts.yaml'
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
     '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
       $ref: '../../responses/unauthorised-error.yaml'
 
 post:
@@ -38,3 +42,9 @@ post:
         application/json:
           schema:
             $ref: '#/components/schemas/Account'
+      '400':
+        $ref: '../../responses/unauthorised-error.yaml'
+      '401':
+        $ref: '../../responses/unauthorised-error.yaml'
+      '403':
+        $ref: '../../responses/unauthorised-error.yaml'

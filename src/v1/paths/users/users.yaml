@@ -13,3 +13,9 @@ get:
               type: array
               items: 
                 $ref: '#/components/schemas/User'
+      '400':
+        $ref: '../../responses/unauthorised-error.yaml'
+      '401':
+        $ref: '../../responses/unauthorised-error.yaml'
+      '403':
+        $ref: '../../responses/unauthorised-error.yaml'

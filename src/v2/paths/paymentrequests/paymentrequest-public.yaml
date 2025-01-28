@@ -20,4 +20,12 @@ get:
         application/json:
           schema:
             $ref: '#/components/schemas/PublicPaymentRequest'
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'
+
+
           
