@@ -6,7 +6,7 @@ get:
   operationId: getWebhookEvents
   responses:
         '200':
-          description: An array of webhook objects
+          description: An object of information about your webhooks
           content:
             application/json:
               schema:
