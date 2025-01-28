@@ -9,5 +9,5 @@ post:
           example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
   responses:
     '200':
-      description: A 200 response is required from your server. 
+      description: A 200 response is required from your server. Returns a 200 response to indicate that the data was received successfully.
         
