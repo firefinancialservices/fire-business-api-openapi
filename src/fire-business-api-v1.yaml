@@ -176,7 +176,7 @@ paths:
     $ref: ./v2/paths/paymentrequests/update-paymentrequest.yaml
 
 webhooks:
-  events:
+  webhookTest:
     $ref: ./webhooks/events.yaml
 
 components:
