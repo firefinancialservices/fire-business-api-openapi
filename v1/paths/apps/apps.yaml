@@ -13,12 +13,12 @@ get:
             type: array
             items:            
               $ref: '../../schemas/applications.yaml' 
-      '400':
-        $ref: '../../responses/unauthorised-error.yaml'
-      '401':
-        $ref: '../../responses/unauthorised-error.yaml'
-      '403':
-        $ref: '../../responses/unauthorised-error.yaml'
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'
 post:
   summary: Create an API Application
   description: This endpoint will create a new API Application on your Fire account with your chosen specified permissions. Please note that if there is no batch approval permissions included, the approval fields must be set to null.
