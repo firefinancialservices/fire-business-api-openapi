@@ -16,7 +16,7 @@ jobs:
           node-version: '21.x'
       - run: npm install -g json-refs
       - run: json-refs resolve --yaml -f --filter relative ./src/fire-business-api-v1.yaml > ./fire-business-api-v1.yaml
-      - uses: readmeio/rdme@9.0.0
+      - uses: readmeio/rdme@10.1.1
         with:
           rdme: openapi ./fire-business-api-v1.yaml --key=${{ secrets.README_API_KEY }} --id=6136360239a7a64894f1c269
 # 6136360239a7a64894f1c269 is the _id for the v1.0 version. Got this from the ReadMe https://dash.readme.com/project/fire-business-api/v1.0/reference
@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: readmeio/rdme@9.0.0
+      - uses: readmeio/rdme@10.1.1
         with:
           rdme: docs guides --key=${{ secrets.README_API_KEY }} --version=v1.0
       
