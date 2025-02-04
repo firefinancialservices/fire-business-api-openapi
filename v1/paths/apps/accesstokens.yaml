@@ -21,3 +21,7 @@ post:
             $ref: '#/components/schemas/AccessToken'
     '400':
       $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'
