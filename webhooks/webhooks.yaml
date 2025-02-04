@@ -1,5 +1,7 @@
 post:
-  summary: Test webhook response
+  summary: Fire Event Webhook
+  tags:
+    - Webhooks
   description: Webhooks allow you to be notified of events as they happen on your Fire accounts. The below sample response shows how a webhook from Fire will arrive at your server. See our 'API and webhooks' guide for more detailed information.
   requestBody:
     required: true
