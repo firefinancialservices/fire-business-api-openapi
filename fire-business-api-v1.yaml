@@ -405,7 +405,7 @@ tags:
     description: List the beneficiaries associated with the account. 
   - name: Direct Debits
     description: The fire.com api allows businesses to automate direct debit payment actions on their fire.com business accounts.
-  - name: Manage API and Webhooks
+  - name: API and Webhooks
     description: Manage your API Applications and Webhooks 
   - name: Profile Management 
     description: Manage and view your users and fees.
