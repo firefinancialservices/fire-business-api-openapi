@@ -1,7 +1,7 @@
 get:
   summary: Get details of a payee
   description: >
-    This endpoint will retrieve the details of a specific payee
+    This endpoint will retrieve the details of a specific payee. You will need to enable PERM_BUSINESS_GET_FUNDING_SOURCE to use this endpoint.
   tags:
     - Payees
   operationId: getPayeeDetails

@@ -1,6 +1,6 @@
 get:
   summary: List all users
-  description: This endpoint will retrieve the details of all Fire users on your acount.
+  description: This endpoint will retrieve the details of all Fire users on your acount.You will need to enable PERM_BUSINESS_GET_USERS to use this endpoint.
   tags:
     - Profile Management
   operationId: getUsers

@@ -1,6 +1,6 @@
 get:
   summary: Get the details of a user
-  description: This endpoint will retrieve the details of a specific Fire user
+  description: This endpoint will retrieve the details of a specific Fire user. You will need to enable PERM_BUSINESS_GET_USER to use this endpoint.
   tags:
     - Profile Management
   operationId: getUser

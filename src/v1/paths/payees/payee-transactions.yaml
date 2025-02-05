@@ -1,7 +1,7 @@
 get:
   summary: List transaction for a payee account
   description: >
-    This endpoint retrieves the list of transactions and transaction information associated with a payee
+    This endpoint retrieves the list of transactions and transaction information associated with a payee. You will need to enable PERM_BUSINESS_GET_FUNDING_SOURCE_TRANSACTIONS to use this endpoint.
   tags:
     - Payees
   operationId: getPayeeTransactions

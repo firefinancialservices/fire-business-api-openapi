@@ -1,7 +1,7 @@
 get:
   summary: Get the details of a direct debit
   description: >
-    This endpoint will retrieve all details of a single direct debit collection/payment, whether successful or not.
+    This endpoint will retrieve all details of a single direct debit collection/payment, whether successful or not. You will need to enable PERM_BUSINESS_GET_DIRECT_DEBIT to use this endpoint.
     
   tags:
     - Direct Debits

@@ -1,6 +1,6 @@
 delete:
   summary: Remove an international transfer from a batch
-  description: This endpoint will remove a payment from an existing Batch (International Transfers). You can only remove payments before the batch is submitted for approval (while it is in the OPEN state).
+  description: This endpoint will remove a payment from an existing Batch (International Transfers). You can only remove payments before the batch is submitted for approval (while it is in the OPEN state). You will need to enable PERM_BUSINESS_DELETE_BATCH_INTERNATIONALTRANSFERS to use this endpoint.
   tags:
     - Batch Payments
   operationId: deleteInternationalTransferBatchPayment
