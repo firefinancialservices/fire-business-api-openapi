@@ -1,6 +1,6 @@
 post:
   summary: Unblock a Fire debit card
-  description: This endpoint updates status of an existing card to unblock which means that transactions can be carried out with that card.
+  description: This endpoint updates status of an existing card to unblock which means that transactions can be carried out with that card. You will need to enable PERM_BUSINESS_POST_MY_CARD_UNBLOCK to use this endpoint.
   tags:
     - Debit Cards
   operationId: unblockCard

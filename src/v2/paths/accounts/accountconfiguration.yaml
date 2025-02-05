@@ -1,6 +1,6 @@
 put:
   summary: Update account configuration
-  description: This endpoint changes the name associated with an account
+  description: This endpoint changes the name associated with an account. You will need to enable PERM_BUSINESS_PUT_ACCOUNT to use this endpoint.
   tags:
     - Accounts
   operationId: updateAccountConfig

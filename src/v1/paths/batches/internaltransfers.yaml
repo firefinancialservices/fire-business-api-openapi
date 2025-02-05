@@ -1,6 +1,6 @@
 post:
   summary: Add an internal transfer to a Batch
-  description: This endpoint will add an internal transfer payment to an existing batch. Simply specify the source account, destination account, amount and a reference.
+  description: This endpoint will add an internal transfer payment to an existing batch. Simply specify the source account, destination account, amount and a reference. You will need to enable PERM_BUSINESS_POST_BATCH_INTERNALTRANSFERS to use this endpoint.
   tags:
     - Batch Payments
   operationId: addInternalTransferBatchPayment
@@ -36,7 +36,7 @@ post:
 
 get:
   summary: List items for an internal transfer batch
-  description: This endpoint returns returns a paginated list of items in the specified batch.
+  description: This endpoint returns returns a paginated list of items in the specified batch. You will need to enable PERM_BUSINESS_GET_BATCH_INTERNALTRANSFERS to use this endpoint.
   tags:
     - Batch Payments
   operationId: getItemsBatchInternalTrasnfer

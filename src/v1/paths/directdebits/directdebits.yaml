@@ -1,7 +1,7 @@
 get:
   summary: List all direct debits
   description: >
-      This endpoint will retrieve all direct debit payments associated with a direct debit mandate.
+      This endpoint will retrieve all direct debit payments associated with a direct debit mandate. You will need to enable PERM_BUSINESS_GET_DIRECT_DEBITS to use this endpoint.
 
   tags:
     - Direct Debits

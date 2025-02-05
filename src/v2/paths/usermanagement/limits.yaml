@@ -1,6 +1,6 @@
 get:
   summary: List all limits
-  description: This endpoint returns an array of limit information
+  description: This endpoint returns an array of limit information. You will need to enable PERM_BUSINESS_GET_LIMITS to use this endpoint.
   tags:
    - Profile Management
   operationId: getLimits 

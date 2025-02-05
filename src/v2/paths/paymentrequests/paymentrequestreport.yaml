@@ -2,7 +2,7 @@
 get:
   summary: Get a report from a payment request
   description: >
-    This endpoint will retrieve a report for an Open Banking Payment request
+    This endpoint will retrieve a report for an Open Banking Payment request. You will need to enable PERM_BUSINESS_GET_PAYMENT_REQUEST_REPORTS to use this endpoint.
   tags:
     - Open Banking
   operationId: getPaymentRequestReportV2

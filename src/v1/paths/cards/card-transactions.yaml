@@ -1,6 +1,6 @@
 get:
   summary: Get a list of debit card transactions
-  description: This endpoint returns a list of cards transactions related to your Fire card.
+  description: This endpoint returns a list of cards transactions related to your Fire card. You will need to enable PERM_BUSINESS_GET_MY_CARD_TRANSACTIONS to use this endpoint.
   tags:
     - Debit Cards
   operationId: getListofCardTransactions

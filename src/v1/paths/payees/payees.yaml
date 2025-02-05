@@ -1,7 +1,7 @@
 get:
   summary: List payees
   description: >
-    This endpoint will return all payees on your account.
+    This endpoint will return all payees on your account. You will need to enable PERM_BUSINESS_GET_FUNDING_SOURCES to use this endpoint.
   tags:
     - Payees
   operationId: getPayees

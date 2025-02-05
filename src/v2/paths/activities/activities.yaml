@@ -1,8 +1,7 @@
 
-
  get: 
     summary: Get account activity
-    description: This endpoint will retrieve the details of activity on your Fire Account
+    description: This endpoint will retrieve the details of activity on your Fire Account. You will need to enable PERM_BUSINESS_GET_ACTIVITIES to use this endpoint.
     tags:
         - Accounts
     operationId: getActivities 

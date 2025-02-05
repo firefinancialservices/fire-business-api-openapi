@@ -1,6 +1,6 @@
 get:
   summary: List all webhooks
-  description: This endpoint lists all webhooks on your Fire account
+  description: This endpoint lists all webhooks on your Fire account. You will need to enable PERM_BUSINESS_GET_WEBHOOKS to use this endpoint.
   tags:
     - API and Webhooks
   operationId: getWebhookEvents

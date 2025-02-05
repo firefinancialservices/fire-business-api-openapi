@@ -1,6 +1,6 @@
 get:
   summary: Get service Fees and info
-  description: This endpoint returns an array of the services and fees associated with them
+  description: This endpoint returns an array of the services and fees associated with them. You will need to enable PERM_BUSINESS_GET_SERVICES to use this endpoint.
   tags:
    - Profile Management
   operationId: getServiceFees

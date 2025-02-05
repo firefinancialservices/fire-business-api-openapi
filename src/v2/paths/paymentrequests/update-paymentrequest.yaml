@@ -1,7 +1,7 @@
 put:
   summary: Update the status of a payment request
   description: >
-    This endpoint will update the status of a payment request. The payment request should be active or removed.
+    This endpoint will update the status of a payment request. The payment request should be active or removed. You will need to enable PERM_BUSINESS_PUT_PAYMENT_REQUEST_STATUS to use this endpoint.
   tags:
     - Open Banking
   operationId: updatePaymentRequest
