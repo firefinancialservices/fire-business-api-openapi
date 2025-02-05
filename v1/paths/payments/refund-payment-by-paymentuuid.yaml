@@ -1,6 +1,6 @@
 post:
   summary: Request a refund for a payment request payment
-  description: This endpoint will process a request to refund a payment. The original payment must be in the `PAID` state.
+  description: This endpoint will process a request to refund a payment. The original payment must be in the `PAID` state. 
   tags:
     - Open Banking
   operationId: bankPayRefundRequest

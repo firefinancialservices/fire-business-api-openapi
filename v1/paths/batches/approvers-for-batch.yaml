@@ -1,6 +1,6 @@
 get:
-  summary: List approvals for a batch
-  description: This endpoint will return a list of the approvers for the selected batch.
+  summary: List approvals for a batch. 
+  description: This endpoint will return a list of the approvers for the selected batch. You will need to enable PERM_BUSINESS_GET_BATCH_APPROVALS to use this endpoint.
   tags:
     - Batch Payments
   operationId: getListofApproversForBatch

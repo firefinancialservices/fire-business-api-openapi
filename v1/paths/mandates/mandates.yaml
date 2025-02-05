@@ -1,7 +1,7 @@
 get:
   summary: List all direct debit mandates
   description: >
-    This endpoint will list all mandates on your Fire account.
+    This endpoint will list all mandates on your Fire account. You will need to enable PERM_BUSINESS_GET_MANDATES to use this endpoint.
   tags:
     - Direct Debits
   operationId: getDirectDebitMandates

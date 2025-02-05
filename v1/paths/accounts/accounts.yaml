@@ -1,6 +1,6 @@
 get:
   summary: List accounts
-  description: This endpoint returns all the accounts on your Fire profile. Ordered by Alias ascending. Can be paginated.
+  description: This endpoint returns all the accounts on your Fire profile. Ordered by Alias ascending. Can be paginated. You will need to enable PERM_BUSINESS_GET_ACCOUNTS to use this endpoint.
   tags:
       - Accounts
   operationId: getAccounts
@@ -19,9 +19,9 @@ get:
       $ref: '../../responses/unauthorised-error.yaml'
 
 post:
-  summary: Create a new Fire Account
+  summary: Create a new Fire Account. 
   description: >
-    This endpoint will create a new Fire account on your profile
+    This endpoint will create a new Fire account on your profile. You will need to enable PERM_BUSINESS_POST_ACCOUNTS to use this endpoint.
 
 
     **Please note there is a charge associated with creating a new account.**

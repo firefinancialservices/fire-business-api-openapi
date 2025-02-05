@@ -1,6 +1,6 @@
 get:
   summary: List all API applications
-  description: This endpoint returns a list of API applications created under your Fire account
+  description: This endpoint returns a list of API applications created under your Fire account. You will need to enable PERM_BUSINESS_GET_APPS to use this endpoint.
   tags:
      - API and Webhooks
   operationId: getApiApplications
@@ -21,7 +21,7 @@ get:
       $ref: '../../responses/unauthorised-error.yaml'
 post:
   summary: Create an API Application
-  description: This endpoint will create a new API Application on your Fire account with your chosen specified permissions. Please note that if there is no batch approval permissions included, the approval fields must be set to null.
+  description: This endpoint will create a new API Application on your Fire account with your chosen specified permissions. Please note that if there is no batch approval permissions included, the approval fields must be set to null. You will need to enable PERM_BUSINESS_POST_APPS to use this endpoint.
   tags:
     - API and Webhooks
   operationId: createApiApplication

@@ -1,7 +1,7 @@
 get:
   summary: List details of a public payment request
   description:
-    This endpoint returns an object of payment request information
+    This endpoint returns an object of payment request information. You will need to enable PERM_BUSINESS_GET_PUBLIC_PAYMENT_REQUEST to use this endpoint.
   tags:
     - Open Banking
   operationId: getPublicPaymentRequest

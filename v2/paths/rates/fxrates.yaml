@@ -1,7 +1,7 @@
 
 get:
   summary: Get FX rates
-  description: This endpoint returns the exchange rate between two currencies 
+  description: This endpoint returns the exchange rate between two currencies. You will need to enable PERM_BUSINESS_GET_FX_RATE to use this endpoint.
   tags:
     - FX 
   operationId: getFXRates

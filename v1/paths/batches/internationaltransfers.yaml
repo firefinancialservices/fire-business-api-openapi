@@ -41,7 +41,7 @@ post:
 
 get:
   summary: List items for an international transfer batch
-  description: Returns a paginated list of items in the specified batch.
+  description: Returns a paginated list of items in the specified batch. You will need to enable PERM_BUSINESS_GET_BATCH_INTERNATIONALTRANSFERS to use this endpoint.
   tags:
     - Batch Payments
   operationId: getItemsBatchInternationalTransfer

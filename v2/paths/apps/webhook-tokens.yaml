@@ -1,6 +1,6 @@
 get:
   summary: List webhook tokens 
-  description: This endpoint will list all webhook tokens on your Fire account
+  description: This endpoint will list all webhook tokens on your Fire account. You will need to enable PERM_BUSINESS_GET_WEBHOOK_TOKENS to use this endpoint.
   tags:
     - API and Webhooks
   operationId: getWebhookTokens 

@@ -1,6 +1,6 @@
 get:
   summary: List all permissions for API applications
-  description: This endpoint will list all permissions available for any API application you have created on your Fire account
+  description: This endpoint will list all permissions available for any API application you have created on your Fire account. You will need to enable PERM_BUSINESS_GET_APPS_PERMISSIONS to use this endpoint.
   tags:
     - API and Webhooks
   operationId: getAllPermissions 

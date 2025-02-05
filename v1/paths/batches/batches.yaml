@@ -1,7 +1,7 @@
 post:
   summary: Create a new batch
   description: >
-    This endpoint will create a new batch. This opens a new batch container to hold specific transaction types in a certain currency.
+    This endpoint will create a new batch. This opens a new batch container to hold specific transaction types in a certain currency. You will need to enable PERM_BUSINESS_POST_BATCHES to use this endpoint.
   tags:
     - Batch Payments
   operationId: createBatchPayment
@@ -30,7 +30,7 @@ post:
 get:
   summary: List all batches
   description: >
-    This endpoint will return a list of batches with the specified types and statuses.
+    This endpoint will return a list of batches with the specified types and statuses. You will need to enable PERM_BUSINESS_GET_BATCHES to use this endpoint.
   tags:
     - Batch Payments
   operationId: getBatches

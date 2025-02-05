@@ -2,7 +2,7 @@
 get:
   summary: List new payees in a batch
   description: >
-    This endpoint will retrieve a list of details of batch items with new payees
+    This endpoint will retrieve a list of details of batch items with new payees. You will need to enable PERM_BUSINESS_GET_BATCH_NEWPAYEES to use this endpoint.
   tags:
     - Batch Payments
   operationId: getNewPayeeBatch
