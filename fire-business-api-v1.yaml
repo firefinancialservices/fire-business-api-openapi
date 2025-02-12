@@ -247,8 +247,8 @@ components:
       $ref: 'v1/schemas/authentication-data.yaml'
     BatchItemDetails:
       $ref: 'v1/schemas/batch-item-details.yaml'
-    BatchItem: 
-      $ref: 'v1/schemas/batch-item.yaml'
+    BatchItemBankTransfer: 
+      $ref: 'v1/schemas/batch-item-banktransfer.yaml'
     Batch: 
       $ref: 'v1/schemas/batch.yaml'
     NewCardResponse:

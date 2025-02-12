@@ -80,7 +80,7 @@ get:
       content:
         application/json:
           schema:
-              $ref: ../../schemas/batch-items.yaml
+              $ref: ../../schemas/batch-items-banktransfer.yaml
     '400':
       $ref: '../../responses/unauthorised-error.yaml'
     '401':

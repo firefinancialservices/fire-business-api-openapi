@@ -35,37 +35,21 @@ properties:
     format: date-time
     example: "2021-04-04T10:48:53.540Z"
     description: The datestamp of the last action on this batch - ISO format - e.g. 2018-04-04T10:48:53.540Z
-  feeAmount:
-    type: integer 
-    format: int64
-    example: 0
-    description: The fee charged by fire.com for the payment. In pence or cent.
-  taxAmount:
-    type: integer
-    format: int64
-    example: 0
-    description: Any taxes/duty collected by fire.com for this payments (e.g. stamp duty etc). In pence or cent.
-  amountAfterCharges:
-    type: integer
-    format: int64
-    example: 10000
-    description: The amount of the transfer after fees and taxes. in pence or cent.
   icanFrom:
     type: integer
     format: int64
     example: 2150
     description: The Fire account ID of the source account.
-  icanTo:
-    type: integer
-    format: int64
-    example: 1002
-    description: The Fire account ID for the fire.com account the funds are sent to.
   amount:
     type: integer
     format: int64
     example: 10000
     description: The amount of funds to send. In cent or pence
-  ref:
+  myRef:
+    type: string
+    example: Testing a transfer via batch
+    description: The reference on the transaction.
+  yourRef:
     type: string
     example: Testing a transfer via batch
     description: The reference on the transaction.
@@ -74,3 +58,21 @@ properties:
     format: int64
     example: 123782
     description: The ID of the resulting payment in your account. Can be used to retrieve the transaction using the https://api.fire.com/business/v1/accounts/{accountId}/transactions/{refId} endpoint.
+  payeeType:
+    type: string
+    enum:
+    - ACCOUNT_DETAILS
+    - PAYEE_ID
+    description: The type of payee information
+  payeeId:
+    type: int64
+    example: 1234567
+    description: The ID for the named payee
+  destIban:
+    type: string
+    example: "IE63CPAYXXXXXXX792562"
+    description: The IBAN for the payee's account
+  destAccountHolderName:
+    type: string
+    example: "John Doe"
+    description: The payee's name
