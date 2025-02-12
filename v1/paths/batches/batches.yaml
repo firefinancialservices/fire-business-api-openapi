@@ -94,7 +94,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../../schemas/batch-items.yaml'
+            $ref: '../../schemas/batchRequests.yaml'
     '400':
       $ref: '../../responses/unauthorised-error.yaml'
     '401':

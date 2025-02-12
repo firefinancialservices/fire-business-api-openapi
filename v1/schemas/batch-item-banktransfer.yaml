@@ -8,12 +8,13 @@ properties:
   status:
     type: string
     enum:
-    - SUBMITTED
-    - REMOVED
-    - SUCCEEDED
-    - FAILED
-    example: SUCCEEDED
-    description: status of the batch if internal trasnfer   
+    - PENDING_APPROVAL
+    - REJECTED
+    - COMPLETE
+    - OPEN
+    - CANCELLED
+    - PENDING_PARENT_BATCH_APPROVAL
+    - READY_FOR_PROCESSING
   result:
     type: object
     description: The outcome of the attempted transaction.
