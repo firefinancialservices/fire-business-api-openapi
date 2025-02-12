@@ -385,6 +385,9 @@ components:
       $ref: 'v2/schemas/webhookEvents.yaml'
     BatchRequest: 
       $ref: 'v1/schemas/batchRequest.yaml'
+    BatchItemInternalTransfer:
+      $ref: 'v1/schemas/batch-item-internaltransfer.yaml'
+    
 
 security:
   - bearerAuth: []
