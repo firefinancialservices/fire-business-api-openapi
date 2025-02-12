@@ -1,4 +1,4 @@
-title: batchItems
+title: batchItemsBankTRansfer
 type: object
 properties:
   total: 

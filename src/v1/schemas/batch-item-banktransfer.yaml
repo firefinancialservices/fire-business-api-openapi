@@ -66,7 +66,8 @@ properties:
     - PAYEE_ID
     description: The type of payee information
   payeeId:
-    type: int64
+    type: integer
+    format: int64
     example: 1234567
     description: The ID for the named payee
   destIban:
