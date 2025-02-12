@@ -1,0 +1,84 @@
+title: batchItem
+type: object
+properties:
+  batchItemUuid: 
+    type: string
+    example: "F2AF3F2B-4406-4199-B249-B354F2CC6019"
+    description: A UUID for this item.    
+  type:
+    type: string
+    enum:
+    - INTERNAL_TRANSFER
+    - BANK_TRANSFER
+    - NEW_PAYEE
+    - DEPRECATED_LOGIN
+    - DEPRECATED_MANUALLY_ADDED_NEW_PAYEE
+    - DEPRECATED_NEW_USER
+    - INTERNATIONAL_TRANSFER
+    description: The type of batch
+  status:
+    type: string
+    enum:
+    - PENDING_APPROVAL
+    - REJECTED
+    - COMPLETE
+    - OPEN
+    - CANCELLED
+    - PENDING_PARENT_BATCH_APPROVAL
+    - READY_FOR_PROCESSING
+    description: Status of the batch
+  sourceName:
+    type: string
+    example: "Account Information Test"
+    description: Source name
+  batchName:
+    type: string
+    example: "Test Batch"
+    description: The name assigned to the batch
+  jobNumber:
+    type: string
+    example: "1234optional"
+    description: A name assigned to identiy the batch job executed
+  currency:
+    type: string
+    example: "EUR"
+    description: The currency the batch job is executed in 
+  numberOfItemsSubmitted:
+    type: int64
+    example: 1
+    description: Number of payments in the batch
+  valueOfItemsSubmitted:
+    type: int64
+    example: 100
+    description: Total value of the payments in the batch
+  numberOfItemsFailed:
+    type: int64
+    example: 1
+    description: Number of payments in the batch that failed
+  valueOfItemsFailed:
+    type: int64
+    example: 100
+    description: Total value of failed payments in the batch
+  numberOfItemsSucceeded:
+    type: int64
+    example: 0
+    description: Number of payments in the batch that succeeded
+  valueOfItemsSucceeded:
+    type: int64
+    example: 0
+    description: Total value of successful payments in the batch
+  lastUpdated:
+    type: string
+    format: date-time
+    example: "2021-04-04T10:48:53.540Z"
+    description: The datestamp of the last action on this batch - ISO format - e.g. 2018-04-04T10:48:53.540Z
+  dateCreated:
+    type: string
+    format: date-time
+    example: "2021-04-04T10:48:53.540Z"
+    description: The datestamp the batch was created - ISO format - e.g. 2018-04-04T00:53:21.910Z
+
+
+
+
+

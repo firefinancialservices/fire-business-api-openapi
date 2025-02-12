@@ -247,8 +247,8 @@ components:
       $ref: 'v1/schemas/authentication-data.yaml'
     BatchItemDetails:
       $ref: 'v1/schemas/batch-item-details.yaml'
-    BatchItem: 
-      $ref: 'v1/schemas/batch-item.yaml'
+    BatchItemBankTransfer: 
+      $ref: 'v1/schemas/batch-item-banktransfer.yaml'
     Batch: 
       $ref: 'v1/schemas/batch.yaml'
     NewCardResponse:
@@ -383,6 +383,13 @@ components:
       $ref: 'v2/schemas/events.yaml'
     WebhookEvents:
       $ref: 'v2/schemas/webhookEvents.yaml'
+    BatchRequest: 
+      $ref: 'v1/schemas/batchRequest.yaml'
+    BatchItemInternalTransfer:
+      $ref: 'v1/schemas/batch-item-internaltransfer.yaml'
+    BatchItemInternationalTransfer:
+      $ref: 'v1/schemas/batch-item-internationaltransfer.yaml'
+    
 
 security:
   - bearerAuth: []
