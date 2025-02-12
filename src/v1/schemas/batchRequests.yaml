@@ -6,7 +6,7 @@ properties:
     format: int64
     example: 1
     description: total number of batches returned
-  items:
+  batchRequests:
     type: array
     items:
-      $ref: '#/components/schemas/BatchItemBankTransfer'
+      $ref: '#/components/schemas/BatchRequest'
