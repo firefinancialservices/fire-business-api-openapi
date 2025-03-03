@@ -37,7 +37,7 @@ properties:
       - AUTHORISED
       - AWAITING_MULTI_AUTHORISATION
       - NOT_AUTHORISED
-      - PAID
+      - SETTLED
       - REJECTED
       - ACCEPTED
       - RECEIVED
