@@ -98,7 +98,7 @@ paths:
   /v1/users:
     $ref: ./v1/paths/users/users.yaml
 
-  /v1/user/{userId}:
+  /v1/users/{userId}:
     $ref: ./v1/paths/users/user-by-userid.yaml
 
   /v1/apps:

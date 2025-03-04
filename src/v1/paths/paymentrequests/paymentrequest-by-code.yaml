@@ -1,7 +1,7 @@
 get:
-  summary: Get payment details
+  summary: Get payment request details
   description: >
-    This endpoint will retrieve the details of an Open Banking Payment requestYou will need to enable PERM_BUSINESS_GET_PAYMENT to use this endpoint.
+    This endpoint will retrieve the details of an Open Banking Payment requestYou will need to enable PERM_BUSINESS_GET_PAYMENT_REQUEST to use this endpoint.
   tags:
     - Open Banking
   operationId: getPaymentRequestDetails
