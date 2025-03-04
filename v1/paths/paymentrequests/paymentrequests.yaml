@@ -14,7 +14,7 @@ post:
         schema:
           $ref: '#/components/schemas/NewPaymentRequest'
   responses:
-    '200':
+    '201':
       description: Payment Request created successfully
       content:
         application/json:
