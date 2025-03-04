@@ -1,14 +1,30 @@
 title: getFXRates
 type: object
 properties:
-  fromCurrency: 
+  provider:
     type: string
-    description: The currency the funds are currently in
-    example: "EUR" 
-  toCurrency:
+    description: The FX transfer provider
+    example: "TCC" 
+  buyCurrency:
     type: string
     description: The currency the funds will be exchanged to
     example: GBP 
+  sellCurrency: 
+    type: string
+    description: The currency the funds are currently in
+    example: "EUR" 
+  fixedSide: 
+    type: string
+    description: The fixed side of the FX transfer
+    example: "SELL"
+  buyAmount: 
+    type: integer
+    format: int64 
+    description: Amount to buy (in buy currency)
+  sellAmount: 
+    type: integer
+    format: int64
+    description: Amount to sell (in sell currency)
   rate4d:
     type: integer
     format: int64
