@@ -1274,7 +1274,7 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/ApiErrorV2'
-  '/v2/fx/rate?sellCurrency={sellCurrency}&buyCurrency={buyCurrency}':
+  /v2/fx/rate?:
     get:
       summary: Get FX rates
       description: >-
@@ -1284,13 +1284,13 @@ paths:
         - FX
       operationId: getFXRates
       parameters:
-        - in: path
+        - in: query
           required: true
           name: sellCurrency
           schema:
             type: string
             description: The currency the money is currently in
-        - in: path
+        - in: query
           required: true
           name: buyCurrency
           schema:
