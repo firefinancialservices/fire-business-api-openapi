@@ -8,13 +8,13 @@ get:
   parameters:
     - in: path
       required: True
-      name: fromCurrency
+      name: sellCurrency
       schema:
         type: string
         description: The currency the money is currently in
     - in: path 
       required: True
-      name: toCurrency
+      name: buyCurrency
       schema:
         type: string
         description: The currency the money is being converted to
