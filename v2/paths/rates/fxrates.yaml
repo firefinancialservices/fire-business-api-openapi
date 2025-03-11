@@ -6,13 +6,13 @@ get:
     - FX 
   operationId: getFXRates
   parameters:
-    - in: path
+    - in: query
       required: True
       name: sellCurrency
       schema:
         type: string
         description: The currency the money is currently in
-    - in: path 
+    - in: query 
       required: True
       name: buyCurrency
       schema:
