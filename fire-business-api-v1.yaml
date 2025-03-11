@@ -881,7 +881,7 @@ paths:
             schema:
               $ref: '#/components/schemas/NewPaymentRequest'
       responses:
-        '200':
+        '201':
           description: Payment Request created successfully
           content:
             application/json:
@@ -934,11 +934,11 @@ paths:
                       $ref: '#/components/schemas/ApiError'
   '/v1/paymentrequests/{paymentRequestCode}':
     get:
-      summary: Get payment details
+      summary: Get payment request details
       description: >
         This endpoint will retrieve the details of an Open Banking Payment
-        requestYou will need to enable PERM_BUSINESS_GET_PAYMENT to use this
-        endpoint.
+        requestYou will need to enable PERM_BUSINESS_GET_PAYMENT_REQUEST to use
+        this endpoint.
       tags:
         - Open Banking
       operationId: getPaymentRequestDetails
@@ -1274,7 +1274,7 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/ApiErrorV2'
-  '/v2/rates/{fromCurrency}/{toCurrency}':
+  '/v2/fx/rate?sellCurrency={sellCurrency}&buyCurrency={buyCurrency}':
     get:
       summary: Get FX rates
       description: >-
@@ -1286,13 +1286,13 @@ paths:
       parameters:
         - in: path
           required: true
-          name: fromCurrency
+          name: sellCurrency
           schema:
             type: string
             description: The currency the money is currently in
         - in: path
           required: true
-          name: toCurrency
+          name: buyCurrency
           schema:
             type: string
             description: The currency the money is being converted to
@@ -1962,7 +1962,7 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/ApiError'
-  '/v1/user/{userId}':
+  '/v1/users/{userId}':
     get:
       summary: Get the details of a user
       description: >-
@@ -4308,7 +4308,7 @@ paths:
     put:
       summary: Submit a batch
       description: >
-        This endpoint allows you to suubmit a Batch (for approval in the case of
+        This endpoint allows you to submit a Batch (for approval in the case of
         a **BANK_TRANSFER** or **INTERNATIONAL_TRANSFER**). If this is an
         **INTERNAL_TRANSFER** batch, the transfers are immediately queued for
         processing. If this is a **BANK_TRANSFER** or **INTERNATIONAL_TRANSFER**
@@ -6603,7 +6603,7 @@ components:
             - AUTHORISED
             - AWAITING_MULTI_AUTHORISATION
             - NOT_AUTHORISED
-            - PAID
+            - SETTLED
             - REJECTED
             - ACCEPTED
             - RECEIVED
@@ -6719,184 +6719,93 @@ components:
       title: paymentRequest
       type: object
       properties:
-        paymentRequestCode:
+        code:
           type: string
-          description: The code that was returned when you created the payment request.
           example: 1234abcd
-          maxLength: 8
-          minLength: 8
-        paymentUuid:
-          type: string
-          description: A unique id for the transaction.
-          example: 4ADFB67A-0F5B-4A9A-9D74-34437250045C
-        transactionType:
-          type: string
-          enum:
-            - REFUND_REQUEST
-            - PAYMENT
-          description: The type of payment request payment
-        status:
-          type: string
-          enum:
-            - ACTIVE
-            - PAID
-            - REMOVED
-            - EXPIRED
-          description: The status of the transaction
-        currency:
-          type: string
-          enum:
-            - GBP
-            - EUR
+          description: The code of the payment request called
         type:
           type: string
-          enum:
-            - OTHER
-          description: The type of Fire Open Payment that was created
-        icanTo:
-          type: integer
-          format: int64
-          example: 42
-          description: >-
-            The ican of the account to collect the funds into. Must be one of
-            your fire.com Accounts.
+          example: OTHER
+          description: The type of Payment Request
+        direction:
+          type: string
+          example: SENT
+          description: The direction of the payment request
+        status:
+          type: string
+          example: ACTIVE
+          description: The status of the payment request
+        currency:
+          type: string
+          example: GBP
+          description: The currency the payment request was sent in
+        accountName:
+          type: string
+          example: Sterling Account
+          description: The account associated with the payment request
         amount:
           type: integer
           format: int64
+          description: The amount of funds associated with the payment request
           example: 1000
-          description: >-
-            The requested amount to pay. Note the last two digits represent
-            pennies/cents, (e.g., £1.00 = 100).
-        myRef:
-          type: string
-          example: Fees
-          description: An internal description of the request.
         description:
           type: string
-          example: Gym Fees Oct 2020
-          description: >-
-            A public facing description of the request. This will be shown to
-            the user when they tap or scan the request. Fire will truncate to 18
-            characters to ensure it is accepted by all banks. It is safest to
-            use only numbers, letters, spaces and a fullstop (.) Special
-            characters are not accepted by most banks and errors will only occur
-            after the customer has approved the payment.
-        maxNumberPayments:
-          type: integer
-          example: 1
-          description: >-
-            The max number of people who can pay this request. Must be set to 1
-            for the ECOMMERCE_GOODS and ECOMMERCE_SERVICES types.
-        expiry:
+          example: test
+          description: The description added to the payment request
+        myRef:
+          type: string
+          example: test
+          description: The reference added to the payment request
+        dateCreated:
           type: string
           format: date-time
-          example: '2024-10-22T07:48:56.460Z'
-          description: >-
-            This is the expiry of the payment request. After this time, the
-            payment cannot be paid.
-        returnUrl:
-          type: string
-          example: 'https://example.com/callback'
-          description: >-
-            The merchant return URL where the customer will be re-directed to
-            with the result of the transaction.
-        webhookUrl:
-          type: string
-          example: 'https://example.com/webhook'
-          description: >-
-            A URL to be called in the background with the details of the payment
-            after the payment is complete
+          example: '2019-08-22T07:48:56.460Z'
+          description: The date that the payment request was created
+        icanTo:
+          type: integer
+          format: int64
+          description: The ican associated with the payment request
+          example: 1234
         orderDetails:
-          title: orderDetails
           type: object
           properties:
-            merchantNumber:
-              type: string
-              example: '1234567'
-              description: Your Merchant Number (if applicable).
-            orderId:
-              type: string
-              example: 6c28a47d-4502-4111
-              description: >-
-                Use this field to store the order id for the transaction. The
-                Order Id cannot be set unless the `maxNumberPayments` is 1.
-            productId:
-              type: string
-              example: ZFDAA-1221
-              description: >-
-                Use this field to store a product id for the transaction (for
-                example).
-            customerNumber:
-              type: string
-              example: '123645'
-              description: >-
-                Use this field to store a customer number for the transaction
-                (for example).
-            variableReference:
-              type: string
-              example: John Doe
-              description: >-
-                Use this field to store any other reference for the transaction
-                (for example, a phone number).
-            comment1:
-              type: string
-              example: Additional comments about the transaction
-              description: This is your own comment for the transaction.
-            comment2:
-              type: string
-              example: Additional comments about the transaction
-              description: This is your own comment for the transaction.
-            merchantCustomerIdentification:
-              type: string
-              example: 08303863544
-              description: >-
-                This is a reference you use to uniquely identify each of your
-                customers.
-            deliveryAddressLine1:
-              type: string
-              example: 12 The Street
-              description: The first line of the delivery address.
-            deliveryAddressLine2:
-              type: string
-              example: The Way
-              description: The second line of the delivery address.
-            deliveryCity:
-              type: string
-              example: London
-              description: Delivery address city
-            deliveryPostCode:
-              type: string
-              example: EC15155
-              description: Delivery address post code
-            deliveryCountry:
-              type: string
-              example: GB
-              description: 2-digit code for the country
-        collectFields:
-          type: string
-          example: ADDRESS|REFERENCE|COMMENT1
-          description: >-
-            For the hosted option, the payer will be asked to fill in these
-            fields but they will not be mandatory. You can choose to collect any
-            of the payer's `ADDRESS`, `REFERENCE` and/or `COMMENT1`. If you
-            choose to collect these fields from the payer, you cannot set
-            'delivery’, 'variableReference’ or 'comment1’ fields respectively.
-        mandatoryFields:
-          type: string
-          example: ADDRESS|REFERENCE|COMMENT1
-          description: >-
-            For the hosted option, these fields will be madatory for the payer
-            to fill in on the hosted payment page. You can choose to collect any
-            the payer's `ADDRESS`, `REFERENCE` and/or `COMMENT1`. If you choose
-            to collect these fields from the payer, you cannot set 'delivery’,
-            'variableReference’ or 'comment1’ fields respectively.
-        additionalFields:
-          type: string
-          example: ORDER_ID|PRODUCT_ID|CUSTOMER_ID|CUSTOMER_NUMBER|COMMENT2
-          description: >-
-            These fields will be dispalyed to the payer when using the hosted
-            option. You can choose to display any of `ORDER_ID`, `PRODUCT_ID`,
-            `CUSTOMER_ID`, `CUSTOMER_NUMBER` and `COMMENT2` to the payer.
+            $ref: '#/components/schemas/OrderDetails'
+        countTimesViewedPaymentDetailsPage:
+          type: integer
+          format: int64
+          description: The count of the times the Payment Details page was viewed
+        countTimesViewedSelectBankPage:
+          type: integer
+          format: int64
+          description: The count of the times the Select Bank page was viewed
+        countTimesViewedConsentPage:
+          type: integer
+          format: int64
+          description: The count of the times the Consent page was viewed
+        countTimesViewedResponsePage:
+          type: integer
+          format: int64
+          description: The count of the times the Response page was viewed
+        countTimesConsented:
+          type: integer
+          format: int64
+          description: The count of the times the payment request was consented to
+        countTimesAuthorised:
+          type: integer
+          format: int64
+          description: The count of the times the payment request was authorised
+        totalAmountAuthorised:
+          type: integer
+          format: int64
+          description: The amount the payment request was authorised for
+        countTimesPaid:
+          type: integer
+          format: int64
+          description: The count of the times the payment request was paid
+        totalAmountPaid:
+          type: integer
+          format: int64
+          description: The total amount paid via the payment request
     Permission:
       title: apiAppPermission
       type: object
@@ -7659,14 +7568,30 @@ components:
       title: getFXRates
       type: object
       properties:
-        fromCurrency:
+        provider:
           type: string
-          description: The currency the funds are currently in
-          example: EUR
-        toCurrency:
+          description: The FX transfer provider
+          example: TCC
+        buyCurrency:
           type: string
           description: The currency the funds will be exchanged to
           example: GBP
+        sellCurrency:
+          type: string
+          description: The currency the funds are currently in
+          example: EUR
+        fixedSide:
+          type: string
+          description: The fixed side of the FX transfer
+          example: SELL
+        buyAmount:
+          type: integer
+          format: int64
+          description: Amount to buy (in buy currency)
+        sellAmount:
+          type: integer
+          format: int64
+          description: Amount to sell (in sell currency)
         rate4d:
           type: integer
           format: int64
