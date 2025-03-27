@@ -57,7 +57,7 @@ paths:
   /v2/paymentrequests/{paymentRequestCode}/public:
     $ref: ./v2/paths/paymentrequests/paymentrequest-public.yaml
 
-  /v2/fx/rate?:
+  /v2/fx/rate:
     $ref: ./v2/paths/rates/fxrates.yaml
 
   /v2/limits:

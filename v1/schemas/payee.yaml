@@ -46,6 +46,9 @@ properties:
     type: string
     description: The Account Number of the account if currency is GBP.
     example: "12345678"
+  combinedAccountNumbers:
+    type: string
+    description: "BIC and IBAN for domestic payees. Account numbers for international payees"
   createdBy:
     type: string
     enum:
