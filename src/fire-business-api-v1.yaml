@@ -30,13 +30,13 @@ paths:
   /v1/cards:
     $ref: ./v1/paths/cards/cards.yaml
 
-  /v1/cards/{cardId}/transactions:
+  /v1/me/cards/{cardId}/transactions:
     $ref: ./v1/paths/cards/card-transactions.yaml
 
-  /v1/cards/{cardId}/block:
+  /v1/me/cards/{cardId}/block:
     $ref: ./v1/paths/cards/card-block.yaml
 
-  /v1/cards/{cardId}/unblock:
+  /v1/me/cards/{cardId}/unblock:
     $ref: ./v1/paths/cards/card-unblock.yaml
     
   /v1/paymentrequests:
