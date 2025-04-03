@@ -28,7 +28,7 @@ get:
     '403':
       $ref: '../../responses/unauthorised-error.yaml'
 
-post:
+put:
   summary: Update direct debit mandate alias
   description: >
     This endpoint allows you to update Direct Debit Mandate Alias. You will need to enable PERM_BUSINESS_PUT_MANDATE to use this endpoint.
@@ -44,6 +44,13 @@ post:
         type: string
         description: The uuid of the mandate to update.
         example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+  requestBody:
+    required: true
+    description: Alias to update the mandate to
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Alias'
   responses:
     '204':
       description: 204 no content

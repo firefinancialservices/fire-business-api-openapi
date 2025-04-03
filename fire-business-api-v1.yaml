@@ -389,6 +389,8 @@ components:
       $ref: 'v1/schemas/batch-item-internaltransfer.yaml'
     BatchItemInternationalTransfer:
       $ref: 'v1/schemas/batch-item-internationaltransfer.yaml'
+    Alias: 
+      $ref: 'v1/schemas/alias.yaml'
     
 
 security:
