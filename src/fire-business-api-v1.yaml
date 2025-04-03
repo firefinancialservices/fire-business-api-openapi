@@ -18,7 +18,7 @@ paths:
   /v1/accounts:
     $ref: ./v1/paths/accounts/accounts.yaml
 
-  /v2/activites:
+  /v2/activities:
     $ref: ./v2/paths/activities/activities.yaml
     
   /v1/accounts/{ican}:
@@ -30,13 +30,13 @@ paths:
   /v1/cards:
     $ref: ./v1/paths/cards/cards.yaml
 
-  /v1/cards/{cardId}/transactions:
+  /v1/me/cards/{cardId}/transactions:
     $ref: ./v1/paths/cards/card-transactions.yaml
 
-  /v1/cards/{cardId}/block:
+  /v1/me/cards/{cardId}/block:
     $ref: ./v1/paths/cards/card-block.yaml
 
-  /v1/cards/{cardId}/unblock:
+  /v1/me/cards/{cardId}/unblock:
     $ref: ./v1/paths/cards/card-unblock.yaml
     
   /v1/paymentrequests:
@@ -389,6 +389,8 @@ components:
       $ref: 'v1/schemas/batch-item-internaltransfer.yaml'
     BatchItemInternationalTransfer:
       $ref: 'v1/schemas/batch-item-internationaltransfer.yaml'
+    Alias: 
+      $ref: 'v1/schemas/alias.yaml'
     
 
 security:
