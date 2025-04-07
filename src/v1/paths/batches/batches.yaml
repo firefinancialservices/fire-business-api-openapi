@@ -36,17 +36,6 @@ get:
   operationId: getBatches
   parameters:
     - in: query
-      name: batchStatus
-      schema:
-        type: string
-        enum:
-            - SUBMITTED
-            - REMOVED
-            - SUCCEEDED
-            - FAILED
-        description: The status of the batch if internal transfer.
-        example: SUBMITTED
-    - in: query
       name: batchTypes
       schema:
         type: string
