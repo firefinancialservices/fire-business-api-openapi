@@ -2048,15 +2048,13 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  title: apiApplications
-                  type: object
-                  properties:
-                    applications:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Application'
+                title: apiApplications
+                type: object
+                properties:
+                  applications:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Application'
         '400':
           description: >-
             An error has occured. Any 403 errors usually mean your access token
