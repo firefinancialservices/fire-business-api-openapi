@@ -1,7 +1,7 @@
 title: apiApplications
 type: object
 properties:
-  application:
+  applications:
     type: array
     items:
       $ref: '#/components/schemas/Application'
