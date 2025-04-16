@@ -49,9 +49,7 @@ properties:
     description: The ican associated with the payment request 
     example: 1234
   orderDetails: 
-    type: object 
-    properties: 
-      $ref: '#/components/schemas/OrderDetails'
+    $ref: '#/components/schemas/OrderDetails'
   countTimesViewedPaymentDetailsPage: 
     type: integer
     format: int64

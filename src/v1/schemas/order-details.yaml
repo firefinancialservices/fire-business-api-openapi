@@ -31,7 +31,7 @@ properties:
     description: This is your own comment for the transaction.
   merchantCustomerIdentification:
     type: string
-    example: "08303863544"
+    example: "CustNum-303863544"
     description: This is a reference you use to uniquely identify each of your customers.
   deliveryAddressLine1:
     type: string

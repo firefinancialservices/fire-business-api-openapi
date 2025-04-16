@@ -225,10 +225,10 @@ paths:
                       $ref: '#/components/schemas/ApiError'
   /v2/activities:
     get:
-      summary: Get account activity
+      summary: Get activity
       description: >-
-        This endpoint will retrieve the details of activity on your Fire
-        Account. You will need to enable PERM_BUSINESS_GET_ACTIVITIES to use
+        This endpoint will retrieve the details of all activity on your Fire
+        Accounts. You will need to enable PERM_BUSINESS_GET_ACTIVITIES to use
         this endpoint.
       tags:
         - Accounts
@@ -4654,8 +4654,8 @@ webhooks:
       description: >-
         Webhooks allow you to be notified of events as they happen on your Fire
         accounts. The below sample response shows how a webhook from Fire will
-        arrive at your server. See our 'API and webhooks' guide for more
-        detailed information.
+        arrive at your server. See our 'Webhooks' guide for more detailed
+        information.
       requestBody:
         required: true
         content:
@@ -6454,7 +6454,7 @@ components:
           description: This is your own comment for the transaction.
         merchantCustomerIdentification:
           type: string
-          example: 08303863544
+          example: CustNum-303863544
           description: >-
             This is a reference you use to uniquely identify each of your
             customers.
@@ -6758,9 +6758,7 @@ components:
           description: The ican associated with the payment request
           example: 1234
         orderDetails:
-          type: object
-          properties:
-            $ref: '#/components/schemas/OrderDetails'
+          $ref: '#/components/schemas/OrderDetails'
         countTimesViewedPaymentDetailsPage:
           type: integer
           format: int64
@@ -8232,27 +8230,33 @@ components:
           example: EUR
           description: The currency the batch job is executed in
         numberOfItemsSubmitted:
-          type: int64
+          type: integer
+          format: int64
           example: 1
           description: Number of payments in the batch
         valueOfItemsSubmitted:
-          type: int64
+          type: integer
+          format: int64
           example: 100
           description: Total value of the payments in the batch
         numberOfItemsFailed:
-          type: int64
+          type: integer
+          format: int64
           example: 1
           description: Number of payments in the batch that failed
         valueOfItemsFailed:
-          type: int64
+          type: integer
+          format: int64
           example: 100
           description: Total value of failed payments in the batch
         numberOfItemsSucceeded:
-          type: int64
+          type: integer
+          format: int64
           example: 0
           description: Number of payments in the batch that succeeded
         valueOfItemsSucceeded:
-          type: int64
+          type: integer
+          format: int64
           example: 0
           description: Total value of successful payments in the batch
         lastUpdated:
@@ -8423,7 +8427,8 @@ components:
           example: 2150
           description: The Fire account ID of the source account.
         payeeId:
-          type: int64
+          type: integer
+          format: int64
           example: 1234
           description: The ID of the payee
         amount:

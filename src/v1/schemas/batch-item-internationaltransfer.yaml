@@ -63,7 +63,8 @@ properties:
     example: 2150
     description: The Fire account ID of the source account.
   payeeId:
-    type: int64
+    type: integer
+    format: int64
     example: 1234
     description: The ID of the payee
   amount:
