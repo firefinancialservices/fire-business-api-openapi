@@ -59,6 +59,7 @@ properties:
         - REJECTED
         - ACCEPTED
         - RECEIVED
+        - FUNDS_CONFIRMED
   type:
     type: string
     description: The type of Fire Open Payment that was created

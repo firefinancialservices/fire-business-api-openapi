@@ -48,6 +48,7 @@ properties:
       - REJECTED
       - ACCEPTED
       - RECEIVED
+      - FUNDS_CONFIRMED
     description: The status of the transaction
   reason:
     type: string
