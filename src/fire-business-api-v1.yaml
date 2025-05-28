@@ -17,9 +17,19 @@ paths:
     
   /v1/accounts:
     $ref: ./v1/paths/accounts/accounts.yaml
+  
+  /v2/accounts: 
+    $ref: ./v2/paths/accounts/accountsV2.yaml 
+  
+  /v2/accounts/{ican}: 
+    $ref: ./v2/paths/accounts/accountV2.yaml
+  
+  /v2/accounts/{ican}/internationaldetails: 
+    $ref: ./v1/paths/accounts/internationaldetails.yaml
 
   /v2/activities:
     $ref: ./v2/paths/activities/activities.yaml
+
     
   /v1/accounts/{ican}:
     $ref: ./v1/paths/accounts/accounts-by-ican.yaml
@@ -391,6 +401,14 @@ components:
       $ref: 'v1/schemas/batch-item-internationaltransfer.yaml'
     Alias: 
       $ref: 'v1/schemas/alias.yaml'
+    LocalDetails: 
+      $ref: 'v2/schemas/localdetails.yaml'
+    InternationalDetails: 
+      $ref: 'v2/schemas/internationaldetails.yaml'
+    AccountDetails: 
+      $ref: 'v2/schemas/accountdetails.yaml'
+    AccountV2: 
+      $ref: 'v2/schemas/accountV2.yaml'
     
 
 security:

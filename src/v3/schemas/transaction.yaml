@@ -164,6 +164,11 @@ properties:
       * `CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL` - Debit Card ATM withdrawal (non EUR/GBP) (Reversed)
 
       * `CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL` - Debit Card ATM refund (non EUR/GBP) (Reversed)
+
+      * `SWIFT_INBOUND_NO_FX` - SWIFT Payment No FX 
+
+      * `SWIFT_INBOUND_FX` - SWIFT Payment with an FX conversion
+      
     example: WITHDRAWAL  
   dateAcknowledged:
     type: string

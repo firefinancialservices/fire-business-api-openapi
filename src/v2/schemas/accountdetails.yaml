@@ -1,0 +1,11 @@
+title: accountDetails
+type: object
+properties:
+  localDetails:
+    type: object
+    properties:
+      $ref: '#/components/schemas/LocalDetails'
+  internationalDetails: 
+    type: object
+    properties: 
+      $ref: '#/components/schemas/InternationalDetails'
