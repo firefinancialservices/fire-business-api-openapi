@@ -1,0 +1,24 @@
+put:
+  summary: Request international account details
+  description: This endpoint will request international account details to be added to your Fire account. You will need to enable PERM_BUSINESS_PUT_ACCOUNT_INTERNATIONALDETAILS to use this endpoint.
+  tags:
+      - Accounts
+  operationId: requestInternationalDetails
+  parameters:
+      - in: path
+        name: ican
+        schema:
+          type: integer
+          format: int64
+          description: The ican of the account to retrieve
+        required: true
+  responses:
+    '204':
+      description: No body is returned - “Status 204 No Content” signifies the call was successful. You will need to call 'Get details of an account' to view your international account details.
+    '400':
+        $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+        $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+        $ref: '../../responses/unauthorised-error.yaml'
+    

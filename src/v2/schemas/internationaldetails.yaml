@@ -1,0 +1,18 @@
+title: internationalDetails
+type: object
+properties:
+  status: 
+    type: string
+    description: The status associated with the request for international account details.
+    enum: 
+        - "NONE"
+        - "REQUESTED"
+        - "LIVE"
+  swiftCode: 
+    type: string
+    description: The SWIFT reachable BIC on the account (if it has international account details)
+    example: "TCCLGB2BXXX"
+  iban: 
+    type: string
+    description: The SWIFT reachable IBAN on the account (if it has international account details)
+    example: "GB12TCCL1234567887654321"

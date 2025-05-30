@@ -1,0 +1,19 @@
+title: localDetails
+type: object
+properties:
+  nsc:
+    type: string
+    description: "232221"
+    example: the Sort Code of the account
+  accountNumber:
+    type: string
+    description: the account number of the account 
+    example: "86449007"
+  bic:
+    type: string
+    description: the BIC of the account
+    example: "CPAYIE2D"
+  iban:
+    type: string
+    description: the IBAN of the account
+    example: "IE93CPAY99119986449007"
