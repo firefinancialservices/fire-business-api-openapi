@@ -57,7 +57,7 @@ paths:
   /v2/paymentrequests/{paymentRequestCode}/public:
     $ref: ./v2/paths/paymentrequests/paymentrequest-public.yaml
 
-  /v2/fx/rate?=null&:
+  /v2/fx/rate:
     $ref: ./v2/paths/rates/fxrates.yaml
 
   /v2/limits:
@@ -391,6 +391,8 @@ components:
       $ref: 'v1/schemas/batch-item-internationaltransfer.yaml'
     Alias: 
       $ref: 'v1/schemas/alias.yaml'
+    Status: 
+      $ref: 'v2/schemas/payment-request-status.yaml'
     
 
 security:
