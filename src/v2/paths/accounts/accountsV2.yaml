@@ -1,5 +1,5 @@
 get:
-  summary: List accounts
+  summary: List accounts (V2)
   description: This endpoint returns all the accounts on your Fire profile. Ordered by Alias ascending. Can be paginated. You will need to enable PERM_BUSINESS_GET_ACCOUNTS to use this endpoint.
   tags:
       - Accounts
