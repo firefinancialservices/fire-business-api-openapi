@@ -391,6 +391,8 @@ components:
       $ref: 'v1/schemas/batch-item-internationaltransfer.yaml'
     Alias: 
       $ref: 'v1/schemas/alias.yaml'
+    Status: 
+      $ref: 'v2/schemas/payment-request-status.yaml'
     
 
 security:
