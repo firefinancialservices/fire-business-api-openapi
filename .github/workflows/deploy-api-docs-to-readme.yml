@@ -14,8 +14,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '21.x'
-      - run: npm install -g json-refs
-      - run: json-refs resolve --yaml -f --filter relative ./src/fire-business-api-v1.yaml > ./fire-business-api-v1.yaml
+      # - run: npm install -g json-refs
+      # - run: json-refs resolve --yaml -f --filter relative ./src/fire-business-api-v1.yaml > ./fire-business-api-v1.yaml
       - uses: readmeio/rdme@9.0.0
         with:
           rdme: openapi ./fire-business-api-v1.yaml --key=${{ secrets.README_API_KEY }} --id=6711102bcdc272001b018e65
