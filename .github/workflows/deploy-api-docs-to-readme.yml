@@ -15,10 +15,10 @@ jobs:
         with:
           node-version: '21.x'
       - run: npm install -g json-refs
-      - run: json-refs resolve --yaml -f --filter relative ./src/fire-business-api-v1.yaml > ./fire-business-api-v1.yaml --version=v2.0
+      - run: json-refs resolve --yaml -f --filter relative ./src/fire-business-api-v1.yaml > ./fire-business-api-v1.yaml
       - uses: readmeio/rdme@9.0.0
         with:
-          rdme: openapi ./fire-business-api-v1.yaml --key=${{ secrets.README_API_KEY }} --id=6136360239a7a64894f1c269
+          rdme: openapi ./fire-business-api-v1.yaml --key=${{ secrets.README_API_KEY }} --id=6136360239a7a64894f1c269 --version=v2.0
 # 6136360239a7a64894f1c269 is the _id for the v1.0 version. Got this from the ReadMe https://dash.readme.com/project/fire-business-api/v1.0/reference
 
   sync-guide-docs-to-readme-prod:
