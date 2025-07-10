@@ -1,0 +1,19 @@
+get:
+  summary: List accounts
+  description: This endpoint returns all the accounts on your Fire profile. Ordered by Alias ascending. Can be paginated. You will need to enable PERM_BUSINESS_GET_ACCOUNTS to use this endpoint.
+  tags:
+      - Accounts
+  operationId: getAccountsV2
+  responses:
+    '200':
+      description: An array of account objects.
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/accountsv2.yaml'
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'

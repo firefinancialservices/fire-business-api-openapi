@@ -8,13 +8,10 @@ properties:
   status:
     type: string
     enum:
-    - PENDING_APPROVAL
-    - REJECTED
-    - COMPLETE
-    - OPEN
-    - CANCELLED
-    - PENDING_PARENT_BATCH_APPROVAL
-    - READY_FOR_PROCESSING
+    - Submitted
+    - Removed
+    - Suceeded
+    - Failed 
   result:
     type: object
     description: The outcome of the attempted transaction.

@@ -1,9 +1,9 @@
 get:
   summary: Get details of an account
-  description: This endpoint will return an array of information about the account. You can retrieve the details of a Fire  Account by its `ican`. You will need to enable PERM_BUSINESS_GET_ACCOUNT to use this endpoint.
+  description: This endpoint will return an array of information about the account. You can retrieve the details of a Fire  Account by its `ican`. You will need to enable PERM_BUSINESS_GET_ACCOUNT to use this endpoint. 
   tags:
       - Accounts
-  operationId: getAccountById
+  operationId: getAccountByIdV2
   parameters:
       - in: path
         name: ican
@@ -14,11 +14,11 @@ get:
         required: true
   responses:
     '200':
-      description: An account object.
+      description: An account information object.
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Account'
+            $ref: '#/components/schemas/AccountV2'
     '400':
         $ref: '../../responses/unauthorised-error.yaml'
     '401':
