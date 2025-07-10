@@ -1,6 +1,6 @@
 put:
   summary: Request international account details
-  description: This endpoint will request international account details to be added to your Fire account. You will need to enable PERM_BUSINESS_PUT_ACCOUNT_INTERNATIONALDETAILS to use this endpoint.
+  description: This endpoint will request international account details to be added to your Fire account. You will need to enable PERM_BUSINESS_PUT_ACCOUNT_INTERNATIONALDETAILS to use this endpoint. Please note this feature is currently in pilot testing, and therefore only available to certain customers. 
   tags:
       - Accounts
   operationId: requestInternationalDetails
