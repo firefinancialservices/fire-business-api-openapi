@@ -223,6 +223,286 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/ApiError'
+  /v2/accounts:
+    get:
+      summary: List accounts
+      description: >-
+        This endpoint returns all the accounts on your Fire profile. Ordered by
+        Alias ascending. Can be paginated. You will need to enable
+        PERM_BUSINESS_GET_ACCOUNTS to use this endpoint.
+      tags:
+        - Accounts
+      operationId: getAccountsV2
+      responses:
+        '200':
+          description: An array of account objects.
+          content:
+            application/json:
+              schema:
+                title: accountsV2
+                type: object
+                properties:
+                  activities:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AccountV2'
+        '400':
+          description: >-
+            An error has occured. Any 403 errors usually mean your access token
+            is invalid or missing. For other errors, check the validity of your
+            input, and if you are permitted to access this endpoint.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiErrorV2'
+        '401':
+          description: >-
+            An error has occured. Any 403 errors usually mean your access token
+            is invalid or missing. For other errors, check the validity of your
+            input, and if you are permitted to access this endpoint.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiErrorV2'
+        '403':
+          description: >-
+            An error has occured. Any 403 errors usually mean your access token
+            is invalid or missing. For other errors, check the validity of your
+            input, and if you are permitted to access this endpoint.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiErrorV2'
+  '/v2/accounts/{ican}':
+    get:
+      summary: Get details of an account
+      description: >-
+        This endpoint will return an array of information about the account. You
+        can retrieve the details of a Fire  Account by its `ican`. You will need
+        to enable PERM_BUSINESS_GET_ACCOUNT to use this endpoint.
+      tags:
+        - Accounts
+      operationId: getAccountByIdV2
+      parameters:
+        - in: path
+          name: ican
+          schema:
+            type: integer
+            format: int64
+            description: The ican of the account to retrieve
+          required: true
+      responses:
+        '200':
+          description: An account information object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountV2'
+        '400':
+          description: >-
+            An error has occured. Any 403 errors usually mean your access token
+            is invalid or missing. For other errors, check the validity of your
+            input, and if you are permitted to access this endpoint.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiErrorV2'
+        '401':
+          description: >-
+            An error has occured. Any 403 errors usually mean your access token
+            is invalid or missing. For other errors, check the validity of your
+            input, and if you are permitted to access this endpoint.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiErrorV2'
+        '403':
+          description: >-
+            An error has occured. Any 403 errors usually mean your access token
+            is invalid or missing. For other errors, check the validity of your
+            input, and if you are permitted to access this endpoint.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiErrorV2'
+    put:
+      summary: Update account configuration
+      description: >-
+        This endpoint changes the name associated with an account. You will need
+        to enable PERM_BUSINESS_PUT_ACCOUNT to use this endpoint.
+      tags:
+        - Accounts
+      operationId: updateAccountConfig
+      parameters:
+        - in: path
+          required: true
+          name: ican
+          schema:
+            type: string
+            description: The unique id for the account
+            example: '12345'
+      requestBody:
+        required: true
+        description: The name the account name should be changed to
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountConfiguration'
+      responses:
+        '204':
+          description: The account was updated.
+        '400':
+          description: >-
+            An error has occured. Any 403 errors usually mean your access token
+            is invalid or missing. For other errors, check the validity of your
+            input, and if you are permitted to access this endpoint.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiErrorV2'
+        '401':
+          description: >-
+            An error has occured. Any 403 errors usually mean your access token
+            is invalid or missing. For other errors, check the validity of your
+            input, and if you are permitted to access this endpoint.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiErrorV2'
+        '403':
+          description: >-
+            An error has occured. Any 403 errors usually mean your access token
+            is invalid or missing. For other errors, check the validity of your
+            input, and if you are permitted to access this endpoint.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiErrorV2'
+  '/v2/accounts/{ican}/internationaldetails':
+    put:
+      summary: Request international account details
+      description: >-
+        This endpoint will request international account details to be added to
+        your Fire account. You will need to enable
+        PERM_BUSINESS_PUT_ACCOUNT_INTERNATIONALDETAILS to use this endpoint.
+        Please note this feature is currently in pilot testing, and therefore
+        only available to certain customers.
+      tags:
+        - Accounts
+      operationId: requestInternationalDetails
+      parameters:
+        - in: path
+          name: ican
+          schema:
+            type: integer
+            format: int64
+            description: The ican of the account to retrieve
+          required: true
+      responses:
+        '204':
+          description: >-
+            No body is returned - “Status 204 No Content” signifies the call was
+            successful. You will need to call 'Get details of an account' to
+            view your international account details.
+        '400':
+          description: >-
+            An error has occured. Any 403 errors usually mean your access token
+            is invalid or missing. For other errors, check the validity of your
+            input, and if you are permitted to access this endpoint.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiError'
+        '401':
+          description: >-
+            An error has occured. Any 403 errors usually mean your access token
+            is invalid or missing. For other errors, check the validity of your
+            input, and if you are permitted to access this endpoint.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiError'
+        '403':
+          description: >-
+            An error has occured. Any 403 errors usually mean your access token
+            is invalid or missing. For other errors, check the validity of your
+            input, and if you are permitted to access this endpoint.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApiError'
   /v2/activities:
     get:
       summary: Get activity
@@ -311,7 +591,7 @@ paths:
           required: true
       responses:
         '200':
-          description: An array of account objects.
+          description: An account object.
           content:
             application/json:
               schema:
@@ -1364,78 +1644,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Limit'
-        '400':
-          description: >-
-            An error has occured. Any 403 errors usually mean your access token
-            is invalid or missing. For other errors, check the validity of your
-            input, and if you are permitted to access this endpoint.
-          content:
-            application/json:
-              schema:
-                title: apiErrors
-                type: object
-                properties:
-                  errors:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/ApiErrorV2'
-        '401':
-          description: >-
-            An error has occured. Any 403 errors usually mean your access token
-            is invalid or missing. For other errors, check the validity of your
-            input, and if you are permitted to access this endpoint.
-          content:
-            application/json:
-              schema:
-                title: apiErrors
-                type: object
-                properties:
-                  errors:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/ApiErrorV2'
-        '403':
-          description: >-
-            An error has occured. Any 403 errors usually mean your access token
-            is invalid or missing. For other errors, check the validity of your
-            input, and if you are permitted to access this endpoint.
-          content:
-            application/json:
-              schema:
-                title: apiErrors
-                type: object
-                properties:
-                  errors:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/ApiErrorV2'
-  '/v2/accounts/{ican}':
-    put:
-      summary: Update account configuration
-      description: >-
-        This endpoint changes the name associated with an account. You will need
-        to enable PERM_BUSINESS_PUT_ACCOUNT to use this endpoint.
-      tags:
-        - Accounts
-      operationId: updateAccountConfig
-      parameters:
-        - in: path
-          required: true
-          name: ican
-          schema:
-            type: string
-            description: The unique id for the account
-            example: '12345'
-      requestBody:
-        required: true
-        description: The name the account name should be changed to
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AccountConfiguration'
-      responses:
-        '204':
-          description: The account was updated.
         '400':
           description: >-
             An error has occured. Any 403 errors usually mean your access token
@@ -4597,6 +4805,13 @@ paths:
             type: string
             description: The code of the payment request to update
             example: xyzabcde
+      requestBody:
+        required: true
+        description: The status the payment request should be changed to
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Status'
       responses:
         '204':
           description: 204 no content
@@ -5162,13 +5377,10 @@ components:
         status:
           type: string
           enum:
-            - PENDING_APPROVAL
-            - REJECTED
-            - COMPLETE
-            - OPEN
-            - CANCELLED
-            - PENDING_PARENT_BATCH_APPROVAL
-            - READY_FOR_PROCESSING
+            - Submitted
+            - Removed
+            - Suceeded
+            - Failed
         result:
           type: object
           description: The outcome of the attempted transaction.
@@ -6598,6 +6810,7 @@ components:
             - REJECTED
             - ACCEPTED
             - RECEIVED
+            - FUNDS_CONFIRMED
           description: The status of the transaction
         reason:
           type: string
@@ -7802,6 +8015,7 @@ components:
             - REJECTED
             - ACCEPTED
             - RECEIVED
+            - FUNDS_CONFIRMED
         type:
           type: string
           description: The type of Fire Open Payment that was created
@@ -8456,6 +8670,124 @@ components:
           type: string
           description: The alias of the mandate
           example: Mandate1
+    LocalDetails:
+      title: localDetails
+      type: object
+      properties:
+        nsc:
+          type: string
+          description: '232221'
+          example: the Sort Code of the account
+        accountNumber:
+          type: string
+          description: the account number of the account
+          example: '86449007'
+        bic:
+          type: string
+          description: the BIC of the account
+          example: CPAYIE2D
+        iban:
+          type: string
+          description: the IBAN of the account
+          example: IE93CPAY99119986449007
+    InternationalDetails:
+      title: internationalDetails
+      type: object
+      properties:
+        status:
+          type: string
+          description: >-
+            The status associated with the request for international account
+            details.
+          enum:
+            - NONE
+            - REQUESTED
+            - LIVE
+        swiftCode:
+          type: string
+          description: >-
+            The SWIFT reachable BIC on the account (if it has international
+            account details)
+          example: TCCLGB2BXXX
+        iban:
+          type: string
+          description: >-
+            The SWIFT reachable IBAN on the account (if it has international
+            account details)
+          example: GB12TCCL1234567887654321
+    AccountDetails:
+      title: accountDetails
+      type: object
+      properties:
+        localDetails:
+          type: object
+          properties:
+            $ref: '#/components/schemas/LocalDetails'
+        internationalDetails:
+          type: object
+          properties:
+            $ref: '#/components/schemas/InternationalDetails'
+    AccountV2:
+      title: accountV2
+      type: object
+      properties:
+        ican:
+          type: integer
+          format: int64
+          description: identifier for the fire.com account (assigned by fire.com)
+          example: 42
+        name:
+          type: string
+          description: the name the user gives to the account to help them identify it.
+          example: Main Account
+        currency:
+          type: string
+          description: The currency of the account
+          example: EUR
+        balance:
+          type: integer
+          format: int64
+          description: >-
+            the balance of the account (in minor currency units - pence, cent
+            etc. 434050 == 4,340.50 GBP for a GBP account).
+          example: 23950
+        status:
+          type: string
+          enum:
+            - LIVE
+            - BREXIT_MIGRATED
+          description: >-
+            Live accounts can be used as normal. Migrated accounts were used
+            before Brexit and are read-only.
+        accountDetails:
+          type: object
+          properties:
+            $ref: '#/components/schemas/AccountDetails'
+        defaultAccount:
+          type: boolean
+          example: true
+          description: >-
+            true if this is the default account for this currency. This will be
+            the account that general fees are taken from (as opposed to
+            per-transaction fees).
+        directDebitsAllowed:
+          type: boolean
+          example: false
+          description: Whether or not direct debits can be set up on this account.
+        fopOnly:
+          type: boolean
+          example: false
+          description: >-
+            Indicates that this account is for collecting Fire Open Payments
+            only. All other payments to this account will be returned.
+    Status:
+      title: paymentRequestReport
+      type: object
+      properties:
+        status:
+          type: string
+          description: The status to update the payment request to
+          example: ACTIVE
 security:
   - bearerAuth: []
 tags:
