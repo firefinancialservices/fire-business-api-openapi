@@ -13,6 +13,14 @@ put:
         type: string
         description: The code of the payment request to update
         example: "xyzabcde"
+  requestBody:
+    required: true
+    description: The status the payment request should be changed to
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Status'
+
   responses:
     '204':
       description: 204 no content
