@@ -2,3 +2,4 @@
 - getdirectdebitbyuuid
 - rejectdirectdebit
 - getdirectdebitmandates
+- getmandate
