@@ -29,24 +29,9 @@ SWIFT payments can be requested by navigating to your Fire home screen, and sele
 
 **design mockup, to be replaced**
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/0a8c944f55a894ebf4a7d875ce07836f51606c4ce93f5655baf3fcafb3d5d429-image.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "sizing": "75% "
-    }
-  ]
-}
-[/block]
+<Image align="center" width="75% " src="https://files.readme.io/0a8c944f55a894ebf4a7d875ce07836f51606c4ce93f5655baf3fcafb3d5d429-image.png" />
 
-
-Your SWIFT account information will be displayed alongside your existing BIC and IBAN (for a Euro account)/Sort Code and Account number (for a GBP account). Please note they will be a _separate_ BIC and IBAN to your existing Fire account details. 
+Your SWIFT account information will be displayed alongside your existing BIC and IBAN (for a Euro account)/Sort Code and Account number (for a GBP account). Please note they will be a *separate* BIC and IBAN to your existing Fire account details. 
 
 <br />
 
