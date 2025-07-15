@@ -17,12 +17,27 @@ next:
 
 <br />
 
-[block:html]
-{
-  "html": "<div style=\"display: flex;\">\n  <div style=\"flex: 1; height: 280px; align-items: center; justify-content: center;\">\n    <div><img src=\"https://www.fire.com/_next/image/?url=https%3A%2F%2Fsiteapi.fire.com%2Fwp-content%2Fuploads%2F2024%2F06%2Fpayments-use-case-3.png&w=1920&q=75\" width=\"260\"></div>\n    <div style=\"padding: 12px 32px\"><a href=\"https://docs.fire.com/docs/payments-accounts#accounts-and-transactions\" style=\"color: #2C4185; text-decoration: none; font-weight: bold;\">Open multiple accounts</a></div>\n    <div style=\"padding: 0px 32px; width: 250px;\">Open additional subaccounts with unique account details in real time, based on events like customer or employee onboarding.</div>\n  </div>\n\n  <div style=\"flex: 1; height: 280px; align-items: center; justify-content: center;\">\n    <div><img src=\"https://www.fire.com/_next/image/?url=https%3A%2F%2Fsiteapi.fire.com%2Fwp-content%2Fuploads%2F2024%2F06%2Fpayments-use-case-2.png&w=1920&q=75\" width=\"260\"></div>\n    <div style=\"padding: 12px 32px\"><a href=\"https://docs.fire.com/docs/payments-accounts#payees\" style=\"color: #2C4185; text-decoration: none; font-weight: bold;\">Manage payees</a></div>\n    <div style=\"padding: 0px 32px; width: 250px;\">Fire ensures swift reconciliation to identify payees and automate payouts, thus avoiding manual errors.</div>\n  </div>\n\n  <div style=\"flex: 1; height: 280px; align-items: center; justify-content: center;\">\n    <div><img src=\"https://www.fire.com/_next/image/?url=https%3A%2F%2Fsiteapi.fire.com%2Fwp-content%2Fuploads%2F2024%2F06%2FDebit-use-case-1.png&w=1920&q=75\" width=\"260\"></div>\n    <div style=\"padding: 12px 32px\"><a href=\"https://docs.fire.com/docs/payments-accounts#direct-debits\" style=\"color: #2C4185; text-decoration: none; font-weight: bold;\">Control direct debits</a></div>\n    <div style=\"padding: 0px 32px; width: 250px;\">Reduce reconciliation processing times, and manual tasks. Fire helps you to automate payouts based on your own business logic</div>\n  </div>\n</div>"
-}
-[/block]
+<HTMLBlock>{`
+<div style="display: flex;">
+  <div style="flex: 1; height: 280px; align-items: center; justify-content: center;">
+    <div><img src="https://www.fire.com/_next/image/?url=https%3A%2F%2Fsiteapi.fire.com%2Fwp-content%2Fuploads%2F2024%2F06%2Fpayments-use-case-3.png&w=1920&q=75" width="260"></div>
+    <div style="padding: 12px 32px"><a href="https://docs.fire.com/docs/payments-accounts#accounts-and-transactions" style="color: #2C4185; text-decoration: none; font-weight: bold;">Open multiple accounts</a></div>
+    <div style="padding: 0px 32px; width: 250px;">Open additional subaccounts with unique account details in real time, based on events like customer or employee onboarding.</div>
+  </div>
 
+  <div style="flex: 1; height: 280px; align-items: center; justify-content: center;">
+    <div><img src="https://www.fire.com/_next/image/?url=https%3A%2F%2Fsiteapi.fire.com%2Fwp-content%2Fuploads%2F2024%2F06%2Fpayments-use-case-2.png&w=1920&q=75" width="260"></div>
+    <div style="padding: 12px 32px"><a href="https://docs.fire.com/docs/payments-accounts#payees" style="color: #2C4185; text-decoration: none; font-weight: bold;">Manage payees</a></div>
+    <div style="padding: 0px 32px; width: 250px;">Fire ensures swift reconciliation to identify payees and automate payouts, thus avoiding manual errors.</div>
+  </div>
+
+  <div style="flex: 1; height: 280px; align-items: center; justify-content: center;">
+    <div><img src="https://www.fire.com/_next/image/?url=https%3A%2F%2Fsiteapi.fire.com%2Fwp-content%2Fuploads%2F2024%2F06%2FDebit-use-case-1.png&w=1920&q=75" width="260"></div>
+    <div style="padding: 12px 32px"><a href="https://docs.fire.com/docs/payments-accounts#direct-debits" style="color: #2C4185; text-decoration: none; font-weight: bold;">Control direct debits</a></div>
+    <div style="padding: 0px 32px; width: 250px;">Reduce reconciliation processing times, and manual tasks. Fire helps you to automate payouts based on your own business logic</div>
+  </div>
+</div>
+`}</HTMLBlock>
 
 <br />
 
@@ -48,28 +63,18 @@ If you want to practice using the Fire Payments API endpoints listed below, Fire
 
 Use our API to edit your accounts and user details. These are accessed and controlled by your account ` ican` or `userId`. To retrieve this number, call the 'Get Details of an Account' first, and use the returned array to pull the information. 
 
-- [Get details of an account](https://docs.fire.com/reference/getaccountbyid)
-- [List accounts](https://docs.fire.com/reference/getaccounts)
-- [Get account activity](https://docs.fire.com/reference/getactivities)
-- [Create a new Fire account](https://docs.fire.com/reference/addaccount)
-- [Update account configuration](https://docs.fire.com/reference/updateaccountconfig)
-- [List transactions on an account](https://docs.fire.com/reference/gettransactionsbyaccountidv3)
+* [Get details of an account](https://docs.fire.com/reference/getaccountbyid)
+* [List accounts](https://docs.fire.com/reference/getaccounts)
+* [Get account activity](https://docs.fire.com/reference/getactivities)
+* [Create a new Fire account](https://docs.fire.com/reference/addaccount)
+* [Update account configuration](https://docs.fire.com/reference/updateaccountconfig)
+* [List transactions on an account](https://docs.fire.com/reference/gettransactionsbyaccountidv3)
 
 <br />
 
-_See how to write a script to use these endpoints here_
+*See how to write a script to use these endpoints here*
 
-[block:tutorial-tile]
-{
-  "backgroundColor": "#2c4185",
-  "emoji": "🌐",
-  "id": "67ed4e2e880bdb0061748c8e",
-  "link": "https://docs.fire.com/v2.0/recipes/list-accounts-and-balances-1",
-  "slug": "list-accounts-and-balances-1",
-  "title": "List Accounts and Balances"
-}
-[/block]
-
+<TutorialTile backgroundColor="#2c4185" emoji="🌐" id="67ed4e2e880bdb0061748c8e" link="https://docs.fire.com/v2.0/recipes/list-accounts-and-balances-1" slug="list-accounts-and-balances-1" title="List Accounts and Balances" />
 
 <br />
 
@@ -79,25 +84,15 @@ _See how to write a script to use these endpoints here_
 
 Use our API to retrieve payee details on your account. Payee information is retrieved using the  `payeeId` attribute. This can be found first by calling 'List Payee Accounts'.
 
-- [Get details of a payee account](https://docs.fire.com/reference/getpayeeaccountinfo)
-- [List transaction to a payee account](https://docs.fire.com/reference/getpayeetransactioninfo)
-- [List payee accounts](https://docs.fire.com/reference/getpayees)
+* [Get details of a payee account](https://docs.fire.com/reference/getpayeeaccountinfo)
+* [List transaction to a payee account](https://docs.fire.com/reference/getpayeetransactioninfo)
+* [List payee accounts](https://docs.fire.com/reference/getpayees)
 
 <br />
 
-_See how to write a script to use these endpoints here_
+*See how to write a script to use these endpoints here*
 
-[block:tutorial-tile]
-{
-  "backgroundColor": "#2c4185",
-  "emoji": "🗯️",
-  "id": "67f6378275eabc0052ced1a6",
-  "link": "https://docs.fire.com/v2.0/recipes/list-payee-transactions",
-  "slug": "list-payee-transactions",
-  "title": "List Payee Transactions"
-}
-[/block]
-
+<TutorialTile backgroundColor="#2c4185" emoji="🗯️" id="67f6378275eabc0052ced1a6" link="https://docs.fire.com/v2.0/recipes/list-payee-transactions" slug="list-payee-transactions" title="List Payee Transactions" />
 
 <br />
 
@@ -109,30 +104,20 @@ _See how to write a script to use these endpoints here_
 
 Use our API to set up and manage direct debits on your account. Specific direct debits are identified by '`directDebitUuid'`, which you can find by calling 'List all Direct Debits' first.
 
-- [List all direct debits](https://docs.fire.com/reference/getdirectdebitmandates)
-- [Get the details of a direct debit](https://docs.fire.com/reference/getdirectdebitbyuuid)
-- [Get the details of a direct debit mandate](https://docs.fire.com/reference/getmandate)
-- [List all direct debit mandates](https://docs.fire.com/reference/getdirectdebitmandates)
-- [Reject a direct debit](https://docs.fire.com/reference/rejectdirectdebit)
-- [Activate a direct debit mandate](https://docs.fire.com/reference/activatemandate)
-- [Cancel a direct debit mandate](https://docs.fire.com/reference/cancelmandatebyuuid)
-- [Update direct debit mandate alias](https://docs.fire.com/reference/updatemandatealias)
+* [List all direct debits](https://docs.fire.com/reference/getdirectdebitmandates)
+* [Get the details of a direct debit](https://docs.fire.com/reference/getdirectdebitbyuuid)
+* [Get the details of a direct debit mandate](https://docs.fire.com/reference/getmandate)
+* [List all direct debit mandates](https://docs.fire.com/reference/getdirectdebitmandates)
+* [Reject a direct debit](https://docs.fire.com/reference/rejectdirectdebit)
+* [Activate a direct debit mandate](https://docs.fire.com/reference/activatemandate)
+* [Cancel a direct debit mandate](https://docs.fire.com/reference/cancelmandatebyuuid)
+* [Update direct debit mandate alias](https://docs.fire.com/reference/updatemandatealias)
 
 <br />
 
-_See how to write a script to use these endpoints here_
+*See how to write a script to use these endpoints here*
 
-[block:tutorial-tile]
-{
-  "backgroundColor": "#2c4185",
-  "emoji": "💻",
-  "id": "67f638fffb12a00010006437",
-  "link": "https://docs.fire.com/v2.0/recipes/list-all-payments-associated-with-a-direct-debit",
-  "slug": "list-all-payments-associated-with-a-direct-debit",
-  "title": "List all payments associated with a Direct Debit"
-}
-[/block]
-
+<TutorialTile backgroundColor="#2c4185" emoji="💻" id="67f638fffb12a00010006437" link="https://docs.fire.com/v2.0/recipes/list-all-payments-associated-with-a-direct-debit" slug="list-all-payments-associated-with-a-direct-debit" title="List all payments associated with a Direct Debit" />
 
 <br />
 
@@ -146,29 +131,19 @@ _See how to write a script to use these endpoints here_
 
 Use our API to get information on your users and account settings.
 
-- [Get the details of a user](https://docs.fire.com/reference/getuser)
-- [Get the address of a user](https://docs.fire.com/reference/getuseraddress)
-- [List all users](https://docs.fire.com/reference/getusers)
-- [List all limits](https://docs.fire.com/reference/getlimits-1)
-- [Get service fees and info](https://docs.fire.com/reference/getservicefees)
+* [Get the details of a user](https://docs.fire.com/reference/getuser)
+* [Get the address of a user](https://docs.fire.com/reference/getuseraddress)
+* [List all users](https://docs.fire.com/reference/getusers)
+* [List all limits](https://docs.fire.com/reference/getlimits-1)
+* [Get service fees and info](https://docs.fire.com/reference/getservicefees)
 
 <br />
 
 <br />
 
-_See how to write a script to use these endpoints here_
+*See how to write a script to use these endpoints here*
 
-[block:tutorial-tile]
-{
-  "backgroundColor": "#2c4185",
-  "emoji": "🤸‍♂️",
-  "id": "67f63b534e85c6002a879f03",
-  "link": "https://docs.fire.com/v2.0/recipes/list-all-users",
-  "slug": "list-all-users",
-  "title": "List all users"
-}
-[/block]
-
+<TutorialTile backgroundColor="#2c4185" emoji="🤸‍♂️" id="67f63b534e85c6002a879f03" link="https://docs.fire.com/v2.0/recipes/list-all-users" slug="list-all-users" title="List all users" />
 
 <br />
 
