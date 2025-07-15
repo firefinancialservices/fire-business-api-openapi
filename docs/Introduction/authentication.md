@@ -20,10 +20,10 @@ With your API application information, you now use these pieces of data to retri
 
 In order to create an Access Token, you require:
 
-- **Client ID** – The app’s Client ID.
-- **Refresh Token** – The app’s Refresh Token.
-- **Nonce** – A random non-repeating number (that is incremented from the previously used value) used as a salt for the clientSecret below. The simplest nonce is a unix time.
-- **Client Secret** – A Client Secret is a SHA256 sum of the nonce concatenated with the Client Key.
+* **Client ID** – The app’s Client ID.
+* **Refresh Token** – The app’s Refresh Token.
+* **Nonce** – A random non-repeating number (that is incremented from the previously used value) used as a salt for the clientSecret below. The simplest nonce is a unix time.
+* **Client Secret** – A Client Secret is a SHA256 sum of the nonce concatenated with the Client Key.
 
 It will be possible to create a SHA256 hash using your coding language of choice. For testing, you can the following shell command:
 
