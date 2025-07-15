@@ -11,3 +11,4 @@
 - deletebanktransferbatchpayment
 - deleteinternationaltransferbatchpayment-1
 - cancelbatchpayment
+- getdetailssinglebatch
