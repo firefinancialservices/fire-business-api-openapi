@@ -14,8 +14,4 @@ This guide will walk you through the process of setting up a development environ
 
 Before you start you should have created an API Token in the Business Web Portal as described in [Authentication](/authentication). This will provide the Client ID, Client Key and Refresh Token needed in the code. 
 
-[block:tutorial-tile]
-{
-  "emoji": "🦉"
-}
-[/block]
+<TutorialTile emoji="🦉" />
