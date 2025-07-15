@@ -1,3 +1,4 @@
 - createbatchpayment
 - getnewpayeebatch
 - getbatches
+- addinternaltransferbatchpayment
