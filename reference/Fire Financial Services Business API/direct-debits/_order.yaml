@@ -4,3 +4,4 @@
 - getdirectdebitmandates
 - getmandate
 - updatemandatealias
+- cancelmandatebyuuid
