@@ -12,3 +12,4 @@
 - deleteinternationaltransferbatchpayment-1
 - cancelbatchpayment
 - getdetailssinglebatch
+- submitbatch
