@@ -3,3 +3,4 @@
 - getwebhookevents
 - getapiapplications
 - getpermissions
+- getallpermissions
