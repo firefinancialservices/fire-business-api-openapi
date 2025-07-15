@@ -17,7 +17,7 @@ next:
 
 ## Setting up and testing your webhooks
 
-> _A webhook is a URL that you set up on your backend. We can then send the details of various events to you at this URL as they happen. You can have as many webhooks as you like and can configure each one to watch out for different events on your Fire account._
+> *A webhook is a URL that you set up on your backend. We can then send the details of various events to you at this URL as they happen. You can have as many webhooks as you like and can configure each one to watch out for different events on your Fire account.*
 
 <br />
 
@@ -25,84 +25,24 @@ next:
 
 <br />
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/5a840e984cc760ab658f89f51a363d106298f50db8e77cf6a95ad0168e06edc2-image.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/5a840e984cc760ab658f89f51a363d106298f50db8e77cf6a95ad0168e06edc2-image.png" />
 
 <br />
 
 2. Use a website like [webhook.site](https://webhook.site/) to test your webhooks, by setting a webhook up with the URL they provide.
 3. Select 'Test' on where your webhooks are listed in the web application.
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/87a5278bdd7998c2face11e9fb285dc2d6b907643f6d626d1eb1f4c92f24c016-image.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/87a5278bdd7998c2face11e9fb285dc2d6b907643f6d626d1eb1f4c92f24c016-image.png" />
 
 4. You will see the response on  [webhook.site](https://webhook.site/)
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/4462049db314e7aea853350fa529756cb93ded5893ade73c23b64765cfca1509-image.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/4462049db314e7aea853350fa529756cb93ded5893ade73c23b64765cfca1509-image.png" />
 
 <br />
 
 5. Decode it on a site like [jwt.io](jwt.io)
 
-[block:image]
-{
-  "images": [
-    {
-      "image": [
-        "https://files.readme.io/72098e5d83a862f99fe08591818332b689495c0e58e9e719db40782929aa6221-image.png",
-        null,
-        ""
-      ],
-      "align": "center",
-      "border": true
-    }
-  ]
-}
-[/block]
-
+<Image align="center" className="border" border={true} src="https://files.readme.io/72098e5d83a862f99fe08591818332b689495c0e58e9e719db40782929aa6221-image.png" />
 
 <br />
 
@@ -144,14 +84,14 @@ Again, you can see this in action on [webhook.site](webhook), before you actuall
 
 Fire offers webhook notifications for the following event types:
 
-- Account Created
-- Card Created
-- Card Authorisation
-- Card Settlement
-- Lodgment Received
-- Payment Request Payment Received
-- Fire Open Payment Authorised
-- Fire Open Payment Lodgment Received
+* Account Created
+* Card Created
+* Card Authorisation
+* Card Settlement
+* Lodgment Received
+* Payment Request Payment Received
+* Fire Open Payment Authorised
+* Fire Open Payment Lodgment Received
 
 <br />
 
@@ -161,28 +101,18 @@ For real-time information if you are using an authorisation endpoint, use our AP
 
 Using the Fire Payments API, you can now call various endpoints to send a test webhook, list webhook tokens and list all webhooks you have created. You can also view your created API applications, their permissions, and update them as needed.
 
-- [Create an API application](https://docs.fire.com/reference/createapiapplication)
-- [List all API applications](https://docs.fire.com/reference/getapiapplications-1)
-- [List all permissions for an API application](https://docs.fire.com/reference/getpermissions-1)
-- [List all permissions for API applications](https://docs.fire.com/reference/getallpermissions-1)
-- [Send test webhooks](https://docs.fire.com/reference/sendtestwebhook-1)
-- [List all webhooks](https://docs.fire.com/reference/getwebhookevents)
+* [Create an API application](https://docs.fire.com/reference/createapiapplication)
+* [List all API applications](https://docs.fire.com/reference/getapiapplications-1)
+* [List all permissions for an API application](https://docs.fire.com/reference/getpermissions-1)
+* [List all permissions for API applications](https://docs.fire.com/reference/getallpermissions-1)
+* [Send test webhooks](https://docs.fire.com/reference/sendtestwebhook-1)
+* [List all webhooks](https://docs.fire.com/reference/getwebhookevents)
 
 <br />
 
-_See how to write a script to use these endpoints here_
+*See how to write a script to use these endpoints here*
 
-[block:tutorial-tile]
-{
-  "backgroundColor": "#2c4185",
-  "emoji": "🗺️",
-  "id": "67f65477b8a44600390f07a3",
-  "link": "https://docs.fire.com/v2.0/recipes/create-a-new-api-application",
-  "slug": "create-a-new-api-application",
-  "title": "Create a new API application"
-}
-[/block]
-
+<TutorialTile backgroundColor="#2c4185" emoji="🗺️" id="67f65477b8a44600390f07a3" link="https://docs.fire.com/v2.0/recipes/create-a-new-api-application" slug="create-a-new-api-application" title="Create a new API application" />
 
 <br />
 
