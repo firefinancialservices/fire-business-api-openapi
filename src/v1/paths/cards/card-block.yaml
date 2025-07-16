@@ -1,0 +1,23 @@
+post:
+  summary: Block a Fire debit card
+  description: This endpoint allows you to block a card on your Fire account. This updates the status of an existing card to block which prevents any transactions being carried out with that card. You will need to enable PERM_BUSINESS_POST_MY_CARD_BLOCK to use this endpoint.
+  tags:
+    - Debit Cards
+  operationId: blockCard
+  parameters:
+    - in: path
+      name: cardId
+      schema:
+        type: integer
+        format: int64
+        description: The cardid of the card to block
+      required: true
+  responses:
+    '204':
+      description: No body is returned - “Status 204 No Content” signifies the call was successful.
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'

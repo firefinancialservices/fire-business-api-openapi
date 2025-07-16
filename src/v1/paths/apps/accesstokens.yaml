@@ -1,0 +1,27 @@
+post:
+  summary: Authenticate with the API.
+  description: This endpoint is needed to generate your access token. Access to the API is by Bearer Access Tokens. These are valid for 15 minutes. You can have multiple Access Tokens active at the same time if needed. See the [Guide to Authentication](/docs/authentication) for full details. 
+  tags:
+    - Authentication
+  operationId: authenticate
+  security: []
+  requestBody:
+    required: true
+    description: Authentication data
+    content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AuthenticationData'
+  responses:
+    '201':
+      description: Access token created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AccessToken'
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'

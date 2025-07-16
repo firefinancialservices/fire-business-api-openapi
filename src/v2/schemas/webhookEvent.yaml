@@ -1,0 +1,10 @@
+title: webhookEvent
+type: object
+properties:
+  webhook: 
+    $ref: '#/components/schemas/Webhook'
+  events:
+    $ref: '#/components/schemas/Events'
+
+
+    

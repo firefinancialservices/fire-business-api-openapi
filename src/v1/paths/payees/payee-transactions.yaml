@@ -1,0 +1,29 @@
+get:
+  summary: List transaction for a payee account
+  description: >
+    This endpoint retrieves the list of transactions and transaction information associated with a payee. You will need to enable PERM_BUSINESS_GET_FUNDING_SOURCE_TRANSACTIONS to use this endpoint.
+  tags:
+    - Payees
+  operationId: getPayeeTransactions
+  parameters:
+  - in: path
+    required: true
+    name: payeeId
+    schema:
+      type: integer
+      format: int64
+      description: The unique ID of the payee.
+      example: 346748
+  responses:
+    '200':
+      description: An array of payee transaction information
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/transactions.yaml
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'

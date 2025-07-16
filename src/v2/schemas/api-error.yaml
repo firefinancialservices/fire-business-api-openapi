@@ -1,0 +1,12 @@
+title: apiError
+type: object
+properties:
+  code:
+    type: integer
+    format: int64
+    description: Error Code
+    example: 50051
+  message:
+    type: string
+    description: The error message
+    example: Sorry, we are unable to proceed with your request.

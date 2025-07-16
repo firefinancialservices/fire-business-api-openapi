@@ -1,0 +1,7 @@
+title: relatedParty
+description: Details of the related third party involved in the transaction. 
+oneOf:
+  - $ref: "./related-party-fire-account.yaml"
+  - $ref: "./related-party-external-account.yaml"  
+  - $ref: "./related-party-payee.yaml"  
+  - $ref: "./related-party-card-payment.yaml" 

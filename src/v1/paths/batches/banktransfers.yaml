@@ -1,0 +1,89 @@
+post:
+  summary: Add a bank transfer to a batch. 
+  description: > 
+    This endpoint will add a new bank transfer payment to a batch. There are two ways to process bank transfers - by Payee ID (**Mode 1**) or by Payee Account Details (**Mode 2**).
+
+
+    **Mode 1:** Use the payee IDs of existing approved payees set up against your account. These batches can be approved in the normal manner.
+
+
+    **Mode 2:** Use the account details of the payee. In the event that these details correspond to an existing approved payee, the batch can be approved as normal. If the account details are new, a batch of New Payees will automatically be created. This batch will need to be approved before the Payment batch can be approved. These payees will then exist as approved payees for future batches.
+
+    You will need to enable PERM_BUSINESS_POST_BATCH_BANKTRANSFERS to use this endpoint.
+  tags:
+    - Batch Payments
+  operationId: addBankTransferBatchPayment 
+  parameters:
+    - in: path
+      required: true
+      name: batchUuid
+      schema:
+        type: string
+        description: The uuid of the batch.
+        example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+  requestBody:
+    required: true
+    description: Details of **Mode 1** & **Mode 2**. 
+    content:
+      application/json:
+        schema:
+          oneOf:
+            - $ref: '#/components/schemas/BatchItemBankTransferMode1'
+            - $ref: '#/components/schemas/BatchItemBankTransferMode2'
+  responses:
+    '200':
+      description: Batch payment added successfully. **Note*** Please use batchUuid when submitting a batch, not batchItemUuid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NewBatchItemResponse'
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'
+
+
+
+get:
+  summary: List items for a bank transfer batch
+  description: This endpoint returns a paginated list of items in the specified batch. You will need to enable PERM_BUSINESS_GET_BATCH_BANKTRANSFERS to use this endpoint.
+  tags:
+    - Batch Payments
+  operationId: getItemsBatchBankTransfer
+  parameters:
+    - in: path
+      required: true
+      name: batchUuid
+      schema:
+        type: string
+        description: The uuid of the batch.
+        example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+    - in: query
+      name: offset
+      schema:
+        type: integer
+        format: int64
+        description: The page offset. Defaults to 0. This is the record number that the returned list will start at. E.g. offset = 40 and limit = 20 will return records 40 to 59.
+        example: "0"  
+    - in: query
+      name: limit
+      schema:
+        type: integer
+        format: int64
+        description: The number of records to return. Defaults to 10 - max is 200.
+        example: "10"          
+  responses:
+    '200':
+      description: A fire.com list object of Batch Items (Internal transfers or Bank transfers).
+      content:
+        application/json:
+          schema:
+              $ref: ../../schemas/batch-items-banktransfer.yaml
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'

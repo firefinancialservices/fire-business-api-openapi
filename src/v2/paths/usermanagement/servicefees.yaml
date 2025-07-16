@@ -1,0 +1,22 @@
+get:
+  summary: Get service Fees and info
+  description: This endpoint returns an array of the services and fees associated with them. You will need to enable PERM_BUSINESS_GET_SERVICES to use this endpoint.
+  tags:
+   - Profile Management
+  operationId: getServiceFees
+  responses:
+    '200':
+          description: An object of services information
+          content:
+            application/json:
+              schema:
+                $ref: '../../schemas/businessServices-array.yaml'
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'
+
+
+

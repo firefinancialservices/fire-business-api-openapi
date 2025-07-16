@@ -1,0 +1,96 @@
+title: paymentRequest
+type: object
+properties:
+  code:
+    type: string
+    example: "1234abcd"
+    description: The code of the payment request called
+  type:
+    type: string
+    example: "OTHER"
+    description: The type of Payment Request
+  direction:
+    type: string
+    example: "SENT"
+    description: The direction of the payment request
+  status:
+    type: string
+    example:  "ACTIVE"
+    description: The status of the payment request
+  currency:
+    type: string
+    example: "GBP"
+    description: The currency the payment request was sent in
+  accountName:
+    type: string
+    example: "Sterling Account"
+    description: The account associated with the payment request
+  amount: 
+    type: integer
+    format: int64
+    description: The amount of funds associated with the payment request
+    example: 1000
+  description: 
+    type: string
+    example: "test"
+    description: The description added to the payment request
+  myRef: 
+    type: string
+    example: "test"
+    description: The reference added to the payment request
+  dateCreated:
+    type: string
+    format: date-time
+    example: "2019-08-22T07:48:56.460Z"
+    description: The date that the payment request was created 
+  icanTo: 
+    type: integer
+    format: int64
+    description: The ican associated with the payment request 
+    example: 1234
+  orderDetails: 
+    $ref: '#/components/schemas/OrderDetails'
+  countTimesViewedPaymentDetailsPage: 
+    type: integer
+    format: int64
+    description: The count of the times the Payment Details page was viewed 
+  countTimesViewedSelectBankPage:
+    type: integer
+    format: int64
+    description: The count of the times the Select Bank page was viewed 
+  countTimesViewedConsentPage: 
+    type: integer
+    format: int64
+    description: The count of the times the Consent page was viewed 
+  countTimesViewedResponsePage: 
+    type: integer
+    format: int64
+    description: The count of the times the Response page was viewed 
+  countTimesConsented:
+    type: integer
+    format: int64
+    description: The count of the times the payment request was consented to 
+  countTimesAuthorised: 
+    type: integer
+    format: int64
+    description: The count of the times the payment request was authorised 
+  totalAmountAuthorised: 
+    type: integer
+    format: int64
+    description: The amount the payment request was authorised for 
+  countTimesPaid: 
+    type: integer
+    format: int64
+    description: The count of the times the payment request was paid 
+  totalAmountPaid: 
+    type: integer
+    format: int64
+    description: The total amount paid via the payment request 
+
+
+
+
+
+
+
+  

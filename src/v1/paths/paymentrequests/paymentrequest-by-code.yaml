@@ -1,0 +1,28 @@
+get:
+  summary: Get payment request details
+  description: >
+    This endpoint will retrieve the details of an Open Banking Payment requestYou will need to enable PERM_BUSINESS_GET_PAYMENT_REQUEST to use this endpoint.
+  tags:
+    - Open Banking
+  operationId: getPaymentRequestDetails
+  parameters:
+  - in: path
+    required: true
+    name: paymentRequestCode
+    schema:
+      type: string
+      description: The unique 8-character code identifying the payment request.
+      example: "1234abcd"
+  responses:
+    '200':
+      description: The Payment Request details object
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PaymentRequest'
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'

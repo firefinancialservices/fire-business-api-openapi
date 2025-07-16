@@ -1,0 +1,15 @@
+title: newPaymentRequestResponse
+type: object
+properties:
+  code:
+    type: string
+    example: 1234abcd
+    description: >
+      The code for this request. Create a URL in this format: `https://payments.fire.com/{code}` and share to your customers.
+    minLength: 8
+    maxLength: 8
+  type:
+    type: string
+    enum:
+      - OTHER
+    description: The type of Fire Open Payment that was created.

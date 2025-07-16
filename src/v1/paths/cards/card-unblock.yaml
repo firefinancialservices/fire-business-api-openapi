@@ -1,0 +1,23 @@
+post:
+  summary: Unblock a Fire debit card
+  description: This endpoint updates status of an existing card to unblock which means that transactions can be carried out with that card. You will need to enable PERM_BUSINESS_POST_MY_CARD_UNBLOCK to use this endpoint.
+  tags:
+    - Debit Cards
+  operationId: unblockCard
+  parameters:
+    - in: path
+      name: cardId
+      schema:
+        type: integer
+        format: int64
+        description: The cardid of the card to unblock
+      required: true
+  responses:
+    '204':
+      description: No body is returned - “Status 204 No Content” signifies the call was successful.
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'

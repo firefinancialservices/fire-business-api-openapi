@@ -1,0 +1,7 @@
+title: activities
+type: object
+properties:
+  activities:
+    type: array
+    items:
+      $ref: '#/components/schemas/Activity'

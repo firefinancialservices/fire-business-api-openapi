@@ -1,0 +1,12 @@
+title: currency
+description: The currency.
+type: object
+properties:
+  code:
+    type: string
+    description: The three letter code for the currency.
+    example: EUR
+  description:
+    type: string
+    description: The name of the currency
+    example: Euro

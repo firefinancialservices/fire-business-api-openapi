@@ -1,0 +1,30 @@
+get:
+  summary: Get the address of a user
+  description: This endpoint will return the address of a specific Fire user. You will need to enable PERM_BUSINESS_GET_USER_ADDRESS to use this endpoint.
+  tags:
+    - Profile Management
+  operationId: getUserAddress
+  parameters:
+    - in: path
+      required: true
+      name: userId
+      schema:
+        type: integer
+        format: int64
+        description: Lists a specific User
+        example: 14059
+  responses:
+    '200':
+      description: A user's address
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Address'
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'
+
+

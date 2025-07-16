@@ -1,0 +1,30 @@
+
+get:
+  summary: List new payees in a batch
+  description: >
+    This endpoint will retrieve a list of details of batch items with new payees. You will need to enable PERM_BUSINESS_GET_BATCH_NEWPAYEES to use this endpoint.
+  tags:
+    - Batch Payments
+  operationId: getNewPayeeBatch
+  parameters:
+  - in: path
+    required: true
+    name: batchUuid
+    schema:
+      type: string
+      description: The UUID for the batch
+      example: "2DF456A-1234-5ABC-BAC0-C0CED23544F1"
+  responses:
+    '200':
+      description: New Payee Object
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/NewPayeesBatch'
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'
+

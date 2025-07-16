@@ -1,0 +1,22 @@
+
+ get: 
+    summary: Get activity
+    description: This endpoint will retrieve the details of all activity on your Fire Accounts. You will need to enable PERM_BUSINESS_GET_ACTIVITIES to use this endpoint.
+    tags:
+        - Accounts
+    operationId: getActivities 
+    responses:
+        '200':
+          description: An array of activity objects.
+          content:
+            application/json:
+              schema:
+                $ref: '../../schemas/activities.yaml'
+        '400':
+          $ref: '../../responses/unauthorised-error.yaml'
+        '401':
+          $ref: '../../responses/unauthorised-error.yaml'
+        '403':
+          $ref: '../../responses/unauthorised-error.yaml'
+
+

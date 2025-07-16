@@ -1,0 +1,439 @@
+openapi: 3.1.0
+info:
+  title: Fire Financial Services Business API
+  description: >
+    The fire.com API allows you to deeply integrate Business Account features into your application or back-office systems.
+  version: '1.0'
+  contact: 
+    name: Fire API
+    url: https://docs.fire.com
+    email: api@fire.com
+servers:
+  - url: https://api.fire.com/business
+    description: Production Server
+paths:
+  /v1/apps/accesstokens:
+    $ref: ./v1/paths/apps/accesstokens.yaml
+    
+  /v1/accounts:
+    $ref: ./v1/paths/accounts/accounts.yaml
+  
+  /v2/accounts: 
+    $ref: ./v2/paths/accounts/accountsV2.yaml 
+  
+  /v2/accounts/{ican}: 
+    $ref: ./v2/paths/accounts/accountV2.yaml
+  
+  /v2/accounts/{ican}/internationaldetails: 
+    $ref: ./v1/paths/accounts/internationaldetails.yaml
+
+  /v2/activities:
+    $ref: ./v2/paths/activities/activities.yaml
+
+    
+  /v1/accounts/{ican}:
+    $ref: ./v1/paths/accounts/accounts-by-ican.yaml
+
+  /v3/accounts/{ican}/transactions:
+    $ref: ./v3/paths/accounts/transactions-by-account.yaml 
+
+  /v1/cards:
+    $ref: ./v1/paths/cards/cards.yaml
+
+  /v1/me/cards/{cardId}/transactions:
+    $ref: ./v1/paths/cards/card-transactions.yaml
+
+  /v1/me/cards/{cardId}/block:
+    $ref: ./v1/paths/cards/card-block.yaml
+
+  /v1/me/cards/{cardId}/unblock:
+    $ref: ./v1/paths/cards/card-unblock.yaml
+    
+  /v1/paymentrequests:
+    $ref: ./v1/paths/paymentrequests/paymentrequests.yaml
+
+  /v1/paymentrequests/{paymentRequestCode}:
+    $ref: ./v1/paths/paymentrequests/paymentrequest-by-code.yaml
+
+  /v2/paymentrequests/{paymentRequestCode}/payments:
+    $ref: ./v2/paths/paymentrequests/paymentrequestpayments-by-code.yaml
+  
+  /v2/paymentrequests/{paymentRequestCode}/reports:
+    $ref: ./v2/paths/paymentrequests/paymentrequestreport.yaml
+
+  /v2/paymentrequests/sent:
+    $ref: ./v2/paths/paymentrequests/paymentrequestsent.yaml
+
+  /v2/paymentrequests/{paymentRequestCode}/public:
+    $ref: ./v2/paths/paymentrequests/paymentrequest-public.yaml
+
+  /v2/fx/rate:
+    $ref: ./v2/paths/rates/fxrates.yaml
+
+  /v2/limits:
+    $ref: ./v2/paths/usermanagement/limits.yaml
+  
+  /v2/webhooks/{webhookId}/events/{event}/test: 
+    $ref: ./v2/paths/apps/send-webhook-test.yaml
+  
+ # /v2/webhooks/tokens:
+    #$ref: ./v2/paths/apps/webhook-tokens.yaml
+  
+  /v2/webhooks: 
+    $ref: ./v2/paths/apps/webhook-events.yaml
+
+
+  /v2/batches/{batchUuid}/newpayees:
+    $ref: ./v2/paths/batches/newpayees-batch.yaml  
+  
+
+#Removing this endpoint 
+ # /v2/webhooks/tokens:
+ #   $ref: ./v2/paths/apps/webhook-tokens.yaml
+
+
+# This endpoint is for Bankpay only. 
+#  /payments/{paymentUuid}/bankpayrefund:
+#    $ref: ./v1/paths/payments/refund-payment-by-paymentuuid.yaml
+
+  /v2/payments/{paymentUuid}:
+    $ref: ./v2/paths/payments/payments-by-paymentuuid.yaml
+
+  /v1/aspsps:
+    $ref: ./v1/paths/aspsps/aspsps.yaml
+
+  /v1/users:
+    $ref: ./v1/paths/users/users.yaml
+
+  /v1/users/{userId}:
+    $ref: ./v1/paths/users/user-by-userid.yaml
+
+  /v1/apps:
+    $ref: ./v1/paths/apps/apps.yaml
+
+  /v1/apps/{applicationId}/permissions:
+    $ref: ./v1/paths/apps/app-permissions.yaml
+
+  /v1/apps/permissions:
+    $ref: ./v1/paths/apps/all-app-permissions.yaml
+
+  /v1/payees:
+    $ref: ./v1/paths/payees/payees.yaml
+
+  /v1/payees/{payeeId}:
+    $ref: ./v1/paths/payees/payee-details.yaml
+
+  /v1/payees/{payeeId}/transactions:
+    $ref: ./v1/paths/payees/payee-transactions.yaml
+
+  /v1/directdebits:
+    $ref: ./v1/paths/directdebits/directdebits.yaml
+
+  /v1/directdebits/{directDebitUuid}:
+    $ref: ./v1/paths/directdebits/directdebit-by-directdebituuid.yaml
+
+  /v1/directdebits/{directDebitUuid}/reject:
+    $ref: ./v1/paths/directdebits/reject-directdebit-by-uuid.yaml
+
+  /v1/mandates:
+    $ref: ./v1/paths/mandates/mandates.yaml
+
+  /v1/mandates/{mandateUuid}:
+    $ref: ./v1/paths/mandates/mandate-by-uuid.yaml
+
+  /v1/mandates/{mandateUuid}/cancel:
+    $ref: ./v1/paths/mandates/cancel-mandate-by-uuid.yaml
+
+  /v1/mandates/{mandateUuid}/activate:
+    $ref: ./v1/paths/mandates/activate-mandate-by-uuid.yaml
+
+  /v1/batches:
+    $ref: ./v1/paths/batches/batches.yaml
+
+  /v1/batches/{batchUuid}/internaltransfers:
+    $ref: ./v1/paths/batches/internaltransfers.yaml
+
+  /v1/batches/{batchUuid}/banktransfers:
+    $ref: ./v1/paths/batches/banktransfers.yaml
+
+  /v2/batches/{batchUuid}/internationaltransfers:
+    $ref: ./v1/paths/batches/internationaltransfers.yaml
+
+  /v1/batches/{batchUuid}/internaltransfers/{itemUuid}:
+    $ref: ./v1/paths/batches/internaltransfer-by-itemuuid.yaml
+
+  /v1/batches/{batchUuid}/banktransfers/{itemUuid}:
+    $ref: ./v1/paths/batches/banktransfer-by-itemuuid.yaml
+
+  /v2/batches/{batchUuid}/internationaltransfers/{itemUuid}:
+    $ref: ./v1/paths/batches/internationaltransfer-by-itemuuid.yaml
+
+  /v1/batches/{batchUuid}:
+    $ref: ./v1/paths/batches/batch-by-batchuuid.yaml
+
+  /v1/batches/{batchUuid}/approvals:
+    $ref: ./v1/paths/batches/approvers-for-batch.yaml
+  
+  /v2/users/{userId}/address:
+    $ref: ./v2/paths/usermanagement/user-address.yaml
+  
+  /v2/services:
+    $ref: ./v2/paths/usermanagement/servicefees.yaml
+
+  /v2/paymentrequests/{paymentRequestCode}/status:
+    $ref: ./v2/paths/paymentrequests/update-paymentrequest.yaml
+
+webhooks:
+  webhook:
+    $ref: ./webhooks/webhooks.yaml
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Access Token
+  responses:
+    UnauthorisedError:
+      description: An error has occured
+  parameters:
+    orderParam:
+      name: order
+      in: query
+      required: false
+      description: Either `ASC` or `DESC`
+      schema:
+        enum:
+            - ASC
+            - DESC
+    orderByParam:
+      name: orderBy
+      in: query
+      required: false
+      description: Currently defaults to `DATE` No other options at this time.
+      schema:
+        enum:
+            - DATE
+    limitParam:
+      name: limit
+      in: query
+      required: false
+      description: The number of records to return. Defaults to 10 - max is 200.
+      schema:
+        type: integer
+        default: 10
+        maximum: 200
+    offsetParam:
+      name: offset
+      in: query
+      required: false
+      description: The page offset. Defaults to 0. This is the record number that the returned list will start at. E.g. `offset = 40` and `limit = 20` will return records 40 to 59.
+      schema:
+        type: integer
+        default: 0
+  schemas:
+    Account:
+      $ref: 'v1/schemas/account.yaml'
+    NewAccount:
+      $ref: 'v1/schemas/account-new.yaml'
+    Transaction: 
+      $ref: 'v1/schemas/transaction.yaml'
+    AccessToken: 
+      $ref: 'v1/schemas/access-token.yaml'
+    Application:
+      $ref: 'v1/schemas/application.yaml'
+    Aspsp:
+      $ref: 'v1/schemas/aspsp.yaml'
+    NewBatchItemResponse:
+      $ref: 'v1/schemas/add-batch-item-response.yaml'
+    ApiError:
+      $ref: 'v1/schemas/api-error.yaml'
+    BatchApprover:
+      $ref: 'v1/schemas/approvers-for-batch.yaml'
+    AuthenticationData:
+      $ref: 'v1/schemas/authentication-data.yaml'
+    BatchItemDetails:
+      $ref: 'v1/schemas/batch-item-details.yaml'
+    BatchItemBankTransfer: 
+      $ref: 'v1/schemas/batch-item-banktransfer.yaml'
+    Batch: 
+      $ref: 'v1/schemas/batch.yaml'
+    NewCardResponse:
+      $ref: 'v1/schemas/card-new-response.yaml'
+    NewCard: 
+      $ref: 'v1/schemas/card-new.yaml'
+    Card: 
+      $ref: 'v1/schemas/card.yaml'
+    Country:
+      $ref: 'v1/schemas/country.yaml'
+    Currency:
+      $ref: 'v1/schemas/currency.yaml'
+    DirectDebitDetails: 
+      $ref: 'v1/schemas/direct-debit-details.yaml'
+    DirectDebit: 
+      $ref: 'v1/schemas/direct-debit.yaml'
+    DirectDebitByMandateUUID:
+      $ref: 'v1/schemas/direct-debits-by-mandateuuid.yaml'
+    FxTrade:
+      $ref: 'v1/schemas/fx-trade-details.yaml'
+    InternalTransferBatchItem:
+      $ref: 'v1/schemas/internal-transfer-batch-item.yaml'
+    InternationalTransferBatchItem:
+      $ref: 'v1/schemas/international-transfer-batch-item.yaml'
+    Mandate: 
+      $ref: 'v1/schemas/mandate.yaml'
+    MobileApplication: 
+      $ref: 'v1/schemas/mobile-application.yaml'
+    NewApiApplication:
+      $ref: 'v1/schemas/new-api-application.yaml'
+    NewBatchResponse: 
+      $ref: 'v1/schemas/new-batch-response.yaml'
+    NewBatch: 
+      $ref: 'v1/schemas/new-batch.yaml'
+    NewPaymentRequest:
+      $ref: 'v1/schemas/new-payment-request.yaml'
+    OrderDetails:
+      $ref: 'v1/schemas/order-details.yaml'
+    Payee: 
+      $ref: 'v1/schemas/payee.yaml'
+    PaymentRequestPayment: 
+      $ref: 'v1/schemas/payment-request-payment.yaml'
+    PaymentRequestResponse: 
+      $ref: 'v1/schemas/payment-request-response.yaml'
+    PaymentRequest: 
+      $ref: 'v1/schemas/payment-request.yaml'
+    Permission:
+      $ref: 'v1/schemas/permission.yaml'
+    ProprietarySchemeDetails:
+      $ref: 'v1/schemas/proprietary-scheme-details.yaml'
+    RelatedCard: 
+      $ref: 'v1/schemas/related-card.yaml'
+    RelatedPartyCardPayment: 
+      $ref: 'v1/schemas/related-party-card-payment.yaml'
+    RelatedPartyExternalAccount: 
+      $ref: 'v1/schemas/related-party-external-account.yaml'
+    RelatedPartyFireAccount:
+      $ref: 'v1/schemas/related-party-fire-account.yaml'
+    RelatedPartyPayee: 
+      $ref: 'v1/schemas/related-party-payee.yaml'
+    RelatedParty:
+      $ref: 'v1/schemas/related-party.yaml'
+    To: 
+      $ref: 'v1/schemas/to.yaml'
+    User: 
+      $ref: 'v1/schemas/user.yaml'
+    NewWebhook: 
+      $ref: 'v1/schemas/webhook-new.yaml'
+    AccountConfiguration: 
+      $ref: 'v2/schemas/accountconfiguration.yaml'
+    Activity:
+      $ref: 'v2/schemas/activity.yaml'
+    Address: 
+      $ref: 'v2/schemas/address.yaml'
+    BusinessAddress:
+      $ref: 'v2/schemas/businessAddress.yaml'
+    BusinessService:
+      $ref: 'v2/schemas/businessServices-object.yaml'
+    FeeRuleFixedAmount:
+      $ref: 'v2/schemas/feeRule-fixedAmount.yaml'
+    FeeRuleMaxMin: 
+      $ref: 'v2/schemas/feeRule-MaxMin.yaml'
+    FeeRule: 
+      $ref: 'v2/schemas/feeRule.yaml'
+    FxRate: 
+      $ref: 'v2/schemas/fxrates.yaml'
+    Item: 
+      $ref: 'v2/schemas/items-object.yaml'
+    Level: 
+      $ref: 'v2/schemas/level.yaml'
+    Service: 
+      $ref: 'v2/schemas/service.yaml' 
+    ServiceGroup:
+      $ref: 'v2/schemas/serviceGroup.yaml'
+    Limit: 
+      $ref: 'v2/schemas/limit.yaml'
+    NewPayeesBatch: 
+      $ref: 'v2/schemas/newpayees-batch.yaml'
+    PaymentRequestReport:
+      $ref: 'v2/schemas/payment-request-report.yaml'
+    PaymentRequestSummary:
+      $ref: 'v2/schemas/payment-request-summary.yaml'
+    PaymentRequestsSent: 
+      $ref: 'v2/schemas/payment-requests-sent.yaml'
+    Sender: 
+      $ref: 'v2/schemas/sender.yaml'
+    PublicPaymentRequest:
+      $ref: 'v2/schemas/paymentrequest-public.yaml'
+    Result:
+      $ref: 'v2/schemas/result.yaml'
+    WebhookToken: 
+      $ref: 'v2/schemas/webhook-token.yaml'
+    Webhook: 
+      $ref: 'v2/schemas/webhook.yaml'
+    WebhookEvent: 
+      $ref: 'v2/schemas/webhookEvent.yaml'
+    BatchItemBankTransferMode1: 
+      $ref: 'v1/schemas/mode-1-batch-item.yaml'
+    BatchItemBankTransferMode2: 
+      $ref: 'v1/schemas/mode-2-batch-item.yaml'    
+    BankPayRefundRequest:
+      $ref: 'v1/schemas/bank-pay-refund-request.yaml'
+    BankPayRefundResponse: 
+      $ref: 'v1/schemas/bank-pay-refund-response.yaml'
+    AppCreated:
+      $ref: 'v1/schemas/app-created.yaml'
+    ApiErrorV2:
+      $ref: 'v2/schemas/api-error.yaml'
+    ApiErrorV3:
+      $ref: 'v3/schemas/api-error.yaml'
+    Events: 
+      $ref: 'v2/schemas/events.yaml'
+    WebhookEvents:
+      $ref: 'v2/schemas/webhookEvents.yaml'
+    BatchRequest: 
+      $ref: 'v1/schemas/batchRequest.yaml'
+    BatchItemInternalTransfer:
+      $ref: 'v1/schemas/batch-item-internaltransfer.yaml'
+    BatchItemInternationalTransfer:
+      $ref: 'v1/schemas/batch-item-internationaltransfer.yaml'
+    Alias: 
+      $ref: 'v1/schemas/alias.yaml'
+    LocalDetails: 
+      $ref: 'v2/schemas/localdetails.yaml'
+    InternationalDetails: 
+      $ref: 'v2/schemas/internationaldetails.yaml'
+    AccountDetails: 
+      $ref: 'v2/schemas/accountdetails.yaml'
+    AccountV2: 
+      $ref: 'v2/schemas/accountV2.yaml'
+    Status: 
+      $ref: 'v2/schemas/payment-request-status.yaml'
+    
+
+security:
+  - bearerAuth: []
+tags:
+  - name: Authentication
+    description: Access to the API is by Bearer Access Tokens.
+  - name: Accounts
+    description: Fire accounts are the equivalent of a bank account from bank.
+  - name: Transactions
+    description: There are many types of transactions. They are all represented by the same JSON object with a different txnType.
+  - name: Batch Payments
+    description: The Fire API allows businesses to automate payments between their accounts or to third parties across the UK and Europe.
+  - name: Open Banking
+    description: Fire Open Payments is a feature of the fire.com business account that leverages Open Banking to allow your customers to pay you via bank transfer and to reconcile those payments as they are received into your fire.com GBP or EUR account.
+  - name: Debit Cards
+    description: View and manage the cards linked to your accounts. 
+  - name: FX 
+    description: View your FX rates
+  - name: Payees
+    description: List the beneficiaries associated with the account. 
+  - name: Direct Debits
+    description: The fire.com api allows businesses to automate direct debit payment actions on their fire.com business accounts.
+  - name: API and Webhooks
+    description: Manage your API Applications and Webhooks 
+  - name: Profile Management 
+    description: Manage and view your users and fees.
+  - name: Webhooks
+    description: Events you can receive in realtime

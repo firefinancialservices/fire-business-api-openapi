@@ -1,0 +1,7 @@
+title: accountsV2
+type: object
+properties:
+  activities:
+    type: array
+    items:
+      $ref: '#/components/schemas/AccountV2'

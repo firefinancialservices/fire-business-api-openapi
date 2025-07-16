@@ -1,0 +1,50 @@
+get:
+  summary: List accounts
+  description: This endpoint returns all the accounts on your Fire profile. Ordered by Alias ascending. Can be paginated. You will need to enable PERM_BUSINESS_GET_ACCOUNTS to use this endpoint.
+  tags:
+      - Accounts
+  operationId: getAccounts
+  responses:
+    '200':
+      description: An array of account objects.
+      content:
+        application/json:
+          schema:
+            $ref: '../../schemas/accounts.yaml'
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'
+
+post:
+  summary: Create a new Fire Account. 
+  description: >
+    This endpoint will create a new Fire account on your profile. You will need to enable PERM_BUSINESS_POST_ACCOUNTS to use this endpoint.
+
+
+    **Please note there is a charge associated with creating a new account.**
+  tags:
+      - Accounts
+  operationId: addAccount
+  requestBody:
+    required: true
+    description: Details of the new account
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/NewAccount'
+  responses:
+    '201':
+      description: The details of the new account
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Account'
+    '400':
+        $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+        $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+        $ref: '../../responses/unauthorised-error.yaml'

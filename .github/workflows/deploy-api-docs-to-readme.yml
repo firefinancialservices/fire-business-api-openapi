@@ -1,0 +1,30 @@
+name: Sync OAS to ReadMe (prod)
+
+on:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  sync-openapi-to-readme-prod:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Upload OpenAPI spec to ReadMe
+        uses: readmeio/rdme@v10
+        with:
+          rdme: openapi upload ./fire-business-api-v1.yaml --key=${{ secrets.README_API_KEY }} --branch=v2.0
+
+  sync-guide-docs-to-readme-prod:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Upload guide docs to ReadMe
+        uses: readmeio/rdme@v10
+        with:
+          rdme: docs guides --key=${{ secrets.README_API_KEY }} --version=v1.0

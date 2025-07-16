@@ -1,0 +1,20 @@
+title: relatedCard
+description: Details of the card used (if applicable)
+type: object
+properties:
+  cardId:
+    type: integer
+    format: int64
+  provider:
+    type: string
+  alias:
+    type: string
+  maskedPan:
+    type: string
+  embossCardName:
+    type: string
+  embossBusinessName:
+    type: string
+  expiryDate:
+    type: string
+    format: date-time

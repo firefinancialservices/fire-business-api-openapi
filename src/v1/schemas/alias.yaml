@@ -1,0 +1,8 @@
+title: Alias
+type: object
+properties:
+  alias:
+    type: string
+    description: The alias of the mandate
+    example: "Mandate1"
+ 

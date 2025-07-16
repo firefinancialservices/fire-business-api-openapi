@@ -1,0 +1,28 @@
+get:
+  summary: Get the details of a user
+  description: This endpoint will retrieve the details of a specific Fire user. You will need to enable PERM_BUSINESS_GET_USER to use this endpoint.
+  tags:
+    - Profile Management
+  operationId: getUser
+  parameters:
+    - in: path
+      required: true
+      name: userId
+      schema:
+        type: integer
+        format: int64
+        description: Lists a specific User
+        example: 14059
+  responses:
+    '200':
+      description: Unique information about a User.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User'
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'

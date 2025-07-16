@@ -1,0 +1,28 @@
+get:
+  summary: List all permissions for an API application
+  description: This endpoint will return all permissions you selected for a specific API application on your Fire account. You will need to enable PERM_BUSINESS_GET_APP_PERMISSIONS to use this endpoint.
+  tags:
+    - API and Webhooks
+  operationId: getPermissions 
+  parameters:
+    - in: path
+      required: True
+      name: applicationId
+      schema:
+        type: integer
+        format: int64
+        description: The number associated with the app to retrieve the associated permissions
+  responses:
+        '200':
+          description: An array of permission objects.
+          content:
+            application/json:
+              schema:
+                $ref: '../../schemas/permissions.yaml'
+        '400':
+          $ref: '../../responses/unauthorised-error.yaml'
+        '401':
+          $ref: '../../responses/unauthorised-error.yaml'
+        '403':
+          $ref: '../../responses/unauthorised-error.yaml'
+

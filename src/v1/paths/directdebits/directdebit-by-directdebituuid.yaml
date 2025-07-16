@@ -1,0 +1,29 @@
+get:
+  summary: Get the details of a direct debit
+  description: >
+    This endpoint will retrieve all details of a single direct debit collection/payment, whether successful or not. You will need to enable PERM_BUSINESS_GET_DIRECT_DEBIT to use this endpoint.
+    
+  tags:
+    - Direct Debits
+  operationId: getDirectDebitByUuid
+  parameters:
+    - in: path
+      required: true
+      name: directDebitUuid
+      schema:
+        type: string
+        description: The uuid of the direct debit to retrieve.
+        example: "4ADFB67A-0F5B-4A9A-9D74-34437250045C"
+  responses:
+    '200':
+      description: Retrieve all details of a single direct debit collection/payment
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DirectDebit'
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'

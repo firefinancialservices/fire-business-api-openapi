@@ -1,0 +1,14 @@
+title: proprietarySchemeDetails
+description: Extra details about the transaction based on the scheme used to make the payment. 
+type: array
+items:
+  type: object
+  properties: 
+    type:
+      type: string
+      description: the type of proprietary scheme - SCT for SEPA, FPS for Faster Payments etc.
+      example: SCT
+    data: 
+      type: string
+      example: remittanceInfoUnstructured^FIRE440286865OD1|instructionId^O223151336499079
+      description: the scheme proprietary data - key pairs separated by | and key/values separated by ^

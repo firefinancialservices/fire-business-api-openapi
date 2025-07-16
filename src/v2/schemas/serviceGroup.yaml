@@ -1,0 +1,13 @@
+title: serviceGroup
+type: object
+properties:
+  type:
+    type: string
+    description: This is the service group type
+    example: "BUSINESS_WITHDRAWAL_FULL_DAILY_MONETARY_IE"
+  description:
+    type: string
+    description: This is a description of the service group type
+    example: "BUSINESS_WITHDRAWAL"
+    
+  

@@ -1,0 +1,7 @@
+title: relatedParty
+description: Details of the related third party involved in the transaction. 
+oneOf:
+  - $ref: '#/components/schemas/RelatedPartyFireAccount'
+  - $ref: '#/components/schemas/RelatedPartyExternalAccount'
+  - $ref: '#/components/schemas/RelatedPartyPayee'
+  - $ref: '#/components/schemas/RelatedPartyCardPayment'

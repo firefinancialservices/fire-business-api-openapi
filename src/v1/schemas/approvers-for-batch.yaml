@@ -1,0 +1,34 @@
+title: batchApprovers
+type: object
+properties:
+  approvals:
+    type: array
+    items:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+          example: 3138
+          description: User id assigned by fire.com
+        emailAddress: 
+          type: string
+          example: jane.doe@example.com
+          description: User email address
+        firstName: 
+          type: string
+          example: Jane
+        lastName:
+          type: string
+          example: Doe
+        mobileNumber:
+          type: string
+          example: +353871234567
+        status: 
+          type: string
+          example: PENDING_APPROVAL
+        lastUpdated:
+          type: string
+          format: date-time
+          example: "2021-04-04T10:48:53.540Z"
+          description: The datestamp of the last action on this batch - ISO format - e.g. 2018-04-04T10:48:53.540Z

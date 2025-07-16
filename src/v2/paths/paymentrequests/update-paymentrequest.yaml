@@ -1,0 +1,35 @@
+put:
+  summary: Update the status of a payment request
+  description: >
+    This endpoint will update the status of a payment request. The payment request should be active or removed. You will need to enable PERM_BUSINESS_PUT_PAYMENT_REQUEST_STATUS to use this endpoint.
+  tags:
+    - Open Banking
+  operationId: updatePaymentRequest
+  parameters:
+    - in: path
+      required: true
+      name: paymentRequestCode
+      schema:
+        type: string
+        description: The code of the payment request to update
+        example: "xyzabcde"
+  requestBody:
+    required: true
+    description: The status the payment request should be changed to
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/Status'
+
+  responses:
+    '204':
+      description: 204 no content
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'
+
+
+

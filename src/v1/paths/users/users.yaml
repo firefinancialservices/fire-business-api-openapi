@@ -1,0 +1,21 @@
+get:
+  summary: List all users
+  description: This endpoint will retrieve the details of all Fire users on your acount.You will need to enable PERM_BUSINESS_GET_USERS to use this endpoint.
+  tags:
+    - Profile Management
+  operationId: getUsers
+  responses:
+      '200':
+        description: List of all Users.
+        content:
+          application/json:
+            schema:
+              type: array
+              items: 
+                $ref: '#/components/schemas/User'
+      '400':
+        $ref: '../../responses/unauthorised-error.yaml'
+      '401':
+        $ref: '../../responses/unauthorised-error.yaml'
+      '403':
+        $ref: '../../responses/unauthorised-error.yaml'

@@ -1,0 +1,23 @@
+get:
+  summary: List all limits
+  description: This endpoint returns an array of limit information. You will need to enable PERM_BUSINESS_GET_LIMITS to use this endpoint.
+  tags:
+   - Profile Management
+  operationId: getLimits 
+  responses:
+    '200':
+          description: An object of limit information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Limit'
+    '400':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '401':
+      $ref: '../../responses/unauthorised-error.yaml'
+    '403':
+      $ref: '../../responses/unauthorised-error.yaml'
+
+
+
+
