@@ -405,7 +405,7 @@ components:
     AccountDetails: 
       $ref: 'v2/schemas/accountdetails.yaml'
     AccountV2: 
-      $ref: 'v2/schemas/accountV2.yaml'
+      $ref: 'v2/schemas/account.yaml'
     Status: 
       $ref: 'v2/schemas/payment-request-status.yaml'
     
