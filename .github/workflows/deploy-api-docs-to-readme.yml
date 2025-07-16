@@ -3,7 +3,7 @@ name: Sync OAS to ReadMe (prod)
 on:
   push:
     branches:
-      - master
+      - v2.0
 
 jobs:
   sync-openapi-to-readme-prod:
