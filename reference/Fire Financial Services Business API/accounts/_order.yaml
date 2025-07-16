@@ -6,3 +6,11 @@
 - updateaccountconfig
 - requestinternationaldetails
 - getactivities
+- getaccounts-1
+- addaccount-1
+- getaccountsv2-1
+- getaccountbyidv2-1
+- updateaccountconfig-1
+- requestinternationaldetails-1
+- getactivities-1
+- getaccountbyid-1

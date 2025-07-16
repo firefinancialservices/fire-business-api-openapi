@@ -1,0 +1,45 @@
+---
+title: Get payment details
+excerpt: >
+  This endpoint will return the details of a specific open banking payment. You
+  will need to enable PERM_BUSINESS_GET_PAYMENT to use this endpoint.
+
+
+  As your customer goes through the payment submission journey, the payment
+  status will change. The endpoint will return one of the following statuses:
+
+
+  * `AWAITING_AUTHORISATION` - This is the initial status of all payments,
+  indicating that the user has consented to be directed to their ASPSP/Bank's
+  application. Payments remaining at this status may be considered abandoned.
+
+  * `AWAITING_MULTI_AUTHORISATION` - Some business accounts require dual
+  authorisation for payments.
+
+  * `NOT_AUTHORISED` - This is a final status, and indicates that the payment
+  initiation was cancelled by the customer, rejected by the ASPSP/Bank, an error
+  response returned by the ASPSP/Bank, eg. low balance in the customers account.
+
+  * `PENDING` - The customer has authorised the payment in their app, but their
+  ASPSP/bank may want to carry out an internal check before funding the
+  transaction.
+
+  * `AUTHORISED` - The payment is successfully initiated, having been authorised
+  by your customer and their ASPSP/Bank.
+
+
+  Once the payment is successfully initiated, ie. `AUTHORISED`, the ASPSP/Bank
+  should settle the funds, which are then applied to your Fire account.
+
+
+  * `FUNDS_CONFIRMED` - This status is currently available for GBP payments
+  only. The payment has been received by Fire and will be applied to your
+  account in the next file run.
+
+  * `SETTLED` - This is a final status, indicating that funds have been applied
+  to your Fire GBP or EUR account.
+api:
+  file: .fire-business-api-v1.yaml
+  operationId: getPaymentDetailsv2
+hidden: false
+---

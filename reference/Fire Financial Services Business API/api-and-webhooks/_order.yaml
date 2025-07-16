@@ -4,3 +4,9 @@
 - getapiapplications
 - getpermissions
 - getallpermissions
+- sendtestwebhook-1
+- getwebhookevents-1
+- getapiapplications-1
+- createapiapplication-1
+- getpermissions-1
+- getallpermissions-1
