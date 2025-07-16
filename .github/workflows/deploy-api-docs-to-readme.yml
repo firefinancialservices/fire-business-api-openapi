@@ -17,12 +17,8 @@ jobs:
         with:
           node-version: '21.x'
       - run: npm install -g json-refs
-      - run: json-refs resolve --yaml --filter relative ./src/fire-business-api-v1.yaml > ./fire-business-api-v1.yaml
+      - run: json-refs resolve --yaml -f --filter relative ./src/fire-business-api-v1.yaml > ./fire-business-api-v1.yaml
       
-      - name: Test commands
-        run: |
-            grep -n yaml ./fire-business-api-v1.yaml 
-
       - name: Upload OpenAPI spec to ReadMe
         uses: readmeio/rdme@v10
         with:
