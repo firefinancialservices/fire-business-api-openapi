@@ -22,6 +22,7 @@ jobs:
       - name: List files in the repository
         run: |
             ls -l
+            grep accountsv2 ./fire-business-api-v1.yaml 
 
       - name: Upload OpenAPI spec to ReadMe
         uses: readmeio/rdme@v10
