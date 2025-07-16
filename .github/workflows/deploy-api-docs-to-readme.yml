@@ -19,6 +19,10 @@ jobs:
       - run: npm install -g json-refs
       - run: json-refs resolve --yaml -f --filter relative ./src/fire-business-api-v1.yaml > ./fire-business-api-v1.yaml
       
+      - name: List files in the repository
+        run: |
+            ls -l
+
       - name: Upload OpenAPI spec to ReadMe
         uses: readmeio/rdme@v10
         with:
