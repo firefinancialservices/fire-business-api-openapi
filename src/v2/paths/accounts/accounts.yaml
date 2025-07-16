@@ -10,7 +10,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../../schemas/accountsv2.yaml'
+            $ref: '../../schemas/accounts.yaml'
     '400':
       $ref: '../../responses/unauthorised-error.yaml'
     '401':

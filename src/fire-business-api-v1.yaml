@@ -19,10 +19,10 @@ paths:
     $ref: ./v1/paths/accounts/accounts.yaml
   
   /v2/accounts: 
-    $ref: ./v2/paths/accounts/accountsV2.yaml 
+    $ref: ./v2/paths/accounts/accounts.yaml 
   
   /v2/accounts/{ican}: 
-    $ref: ./v2/paths/accounts/accountV2.yaml
+    $ref: ./v2/paths/accounts/account.yaml
   
   /v2/accounts/{ican}/internationaldetails: 
     $ref: ./v1/paths/accounts/internationaldetails.yaml
