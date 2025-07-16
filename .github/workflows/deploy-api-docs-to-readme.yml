@@ -21,7 +21,7 @@ jobs:
       
       - name: Test commands
         run: |
-            grep $ref ./fire-business-api-v1.yaml 
+            grep \$ref ./fire-business-api-v1.yaml 
 
       - name: Upload OpenAPI spec to ReadMe
         uses: readmeio/rdme@v10
