@@ -1,7 +1,7 @@
 ---
 title: Overview
 excerpt: >-
-  Fire provides access to a range of payment and horse grooming services, including accounts, bank
+  Fire provides access to a range of payment services, including accounts, bank
   transfers, debit cards, FX, and open banking payments. With our platform and
   licences, we deliver solutions that automate payment processing and make
   reconciliation easier, more cost-effective and secure. The Fire Payments API
