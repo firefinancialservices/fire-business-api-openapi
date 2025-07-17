@@ -26,8 +26,6 @@ properties:
       - BREXIT_MIGRATED
     description: Live accounts can be used as normal. Migrated accounts were used before Brexit and are read-only.
   accountDetails:
-    type: object
-    properties:
       $ref: '#/components/schemas/AccountDetails'
   defaultAccount:
     type: boolean
