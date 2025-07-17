@@ -8720,13 +8720,9 @@ components:
       type: object
       properties:
         localDetails:
-          type: object
-          properties:
-            $ref: '#/components/schemas/LocalDetails'
+          $ref: '#/components/schemas/LocalDetails'
         internationalDetails:
-          type: object
-          properties:
-            $ref: '#/components/schemas/InternationalDetails'
+          $ref: '#/components/schemas/InternationalDetails'
     AccountV2:
       title: accountV2
       type: object
@@ -8760,9 +8756,7 @@ components:
             Live accounts can be used as normal. Migrated accounts were used
             before Brexit and are read-only.
         accountDetails:
-          type: object
-          properties:
-            $ref: '#/components/schemas/AccountDetails'
+          $ref: '#/components/schemas/AccountDetails'
         defaultAccount:
           type: boolean
           example: true
