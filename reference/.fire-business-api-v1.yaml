@@ -8676,8 +8676,8 @@ components:
       properties:
         nsc:
           type: string
-          description: '232221'
-          example: the Sort Code of the account
+          description: the Sort Code of the account
+          example: '232221'
         accountNumber:
           type: string
           description: the account number of the account
