@@ -15,7 +15,7 @@ next:
 ---
 # How it works
 
-SWIFT receiving will allow Fire customers to receive payments in a currency other than GBP or Euro. These will then be converted and sent to your default Fire account. You will have to use your SWIFT account details to receive these payments. 
+SWIFT receiving will allow Fire customers to receive payments in a currency other than GBP or Euro. These will then be converted and sent to your default Fire account. You will have to use your SWIFT account details to receive these payments.
 
 > ❗️ To receive international payments on your Fire account, you will need to request SWIFT account details.
 
@@ -25,13 +25,13 @@ SWIFT receiving will allow Fire customers to receive payments in a currency othe
 
 > Your default accounts are the first EUR and GBP accounts that were opened for you. These accounts are automatically used for receiving international payments in their respective currencies.
 
-SWIFT payments can be requested by navigating to your Fire home screen, and selecting account information. You can also request these details on mobile.
+SWIFT payments can be requested by navigating to your Fire home screen on your default account. You can also request these details on mobile.
 
-**design mockup, to be replaced**
+![](https://files.readme.io/f4027ca4d53ea3949c5166abf17a64fe4eab77919fb3e54274a9b0ac1051682b-image.png)
 
-<Image align="center" width="75% " src="https://files.readme.io/0a8c944f55a894ebf4a7d875ce07836f51606c4ce93f5655baf3fcafb3d5d429-image.png" />
+<br />
 
-Your SWIFT account information will be displayed alongside your existing BIC and IBAN (for a Euro account)/Sort Code and Account number (for a GBP account). Please note they will be a *separate* BIC and IBAN to your existing Fire account details. 
+Your SWIFT account information will be displayed alongside your existing BIC and IBAN (for a Euro account)/Sort Code and Account number (for a GBP account). Please note they will be a *separate* BIC and IBAN to your existing Fire account details.
 
 <br />
 
