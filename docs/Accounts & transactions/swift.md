@@ -23,7 +23,7 @@ SWIFT receiving will allow Fire customers to receive payments in a currency othe
 
 ## Requesting SWIFT Payments
 
-> Your default accounts are the first EUR and GBP accounts that were opened for you. These accounts are automatically used for receiving international payments in their respective currencies.
+> Your default accounts are the first EUR and GBP accounts that were opened for you. Incoming payments will be credited to your default euro or sterling account, depending on whether you are a Fire-EU or Fire-UK customer. Payments are automatically routed based on currency and your country of incorporation
 
 SWIFT payments can be requested by navigating to your Fire home screen on your default account. You can also request these details on mobile.
 
