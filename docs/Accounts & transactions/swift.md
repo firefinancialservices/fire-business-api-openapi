@@ -35,7 +35,7 @@ Your SWIFT account information will be displayed alongside your existing BIC and
 
 <br />
 
-> You can only have one set of SWIFT account details per Fire account. For example, if you request these details on your Euro account, you will not be able to request them on your GBP account.
+> You can only have one set of SWIFT account details per Fire account. For example, if you are a Fire-EU user, they will be available on your default euro account.
 
 <br />
 
