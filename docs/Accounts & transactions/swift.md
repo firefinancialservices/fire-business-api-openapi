@@ -2,7 +2,7 @@
 title: SWIFT accounts
 excerpt: >-
   The SWIFT network is a global messaging network allowing members to exchange
-  information. It allows Fire customers to receive international payments
+  information. It enables Fire customers to receive international payments
   directly to their Fire account.
 deprecated: false
 hidden: true
@@ -15,7 +15,7 @@ next:
 ---
 # How it works
 
-SWIFT receiving will allow Fire customers to receive payments in a currency other than GBP or Euro. These will then be converted and sent to your default Fire account. You will have to use your SWIFT account details to receive these payments.
+SWIFT receiving will allow Fire customers to receive payments in a currency other than euro or sterling. These will then be converted and sent to your default Fire account. You will have to use your SWIFT account details to receive these payments.
 
 > ❗️ To receive international payments on your Fire account, you will need to request SWIFT account details.
 
@@ -23,15 +23,15 @@ SWIFT receiving will allow Fire customers to receive payments in a currency othe
 
 ## Requesting SWIFT Payments
 
-> Your default accounts are the first EUR and GBP accounts that were opened for you. Incoming payments will be credited to your default euro or sterling account, depending on whether you are a Fire-EU or Fire-UK customer. Payments are automatically routed based on currency and your country of incorporation
+> Your default accounts are the first euro and sterling accounts that were opened for you. Incoming payments will be credited to your default euro or sterling account, depending on whether you are a Fire-EU or Fire-UK customer. Payments are automatically routed based on currency and your country of incorporation.
 
-SWIFT payments can be requested by navigating to your Fire home screen on your default account. You can also request these details on mobile.
+SWIFT payments can be requested by navigating to your default account landing screen on the Fire desktop application. You can also request these details the Fire business mobile application.
 
 ![](https://files.readme.io/f4027ca4d53ea3949c5166abf17a64fe4eab77919fb3e54274a9b0ac1051682b-image.png)
 
 <br />
 
-Your SWIFT account information will be displayed alongside your existing BIC and IBAN (for a Euro account)/Sort Code and Account number (for a GBP account). Please note they will be a *separate* BIC and IBAN to your existing Fire account details.
+Your SWIFT account information will be displayed alongside your existing BIC and IBAN (for a euro account)/sort code and account number (for a sterling account). These details are different from your existing local account details used for SEPA (euro) and Faster Payments (sterling) transfers, and are specifically designed for cross-border payments via the SWIFT network
 
 <br />
 
