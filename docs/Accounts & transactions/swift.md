@@ -5,7 +5,7 @@ excerpt: >-
   information. It enables Fire customers to receive international payments
   directly to their Fire account.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
