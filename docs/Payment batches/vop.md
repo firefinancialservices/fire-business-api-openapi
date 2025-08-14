@@ -20,6 +20,14 @@ VoP only affects bank transfer batches in Euro.
 
 ## Creating API applications
 
+<Accordion title="My Accordion Title" icon="fa-info-circle">
+  Test
+</Accordion>
+
+Verification of Payee will act on an opt-in basis for API applications.
+
+When you create an API application you will now be asked to opt in o
+
 ## Submitting large batches
 
 ## Single Payment Batches
