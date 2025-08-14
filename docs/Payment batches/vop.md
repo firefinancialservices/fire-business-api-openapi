@@ -38,7 +38,7 @@ You will need to opt-in/opt-out whether you create your application on the Fire 
   </Tab>
 
   <Tab title="Opted out">
-    If you have opted out, your payees (including new payees) will not be verified provided your batch contains more than one payment.
+    If you have opted out, your payees (including new payees) will not be verified provided your batch only contains a single payment.
   </Tab>
 </Tabs>
 
