@@ -20,7 +20,7 @@ VoP only affects bank transfer batches in Euro.
 
 ## Creating API applications
 
-<Accordion title="API applications versus payees" icon="fa-info-circle">
+<Accordion title="Opt-in/Opt-out criteria" icon="fa-info-circle">
   Please note that you cannot opt-out of the Verification of Payee check for the addition of new payees to your account manually. Any opt-out is only permitted for large batch payments. This section is only relevant to API applications and batches.
 </Accordion>
 
