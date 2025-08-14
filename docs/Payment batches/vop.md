@@ -24,6 +24,8 @@ VoP only affects bank transfer batches in Euro.
   Please note that you cannot opt-out of the Verification of Payee check for the addition of new payees to your account manually. Any opt-out is only permitted for large batch payments. This section is only relevant to API applications and batches.
 </Accordion>
 
+/
+
 Verification of Payee will act on an opt-in basis for API applications.
 
 When you create an API application you will now be asked to opt in o
