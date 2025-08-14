@@ -38,8 +38,10 @@ You will need to opt-in/opt-out whether you create your application on the Fire 
   </Tab>
 
   <Tab title="Opted out">
-    If you have opted out, your payees (including new payee) will not be verified provided your batch contains more than one payment.
+    If you have opted out, your payees (including new payees) will not be verified provided your batch contains more than one payment.
   </Tab>
 </Tabs>
 
 ## Single Payment Batches
+
+Unfortunately, any single payment batches do not fall under the exemption for large batches. For any batches only containing one payment, this payee will have to be verified via a mobile push notification.
