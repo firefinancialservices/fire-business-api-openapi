@@ -24,12 +24,22 @@ VoP only affects bank transfer batches in Euro.
   Please note that you cannot opt-out of the Verification of Payee check for the addition of new payees to your account manually. Any opt-out is only permitted for large batch payments. This section is only relevant to API applications and batches.
 </Accordion>
 
-/
-
 Verification of Payee will act on an opt-in basis for API applications.
 
-When you create an API application you will now be asked to opt in o
+When you create an API application you will now be asked to opt in or opt-out of a verification of payee check when you create the application. This will then apply to any payments made via the API using those application keys.
+
+You will need to opt-in/opt-out whether you create your application on the Fire desktop application or via the Fire Payments API.
 
 ## Submitting large batches
+
+<Tabs>
+  <Tab title="Opted in">
+    Welcome to the content that you can only see inside the first Tab.
+  </Tab>
+
+  <Tab title="Opted outb">
+    Here's content that's only inside the second Tab.
+  </Tab>
+</Tabs>
 
 ## Single Payment Batches
