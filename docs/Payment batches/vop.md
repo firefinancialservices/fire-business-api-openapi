@@ -42,6 +42,6 @@ You will need to opt-in/opt-out whether you create your application on the Fire 
   </Tab>
 </Tabs>
 
-## Single Payment Batches
+## Single payment batches
 
 Unfortunately, any single payment batches do not fall under the exemption for large batches. For any batches only containing one payment, this payee will have to be verified via a mobile push notification.
