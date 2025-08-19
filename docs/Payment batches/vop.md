@@ -46,6 +46,77 @@ There are five possible responses to a VoP check.
   </Tab>
 </Tabs>
 
+By calling our  [Get Batch Details](https://docs.fire.com/reference/getdetailssinglebatch#/) endpoint, you will receive a JSON response for each payee in a batch, with one of the above results. This is useful for summary information on the payees in a large batch. You can also call [List Items for a bank transfer batch](https://docs.fire.com/reference/getitemsbatchbanktransfer#/) to see more detailed information on a singular payee check.
+
+```json Get Batch Details response
+{
+  "batchUuid": "F2AF3F2B-4406-4199-B249-B354F2CC6019",
+  "type": "BANK_TRANSFER",
+  "status": "COMPLETE",
+  "sourceName": "Payment API",
+  "batchName": "January 2018 Payroll",
+  "jobNumber": "2018-01-PR",
+  "callbackUrl": "https://my.webserver.com/cb/payroll",
+  "currency": "EUR, GBP, USD",
+  "numberOfItemsSubmitted": 1,
+  "valueOfItemsSubmitted": 10000,
+  "numberOfItemsFailed": 0,
+  "valueOfItemsFailed": 0,
+  "numberOfItemsSucceeded": 1,
+  "valueOfItemsSucceeded": 10000,
+  "lastUpdated": "2021-04-04T10:48:53.540Z",
+  "dateCreated": "2021-04-04T10:48:53.540Z"
+  "payeeChecks" [
+    "countFullMatch": 1,
+    "countPartialMatch": 1,
+    "countNoMatch": 1,
+    "countUnableToMatch": 1,
+    "countPending": 1
+    ]
+
+```
+```Text List items for a bank tarnsfer batch response
+{
+  "total": 1,
+  "items": [
+    {
+      "batchItemUuid": "F2AF3F2B-4406-4199-B249-B354F2CC6019",
+      "status": "PENDING_APPROVAL",
+      "result": {
+        "code": 500001,
+        "message": "SUCCESS"
+      },
+      "dateCreated": "2021-04-04T10:48:53.540Z",
+      "lastUpdated": "2021-04-04T10:48:53.540Z",
+      "icanFrom": 2150,
+      "amount": 10000,
+      "myRef": "Testing a transfer via batch",
+      "yourRef": "Testing a transfer via batch",
+      "refId": 123782,
+      "payeeType": "ACCOUNT_DETAILS",
+      "payeeId": 1234567,
+      "destIban": "IE63CPAYXXXXXXX792562",
+      "destAccountHolerName": "John Doe",
+      "payeeCheckStatus": "PARTIAL_MATCH"
+      "payeeCheckPartialMatchName": "John Dome"
+    } 
+  ]
+    "pagination": {
+      "total_entries": 2,
+      "total_pages": 1,
+      "current_page": 1,
+      "per_page": 25,
+      "previous_page": -1,
+      "next_page": -1,
+      "order": "created_at",
+      "order_asc_desc": "asc"
+    }
+}
+
+```
+
+<br />
+
 ## Creating API applications
 
 <Accordion title="Opt-in/Opt-out criteria" icon="fa-info-circle">
