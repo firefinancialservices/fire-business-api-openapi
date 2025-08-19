@@ -1,3 +1,4 @@
+- authentication-3
 - accounts
 - transactions
 - open-banking
@@ -10,4 +11,3 @@
 - debit-cards
 - batch-payments
 - webhooks
-- authentication-3
