@@ -34,7 +34,7 @@ You will need to opt-in/opt-out whether you create your application on the Fire 
 
 <Tabs>
   <Tab title="Opted in">
-    If you have opted in to complete a VoP check on any new payees, all payees submitted in the batch will be verified to ensure the name you have submitted for that payee matches the name on the recieving account.If you would like to verify this information, you can call our <a> href="[https://docs.fire.com/reference/getdetailssinglebatch#/">Get](https://docs.fire.com/reference/getdetailssinglebatch#/">Get) Batch Details </a> endpoint. Please note this is not recommended for large batches, as each payee approval must be individually completed.
+    If you have opted in to complete a VoP check on any new payees, all payees submitted in the batch will be verified to ensure the name you have submitted for that payee matches the name on the recieving account.If you would like to verify this information, you can call our <a href="https://docs.fire.com/reference/getdetailssinglebatch#/"> Get Batch Details </a> endpoint. Please note this is not recommended for large batches, as each payee approval must be individually completed.
   </Tab>
 
   <Tab title="Opted out">
