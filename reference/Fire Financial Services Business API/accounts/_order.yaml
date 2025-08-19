@@ -1,1 +1,8 @@
-[]
+- getaccounts
+- addaccount
+- getaccountsv2
+- getaccountbyidv2
+- updateaccountconfig
+- requestinternationaldetails
+- getactivities
+- getaccountbyid

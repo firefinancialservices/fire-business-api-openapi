@@ -1,1 +1,16 @@
-[]
+- getnewpayeebatch
+- createbatchpayment
+- getbatches
+- addinternaltransferbatchpayment
+- getitemsbatchinternaltrasnfer
+- addbanktransferbatchpayment
+- getitemsbatchbanktransfer
+- addinternationaltransferbatchpayment
+- getitemsbatchinternationaltransfer
+- deleteinternaltransferbatchpayment
+- deletebanktransferbatchpayment
+- deleteinternationaltransferbatchpayment
+- cancelbatchpayment
+- getdetailssinglebatch
+- submitbatch
+- getlistofapproversforbatch

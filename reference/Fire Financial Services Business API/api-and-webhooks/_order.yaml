@@ -1,1 +1,6 @@
-[]
+- sendtestwebhook
+- getwebhookevents
+- getapiapplications
+- createapiapplication
+- getpermissions
+- getallpermissions

@@ -1,1 +1,8 @@
-[]
+- getdirectdebitsformandateuuid
+- getdirectdebitbyuuid
+- rejectdirectdebit
+- getdirectdebitmandates
+- getmandate
+- updatemandatealias
+- cancelmandatebyuuid
+- activatemandate
