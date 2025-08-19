@@ -39,7 +39,7 @@ There are five possible responses to a VoP check.
   </Tab>
 
   <Tab title="Pending">
-    Fire is waiting to recieve the result of the VoP check
+    Fire is waiting to recieve the result of the VoP check.
   </Tab>
 
   <Tab title="Unable to match">
