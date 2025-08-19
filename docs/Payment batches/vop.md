@@ -75,7 +75,7 @@ By calling our  [Get Batch Details](https://docs.fire.com/reference/getdetailssi
     ]
 
 ```
-```Text List items for a bank tarnsfer batch response
+```json List items for a bank transfer batch response
 {
   "total": 1,
   "items": [
