@@ -14,9 +14,9 @@ next:
 ---
 > Verification of Payee (VoP) is a mandatory service for SEPA payments aimed at preventing misdirected and fraudulent payments by confirming that the payee's name matches the provided bank account details (IBAN).
 
-Currently, when you add bank transfer payments to a batch and submit this, the batch payments will be automatically sent unless you have approvals enabled. When VoP comes into affect, the way batches are created and processed will change. Fire will need to confirm that the name you assign a payee, matches the name on the account you are sending the payment to in the receiving institution.
+Currently, when bank transfer payments are added to a batch and submitted, the batch payments are automatically sent unless approvals are enabled. When VoP comes into effect, the process for creating and processing batches will change. The name assigned to a payee will need to match the name on the account held at the receiving institution.
 
-VoP only affects bank transfer batches in Euro.
+VoP only affects bank transfer batches in euro.
 
 <br />
 
@@ -26,15 +26,15 @@ There are five possible responses to a VoP check.
 
 <Tabs>
   <Tab title="Full match">
-    The name on the account matches the name you gave the payee completely.
+    The name on the account matches completely the name assigned to the payee.
   </Tab>
 
   <Tab title="Partial match">
-    The name om the account does not match the name you gave the payee completely, but they are similar. For example, you assigned the payee name as "John Doe", where the receiving institution has the name "John Dome".
+    The name on the account does not completely match the name assigned to the payee, but they are similar. For example, the payee name is recorded as 'John Doe', while the receiving institution has the name 'John Dome'.
   </Tab>
 
   <Tab title="No match">
-    The name on the account does not match the name you gave the payee.
+    The name on the account does not match the name assigned to the payee.
   </Tab>
 
   <Tab title="Pending">
@@ -46,7 +46,7 @@ There are five possible responses to a VoP check.
   </Tab>
 </Tabs>
 
-By calling our  [Get Batch Details](https://docs.fire.com/reference/getdetailssinglebatch#/) endpoint, you will receive a JSON response for each payee in a batch, with one of the above results. This is useful for summary information on the payees in a large batch. You can also call [List Items for a bank transfer batch](https://docs.fire.com/reference/getitemsbatchbanktransfer#/) to see more detailed information on a singular payee check.
+By calling our  [Get Batch Details](https://docs.fire.com/reference/getdetailssinglebatch#/) endpoint, you will receive a JSON response for each payee in a batch, with one of the above results. This is useful for summarising information on the payees in a large batch. You can also call [List Items for a bank transfer batch](https://docs.fire.com/reference/getitemsbatchbanktransfer#/) to see more detailed information on a singular payee check.
 
 ```json Get Batch Details response
 {
@@ -119,28 +119,28 @@ By calling our  [Get Batch Details](https://docs.fire.com/reference/getdetailssi
 
 ## Creating API applications
 
-<Accordion title="Opt-in/Opt-out criteria" icon="fa-info-circle">
-  Please note that you cannot opt-out of the Verification of Payee check for the addition of new payees to your account manually. Any opt-out is only permitted for batch payments. This section is only relevant to API applications and batches.
+<Accordion title="Opt in/Opt out criteria" icon="fa-info-circle">
+  Please note that you cannot opt out of the Verification of Payee check for the addition of new payees to your account manually. Any opt out is only permitted for batch payments. This section is only relevant to API applications and batches.
 </Accordion>
 
-Verification of Payee will act on an opt-in basis for API applications with Fire.
+Verification of Payee will act on an opt in basis for API applications with Fire.
 
-When you create an API application you will now be asked to opt in or opt-out of a verification of payee check when you create the application. This will then apply to any payments made via the API using those application keys.
+When you create an API application you will now be asked to opt in or opt out of a verification of payee check when you create the application. This will then apply to any payments made via the API using those application keys.
 
-You will need to opt-in/opt-out whether you create your application on the Fire desktop application or via the Fire Payments API.
+You will need to opt in or opt out whether you create your application on the Fire desktop application or via the Fire Payments API.
 
 ## Submitting large batches
 
 <Tabs>
   <Tab title="Opted in">
-    If you have opted in to complete a VoP check on any new payees, all payees submitted in the batch will be verified to ensure the name you have submitted for that payee matches the name on the recieving account. If you would like to check this information, you can call our <a href="https://docs.fire.com/reference/getdetailssinglebatch#/"> Get Batch Details </a> endpoint. This will summarise the results of the check for the payees in the batch. Please note it is not recommended to opt-in for large batches.
+    If you have opted in to complete a VoP check on any new payees, all payees submitted in the batch will be verified to ensure the name submitted for each payee matches the name on the receiving account. If you would like to check this information, you can call our <a href="https://docs.fire.com/reference/getdetailssinglebatch#/"> Get Batch Details </a> endpoint. This will summarise the results of the check for the payees in the batch. Please note it is not recommended to opt in for large batches.
   </Tab>
 
   <Tab title="Opted out">
-    If you have opted out, your payees (including new payees) will not be verified provided your batch does not only contains a single payment.
+    If you have opted out, payees (including new payees) will not be verified provided your batch does not only contains a single payment.
   </Tab>
 </Tabs>
 
 ## Single payment batches
 
-Unfortunately, any single payment batches do not fall under the exemption for large batches. For any batches only containing one payment, payees will be verified regardless. If you have opted-in, you can call our <a href="https://docs.fire.com/reference/getdetailssinglebatch#/"> Get Batch Details </a> endpoint to view the result of this check. If you have opted out, you will receive a push notification only if the verification returns a response that is not a full name match against the receiving account.
+Unfortunately, any single payment batches do not fall under the exemption for large batches. For any batches only containing one payment, payees will be verified regardless. If you have opted-in, you can call our [Get batch details](\[https://docs.fire.com/reference/getdetailssinglebatch#/]\(https://docs.fire.com/reference/getdetailssinglebatch#/\)) endpoint to view the result of this check. If you have opted out, you will receive a push notification only if the verification returns a response that is not a full match against the receiving account.
