@@ -143,6 +143,14 @@ You will be asked to make this selection regardless of whether the application i
 
 Single payment batches do not fall under the opt out exemption for VoP checks. For any batches containing only one payment, a VoP check will be performed.
 
-If you have opted in, we will perform the check at the time the batch item is added to the batch. You can call our <a href="https://docs.fire.com/reference/getdetailssinglebatch#/ "> Get Batch Details </a> endpoint to view the result of this check.
+<br />
 
-If you have opted out, we will perform the check at the point the batch is submitted. If the result returned by the beneficiary account provider is a Full Match, the payment will be processed without any need for input from you. If the result is anything other than Full Match, you will receive a push notification displaying the result. You will be required to either accept or reject the result before we will continue to process the batch.
+<Tabs>
+  <Tab title="Opted in">
+    If you have opted in, we will perform the check at the time the batch item is added to the batch. You can call our <a href="https://docs.fire.com/reference/getdetailssinglebatch#/ "> Get Batch Details </a> endpoint to view the result of this check.
+  </Tab>
+
+  <Tab title="Opted out">
+    If you have opted out, we will perform the check at the point the batch is submitted. If the result returned by the beneficiary account provider is a Full Match, the payment will be processed without any need for input from you. If the result is anything other than Full Match, you will receive a push notification displaying the result. You will be required to either accept or reject the result before we will continue to process the batch.
+  </Tab>
+</Tabs>
