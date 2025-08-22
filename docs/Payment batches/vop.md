@@ -14,9 +14,7 @@ next:
 ---
 > Verification of Payee (VoP) is a mandatory service for SEPA payments aimed at preventing misdirected and fraudulent payments by confirming that the payee's name matches the provided bank account details (IBAN).
 
-Currently, when bank transfer payments are added to a batch and submitted, the batch payments are automatically sent unless approvals are enabled. When VoP comes into effect, the process for creating and processing batches will change. The name assigned to a payee will need to match the name on the account held at the receiving institution.
-
-VoP only affects bank transfer batches in euro.
+Currently, when bank transfer payments are added to a batch and submitted, the batch payments are automatically sent unless approvals are enabled. When VoP comes into effect, the process for creating and processing batches will change. The account holder name assigned to a payee will be checked to see if it matches the name on the account held at the receiving institution. If it does not match, the user will be notified of this.
 
 <br />
 
@@ -127,7 +125,7 @@ Verification of Payee will act on an opt in basis for API applications with Fire
 
 When you create an API application you will now be asked to opt in or opt out of a verification of payee check when you create the application. This will then apply to any payments made via the API using those application keys.
 
-You will need to opt in or opt out whether you create your application on the Fire desktop application or via the Fire Payments API.
+You will be asked to make this selection regardless of whether the application is created through the Fire desktop application or via the Fire Payments API. Any existing applications will default to opt out.
 
 ## Submitting large batches
 
@@ -143,4 +141,8 @@ You will need to opt in or opt out whether you create your application on the Fi
 
 ## Single payment batches
 
-Unfortunately, any single payment batches do not fall under the exemption for large batches. For any batches only containing one payment, payees will be verified regardless. If you have opted in, you can call our [Get batch details](\[https://docs.fire.com/reference/getdetailssinglebatch#/]\(https://docs.fire.com/reference/getdetailssinglebatch#/\)) endpoint to view the result of this check. If you have opted out, you will receive a push notification only if the verification returns a response that is not a full match against the receiving account.
+Single payment batches do not fall under the opt out exemption for VoP checks. For any batches containing only one payment, a VoP check will be performed.
+
+If you have opted in, we will perform the check at the time the batch item is added to the batch. You can call our <a href="https://docs.fire.com/reference/getdetailssinglebatch#/ "> Get Batch Details </a> endpoint to view the result of this check.
+
+If you have opted out, we will perform the check at the point the batch is submitted. If the result returned by the beneficiary account provider is a Full Match, the payment will be processed without any need for input from you. If the result is anything other than Full Match, you will receive a push notification displaying the result. You will be required to either accept or reject the result before we will continue to process the batch.
