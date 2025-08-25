@@ -1,16 +1,15 @@
 ---
 title: Authentication
-excerpt: >-
-  Once you have a library set-up, you'll need to authenticate your application
-  information.
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: >-
+    Once you have a library set-up, you'll need to authenticate your application
+    information.
+privacy:
+  view: public
 ---
 Access to the API is by bearer tokens. You'll need your API application information to generate this.
 

@@ -1,17 +1,16 @@
 ---
 title: SWIFT accounts
-excerpt: >-
-  The SWIFT network is a global messaging network allowing members to exchange
-  information. It enables Fire customers to receive international payments
-  directly to their Fire account.
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: >-
+    The SWIFT network is a global messaging network allowing members to exchange
+    information. It enables Fire customers to receive international payments
+    directly to their Fire account.
+privacy:
+  view: public
 ---
 # How it works
 

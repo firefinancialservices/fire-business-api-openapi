@@ -1,18 +1,17 @@
 ---
 title: Fire Open Payments
-excerpt: >-
-  Fire Open Payments is a feature of the fire.com business account that
-  leverages Open Banking to allow your customers to pay you via bank transfer
-  and to reconcile those payments as they are received into your fire.com GBP or
-  EUR account.
-deprecated: false
-hidden: true
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: >-
+    Fire Open Payments is a feature of the fire.com business account that
+    leverages Open Banking to allow your customers to pay you via bank transfer
+    and to reconcile those payments as they are received into your fire.com GBP
+    or EUR account.
+privacy:
+  view: anyone_with_link
 ---
 To set up each Fire Open Payment you first need to create a payment request. This contains the details of the payment such as the amount, destination account, description as well as various other specific fields that you want to associate with the payment. The payment request is represented as a URL with a unique code which can then be incorporated into an eCommerce shopping cart as an alternative form of payment. For example, you can put "Pay by Bank" on your website along with "Pay by Card" and "Pay by PayPal". It can also be distributed by a variety of means such as by email, SMS, WhatsApp, encoded as a QR code, NFC tag, etc.
 

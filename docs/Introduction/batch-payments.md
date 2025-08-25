@@ -1,16 +1,15 @@
 ---
 title: Payment Batches
-excerpt: >-
-  The fire.com API allows businesses to automate payments between their accounts
-  or to third parties across the UK and Europe.
-deprecated: false
-hidden: true
 metadata:
   title: ''
   description: ''
   robots: noindex
-next:
-  description: ''
+content:
+  excerpt: >-
+    The fire.com API allows businesses to automate payments between their
+    accounts or to third parties across the UK and Europe.
+privacy:
+  view: anyone_with_link
 ---
 For added security, the API can only set up the payments in batches. These batches must be approved by an authorised user via the firework mobile app.
 

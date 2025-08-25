@@ -1,22 +1,15 @@
 ---
 title: Get started with FX
-excerpt: >-
-  Reduce your FX costs with our competitive rates. Use the Fire Payments API to
-  view our rates, and pair with our payment endpoints.
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: >-
-    If you are interested in simplifying your payment processes, contact our
-    sales team.
-  pages:
-    - type: link
-      title: Contact Sales
-      url: https://www.fire.com/contact-us/
+content:
+  excerpt: >-
+    Reduce your FX costs with our competitive rates. Use the Fire Payments API
+    to view our rates, and pair with our payment endpoints.
+privacy:
+  view: public
 ---
 ## Why do FX with Fire?
 

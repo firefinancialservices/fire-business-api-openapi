@@ -1,24 +1,24 @@
 ---
 title: Get started with debit cards
-excerpt: >-
-  Manage your business expenses and subscriptions.
-
-
-  Fire is a principal issuer of MasterCard® since 2016, making us one of the
-  first payment institutions to be authorised as a member. Our debit cards can
-  be used for in-store payments, online shopping, and ATM cash withdrawals. We
-  employ security protocols such as Strong Customer Authentication (SCA) and 3D
-  Secure (3DS) to bolster the safety of our debit cards. We ensure that our
-  customers' transactions are protected against unauthorised access, reinforcing
-  our commitment to providing a trusted and secure financial experience.
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: >-
+    Manage your business expenses and subscriptions.
+
+
+    Fire is a principal issuer of MasterCard® since 2016, making us one of the
+    first payment institutions to be authorised as a member. Our debit cards can
+    be used for in-store payments, online shopping, and ATM cash withdrawals. We
+    employ security protocols such as Strong Customer Authentication (SCA) and
+    3D Secure (3DS) to bolster the safety of our debit cards. We ensure that our
+    customers' transactions are protected against unauthorised access,
+    reinforcing our commitment to providing a trusted and secure financial
+    experience.
+privacy:
+  view: public
 ---
 ## Why choose Fire's debit cards?
 
