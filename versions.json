@@ -1,0 +1,12 @@
+{
+    "versions": [
+        { 
+            "name": "2025-08-18",
+            "description": "Initial release with basic features.",
+            "endpointVersions": {
+                "/accounts": "v1",
+                "/accounts/{ican}": "v1"
+            }
+        }
+    ]
+}
