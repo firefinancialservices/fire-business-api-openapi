@@ -131,7 +131,7 @@ You will be asked to make this selection regardless of whether the application i
 
 <Tabs>
   <Tab title="Opted in">
-If you have opted in to perform a VoP check on batch payments, we will perform the check when a batch item is added to the batch. The check result can take up to 5 seconds to be received from the beneficiary account provider so it will not be included in the response message.  If you would like to check this information, you can call our <a href="https://docs.fire.com/reference/getdetailssinglebatch#/"> Get Batch Details </a> endpoint. This will summarise the results of the check for the payees in the batch.  You can also call [List Items for a bank transfer batch](https://docs.fire.com/reference/getitemsbatchbanktransfer#/) to see more detailed information on an individual batch item.
+If you have opted in to perform a VoP check on batch payments, we will perform the check when a batch item is added to the batch. The check result can take up to 5 seconds to be received from the beneficiary account provider so it will not be included in the response message.  If you would like to check this information, you can call our <a href="https://docs.fire.com/reference/getdetailssinglebatch#/"> Get Batch Details </a> endpoint. This will summarise the results of the check for the payees in the batch.  You can also call <a href="https://docs.fire.com/reference/getitemsbatchbanktransfer#/"> List Items for a bank transfer batch  </a> to see more detailed information on an individual batch item.
   </Tab>
 
   <Tab title="Opted out">
