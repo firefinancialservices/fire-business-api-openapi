@@ -30,7 +30,7 @@ There are five possible responses to a VoP check.
   </Tab>
 
   <Tab title="Partial match">
-    The name om the account does not match the name you gave the payee completely, but they are similar. For example, you assigned the payee name as "John Doe", where the receiving institution has the name "John Dome".
+    The name on the account does not match the name you gave the payee completely, but they are similar. For example, you assigned the payee name as "John Doe", where the receiving institution has the name "John Dome".
   </Tab>
 
   <Tab title="No match">
