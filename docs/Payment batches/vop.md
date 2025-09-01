@@ -65,7 +65,7 @@ By calling our  [Get Batch Details](https://docs.fire.com/reference/getdetailssi
   "numberOfItemsSucceeded": 1,
   "valueOfItemsSucceeded": 10000,
   "lastUpdated": "2021-04-04T10:48:53.540Z",
-  "dateCreated": "2021-04-04T10:48:53.540Z"
+  "dateCreated": "2021-04-04T10:48:53.540Z",
   "payeeChecks" [
     "countFullMatch": 1,
     "countPartialMatch": 1,
@@ -97,10 +97,10 @@ By calling our  [Get Batch Details](https://docs.fire.com/reference/getdetailssi
       "payeeId": 1234567,
       "destIban": "IE63CPAYXXXXXXX792562",
       "destAccountHolerName": "John Doe",
-      "payeeCheckStatus": "PARTIAL_MATCH"
+      "payeeCheckStatus": "PARTIAL_MATCH",
       "payeeCheckPartialMatchName": "John Dome"
     } 
-  ]
+  ],
     "pagination": {
       "total_entries": 2,
       "total_pages": 1,
