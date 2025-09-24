@@ -26,6 +26,9 @@ properties:
     type: integer
     description: Number of approvals required to create a payee in a batch
     example: 1
+  isPayeeCheckEnabled:
+    type: boolean
+    description: This is wheter or not Verfication of Payee checks are required for SEPA payments before a batch can be submitted.
   permissions:
     type: array
     items:
