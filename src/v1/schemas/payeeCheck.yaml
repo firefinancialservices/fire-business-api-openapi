@@ -1,0 +1,31 @@
+title: payeeChecks
+type: object
+properties: 
+    countFullMatch: 
+      type: integer
+      format: int64
+      example: 1
+      descripton: The number of full match VoP results in the batch
+    countPartialMatch: 
+      type: integer
+      format: int64
+      example: 1
+      descripton: The number of partial match VoP results in the batch
+    countNoMatch: 
+      type: integer
+      format: int64
+      example: 1
+      descripton: The number of no match VoP results in the batch
+    countUnableToMatch: 
+      type: integer
+      format: int64
+      example: 1
+      description: The number of payees on which a VoP check was not completed
+    countPending: 
+      type: integer
+      format: int64
+      example: 1
+      description: The number of payees awaiting a VoP check result
+
+
+

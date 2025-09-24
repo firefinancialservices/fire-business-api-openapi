@@ -31,7 +31,7 @@ There are five possible responses to a VoP check.
   </Tab>
 
   <Tab title="No match">
-    The account holder name assigned to your payee is not an exact match with the name held by the beneficiary account provider.
+    The account holder name assigned to your payee is not an exact or close match with the name held by the beneficiary account provider.
   </Tab>
 
   <Tab title="Pending">
@@ -55,22 +55,22 @@ By calling our  [Get Batch Details](https://docs.fire.com/reference/getdetailssi
   "jobNumber": "2018-01-PR",
   "callbackUrl": "https://my.webserver.com/cb/payroll",
   "currency": "EUR, GBP, USD",
-  "numberOfItemsSubmitted": 1,
+  "numberOfItemsSubmitted": 4,
   "valueOfItemsSubmitted": 10000,
   "numberOfItemsFailed": 0,
   "valueOfItemsFailed": 0,
-  "numberOfItemsSucceeded": 1,
+  "numberOfItemsSucceeded": 4,
   "valueOfItemsSucceeded": 10000,
   "lastUpdated": "2021-04-04T10:48:53.540Z",
-  "dateCreated": "2021-04-04T10:48:53.540Z"
-  "payeeChecks" [
+  "dateCreated": "2021-04-04T10:48:53.540Z",
+  "payeeChecks": {
     "countFullMatch": 1,
     "countPartialMatch": 1,
     "countNoMatch": 1,
     "countUnableToMatch": 1,
-    "countPending": 1
-    ]
-
+    "countPending": 0
+  }
+}
 ```
 ```json List items for a bank transfer batch response
 {
@@ -94,20 +94,20 @@ By calling our  [Get Batch Details](https://docs.fire.com/reference/getdetailssi
       "payeeId": 1234567,
       "destIban": "IE63CPAYXXXXXXX792562",
       "destAccountHolerName": "John Doe",
-      "payeeCheckStatus": "PARTIAL_MATCH"
+      "payeeCheckStatus": "PARTIAL_MATCH",
       "payeeCheckPartialMatchName": "John Dome"
     } 
-  ]
-    "pagination": {
-      "total_entries": 2,
-      "total_pages": 1,
-      "current_page": 1,
-      "per_page": 25,
-      "previous_page": -1,
-      "next_page": -1,
-      "order": "created_at",
-      "order_asc_desc": "asc"
-    }
+  ],
+  "pagination": {
+    "total_entries": 2,
+    "total_pages": 1,
+    "current_page": 1,
+    "per_page": 25,
+    "previous_page": -1,
+    "next_page": -1,
+    "order": "created_at",
+    "order_asc_desc": "asc"
+  }
 }
 
 ```
@@ -124,7 +124,7 @@ By calling our  [Get Batch Details](https://docs.fire.com/reference/getdetailssi
 
 <Tabs>
   <Tab title="Opted in">
-    If you have opted in to perform a VoP check on batch payments, we will perform the check when a batch item is added to the batch. The check result can take up to 5 seconds to be received from the beneficiary account provider so it will not be included in the response message. If you would like to check the resut, you can call our Get Batch Details endpoint. This will summarise the results of the checks for all items in the batch. Please note it is not recommended to opt in for large batches. You can also call List Items for a bank transfer batch to see more detailed information on an individual batch item.
+    If you have opted in to perform a VoP check on batch payments, we will perform the check when a batch item is added to the batch. The check result can take up to 5 seconds to be received from the beneficiary account provider so it will not be included in the response message. If you would like to check the result, you can call our Get Batch Details endpoint. This will summarise the results of the checks for all items in the batch. Please note it is not recommended to opt in for large batches. You can also call List Items for a bank transfer batch to see more detailed information on an individual batch item.
   </Tab>
 
   <Tab title="Opted out">

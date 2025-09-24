@@ -75,3 +75,15 @@ properties:
     type: string
     example: "John Doe"
     description: The payee's name
+  payeeCheckStatus: 
+    type: string
+    description: The status of the VoP check for this payee
+    enum: 
+     - FULL_MATCH
+     - PARTIAL_MATCH
+     - NO_MATCH
+     - UNABLE_TO_MATCH 
+  payeeCheckPartialMatchName: 
+    type: string
+    description: The result of the VoP check for the payee. Displayed if the VoP result is PARTIAL_MATCH
+    example: "John do"
