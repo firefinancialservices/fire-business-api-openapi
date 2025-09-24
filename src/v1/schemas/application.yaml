@@ -38,7 +38,7 @@ properties:
     example: 1
   isPayeeCheckEnabled:
     type: boolean
-    description: This is wheter or not Verfication of Payee checks are required for SEPA payments before a batch can be submitted.
+    description: This is whether or not Verfication of Payee checks are required for SEPA payments before a batch can be submitted.
 
 
 
