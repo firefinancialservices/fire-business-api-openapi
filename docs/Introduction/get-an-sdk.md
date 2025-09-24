@@ -1,16 +1,15 @@
 ---
 title: Get a client SDK
-excerpt: >-
-  In order to use the Fire Payments API, you will need access to our OpenAPI
-  specification.
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: >-
+    In order to use the Fire Payments API, you will need access to our OpenAPI
+    specification.
+privacy:
+  view: public
 ---
 > 📘 You can download Fire's OpenAPI specification [here](https://github.com/firefinancialservices/fire-business-api-openapi/blob/master/fire-business-api-v1.yaml).
 

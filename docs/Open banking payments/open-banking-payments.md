@@ -1,21 +1,21 @@
 ---
 title: Get started with open banking
-excerpt: >-
-  Get paid faster, lower your fees and reduce fraud. Fire is among the first
-  companies in Ireland and the UK to offer open banking payment acceptance,
-  viewing it as the initial stage of account-based payments. We anticipate
-  further innovation and regulatory changes leading to the evolution of
-  account-based payments beyond open banking. As a dually regulated business,
-  Fire uses its own technology and licences to provide payment services and is
-  dedicated to introducing this new payment method to the Irish and UK markets.
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: >-
+    Get paid faster, lower your fees and reduce fraud. Fire is among the first
+    companies in Ireland and the UK to offer open banking payment acceptance,
+    viewing it as the initial stage of account-based payments. We anticipate
+    further innovation and regulatory changes leading to the evolution of
+    account-based payments beyond open banking. As a dually regulated business,
+    Fire uses its own technology and licences to provide payment services and is
+    dedicated to introducing this new payment method to the Irish and UK
+    markets.
+privacy:
+  view: public
 ---
 > 📘 *Open Banking account-to-account (A2A) payments refer to a payment method where funds are transferred directly between bank accounts via an open banking platform. This method leverages APIs to allow third-party providers (TPPs) to access and initiate payments directly from a payer's bank account to a recipient's account, without the need for traditional card networks or intermediaries.*
 >

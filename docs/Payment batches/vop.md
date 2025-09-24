@@ -1,16 +1,15 @@
 ---
 title: Verification of Payee
-excerpt: >-
-  Verification of Payee (VoP) will come into affect in October 2025. This page
-  summarises the impacts and effects for users of the Fire Payments API.
-deprecated: false
-hidden: true
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: >-
+    Verification of Payee (VoP) will come into affect in October 2025. This page
+    summarises the impacts and effects for users of the Fire Payments API.
+privacy:
+  view: anyone_with_link
 ---
 > Verification of Payee (VoP) is a mandatory service for SEPA payments aimed at preventing misdirected and fraudulent payments by confirming that the payee's name matches the provided bank account details (IBAN).
 

@@ -1,17 +1,16 @@
 ---
 title: Get started with accounts
-excerpt: >-
-  After creating your Fire account with the help of our sales team and
-  integrating with our API, you can start reviewing your account details and
-  create recurring payments.
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: >-
+    After creating your Fire account with the help of our sales team and
+    integrating with our API, you can start reviewing your account details and
+    create recurring payments.
+privacy:
+  view: public
 ---
 ## Why use Fire for your payments?
 

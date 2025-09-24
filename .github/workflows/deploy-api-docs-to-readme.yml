@@ -23,3 +23,15 @@ jobs:
         uses: readmeio/rdme@v10
         with:
           rdme: openapi upload ./fire-business-api-v1.yaml --key=${{ secrets.README_API_KEY }} --branch=v2.0
+
+      - name: Upload Guides section to ReadMe
+        uses: readmeio/rdme@v10
+        with:
+          rdme: docs upload docs/ --key=${{ secrets.README_API_KEY }} --branch=v2.0
+
+      # You can't upload recipes with the action - need to edit these on ReadMe
+      # - name: Upload Recipes section to ReadMe
+      #   uses: readmeio/rdme@v10
+      #   with:
+      #     rdme: docs upload recipes/ --key=${{ secrets.README_API_KEY }} --branch=v2.0
+            

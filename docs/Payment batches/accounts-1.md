@@ -1,16 +1,15 @@
 ---
 title: Get started with batches
-excerpt: >-
-  Transfer funds into your Fire account for automatic distribution to employees
-  or contractors.
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: >-
+    Transfer funds into your Fire account for automatic distribution to
+    employees or contractors.
+privacy:
+  view: public
 ---
 ## Why use Fire to make batch payments?
 

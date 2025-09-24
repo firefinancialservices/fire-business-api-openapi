@@ -1,17 +1,16 @@
 ---
 title: Get started with webhooks
-excerpt: >-
-  Fire offers webhooks that provide real-time notifications on events, enabling
-  you to trigger specific API actions such as automatically transferring funds
-  across accounts based on predefined rules.
-deprecated: false
-hidden: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
+content:
+  excerpt: >-
+    Fire offers webhooks that provide real-time notifications on events,
+    enabling you to trigger specific API actions such as automatically
+    transferring funds across accounts based on predefined rules.
+privacy:
+  view: public
 ---
 > 📘 Webhooks allow you to be notified of events as they happen on your Fire accounts. This is useful if you have systems that need to know when things happen on your account, such as payments or withdrawals.
 
