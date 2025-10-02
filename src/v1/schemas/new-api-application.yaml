@@ -1,19 +1,6 @@
 title: newApiApplication
 type: object
 properties:
-  ican:
-    type: integer
-    format: int64
-    description: The ICAN of one of your Fire accounts. Restrict this API Application to a certain account.
-  enabled:
-    type: boolean
-    example: true
-    description: Whether or not this API Application can be used
-  expiry:
-    type: string
-    format: date-time
-    example: "2019-08-22T07:48:56.460Z"
-    description: The date that this API Application can no longer be used.
   applicationName:
     type: string
     description: A name for the API Application to help you identify it
