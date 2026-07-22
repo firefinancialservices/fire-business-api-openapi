@@ -66,3 +66,6 @@ properties:
     format: date-time
     example: "2019-08-22T07:48:56.460Z"
     description: The date the payee was created. ISO Date Time.
+  sepaInstReachable:
+    type: boolean
+    description: This is whether or not the euro payee's bank or payment service provider is reachable via SEPA instant payment.

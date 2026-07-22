@@ -169,6 +169,18 @@ properties:
 
       * `SWIFT_INBOUND_FX` - SWIFT Payment with an FX conversion
       
+      * `INSTANT_LODGEMENT` - Bank transfer received instantly 
+
+      * `INSTANT_WITHDRAWAL` - Bank transfer sent instantly
+
+      * `INSTANT_WITHDRAWAL_REVERSAL` - Bank transfer sent instantly reversed
+
+      * `INSTANT_WITHDRAWAL_RETURNED` -  Bank Transfer sent returned
+
+      * `INSTANT_LODGEMENT_REVERSAL` - Bank transfer received instantly reversed
+      
+      * `INSTANT_LODGEMENT_RETURNED` - Bank transfer received instantly returned
+      
     example: WITHDRAWAL  
   dateAcknowledged:
     type: string
