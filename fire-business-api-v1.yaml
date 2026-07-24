@@ -5198,6 +5198,11 @@ components:
             This is the number of approvals required for Payees. Only for
             applications with batch payment permissions enabled.
           example: 1
+        isPayeeCheckEnabled:
+          type: boolean
+          description: >-
+            This is whether or not Verfication of Payee checks are required for
+            SEPA payments before a batch can be submitted.
     Aspsp:
       title: aspsp
       type: object
@@ -5452,6 +5457,20 @@ components:
           type: string
           example: John Doe
           description: The payee's name
+        payeeCheckStatus:
+          type: string
+          description: The status of the VoP check for this payee
+          enum:
+            - FULL_MATCH
+            - PARTIAL_MATCH
+            - NO_MATCH
+            - UNABLE_TO_MATCH
+        payeeCheckPartialMatchName:
+          type: string
+          description: >-
+            The result of the VoP check for the payee. Displayed if the VoP
+            result is PARTIAL_MATCH
+          example: John do
     Batch:
       title: batch
       type: object
@@ -5561,6 +5580,8 @@ components:
           description: >-
             The datestamp the batch was created - ISO format - e.g.
             2018-04-04T00:53:21.910Z
+        payeeChecks:
+          $ref: '#/components/schemas/PayeeCheck'
     NewCardResponse:
       title: newCardResponse
       type: object
@@ -6449,21 +6470,6 @@ components:
       title: newApiApplication
       type: object
       properties:
-        ican:
-          type: integer
-          format: int64
-          description: >-
-            The ICAN of one of your Fire accounts. Restrict this API Application
-            to a certain account.
-        enabled:
-          type: boolean
-          example: true
-          description: Whether or not this API Application can be used
-        expiry:
-          type: string
-          format: date-time
-          example: '2019-08-22T07:48:56.460Z'
-          description: The date that this API Application can no longer be used.
         applicationName:
           type: string
           description: A name for the API Application to help you identify it
@@ -6476,6 +6482,11 @@ components:
           type: integer
           description: Number of approvals required to create a payee in a batch
           example: 1
+        isPayeeCheckEnabled:
+          type: boolean
+          description: >-
+            This is whether or not Verfication of Payee checks are required for
+            SEPA payments before a batch can be submitted.
         permissions:
           type: array
           items:
@@ -8676,8 +8687,8 @@ components:
       properties:
         nsc:
           type: string
-          description: '232221'
-          example: the Sort Code of the account
+          description: the Sort Code of the account
+          example: '232221'
         accountNumber:
           type: string
           description: the account number of the account
@@ -8782,6 +8793,35 @@ components:
           type: string
           description: The status to update the payment request to
           example: ACTIVE
+    PayeeCheck:
+      title: payeeChecks
+      type: object
+      properties:
+        countFullMatch:
+          type: integer
+          format: int64
+          example: 1
+          descripton: The number of full match VoP results in the batch
+        countPartialMatch:
+          type: integer
+          format: int64
+          example: 1
+          descripton: The number of partial match VoP results in the batch
+        countNoMatch:
+          type: integer
+          format: int64
+          example: 1
+          descripton: The number of no match VoP results in the batch
+        countUnableToMatch:
+          type: integer
+          format: int64
+          example: 1
+          description: The number of payees on which a VoP check was not completed
+        countPending:
+          type: integer
+          format: int64
+          example: 1
+          description: The number of payees awaiting a VoP check result
 security:
   - bearerAuth: []
 tags:
