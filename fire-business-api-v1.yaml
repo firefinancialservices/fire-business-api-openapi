@@ -6534,6 +6534,13 @@ components:
           type: string
           example: 'https://my.webserver.com/cb/payroll'
           description: An optional POST URL that all events for this batch will be sent to.
+        isInstant:
+          type: boolean
+          example: true
+          description: >-
+            An optional field that allows you to choose if you want the batch
+            items containined in the batch to be sent as SEPA INST payments.
+            This is only available for EUR bank transfer batches.
     NewPaymentRequest:
       title: newPaymentRequest
       type: object
@@ -6777,6 +6784,11 @@ components:
           format: date-time
           example: '2019-08-22T07:48:56.460Z'
           description: The date the payee was created. ISO Date Time.
+        sepaInstReachable:
+          type: boolean
+          description: >-
+            This is whether or not the euro payee's bank or payment service
+            provider is reachable via SEPA instant payment.
     PaymentRequestPayment:
       title: paymentRequestPayment
       type: object
@@ -7729,6 +7741,12 @@ components:
             - CARD_INTERNATIONAL_ECOMMERCE_CREDIT_REVERSAL
             - CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL
             - CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL
+            - INSTANT_LODGEMENT
+            - INSTANT_WITHDRAWAL
+            - INSTANT_WITHDRAWAL_REVERSAL
+            - INSTANT_WITHDRAWAL_RETURNED
+            - INSTANT_LODGEMENT_REVERSAL
+            - INSTANT_LODGEMENT_RETURNED
         currency:
           $ref: '#/components/schemas/Currency'
         feeRule:
