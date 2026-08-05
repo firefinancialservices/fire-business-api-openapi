@@ -1,5 +1,5 @@
 ---
-title: SWIFT accounts
+title: Receive SWIFT payments
 metadata:
   title: ''
   description: ''

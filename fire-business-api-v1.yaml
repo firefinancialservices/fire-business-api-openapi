@@ -41,7 +41,7 @@ paths:
                 $ref: '#/components/schemas/AccessToken'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -56,7 +56,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -71,7 +71,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -109,7 +109,7 @@ paths:
                       $ref: '#/components/schemas/Account'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -124,7 +124,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -139,7 +139,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -180,7 +180,7 @@ paths:
                 $ref: '#/components/schemas/Account'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -195,7 +195,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -210,7 +210,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -248,7 +248,7 @@ paths:
                       $ref: '#/components/schemas/AccountV2'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -263,7 +263,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -278,7 +278,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -296,7 +296,7 @@ paths:
       summary: Get details of an account (V2)
       description: >-
         This endpoint will return an array of information about the account. You
-        can retrieve the details of a Fire  Account by its `ican`. You will need
+        can retrieve the details of a Fire Account by its `ican`. You will need
         to enable PERM_BUSINESS_GET_ACCOUNT to use this endpoint.
       tags:
         - Accounts
@@ -318,7 +318,7 @@ paths:
                 $ref: '#/components/schemas/AccountV2'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -333,7 +333,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -348,7 +348,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -389,7 +389,7 @@ paths:
           description: The account was updated.
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -404,7 +404,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -419,7 +419,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -460,7 +460,7 @@ paths:
             view your international account details.
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -475,7 +475,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -490,7 +490,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -528,7 +528,7 @@ paths:
                       $ref: '#/components/schemas/Activity'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -543,7 +543,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -558,7 +558,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -576,7 +576,7 @@ paths:
       summary: Get details of an account
       description: >-
         This endpoint will return an array of information about the account. You
-        can retrieve the details of a Fire  Account by its `ican`. You will need
+        can retrieve the details of a Fire Account by its `ican`. You will need
         to enable PERM_BUSINESS_GET_ACCOUNT to use this endpoint.
       tags:
         - Accounts
@@ -598,7 +598,7 @@ paths:
                 $ref: '#/components/schemas/Account'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -613,7 +613,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -628,7 +628,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -723,7 +723,7 @@ paths:
                       $ref: '#/components/schemas/Transaction'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -738,7 +738,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV3'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -753,7 +753,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV3'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -790,7 +790,7 @@ paths:
                       $ref: '#/components/schemas/Card'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -805,7 +805,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -820,7 +820,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -859,7 +859,7 @@ paths:
                 $ref: '#/components/schemas/NewCardResponse'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -874,7 +874,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -889,7 +889,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -961,7 +961,7 @@ paths:
                         $ref: '#/components/schemas/Transaction'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -976,7 +976,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -991,7 +991,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1030,7 +1030,7 @@ paths:
             successful.
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1045,7 +1045,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1060,7 +1060,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1098,7 +1098,7 @@ paths:
             successful.
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1113,7 +1113,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1128,7 +1128,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1169,7 +1169,7 @@ paths:
                 $ref: '#/components/schemas/PaymentRequestResponse'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1184,7 +1184,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1199,7 +1199,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1217,7 +1217,7 @@ paths:
       summary: Get payment request details
       description: >
         This endpoint will retrieve the details of an Open Banking Payment
-        requestYou will need to enable PERM_BUSINESS_GET_PAYMENT_REQUEST to use
+        request. You will need to enable PERM_BUSINESS_GET_PAYMENT_REQUEST to use
         this endpoint.
       tags:
         - Open Banking
@@ -1239,7 +1239,7 @@ paths:
                 $ref: '#/components/schemas/PaymentRequest'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1254,7 +1254,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1269,7 +1269,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1309,7 +1309,7 @@ paths:
                 $ref: '#/components/schemas/PaymentRequestPayment'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1324,7 +1324,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1339,7 +1339,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1379,7 +1379,7 @@ paths:
                 $ref: '#/components/schemas/PaymentRequestReport'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1394,7 +1394,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1409,7 +1409,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1441,7 +1441,7 @@ paths:
                 $ref: '#/components/schemas/PaymentRequestsSent'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1456,7 +1456,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1471,7 +1471,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1511,7 +1511,7 @@ paths:
                 $ref: '#/components/schemas/PublicPaymentRequest'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1526,7 +1526,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1541,7 +1541,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1585,7 +1585,7 @@ paths:
                 $ref: '#/components/schemas/FxRate'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1600,7 +1600,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1615,7 +1615,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1646,7 +1646,7 @@ paths:
                 $ref: '#/components/schemas/Limit'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1661,7 +1661,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1676,7 +1676,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1732,7 +1732,7 @@ paths:
           description: Webhook test sent.
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1747,7 +1747,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1762,7 +1762,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1796,7 +1796,7 @@ paths:
                   $ref: '#/components/schemas/WebhookEvent'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1811,7 +1811,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1826,7 +1826,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1866,7 +1866,7 @@ paths:
                 $ref: '#/components/schemas/NewPayeesBatch'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1881,7 +1881,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1896,7 +1896,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1975,7 +1975,7 @@ paths:
                 $ref: '#/components/schemas/PaymentRequestPayment'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -1990,7 +1990,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2005,7 +2005,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2024,7 +2024,7 @@ paths:
       description: >
         This endpoint will return all ASPSPs (Account Servicing Payment Service
         Provider) / banks available to you for open banking payments. The list
-        can be filtered by currency.You will need to enable
+        can be filtered by currency. You will need to enable
         PERM_BUSINESS_GET_ASPSPS to use this endpoint.
 
         ***This endpoint is only required if you intend to host the “Select
@@ -2063,7 +2063,7 @@ paths:
                       $ref: '#/components/schemas/Aspsp'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2078,7 +2078,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2093,7 +2093,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2111,7 +2111,7 @@ paths:
       summary: List all users
       description: >-
         This endpoint will retrieve the details of all Fire users on your
-        acount.You will need to enable PERM_BUSINESS_GET_USERS to use this
+        account. You will need to enable PERM_BUSINESS_GET_USERS to use this
         endpoint.
       tags:
         - Profile Management
@@ -2127,7 +2127,7 @@ paths:
                   $ref: '#/components/schemas/User'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2142,7 +2142,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2157,7 +2157,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2197,7 +2197,7 @@ paths:
                 $ref: '#/components/schemas/User'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2212,7 +2212,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2227,7 +2227,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2265,7 +2265,7 @@ paths:
                       $ref: '#/components/schemas/Application'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2280,7 +2280,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2295,7 +2295,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2335,7 +2335,7 @@ paths:
                 $ref: '#/components/schemas/AppCreated'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2350,7 +2350,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2365,7 +2365,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2413,7 +2413,7 @@ paths:
                       $ref: '#/components/schemas/Permission'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2428,7 +2428,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2443,7 +2443,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2481,7 +2481,7 @@ paths:
                       $ref: '#/components/schemas/Permission'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2496,7 +2496,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2511,7 +2511,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2570,7 +2570,7 @@ paths:
                       $ref: '#/components/schemas/Payee'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2585,7 +2585,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2600,7 +2600,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2640,7 +2640,7 @@ paths:
                 $ref: '#/components/schemas/Payee'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2655,7 +2655,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2670,7 +2670,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2727,7 +2727,7 @@ paths:
                       $ref: '#/components/schemas/Transaction'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2742,7 +2742,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2757,7 +2757,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2810,7 +2810,7 @@ paths:
                       $ref: '#/components/schemas/DirectDebit'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2825,7 +2825,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2840,7 +2840,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2880,7 +2880,7 @@ paths:
                 $ref: '#/components/schemas/DirectDebit'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2895,7 +2895,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2910,7 +2910,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2946,7 +2946,7 @@ paths:
           description: 204 no content
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2961,7 +2961,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -2976,7 +2976,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3018,7 +3018,7 @@ paths:
                       $ref: '#/components/schemas/Mandate'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3033,7 +3033,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3048,7 +3048,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3088,7 +3088,7 @@ paths:
                 $ref: '#/components/schemas/Mandate'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3103,7 +3103,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3118,7 +3118,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3159,7 +3159,7 @@ paths:
           description: 204 no content
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3174,7 +3174,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3189,7 +3189,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3224,7 +3224,7 @@ paths:
           description: 204 no content
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3239,7 +3239,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3254,7 +3254,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3292,7 +3292,7 @@ paths:
           description: 204 no content
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3307,7 +3307,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3322,7 +3322,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3361,7 +3361,7 @@ paths:
                 $ref: '#/components/schemas/NewBatchResponse'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3376,7 +3376,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3391,7 +3391,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3479,7 +3479,7 @@ paths:
                       $ref: '#/components/schemas/BatchRequest'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3494,7 +3494,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3509,7 +3509,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3588,7 +3588,7 @@ paths:
                 $ref: '#/components/schemas/NewBatchItemResponse'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3603,7 +3603,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3618,7 +3618,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3634,7 +3634,7 @@ paths:
     get:
       summary: List items for an internal transfer batch
       description: >-
-        This endpoint returns returns a paginated list of items in the specified
+        This endpoint returns a paginated list of items in the specified
         batch. You will need to enable PERM_BUSINESS_GET_BATCH_INTERNALTRANSFERS
         to use this endpoint.
       tags:
@@ -3687,7 +3687,7 @@ paths:
                       $ref: '#/components/schemas/BatchItemInternalTransfer'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3702,7 +3702,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3717,7 +3717,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3783,7 +3783,7 @@ paths:
                 $ref: '#/components/schemas/NewBatchItemResponse'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3798,7 +3798,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3813,7 +3813,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3882,7 +3882,7 @@ paths:
                       $ref: '#/components/schemas/BatchItemBankTransfer'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3897,7 +3897,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -3912,7 +3912,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4006,7 +4006,7 @@ paths:
                 $ref: '#/components/schemas/NewBatchItemResponse'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4021,7 +4021,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4036,7 +4036,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4105,7 +4105,7 @@ paths:
                       $ref: '#/components/schemas/BatchItemInternationalTransfer'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4120,7 +4120,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4135,7 +4135,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4179,7 +4179,7 @@ paths:
           description: Batch payment deleted successfully.
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4194,7 +4194,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4209,7 +4209,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4252,7 +4252,7 @@ paths:
           description: Batch payment deleted successfully.
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4267,7 +4267,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4282,7 +4282,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4326,7 +4326,7 @@ paths:
           description: Batch payment deleted successfully.
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4341,7 +4341,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4356,7 +4356,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4393,7 +4393,7 @@ paths:
           description: Batch payment deleted successfully.
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4408,7 +4408,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4423,7 +4423,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4464,7 +4464,7 @@ paths:
                 $ref: '#/components/schemas/Batch'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4479,7 +4479,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4494,7 +4494,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4539,7 +4539,7 @@ paths:
             call was successful.
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4554,7 +4554,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4569,7 +4569,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4609,7 +4609,7 @@ paths:
                 $ref: '#/components/schemas/BatchApprover'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4624,7 +4624,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4639,7 +4639,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4679,7 +4679,7 @@ paths:
                 $ref: '#/components/schemas/Address'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4694,7 +4694,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4709,7 +4709,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4744,7 +4744,7 @@ paths:
                   $ref: '#/components/schemas/BusinessService'
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4759,7 +4759,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4774,7 +4774,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4817,7 +4817,7 @@ paths:
           description: 204 no content
         '400':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4832,7 +4832,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '401':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4847,7 +4847,7 @@ paths:
                       $ref: '#/components/schemas/ApiErrorV2'
         '403':
           description: >-
-            An error has occured. Any 403 errors usually mean your access token
+            An error has occurred. Any 403 errors usually mean your access token
             is invalid or missing. For other errors, check the validity of your
             input, and if you are permitted to access this endpoint.
           content:
@@ -4892,7 +4892,7 @@ components:
       bearerFormat: API Access Token
   responses:
     UnauthorisedError:
-      description: An error has occured
+      description: An error has occurred
   parameters:
     orderParam:
       name: order
@@ -5786,7 +5786,7 @@ components:
           example: 28d627c3-1889-44c8-ae59-6f6b20239260
     DirectDebit:
       title: directDebit
-      type: object
+      type: object  
       properties:
         directDebitUuid:
           type: string
@@ -5797,7 +5797,7 @@ components:
         status:
           type: string
           enum:
-            - RECIEVED
+            - RECEIVED
             - REJECT_REQUESTED
             - REJECT_READY_FOR_PROCESSING
             - REJECT_RECORD_IN_PROGRESS
@@ -5814,7 +5814,7 @@ components:
             The statuses of the direct debit payments associated with the
             mandate.
 
-            * 'RECIEVED' - Direct Debit has been recieved
+            * 'received' - Direct Debit has been received
 
             * 'REJECT_REQUESTED' - The direct debit has a rejected request
             associated with it
@@ -5840,7 +5840,7 @@ components:
             * 'REFUND_FILE_CREATED'
 
             * 'REFUND_FILE_SENT' 
-          example: RECIEVED
+          example: received
         type:
           type: string
           enum:
@@ -5941,7 +5941,7 @@ components:
         status:
           type: string
           enum:
-            - RECIEVED
+            - received
             - REJECT_REQUESTED
             - REJECT_READY_FOR_PROCESSING
             - REJECT_RECORD_IN_PROGRESS
@@ -5958,7 +5958,7 @@ components:
             The statuses of the direct debit payments associated with the
             mandate.
 
-            * 'RECIEVED'
+            * 'received'
 
             * 'REJECT_REQUESTED'
 
@@ -5987,7 +5987,7 @@ components:
             * 'REFUND_FILE_CREATED'
 
             * 'REFUND_FILE_SENT'
-          example: RECIEVED
+          example: received
         originatorReference:
           type: string
           description: Set by party who sets up the direct debit.
@@ -6301,7 +6301,7 @@ components:
             * 'CANCEL_FILE_SENT'
             * 'COMPLETE'
             * 'DORMANT'
-          example: RECIEVED
+          example: received
         originatorReference:
           type: string
           description: Set by party who sets up the direct debit.
@@ -6630,7 +6630,7 @@ components:
           type: string
           example: ADDRESS|REFERENCE|COMMENT1
           description: >-
-            For the hosted option, these fields will be madatory for the payer
+            For the hosted option, these fields will be mandatory for the payer
             to fill in on the hosted payment page. You can choose to collect any
             the payer's `ADDRESS`, `REFERENCE` and/or `COMMENT1`. If you choose
             to collect these fields from the payer, you cannot set 'delivery’,
@@ -8123,7 +8123,7 @@ components:
         mandatoryFields:
           type: string
           description: >-
-            For the hosted option, these fields will be madatory for the payer
+            For the hosted option, these fields will be mandatory for the payer
             to fill in on the hosted payment page. You can choose to collect any
             the payer's `ADDRESS`, `REFERENCE` and/or `COMMENT1`. If you choose
             to collect these fields from the payer, you cannot set 'delivery’,

@@ -1,5 +1,5 @@
 post:
-  summary: Add a bank transfer to a batch. 
+  summary: Add a bank transfer to a batch
   description: > 
     This endpoint will add a new bank transfer payment to a batch. There are two ways to process bank transfers - by Payee ID (**Mode 1**) or by Payee Account Details (**Mode 2**).
 
