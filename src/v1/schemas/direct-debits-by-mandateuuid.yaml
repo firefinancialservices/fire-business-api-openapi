@@ -10,7 +10,7 @@ properties:
   status:
     type: string
     enum:
-      - RECIEVED
+      - RECEIVED
       - REJECT_REQUESTED
       - REJECT_READY_FOR_PROCESSING
       - REJECT_RECORD_IN_PROGRESS 
@@ -26,7 +26,7 @@ properties:
     description: >
         The statuses of the direct debit payments associated with the mandate.
 
-        * 'RECIEVED'
+        * 'RECEIVED'
 
         * 'REJECT_REQUESTED'
 
@@ -55,7 +55,7 @@ properties:
         * 'REFUND_FILE_CREATED'
 
         * 'REFUND_FILE_SENT'
-    example: RECIEVED 
+    example: RECEIVED 
   originatorReference:
     type: string
     description: Set by party who sets up the direct debit.
