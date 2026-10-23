@@ -24,3 +24,8 @@ properties:
     type: string 
     example: https://my.webserver.com/cb/payroll
     description: An optional POST URL that all events for this batch will be sent to.
+  isInstant:
+    type: boolean 
+    example: true
+    description: An optional field that allows you to choose if you want the batch items containined in the batch to be sent as SEPA INST payments. 
+                This is only available for EUR bank transfer batches.
