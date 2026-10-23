@@ -15,7 +15,7 @@ servers:
 paths:
   /v1/apps/accesstokens:
     post:
-      summary: Authenticate with the API.
+      summary: Authenticate with the API
       description: >-
         This endpoint is needed to generate your access token. Access to the API
         is by Bearer Access Tokens. These are valid for 15 minutes. You can have
@@ -3732,7 +3732,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
   '/v1/batches/{batchUuid}/banktransfers':
     post:
-      summary: Add a bank transfer to a batch.
+      summary: Add a bank transfer to a batch
       description: >
         This endpoint will add a new bank transfer payment to a batch. There are
         two ways to process bank transfers - by Payee ID (**Mode 1**) or by
@@ -4224,7 +4224,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
   '/v1/batches/{batchUuid}/banktransfers/{itemUuid}':
     delete:
-      summary: Remove a bank transfer from a batch.
+      summary: Remove a bank transfer from a batch
       description: >-
         This endpoint will remove a payment from the Batch (Bank Transfers). You
         can only remove payments before the batch is submitted for approval
@@ -4373,7 +4373,7 @@ paths:
     delete:
       summary: Cancel a batch
       description: >-
-        This endpoint will cancel a Batch from being processed. You can only
+        This endpoint will cancel a batch from being processed. You can only
         cancel a batch before it is submitted for approval (while it is in the
         OPEN state). You will need to enable PERM_BUSINESS_DELETE_BATCH to use
         this endpoint.
@@ -4510,7 +4510,7 @@ paths:
     put:
       summary: Submit a batch
       description: >
-        This endpoint allows you to submit a Batch (for approval in the case of
+        This endpoint allows you to submit a batch (for approval in the case of
         a **BANK_TRANSFER** or **INTERNATIONAL_TRANSFER**). If this is an
         **INTERNAL_TRANSFER** batch, the transfers are immediately queued for
         processing. If this is a **BANK_TRANSFER** or **INTERNATIONAL_TRANSFER**
@@ -4584,7 +4584,7 @@ paths:
                       $ref: '#/components/schemas/ApiError'
   '/v1/batches/{batchUuid}/approvals':
     get:
-      summary: List approvals for a batch.
+      summary: List approvals for a batch
       description: >-
         This endpoint will return a list of the approvers for the selected
         batch. You will need to enable PERM_BUSINESS_GET_BATCH_APPROVALS to use
@@ -5786,7 +5786,7 @@ components:
           example: 28d627c3-1889-44c8-ae59-6f6b20239260
     DirectDebit:
       title: directDebit
-      type: object  
+      type: object
       properties:
         directDebitUuid:
           type: string
@@ -5814,7 +5814,7 @@ components:
             The statuses of the direct debit payments associated with the
             mandate.
 
-            * 'received' - Direct Debit has been received
+            * 'RECEIVED' - Direct Debit has been received
 
             * 'REJECT_REQUESTED' - The direct debit has a rejected request
             associated with it
@@ -5840,7 +5840,7 @@ components:
             * 'REFUND_FILE_CREATED'
 
             * 'REFUND_FILE_SENT' 
-          example: received
+          example: RECEIVED
         type:
           type: string
           enum:
@@ -5941,7 +5941,7 @@ components:
         status:
           type: string
           enum:
-            - received
+            - RECEIVED
             - REJECT_REQUESTED
             - REJECT_READY_FOR_PROCESSING
             - REJECT_RECORD_IN_PROGRESS
@@ -5958,7 +5958,7 @@ components:
             The statuses of the direct debit payments associated with the
             mandate.
 
-            * 'received'
+            * 'RECEIVED'
 
             * 'REJECT_REQUESTED'
 
@@ -5987,7 +5987,7 @@ components:
             * 'REFUND_FILE_CREATED'
 
             * 'REFUND_FILE_SENT'
-          example: received
+          example: RECEIVED
         originatorReference:
           type: string
           description: Set by party who sets up the direct debit.
@@ -6301,7 +6301,7 @@ components:
             * 'CANCEL_FILE_SENT'
             * 'COMPLETE'
             * 'DORMANT'
-          example: received
+          example: RECIEVED
         originatorReference:
           type: string
           description: Set by party who sets up the direct debit.
@@ -7473,16 +7473,47 @@ components:
           items:
             type: string
             enum:
-              - LODGEMENT_RECEIVED
-              - PAYMENT_RECEIVED
-              - PAYMENT_REQUEST_PAYMENT_RECEIVED
               - ACCOUNT_CREATED
               - CARD_CREATED
-              - CARD_AUTHORISATION
-              - CARD_SETTLEMENT
+              - CARD_ATM_CREDIT
+              - CARD_ATM_CREDIT_REVERSAL
+              - CARD_ATM_DEBIT
+              - CARD_ATM_DEBIT_REVERSAL
+              - CARD_ECOMMERCE_CREDIT
+              - CARD_ECOMMERCE_CREDIT_REVERSAL
+              - CARD_ECOMMERCE_DEBIT
+              - CARD_ECOMMERCE_DEBIT_REVERSAL
+              - CARD_INTERNATIONAL_ATM_CREDIT
+              - CARD_INTERNATIONAL_ATM_CREDIT_REVERSAL
+              - CARD_INTERNATIONAL_ATM_DEBIT
+              - CARD_INTERNATIONAL_ATM_DEBIT_REVERSAL
+              - CARD_INTERNATIONAL_ECOMMERCE_CREDIT
+              - CARD_INTERNATIONAL_ECOMMERCE_CREDIT_REVERSAL
+              - CARD_INTERNATIONAL_ECOMMERCE_DEBIT
+              - CARD_INTERNATIONAL_ECOMMERCE_DEBIT_REVERSAL
+              - CARD_INTERNATIONAL_POS_CONTACT_CREDIT
+              - CARD_INTERNATIONAL_POS_CONTACT_CREDIT_REVERSAL
+              - CARD_INTERNATIONAL_POS_CONTACT_DEBIT
+              - CARD_INTERNATIONAL_POS_CONTACT_DEBIT_REVERSAL
+              - CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT
+              - CARD_INTERNATIONAL_POS_CONTACTLESS_CREDIT_REVERSAL
+              - CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT
+              - CARD_INTERNATIONAL_POS_CONTACTLESS_DEBIT_REVERSAL
+              - CARD_POS_CONTACT_CREDIT
+              - CARD_POS_CONTACT_CREDIT_REVERSAL
+              - CARD_POS_CONTACT_DEBIT
+              - CARD_POS_CONTACT_DEBIT_REVERSAL
+              - CARD_POS_CONTACTLESS_CREDIT
+              - CARD_POS_CONTACTLESS_CREDIT_REVERSAL
+              - CARD_POS_CONTACTLESS_DEBIT
+              - CARD_POS_CONTACTLESS_DEBIT_REVERSAL
+              - LODGEMENT
+              - INSTANT_LODGEMENT
+              - PAYMENT_RECEIVED
               - PAYMENT_REQUEST_PAYMENT_AUTHORISED
-              - PIS_LODGEMENT_RECEIVE
-            example: CARD_AUTHORISATION
+              - PAYMENT_REQUEST_PAYMENT_RECEIVED
+              - PIS_LODGEMENT_RECEIVED
+            example: LODGEMENT
     AccountConfiguration:
       title: accountConfiguration
       type: object

@@ -52,4 +52,4 @@ properties:
         - PAYMENT_REQUEST_PAYMENT_RECEIVED
         - PIS_LODGEMENT_RECEIVED
         
-      example: LODGEMENT_RECEIVED
+      example: LODGEMENT
