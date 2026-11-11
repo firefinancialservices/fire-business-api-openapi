@@ -28,6 +28,7 @@ get:
         - CARD_SETTLEMENT
         - PAYMENT_REQUEST_PAYMENT_AUTHORISED
         - PIS_LODGEMENT_RECEIVED
+        - WITHDRAWAL_RETURNED
       description: The type of event to send. Currently only one event type is associated with each webhook, however this may change in future. 
       example: "CARD_AUTHORISATION"
   responses:
