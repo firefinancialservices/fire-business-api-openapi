@@ -8454,6 +8454,7 @@ components:
           - CARD_SETTLEMENT
           - PAYMENT_REQUEST_PAYMENT_AUTHORISED
           - PIS_LODGEMENT_RECEIVE
+          - WITHDRAWAL_RETURNED
         example: CARD_AUTHORISATION
     WebhookEvents:
       Title: webhookEvents

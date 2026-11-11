@@ -97,7 +97,7 @@ Fire offers webhook notifications for the following event types:
 
 The Bank Transfer Returned webhook is sent when a bank transfer you sent is returned to your account, either by the receiving bank or by Fire. The payload is the same transaction object as the Lodgment Received webhook, with `type` set to `WITHDRAWAL_RETURNED`, or `INSTANT_WITHDRAWAL_RETURNED` for a returned SEPA Instant payment.
 
-A returned bank transfer also triggers a Lodgment Received webhook for the same transaction. If you subscribe to both events, check the `type` or use the `txnId` to avoid processing the return twice.
+A returned bank transfer also triggers a Lodgment Received webhook for the same transaction. If you subscribe to both events, skip transactions with `type` `WITHDRAWAL_RETURNED` or `INSTANT_WITHDRAWAL_RETURNED` in your Lodgment Received handler, or use the `txnId` to avoid processing the return twice.
 
 <br />
 
