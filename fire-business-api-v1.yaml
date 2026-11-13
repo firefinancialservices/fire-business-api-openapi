@@ -1723,6 +1723,7 @@ paths:
               - CARD_SETTLEMENT
               - PAYMENT_REQUEST_PAYMENT_AUTHORISED
               - PIS_LODGEMENT_RECEIVED
+              - WITHDRAWAL_RETURNED
             description: >-
               The type of event to send. Currently only one event type is
               associated with each webhook, however this may change in future.
@@ -7513,6 +7514,8 @@ components:
               - PAYMENT_REQUEST_PAYMENT_AUTHORISED
               - PAYMENT_REQUEST_PAYMENT_RECEIVED
               - PIS_LODGEMENT_RECEIVED
+              - WITHDRAWAL_RETURNED
+              - INSTANT_WITHDRAWAL_RETURNED
             example: LODGEMENT
     AccountConfiguration:
       title: accountConfiguration
@@ -8451,6 +8454,7 @@ components:
           - CARD_SETTLEMENT
           - PAYMENT_REQUEST_PAYMENT_AUTHORISED
           - PIS_LODGEMENT_RECEIVE
+          - WITHDRAWAL_RETURNED
         example: CARD_AUTHORISATION
     WebhookEvents:
       Title: webhookEvents
