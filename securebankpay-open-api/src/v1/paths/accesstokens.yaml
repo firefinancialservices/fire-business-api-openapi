@@ -1,0 +1,25 @@
+post:
+  summary: Authenticate with the Bank Pay API
+  description: Generate a bearer access token. Tokens are valid for 15 minutes.
+  tags: [Authentication]
+  operationId: authenticate
+  security: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/AuthenticationData'
+  responses:
+    '201':
+      description: Access token created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AccessToken'
+    '400':
+      $ref: '#/components/responses/ApiErrorResponse'
+    '401':
+      $ref: '#/components/responses/ApiErrorResponse'
+    '403':
+      $ref: '#/components/responses/ApiErrorResponse'

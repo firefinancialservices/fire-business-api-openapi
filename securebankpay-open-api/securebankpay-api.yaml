@@ -1,0 +1,1669 @@
+openapi: 3.1.0
+info:
+  title: Bank Pay API
+  version: '1.0'
+  description: 'Bank Pay provides account-to-account open banking payments for merchants.
+    Fire acts as the regulated TSP behind the service.
+
+    '
+  contact:
+    name: Bank Pay API Support
+servers:
+- url: https://securebankpay.com/business
+  description: Production Server
+tags:
+- name: Authentication
+- name: Open Banking Payments
+- name: Refunds
+- name: Webhooks
+paths:
+  /v1/apps/accesstokens:
+    post:
+      summary: Authenticate with the Bank Pay API
+      description: Generate a bearer access token. Tokens are valid for 15 minutes.
+      tags:
+      - Authentication
+      operationId: authenticate
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: authentication
+              type: object
+              required:
+              - clientId
+              - refreshToken
+              - nonce
+              - grantType
+              - clientSecret
+              properties:
+                clientId:
+                  type: string
+                  description: The Client ID for the API application.
+                refreshToken:
+                  type: string
+                  description: The Refresh Token for the API application.
+                nonce:
+                  type: integer
+                  format: int64
+                  description: A random, non-repeating number used to create the client
+                    secret.
+                grantType:
+                  type: string
+                  enum:
+                  - AccessToken
+                clientSecret:
+                  type: string
+                  description: SHA256 of the nonce concatenated with the application
+                    Client Key.
+      responses:
+        '201':
+          description: Access token created
+          content:
+            application/json:
+              schema:
+                title: accessToken
+                type: object
+                properties:
+                  businessId:
+                    type: integer
+                    format: int64
+                  apiApplicationId:
+                    type: integer
+                    format: int64
+                  expiry:
+                    type: string
+                    format: date-time
+                  permissions:
+                    type: array
+                    items:
+                      type: string
+                  accessToken:
+                    type: string
+        '400':
+          description: The request could not be processed.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      title: apiError
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          format: int64
+                        message:
+                          type: string
+        '401':
+          description: The request could not be processed.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      title: apiError
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          format: int64
+                        message:
+                          type: string
+        '403':
+          description: The request could not be processed.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      title: apiError
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          format: int64
+                        message:
+                          type: string
+  /v1/paymentrequests:
+    post:
+      summary: Create a payment request
+      description: Create a Bank Pay payment request and receive a code for the customer
+        payment page.
+      tags:
+      - Open Banking Payments
+      operationId: newPaymentRequest
+      security:
+      - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: newPaymentRequest
+              type: object
+              required:
+              - type
+              - icanTo
+              - currency
+              - myRef
+              - description
+              properties:
+                currency:
+                  type: string
+                  enum:
+                  - EUR
+                  - GBP
+                type:
+                  type: string
+                  enum:
+                  - OTHER
+                icanTo:
+                  type: integer
+                  format: int64
+                amount:
+                  type: integer
+                  format: int64
+                myRef:
+                  type: string
+                description:
+                  type: string
+                  description: Public-facing payment description. Bank schemes may
+                    truncate this to 18 characters.
+                maxNumberPayments:
+                  type: integer
+                expiry:
+                  type: string
+                  format: date-time
+                returnUrl:
+                  type: string
+                  format: uri
+                orderDetails:
+                  title: orderDetails
+                  type: object
+                  properties:
+                    merchantNumber:
+                      type: string
+                    orderId:
+                      type: string
+                    productId:
+                      type: string
+                    customerNumber:
+                      type: string
+                    variableReference:
+                      type: string
+                    comment1:
+                      type: string
+                    comment2:
+                      type: string
+                    merchantCustomerIdentification:
+                      type: string
+                    deliveryAddressLine1:
+                      type: string
+                    deliveryAddressLine2:
+                      type: string
+                    deliveryCity:
+                      type: string
+                    deliveryPostCode:
+                      type: string
+                    deliveryCountry:
+                      type: string
+                collectFields:
+                  type: string
+                mandatoryFields:
+                  type: string
+                additionalFields:
+                  type: string
+      responses:
+        '201':
+          description: Payment request created
+          content:
+            application/json:
+              schema:
+                title: newPaymentRequestResponse
+                type: object
+                properties:
+                  code:
+                    type: string
+                    minLength: 8
+                    maxLength: 8
+                    description: Create the customer payment URL as https://securebankpay.com/{code}.
+                  type:
+                    type: string
+                    enum:
+                    - OTHER
+        '400':
+          description: The request could not be processed.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      title: apiError
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          format: int64
+                        message:
+                          type: string
+        '401':
+          description: The request could not be processed.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      title: apiError
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          format: int64
+                        message:
+                          type: string
+        '403':
+          description: The request could not be processed.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      title: apiError
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          format: int64
+                        message:
+                          type: string
+  /v1/aspsps:
+    get:
+      summary: List available banks
+      description: List ASPSPs available for Bank Pay payments. This is only required
+        when the merchant hosts the bank-selection page.
+      tags:
+      - Open Banking Payments
+      operationId: getListOfAspsps
+      security:
+      - bearerAuth: []
+      parameters:
+      - in: query
+        name: currency
+        required: false
+        schema:
+          type: string
+          enum:
+          - EUR
+          - GBP
+        description: Filter banks by payment currency.
+      responses:
+        '200':
+          description: Available banks
+          content:
+            application/json:
+              schema:
+                title: aspsps
+                type: object
+                properties:
+                  total:
+                    type: integer
+                  aspsps:
+                    type: array
+                    items:
+                      title: aspsp
+                      type: object
+                      properties:
+                        aspspUuid:
+                          type: string
+                          format: uuid
+                        alias:
+                          type: string
+                        logoUrl:
+                          type: string
+                          format: uri
+                        country:
+                          title: country
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                            description:
+                              type: string
+                        currency:
+                          title: currency
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              enum:
+                              - EUR
+                              - GBP
+                            description:
+                              type: string
+                        dateCreated:
+                          type: string
+                          format: date-time
+                        lastUpdated:
+                          type: string
+                          format: date-time
+        '400':
+          description: The request could not be processed.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      title: apiError
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          format: int64
+                        message:
+                          type: string
+        '401':
+          description: The request could not be processed.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      title: apiError
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          format: int64
+                        message:
+                          type: string
+        '403':
+          description: The request could not be processed.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      title: apiError
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          format: int64
+                        message:
+                          type: string
+  /v2/payments/{paymentUuid}:
+    get:
+      summary: Get payment details
+      description: Retrieve the current status and details of a Bank Pay payment.
+      tags:
+      - Open Banking Payments
+      operationId: getPaymentDetailsv2
+      security:
+      - bearerAuth: []
+      parameters:
+      - in: path
+        name: paymentUuid
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Payment details
+          content:
+            application/json:
+              schema:
+                title: paymentRequestPayment
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - OTHER
+                  paymentRequestCode:
+                    type: string
+                    minLength: 8
+                    maxLength: 8
+                  transactionType:
+                    type: string
+                    enum:
+                    - REFUND_REQUEST
+                    - PAYMENT
+                  endToEndId:
+                    type: string
+                  paymentUuid:
+                    type: string
+                    format: uuid
+                  relatedPaymentUuid:
+                    type: string
+                    format: uuid
+                  status:
+                    type: string
+                    enum:
+                    - AWAITING_AUTHORISATION
+                    - AUTHORISED
+                    - AWAITING_MULTI_AUTHORISATION
+                    - NOT_AUTHORISED
+                    - SETTLED
+                    - REJECTED
+                    - ACCEPTED
+                    - RECEIVED
+                    - FUNDS_CONFIRMED
+                  reason:
+                    type: string
+                  amountBeforeCharges:
+                    type: integer
+                    format: int64
+                  feeAmount:
+                    type: integer
+                    format: int64
+                  amountAfterCharges:
+                    type: integer
+                    format: int64
+                  currency:
+                    title: currency
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        enum:
+                        - EUR
+                        - GBP
+                      description:
+                        type: string
+                  myRef:
+                    type: string
+                  description:
+                    type: string
+                  returnUrl:
+                    type: string
+                    format: uri
+                  webhookUrl:
+                    type: string
+                    format: uri
+                  relatedAccountTxnId:
+                    type: integer
+                    format: int64
+                  relatedPayeeId:
+                    type: integer
+                    format: int64
+                  dateFundsReceived:
+                    type: string
+                    format: date-time
+                  dateCreated:
+                    type: string
+                    format: date-time
+                  lastUpdated:
+                    type: string
+                    format: date-time
+                  orderDetails:
+                    title: orderDetails
+                    type: object
+                    properties:
+                      merchantNumber:
+                        type: string
+                      orderId:
+                        type: string
+                      productId:
+                        type: string
+                      customerNumber:
+                        type: string
+                      variableReference:
+                        type: string
+                      comment1:
+                        type: string
+                      comment2:
+                        type: string
+                      merchantCustomerIdentification:
+                        type: string
+                      deliveryAddressLine1:
+                        type: string
+                      deliveryAddressLine2:
+                        type: string
+                      deliveryCity:
+                        type: string
+                      deliveryPostCode:
+                        type: string
+                      deliveryCountry:
+                        type: string
+                  to:
+                    title: to
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - FIRE_ACCOUNT
+                        - WITHDRAWAL_ACCOUNT
+                      account:
+                        title: relatedPartyFireAccount
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            enum:
+                            - FIRE_ACCOUNT
+                          account:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                format: int64
+                              alias:
+                                type: string
+                              bic:
+                                type: string
+                              iban:
+                                type: string
+                              nsc:
+                                type: string
+                              accountNumber:
+                                type: string
+                  bank:
+                    title: aspsp
+                    type: object
+                    properties:
+                      aspspUuid:
+                        type: string
+                        format: uuid
+                      alias:
+                        type: string
+                      logoUrl:
+                        type: string
+                        format: uri
+                      country:
+                        title: country
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                          description:
+                            type: string
+                      currency:
+                        title: currency
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            enum:
+                            - EUR
+                            - GBP
+                          description:
+                            type: string
+                      dateCreated:
+                        type: string
+                        format: date-time
+                      lastUpdated:
+                        type: string
+                        format: date-time
+                  domesticPaymentId:
+                    type: string
+                  allowFopReceipt:
+                    type: boolean
+        '400':
+          description: The request could not be processed.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      title: apiError
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          format: int64
+                        message:
+                          type: string
+        '401':
+          description: The request could not be processed.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      title: apiError
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          format: int64
+                        message:
+                          type: string
+        '403':
+          description: The request could not be processed.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      title: apiError
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          format: int64
+                        message:
+                          type: string
+  /v2/paymentrequests/{paymentRequestCode}/payments:
+    get:
+      summary: List payment attempts
+      description: Retrieve all payment attempts associated with a payment request.
+      tags:
+      - Open Banking Payments
+      operationId: getPaymentRequestPaymentsv2
+      security:
+      - bearerAuth: []
+      parameters:
+      - in: path
+        name: paymentRequestCode
+        required: true
+        schema:
+          type: string
+          minLength: 8
+          maxLength: 8
+      responses:
+        '200':
+          description: Payment attempts
+          content:
+            application/json:
+              schema:
+                title: paymentRequestPayment
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - OTHER
+                  paymentRequestCode:
+                    type: string
+                    minLength: 8
+                    maxLength: 8
+                  transactionType:
+                    type: string
+                    enum:
+                    - REFUND_REQUEST
+                    - PAYMENT
+                  endToEndId:
+                    type: string
+                  paymentUuid:
+                    type: string
+                    format: uuid
+                  relatedPaymentUuid:
+                    type: string
+                    format: uuid
+                  status:
+                    type: string
+                    enum:
+                    - AWAITING_AUTHORISATION
+                    - AUTHORISED
+                    - AWAITING_MULTI_AUTHORISATION
+                    - NOT_AUTHORISED
+                    - SETTLED
+                    - REJECTED
+                    - ACCEPTED
+                    - RECEIVED
+                    - FUNDS_CONFIRMED
+                  reason:
+                    type: string
+                  amountBeforeCharges:
+                    type: integer
+                    format: int64
+                  feeAmount:
+                    type: integer
+                    format: int64
+                  amountAfterCharges:
+                    type: integer
+                    format: int64
+                  currency:
+                    title: currency
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        enum:
+                        - EUR
+                        - GBP
+                      description:
+                        type: string
+                  myRef:
+                    type: string
+                  description:
+                    type: string
+                  returnUrl:
+                    type: string
+                    format: uri
+                  webhookUrl:
+                    type: string
+                    format: uri
+                  relatedAccountTxnId:
+                    type: integer
+                    format: int64
+                  relatedPayeeId:
+                    type: integer
+                    format: int64
+                  dateFundsReceived:
+                    type: string
+                    format: date-time
+                  dateCreated:
+                    type: string
+                    format: date-time
+                  lastUpdated:
+                    type: string
+                    format: date-time
+                  orderDetails:
+                    title: orderDetails
+                    type: object
+                    properties:
+                      merchantNumber:
+                        type: string
+                      orderId:
+                        type: string
+                      productId:
+                        type: string
+                      customerNumber:
+                        type: string
+                      variableReference:
+                        type: string
+                      comment1:
+                        type: string
+                      comment2:
+                        type: string
+                      merchantCustomerIdentification:
+                        type: string
+                      deliveryAddressLine1:
+                        type: string
+                      deliveryAddressLine2:
+                        type: string
+                      deliveryCity:
+                        type: string
+                      deliveryPostCode:
+                        type: string
+                      deliveryCountry:
+                        type: string
+                  to:
+                    title: to
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                        - FIRE_ACCOUNT
+                        - WITHDRAWAL_ACCOUNT
+                      account:
+                        title: relatedPartyFireAccount
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            enum:
+                            - FIRE_ACCOUNT
+                          account:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                format: int64
+                              alias:
+                                type: string
+                              bic:
+                                type: string
+                              iban:
+                                type: string
+                              nsc:
+                                type: string
+                              accountNumber:
+                                type: string
+                  bank:
+                    title: aspsp
+                    type: object
+                    properties:
+                      aspspUuid:
+                        type: string
+                        format: uuid
+                      alias:
+                        type: string
+                      logoUrl:
+                        type: string
+                        format: uri
+                      country:
+                        title: country
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                          description:
+                            type: string
+                      currency:
+                        title: currency
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            enum:
+                            - EUR
+                            - GBP
+                          description:
+                            type: string
+                      dateCreated:
+                        type: string
+                        format: date-time
+                      lastUpdated:
+                        type: string
+                        format: date-time
+                  domesticPaymentId:
+                    type: string
+                  allowFopReceipt:
+                    type: boolean
+        '400':
+          description: The request could not be processed.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      title: apiError
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          format: int64
+                        message:
+                          type: string
+        '401':
+          description: The request could not be processed.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      title: apiError
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          format: int64
+                        message:
+                          type: string
+        '403':
+          description: The request could not be processed.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      title: apiError
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          format: int64
+                        message:
+                          type: string
+  /v1/payments/{paymentUuid}/bankpayrefund:
+    post:
+      summary: Request a refund
+      description: Request a refund for a settled Bank Pay payment.
+      tags:
+      - Refunds
+      operationId: bankPayRefundRequest
+      security:
+      - bearerAuth: []
+      parameters:
+      - in: path
+        name: paymentUuid
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The UUID of the original payment.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              title: bankPayRefund
+              type: object
+              properties:
+                currency:
+                  type: string
+                  enum:
+                  - EUR
+                  - GBP
+                amount:
+                  type: integer
+                  format: int64
+                myRef:
+                  type: string
+                description:
+                  type: string
+                orderDetails:
+                  type: object
+                  properties:
+                    merchantNumber:
+                      type: string
+                reason:
+                  type: string
+      responses:
+        '200':
+          description: Refund request accepted or rejected
+          content:
+            application/json:
+              schema:
+                title: bankPayRefundResponse
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum:
+                    - REQUEST_ACCEPTED
+                    - REQUEST_REJECTED
+                    - REJECTED
+                    - RECEIVED
+                  refundRequestUuid:
+                    type: string
+                    format: uuid
+                  paymentUuid:
+                    type: string
+                    format: uuid
+        '405':
+          description: The request could not be processed.
+          content:
+            application/json:
+              schema:
+                title: apiErrors
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      title: apiError
+                      type: object
+                      properties:
+                        code:
+                          type: integer
+                          format: int64
+                        message:
+                          type: string
+webhooks:
+  paymentEvents:
+    post:
+      summary: Receive Bank Pay payment events
+      description: Bank Pay sends signed JWT event notifications to the merchant webhook
+        URL.
+      tags:
+      - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/jwt:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Return HTTP 200 after the event has been received.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Access Token
+  responses:
+    ApiErrorResponse:
+      description: The request could not be processed.
+      content:
+        application/json:
+          schema:
+            title: apiErrors
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  title: apiError
+                  type: object
+                  properties:
+                    code:
+                      type: integer
+                      format: int64
+                    message:
+                      type: string
+  schemas:
+    AuthenticationData:
+      title: authentication
+      type: object
+      required:
+      - clientId
+      - refreshToken
+      - nonce
+      - grantType
+      - clientSecret
+      properties:
+        clientId:
+          type: string
+          description: The Client ID for the API application.
+        refreshToken:
+          type: string
+          description: The Refresh Token for the API application.
+        nonce:
+          type: integer
+          format: int64
+          description: A random, non-repeating number used to create the client secret.
+        grantType:
+          type: string
+          enum:
+          - AccessToken
+        clientSecret:
+          type: string
+          description: SHA256 of the nonce concatenated with the application Client
+            Key.
+    AccessToken:
+      title: accessToken
+      type: object
+      properties:
+        businessId:
+          type: integer
+          format: int64
+        apiApplicationId:
+          type: integer
+          format: int64
+        expiry:
+          type: string
+          format: date-time
+        permissions:
+          type: array
+          items:
+            type: string
+        accessToken:
+          type: string
+    ApiError:
+      title: apiError
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        message:
+          type: string
+    ApiErrors:
+      title: apiErrors
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            title: apiError
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int64
+              message:
+                type: string
+    Currency:
+      title: currency
+      type: object
+      properties:
+        code:
+          type: string
+          enum:
+          - EUR
+          - GBP
+        description:
+          type: string
+    Country:
+      title: country
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+    Aspsp:
+      title: aspsp
+      type: object
+      properties:
+        aspspUuid:
+          type: string
+          format: uuid
+        alias:
+          type: string
+        logoUrl:
+          type: string
+          format: uri
+        country:
+          title: country
+          type: object
+          properties:
+            code:
+              type: string
+            description:
+              type: string
+        currency:
+          title: currency
+          type: object
+          properties:
+            code:
+              type: string
+              enum:
+              - EUR
+              - GBP
+            description:
+              type: string
+        dateCreated:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+    Aspsps:
+      title: aspsps
+      type: object
+      properties:
+        total:
+          type: integer
+        aspsps:
+          type: array
+          items:
+            title: aspsp
+            type: object
+            properties:
+              aspspUuid:
+                type: string
+                format: uuid
+              alias:
+                type: string
+              logoUrl:
+                type: string
+                format: uri
+              country:
+                title: country
+                type: object
+                properties:
+                  code:
+                    type: string
+                  description:
+                    type: string
+              currency:
+                title: currency
+                type: object
+                properties:
+                  code:
+                    type: string
+                    enum:
+                    - EUR
+                    - GBP
+                  description:
+                    type: string
+              dateCreated:
+                type: string
+                format: date-time
+              lastUpdated:
+                type: string
+                format: date-time
+    OrderDetails:
+      title: orderDetails
+      type: object
+      properties:
+        merchantNumber:
+          type: string
+        orderId:
+          type: string
+        productId:
+          type: string
+        customerNumber:
+          type: string
+        variableReference:
+          type: string
+        comment1:
+          type: string
+        comment2:
+          type: string
+        merchantCustomerIdentification:
+          type: string
+        deliveryAddressLine1:
+          type: string
+        deliveryAddressLine2:
+          type: string
+        deliveryCity:
+          type: string
+        deliveryPostCode:
+          type: string
+        deliveryCountry:
+          type: string
+    NewPaymentRequest:
+      title: newPaymentRequest
+      type: object
+      required:
+      - type
+      - icanTo
+      - currency
+      - myRef
+      - description
+      properties:
+        currency:
+          type: string
+          enum:
+          - EUR
+          - GBP
+        type:
+          type: string
+          enum:
+          - OTHER
+        icanTo:
+          type: integer
+          format: int64
+        amount:
+          type: integer
+          format: int64
+        myRef:
+          type: string
+        description:
+          type: string
+          description: Public-facing payment description. Bank schemes may truncate
+            this to 18 characters.
+        maxNumberPayments:
+          type: integer
+        expiry:
+          type: string
+          format: date-time
+        returnUrl:
+          type: string
+          format: uri
+        orderDetails:
+          title: orderDetails
+          type: object
+          properties:
+            merchantNumber:
+              type: string
+            orderId:
+              type: string
+            productId:
+              type: string
+            customerNumber:
+              type: string
+            variableReference:
+              type: string
+            comment1:
+              type: string
+            comment2:
+              type: string
+            merchantCustomerIdentification:
+              type: string
+            deliveryAddressLine1:
+              type: string
+            deliveryAddressLine2:
+              type: string
+            deliveryCity:
+              type: string
+            deliveryPostCode:
+              type: string
+            deliveryCountry:
+              type: string
+        collectFields:
+          type: string
+        mandatoryFields:
+          type: string
+        additionalFields:
+          type: string
+    PaymentRequestResponse:
+      title: newPaymentRequestResponse
+      type: object
+      properties:
+        code:
+          type: string
+          minLength: 8
+          maxLength: 8
+          description: Create the customer payment URL as https://securebankpay.com/{code}.
+        type:
+          type: string
+          enum:
+          - OTHER
+    RelatedPartyFireAccount:
+      title: relatedPartyFireAccount
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - FIRE_ACCOUNT
+        account:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+            alias:
+              type: string
+            bic:
+              type: string
+            iban:
+              type: string
+            nsc:
+              type: string
+            accountNumber:
+              type: string
+    To:
+      title: to
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - FIRE_ACCOUNT
+          - WITHDRAWAL_ACCOUNT
+        account:
+          title: relatedPartyFireAccount
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - FIRE_ACCOUNT
+            account:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                alias:
+                  type: string
+                bic:
+                  type: string
+                iban:
+                  type: string
+                nsc:
+                  type: string
+                accountNumber:
+                  type: string
+    PaymentRequestPayment:
+      title: paymentRequestPayment
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - OTHER
+        paymentRequestCode:
+          type: string
+          minLength: 8
+          maxLength: 8
+        transactionType:
+          type: string
+          enum:
+          - REFUND_REQUEST
+          - PAYMENT
+        endToEndId:
+          type: string
+        paymentUuid:
+          type: string
+          format: uuid
+        relatedPaymentUuid:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+          - AWAITING_AUTHORISATION
+          - AUTHORISED
+          - AWAITING_MULTI_AUTHORISATION
+          - NOT_AUTHORISED
+          - SETTLED
+          - REJECTED
+          - ACCEPTED
+          - RECEIVED
+          - FUNDS_CONFIRMED
+        reason:
+          type: string
+        amountBeforeCharges:
+          type: integer
+          format: int64
+        feeAmount:
+          type: integer
+          format: int64
+        amountAfterCharges:
+          type: integer
+          format: int64
+        currency:
+          title: currency
+          type: object
+          properties:
+            code:
+              type: string
+              enum:
+              - EUR
+              - GBP
+            description:
+              type: string
+        myRef:
+          type: string
+        description:
+          type: string
+        returnUrl:
+          type: string
+          format: uri
+        webhookUrl:
+          type: string
+          format: uri
+        relatedAccountTxnId:
+          type: integer
+          format: int64
+        relatedPayeeId:
+          type: integer
+          format: int64
+        dateFundsReceived:
+          type: string
+          format: date-time
+        dateCreated:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+        orderDetails:
+          title: orderDetails
+          type: object
+          properties:
+            merchantNumber:
+              type: string
+            orderId:
+              type: string
+            productId:
+              type: string
+            customerNumber:
+              type: string
+            variableReference:
+              type: string
+            comment1:
+              type: string
+            comment2:
+              type: string
+            merchantCustomerIdentification:
+              type: string
+            deliveryAddressLine1:
+              type: string
+            deliveryAddressLine2:
+              type: string
+            deliveryCity:
+              type: string
+            deliveryPostCode:
+              type: string
+            deliveryCountry:
+              type: string
+        to:
+          title: to
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - FIRE_ACCOUNT
+              - WITHDRAWAL_ACCOUNT
+            account:
+              title: relatedPartyFireAccount
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                  - FIRE_ACCOUNT
+                account:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      format: int64
+                    alias:
+                      type: string
+                    bic:
+                      type: string
+                    iban:
+                      type: string
+                    nsc:
+                      type: string
+                    accountNumber:
+                      type: string
+        bank:
+          title: aspsp
+          type: object
+          properties:
+            aspspUuid:
+              type: string
+              format: uuid
+            alias:
+              type: string
+            logoUrl:
+              type: string
+              format: uri
+            country:
+              title: country
+              type: object
+              properties:
+                code:
+                  type: string
+                description:
+                  type: string
+            currency:
+              title: currency
+              type: object
+              properties:
+                code:
+                  type: string
+                  enum:
+                  - EUR
+                  - GBP
+                description:
+                  type: string
+            dateCreated:
+              type: string
+              format: date-time
+            lastUpdated:
+              type: string
+              format: date-time
+        domesticPaymentId:
+          type: string
+        allowFopReceipt:
+          type: boolean
+    BankPayRefundRequest:
+      title: bankPayRefund
+      type: object
+      properties:
+        currency:
+          type: string
+          enum:
+          - EUR
+          - GBP
+        amount:
+          type: integer
+          format: int64
+        myRef:
+          type: string
+        description:
+          type: string
+        orderDetails:
+          type: object
+          properties:
+            merchantNumber:
+              type: string
+        reason:
+          type: string
+    BankPayRefundResponse:
+      title: bankPayRefundResponse
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - REQUEST_ACCEPTED
+          - REQUEST_REJECTED
+          - REJECTED
+          - RECEIVED
+        refundRequestUuid:
+          type: string
+          format: uuid
+        paymentUuid:
+          type: string
+          format: uuid

@@ -1,0 +1,372 @@
+openapi: 3.1.0
+info:
+  title: Bank Pay API
+  version: '1.0'
+  description: >
+    Bank Pay provides account-to-account open banking payments for merchants.
+    Fire acts as the regulated TSP behind the service.
+  contact:
+    name: Bank Pay API Support
+servers:
+  - url: https://securebankpay.com/business
+    description: Production Server
+tags:
+  - name: Authentication
+  - name: Open Banking Payments
+  - name: Refunds
+  - name: Webhooks
+paths:
+  /v1/apps/accesstokens:
+    $ref: ./v1/paths/accesstokens.yaml
+  /v1/paymentrequests:
+    $ref: ./v1/paths/paymentrequests.yaml
+  /v1/aspsps:
+    $ref: ./v1/paths/aspsps.yaml
+  /v2/payments/{paymentUuid}:
+    $ref: ./v2/paths/payment-details.yaml
+  /v2/paymentrequests/{paymentRequestCode}/payments:
+    $ref: ./v2/paths/payment-attempts.yaml
+  /v1/payments/{paymentUuid}/bankpayrefund:
+    $ref: ./v1/paths/refunds.yaml
+webhooks:
+  paymentEvents:
+    $ref: ./webhooks/payment-events.yaml
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Access Token
+  responses:
+    ApiErrorResponse:
+      description: The request could not be processed.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiErrors'
+  schemas:
+    AuthenticationData:
+      title: authentication
+      type: object
+      required: [clientId, refreshToken, nonce, grantType, clientSecret]
+      properties:
+        clientId:
+          type: string
+          description: The Client ID for the API application.
+        refreshToken:
+          type: string
+          description: The Refresh Token for the API application.
+        nonce:
+          type: integer
+          format: int64
+          description: A random, non-repeating number used to create the client secret.
+        grantType:
+          type: string
+          enum: [AccessToken]
+        clientSecret:
+          type: string
+          description: SHA256 of the nonce concatenated with the application Client Key.
+    AccessToken:
+      title: accessToken
+      type: object
+      properties:
+        businessId:
+          type: integer
+          format: int64
+        apiApplicationId:
+          type: integer
+          format: int64
+        expiry:
+          type: string
+          format: date-time
+        permissions:
+          type: array
+          items:
+            type: string
+        accessToken:
+          type: string
+    ApiError:
+      title: apiError
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int64
+        message:
+          type: string
+    ApiErrors:
+      title: apiErrors
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiError'
+    Currency:
+      title: currency
+      type: object
+      properties:
+        code:
+          type: string
+          enum: [EUR, GBP]
+        description:
+          type: string
+    Country:
+      title: country
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+    Aspsp:
+      title: aspsp
+      type: object
+      properties:
+        aspspUuid:
+          type: string
+          format: uuid
+        alias:
+          type: string
+        logoUrl:
+          type: string
+          format: uri
+        country:
+          $ref: '#/components/schemas/Country'
+        currency:
+          $ref: '#/components/schemas/Currency'
+        dateCreated:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+    Aspsps:
+      title: aspsps
+      type: object
+      properties:
+        total:
+          type: integer
+        aspsps:
+          type: array
+          items:
+            $ref: '#/components/schemas/Aspsp'
+    OrderDetails:
+      title: orderDetails
+      type: object
+      properties:
+        merchantNumber:
+          type: string
+        orderId:
+          type: string
+        productId:
+          type: string
+        customerNumber:
+          type: string
+        variableReference:
+          type: string
+        comment1:
+          type: string
+        comment2:
+          type: string
+        merchantCustomerIdentification:
+          type: string
+        deliveryAddressLine1:
+          type: string
+        deliveryAddressLine2:
+          type: string
+        deliveryCity:
+          type: string
+        deliveryPostCode:
+          type: string
+        deliveryCountry:
+          type: string
+    NewPaymentRequest:
+      title: newPaymentRequest
+      type: object
+      required: [type, icanTo, currency, myRef, description]
+      properties:
+        currency:
+          type: string
+          enum: [EUR, GBP]
+        type:
+          type: string
+          enum: [OTHER]
+        icanTo:
+          type: integer
+          format: int64
+        amount:
+          type: integer
+          format: int64
+        myRef:
+          type: string
+        description:
+          type: string
+          description: Public-facing payment description. Bank schemes may truncate this to 18 characters.
+        maxNumberPayments:
+          type: integer
+        expiry:
+          type: string
+          format: date-time
+        returnUrl:
+          type: string
+          format: uri
+        orderDetails:
+          $ref: '#/components/schemas/OrderDetails'
+        collectFields:
+          type: string
+        mandatoryFields:
+          type: string
+        additionalFields:
+          type: string
+    PaymentRequestResponse:
+      title: newPaymentRequestResponse
+      type: object
+      properties:
+        code:
+          type: string
+          minLength: 8
+          maxLength: 8
+          description: Create the customer payment URL as https://securebankpay.com/{code}.
+        type:
+          type: string
+          enum: [OTHER]
+    RelatedPartyFireAccount:
+      title: relatedPartyFireAccount
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [FIRE_ACCOUNT]
+        account:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int64
+            alias:
+              type: string
+            bic:
+              type: string
+            iban:
+              type: string
+            nsc:
+              type: string
+            accountNumber:
+              type: string
+    To:
+      title: to
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [FIRE_ACCOUNT, WITHDRAWAL_ACCOUNT]
+        account:
+          $ref: '#/components/schemas/RelatedPartyFireAccount'
+    PaymentRequestPayment:
+      title: paymentRequestPayment
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [OTHER]
+        paymentRequestCode:
+          type: string
+          minLength: 8
+          maxLength: 8
+        transactionType:
+          type: string
+          enum: [REFUND_REQUEST, PAYMENT]
+        endToEndId:
+          type: string
+        paymentUuid:
+          type: string
+          format: uuid
+        relatedPaymentUuid:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [AWAITING_AUTHORISATION, AUTHORISED, AWAITING_MULTI_AUTHORISATION, NOT_AUTHORISED, SETTLED, REJECTED, ACCEPTED, RECEIVED, FUNDS_CONFIRMED]
+        reason:
+          type: string
+        amountBeforeCharges:
+          type: integer
+          format: int64
+        feeAmount:
+          type: integer
+          format: int64
+        amountAfterCharges:
+          type: integer
+          format: int64
+        currency:
+          $ref: '#/components/schemas/Currency'
+        myRef:
+          type: string
+        description:
+          type: string
+        returnUrl:
+          type: string
+          format: uri
+        webhookUrl:
+          type: string
+          format: uri
+        relatedAccountTxnId:
+          type: integer
+          format: int64
+        relatedPayeeId:
+          type: integer
+          format: int64
+        dateFundsReceived:
+          type: string
+          format: date-time
+        dateCreated:
+          type: string
+          format: date-time
+        lastUpdated:
+          type: string
+          format: date-time
+        orderDetails:
+          $ref: '#/components/schemas/OrderDetails'
+        to:
+          $ref: '#/components/schemas/To'
+        bank:
+          $ref: '#/components/schemas/Aspsp'
+        domesticPaymentId:
+          type: string
+        allowFopReceipt:
+          type: boolean
+    BankPayRefundRequest:
+      title: bankPayRefund
+      type: object
+      properties:
+        currency:
+          type: string
+          enum: [EUR, GBP]
+        amount:
+          type: integer
+          format: int64
+        myRef:
+          type: string
+        description:
+          type: string
+        orderDetails:
+          type: object
+          properties:
+            merchantNumber:
+              type: string
+        reason:
+          type: string
+    BankPayRefundResponse:
+      title: bankPayRefundResponse
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [REQUEST_ACCEPTED, REQUEST_REJECTED, REJECTED, RECEIVED]
+        refundRequestUuid:
+          type: string
+          format: uuid
+        paymentUuid:
+          type: string
+          format: uuid

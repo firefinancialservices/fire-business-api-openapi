@@ -1,0 +1,36 @@
+name: Sync Bank Pay API docs to ReadMe
+
+on:
+  push:
+    branches:
+      - v2.0
+    paths:
+      - 'securebankpay-open-api/**'
+      - '.github/workflows/deploy-bankpay-api-docs-to-readme.yml'
+
+jobs:
+  sync-bankpay-docs:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: securebankpay-open-api
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '21.x'
+      - name: Install OpenAPI tooling
+        run: npm install -g json-refs speccy
+      - name: Bundle Bank Pay OpenAPI
+        run: npm run publish
+      - name: Validate Bank Pay OpenAPI
+        run: npm test
+      - name: Upload OpenAPI spec to ReadMe
+        uses: readmeio/rdme@v10
+        with:
+          rdme: openapi upload securebankpay-open-api/securebankpay-api.yaml --key=${{ secrets.BANKPAY_README_API_KEY }} --branch=v1.0
+      - name: Upload Bank Pay guides to ReadMe
+        uses: readmeio/rdme@v10
+        with:
+          rdme: docs upload securebankpay-open-api/docs/ --key=${{ secrets.BANKPAY_README_API_KEY }} --branch=v1.0

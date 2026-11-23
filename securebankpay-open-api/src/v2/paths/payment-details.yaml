@@ -1,0 +1,27 @@
+get:
+  summary: Get payment details
+  description: Retrieve the current status and details of a Bank Pay payment.
+  tags: [Open Banking Payments]
+  operationId: getPaymentDetailsv2
+  security:
+    - bearerAuth: []
+  parameters:
+    - in: path
+      name: paymentUuid
+      required: true
+      schema:
+        type: string
+        format: uuid
+  responses:
+    '200':
+      description: Payment details
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PaymentRequestPayment'
+    '400':
+      $ref: '#/components/responses/ApiErrorResponse'
+    '401':
+      $ref: '#/components/responses/ApiErrorResponse'
+    '403':
+      $ref: '#/components/responses/ApiErrorResponse'

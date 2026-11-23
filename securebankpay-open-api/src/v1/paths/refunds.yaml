@@ -1,0 +1,30 @@
+post:
+  summary: Request a refund
+  description: Request a refund for a settled Bank Pay payment.
+  tags: [Refunds]
+  operationId: bankPayRefundRequest
+  security:
+    - bearerAuth: []
+  parameters:
+    - in: path
+      name: paymentUuid
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: The UUID of the original payment.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/BankPayRefundRequest'
+  responses:
+    '200':
+      description: Refund request accepted or rejected
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BankPayRefundResponse'
+    '405':
+      $ref: '#/components/responses/ApiErrorResponse'

@@ -1,0 +1,13 @@
+post:
+  summary: Receive Bank Pay payment events
+  description: Bank Pay sends signed JWT event notifications to the merchant webhook URL.
+  tags: [Webhooks]
+  requestBody:
+    required: true
+    content:
+      application/jwt:
+        schema:
+          type: string
+  responses:
+    '200':
+      description: Return HTTP 200 after the event has been received.
