@@ -10,7 +10,7 @@ privacy:
 
 Use `GET /business/v2/payments/{paymentUuid}` to retrieve payment details.
 
-Bank Pay payment responses may include a `to` object with `type: BANK_PAY_ACCOUNT`. Its account details are represented by `id`, `alias`, `nsc`, and `accountNumber`. The Bank Pay response does not expose the generic Fire account `bic` or `iban` fields.
+Bank Pay payment responses may include a `to` object with `type: BANK_PAY_ACCOUNT`. Its account details are represented by `id`, `alias`, `nsc`, and `accountNumber`. The Bank Pay response does not expose additional account fields such as `bic` or `iban`.
 
 Important statuses include:
 

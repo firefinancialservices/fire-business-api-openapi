@@ -3,7 +3,6 @@ info:
   title: Bank Pay API
   version: '1.0'
   description: 'Bank Pay provides account-to-account open banking payments for merchants.
-    Fire acts as the regulated TSP behind the service.
 
     '
   contact:
@@ -1002,8 +1001,6 @@ paths:
                   status:
                     type: string
                     enum:
-                    - REQUEST_ACCEPTED
-                    - REQUEST_REJECTED
                     - REJECTED
                     - RECEIVED
                   refundRequestUuid:
@@ -1609,8 +1606,6 @@ components:
         status:
           type: string
           enum:
-          - REQUEST_ACCEPTED
-          - REQUEST_REJECTED
           - REJECTED
           - RECEIVED
         refundRequestUuid:

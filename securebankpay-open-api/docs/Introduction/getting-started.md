@@ -19,4 +19,3 @@ The normal integration sequence is:
 5. Handle the return URL and/or webhook notification.
 6. Retrieve payment details until the payment reaches the required status.
 
-Fire is the regulated TSP providing the underlying payment service.

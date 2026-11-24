@@ -12,4 +12,4 @@ Call `POST /business/v1/payments/{paymentUuid}/bankpayrefund` for a payment that
 
 Provide the refund amount, currency, merchant reference, description, reason, and merchant number where applicable. The response contains a refund request UUID and status.
 
-Refund statuses include `REQUEST_ACCEPTED`, `REQUEST_REJECTED`, `REJECTED`, and `RECEIVED`.
+Refund statuses include `REJECTED` and `RECEIVED`.

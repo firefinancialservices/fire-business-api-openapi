@@ -11,7 +11,7 @@ privacy:
 Bank Pay webhook notifications are sent as signed JWTs with content type `application/jwt`.
 
 1. Read the JWT header and extract the `kid` value.
-2. Load the matching public key from `https://bankpay-api.fire.com/jwks/bupa_public.jwks`.
+2. Load the matching public key from the Bank Pay JWKS endpoint supplied for your environment.
 3. Verify the JWT signature, issuer, audience, expiry, and claims before processing the event.
 4. Process events idempotently because delivery may be retried.
 5. Return HTTP 200 only after the notification has been accepted.
