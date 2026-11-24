@@ -1,0 +1,14 @@
+{
+  "name": "securebankpay-open-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bank Pay OpenAPI definition and ReadMe guides",
+  "scripts": {
+    "publish": "json-refs resolve --yaml -f --filter relative ./src/securebankpay-api.yaml > ./securebankpay-api.yaml",
+    "test": "speccy lint ./securebankpay-api.yaml"
+  },
+  "devDependencies": {
+    "json-refs": "*",
+    "speccy": "^0.11.0"
+  }
+}

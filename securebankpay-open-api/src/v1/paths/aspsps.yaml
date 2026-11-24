@@ -1,0 +1,28 @@
+get:
+  summary: List available banks
+  description: List ASPSPs available for Bank Pay payments. This is only required when the merchant hosts the bank-selection page.
+  tags: [Open Banking Payments]
+  operationId: getListOfAspsps
+  security:
+    - bearerAuth: []
+  parameters:
+    - in: query
+      name: currency
+      required: false
+      schema:
+        type: string
+        enum: [EUR, GBP]
+      description: Filter banks by payment currency.
+  responses:
+    '200':
+      description: Available banks
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Aspsps'
+    '400':
+      $ref: '#/components/responses/ApiErrorResponse'
+    '401':
+      $ref: '#/components/responses/ApiErrorResponse'
+    '403':
+      $ref: '#/components/responses/ApiErrorResponse'

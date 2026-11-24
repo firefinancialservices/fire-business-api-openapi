@@ -1,0 +1,26 @@
+post:
+  summary: Create a payment request
+  description: Create a Bank Pay payment request and receive a code for the customer payment page.
+  tags: [Open Banking Payments]
+  operationId: newPaymentRequest
+  security:
+    - bearerAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/NewPaymentRequest'
+  responses:
+    '201':
+      description: Payment request created
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PaymentRequestResponse'
+    '400':
+      $ref: '#/components/responses/ApiErrorResponse'
+    '401':
+      $ref: '#/components/responses/ApiErrorResponse'
+    '403':
+      $ref: '#/components/responses/ApiErrorResponse'

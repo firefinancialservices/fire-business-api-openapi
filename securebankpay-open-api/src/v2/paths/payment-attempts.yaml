@@ -1,0 +1,28 @@
+get:
+  summary: List payment attempts
+  description: Retrieve all payment attempts associated with a payment request.
+  tags: [Open Banking Payments]
+  operationId: getPaymentRequestPaymentsv2
+  security:
+    - bearerAuth: []
+  parameters:
+    - in: path
+      name: paymentRequestCode
+      required: true
+      schema:
+        type: string
+        minLength: 8
+        maxLength: 8
+  responses:
+    '200':
+      description: Payment attempts
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PaymentRequestPayment'
+    '400':
+      $ref: '#/components/responses/ApiErrorResponse'
+    '401':
+      $ref: '#/components/responses/ApiErrorResponse'
+    '403':
+      $ref: '#/components/responses/ApiErrorResponse'
